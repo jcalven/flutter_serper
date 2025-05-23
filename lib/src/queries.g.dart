@@ -6,18 +6,19 @@ part of 'queries.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_SearchQuery _$SearchQueryFromJson(Map<String, dynamic> json) => _SearchQuery(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  num: (json['num'] as num?)?.toInt(),
-  autocorrect: json['autocorrect'] as bool?,
-  tbs: json['tbs'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
+_$SearchQueryImpl _$$SearchQueryImplFromJson(Map<String, dynamic> json) =>
+    _$SearchQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      num: (json['num'] as num?)?.toInt(),
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$SearchQueryToJson(_SearchQuery instance) =>
+Map<String, dynamic> _$$SearchQueryImplToJson(_$SearchQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
@@ -29,18 +30,19 @@ Map<String, dynamic> _$SearchQueryToJson(_SearchQuery instance) =>
       'page': instance.page,
     };
 
-_ImagesQuery _$ImagesQueryFromJson(Map<String, dynamic> json) => _ImagesQuery(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  num: (json['num'] as num?)?.toInt(),
-  autocorrect: json['autocorrect'] as bool?,
-  tbs: json['tbs'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
+_$ImagesQueryImpl _$$ImagesQueryImplFromJson(Map<String, dynamic> json) =>
+    _$ImagesQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      num: (json['num'] as num?)?.toInt(),
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$ImagesQueryToJson(_ImagesQuery instance) =>
+Map<String, dynamic> _$$ImagesQueryImplToJson(_$ImagesQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
@@ -52,17 +54,18 @@ Map<String, dynamic> _$ImagesQueryToJson(_ImagesQuery instance) =>
       'page': instance.page,
     };
 
-_PlacesQuery _$PlacesQueryFromJson(Map<String, dynamic> json) => _PlacesQuery(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  autocorrect: json['autocorrect'] as bool?,
-  tbs: json['tbs'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
+_$PlacesQueryImpl _$$PlacesQueryImplFromJson(Map<String, dynamic> json) =>
+    _$PlacesQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$PlacesQueryToJson(_PlacesQuery instance) =>
+Map<String, dynamic> _$$PlacesQueryImplToJson(_$PlacesQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
@@ -73,18 +76,19 @@ Map<String, dynamic> _$PlacesQueryToJson(_PlacesQuery instance) =>
       'page': instance.page,
     };
 
-_VideosQuery _$VideosQueryFromJson(Map<String, dynamic> json) => _VideosQuery(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  num: (json['num'] as num?)?.toInt(),
-  autocorrect: json['autocorrect'] as bool?,
-  tbs: json['tbs'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
+_$VideosQueryImpl _$$VideosQueryImplFromJson(Map<String, dynamic> json) =>
+    _$VideosQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      num: (json['num'] as num?)?.toInt(),
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$VideosQueryToJson(_VideosQuery instance) =>
+Map<String, dynamic> _$$VideosQueryImplToJson(_$VideosQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
@@ -96,16 +100,17 @@ Map<String, dynamic> _$VideosQueryToJson(_VideosQuery instance) =>
       'page': instance.page,
     };
 
-_MapsQuery _$MapsQueryFromJson(Map<String, dynamic> json) => _MapsQuery(
-  q: json['q'] as String,
-  hl: json['hl'] as String?,
-  ll: json['ll'] as String?,
-  placeId: json['placeId'] as String?,
-  cid: json['cid'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
+_$MapsQueryImpl _$$MapsQueryImplFromJson(Map<String, dynamic> json) =>
+    _$MapsQueryImpl(
+      q: json['q'] as String,
+      hl: json['hl'] as String?,
+      ll: json['ll'] as String?,
+      placeId: json['placeId'] as String?,
+      cid: json['cid'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$MapsQueryToJson(_MapsQuery instance) =>
+Map<String, dynamic> _$$MapsQueryImplToJson(_$MapsQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'hl': instance.hl,
@@ -115,8 +120,8 @@ Map<String, dynamic> _$MapsQueryToJson(_MapsQuery instance) =>
       'page': instance.page,
     };
 
-_ReviewsQuery _$ReviewsQueryFromJson(Map<String, dynamic> json) =>
-    _ReviewsQuery(
+_$ReviewsQueryImpl _$$ReviewsQueryImplFromJson(Map<String, dynamic> json) =>
+    _$ReviewsQueryImpl(
       cid: json['cid'] as String,
       fid: json['fid'] as String,
       placeId: json['placeId'] as String,
@@ -128,7 +133,7 @@ _ReviewsQuery _$ReviewsQueryFromJson(Map<String, dynamic> json) =>
       q: json['q'] as String?,
     );
 
-Map<String, dynamic> _$ReviewsQueryToJson(_ReviewsQuery instance) =>
+Map<String, dynamic> _$$ReviewsQueryImplToJson(_$ReviewsQueryImpl instance) =>
     <String, dynamic>{
       'cid': instance.cid,
       'fid': instance.fid,
@@ -141,94 +146,8 @@ Map<String, dynamic> _$ReviewsQueryToJson(_ReviewsQuery instance) =>
       'q': instance.q,
     };
 
-_NewsQuery _$NewsQueryFromJson(Map<String, dynamic> json) => _NewsQuery(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  num: (json['num'] as num?)?.toInt(),
-  autocorrect: json['autocorrect'] as bool?,
-  tbs: json['tbs'] as String?,
-  page: (json['page'] as num?)?.toInt(),
-);
-
-Map<String, dynamic> _$NewsQueryToJson(_NewsQuery instance) =>
-    <String, dynamic>{
-      'q': instance.q,
-      'location': instance.location,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'num': instance.num,
-      'autocorrect': instance.autocorrect,
-      'tbs': instance.tbs,
-      'page': instance.page,
-    };
-
-_ShoppingQuery _$ShoppingQueryFromJson(Map<String, dynamic> json) =>
-    _ShoppingQuery(
-      q: json['q'] as String,
-      location: json['location'] as String?,
-      gl: json['gl'] as String?,
-      hl: json['hl'] as String?,
-      autocorrect: json['autocorrect'] as bool?,
-      tbs: json['tbs'] as String?,
-      page: (json['page'] as num?)?.toInt(),
-    );
-
-Map<String, dynamic> _$ShoppingQueryToJson(_ShoppingQuery instance) =>
-    <String, dynamic>{
-      'q': instance.q,
-      'location': instance.location,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'autocorrect': instance.autocorrect,
-      'tbs': instance.tbs,
-      'page': instance.page,
-    };
-
-_LensQuery _$LensQueryFromJson(Map<String, dynamic> json) => _LensQuery(
-  url: json['url'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-  tbs: json['tbs'] as String?,
-  q: json['q'] as String?,
-);
-
-Map<String, dynamic> _$LensQueryToJson(_LensQuery instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-      'location': instance.location,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'tbs': instance.tbs,
-      'q': instance.q,
-    };
-
-_ScholarQuery _$ScholarQueryFromJson(Map<String, dynamic> json) =>
-    _ScholarQuery(
-      q: json['q'] as String,
-      location: json['location'] as String?,
-      gl: json['gl'] as String?,
-      hl: json['hl'] as String?,
-      autocorrect: json['autocorrect'] as bool?,
-      tbs: json['tbs'] as String?,
-      page: (json['page'] as num?)?.toInt(),
-    );
-
-Map<String, dynamic> _$ScholarQueryToJson(_ScholarQuery instance) =>
-    <String, dynamic>{
-      'q': instance.q,
-      'location': instance.location,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'autocorrect': instance.autocorrect,
-      'tbs': instance.tbs,
-      'page': instance.page,
-    };
-
-_PatentsQuery _$PatentsQueryFromJson(Map<String, dynamic> json) =>
-    _PatentsQuery(
+_$NewsQueryImpl _$$NewsQueryImplFromJson(Map<String, dynamic> json) =>
+    _$NewsQueryImpl(
       q: json['q'] as String,
       location: json['location'] as String?,
       gl: json['gl'] as String?,
@@ -239,7 +158,7 @@ _PatentsQuery _$PatentsQueryFromJson(Map<String, dynamic> json) =>
       page: (json['page'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$PatentsQueryToJson(_PatentsQuery instance) =>
+Map<String, dynamic> _$$NewsQueryImplToJson(_$NewsQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
@@ -251,30 +170,120 @@ Map<String, dynamic> _$PatentsQueryToJson(_PatentsQuery instance) =>
       'page': instance.page,
     };
 
-_AutocompleteQuery _$AutocompleteQueryFromJson(Map<String, dynamic> json) =>
-    _AutocompleteQuery(
+_$ShoppingQueryImpl _$$ShoppingQueryImplFromJson(Map<String, dynamic> json) =>
+    _$ShoppingQueryImpl(
       q: json['q'] as String,
       location: json['location'] as String?,
       gl: json['gl'] as String?,
       hl: json['hl'] as String?,
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$AutocompleteQueryToJson(_AutocompleteQuery instance) =>
+Map<String, dynamic> _$$ShoppingQueryImplToJson(_$ShoppingQueryImpl instance) =>
     <String, dynamic>{
       'q': instance.q,
       'location': instance.location,
       'gl': instance.gl,
       'hl': instance.hl,
+      'autocorrect': instance.autocorrect,
+      'tbs': instance.tbs,
+      'page': instance.page,
     };
 
-_WebpageQuery _$WebpageQueryFromJson(Map<String, dynamic> json) =>
-    _WebpageQuery(
+_$LensQueryImpl _$$LensQueryImplFromJson(Map<String, dynamic> json) =>
+    _$LensQueryImpl(
+      url: json['url'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      tbs: json['tbs'] as String?,
+      q: json['q'] as String?,
+    );
+
+Map<String, dynamic> _$$LensQueryImplToJson(_$LensQueryImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'location': instance.location,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'tbs': instance.tbs,
+      'q': instance.q,
+    };
+
+_$ScholarQueryImpl _$$ScholarQueryImplFromJson(Map<String, dynamic> json) =>
+    _$ScholarQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$ScholarQueryImplToJson(_$ScholarQueryImpl instance) =>
+    <String, dynamic>{
+      'q': instance.q,
+      'location': instance.location,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'autocorrect': instance.autocorrect,
+      'tbs': instance.tbs,
+      'page': instance.page,
+    };
+
+_$PatentsQueryImpl _$$PatentsQueryImplFromJson(Map<String, dynamic> json) =>
+    _$PatentsQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      num: (json['num'] as num?)?.toInt(),
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$$PatentsQueryImplToJson(_$PatentsQueryImpl instance) =>
+    <String, dynamic>{
+      'q': instance.q,
+      'location': instance.location,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'num': instance.num,
+      'autocorrect': instance.autocorrect,
+      'tbs': instance.tbs,
+      'page': instance.page,
+    };
+
+_$AutocompleteQueryImpl _$$AutocompleteQueryImplFromJson(
+  Map<String, dynamic> json,
+) => _$AutocompleteQueryImpl(
+  q: json['q'] as String,
+  location: json['location'] as String?,
+  gl: json['gl'] as String?,
+  hl: json['hl'] as String?,
+);
+
+Map<String, dynamic> _$$AutocompleteQueryImplToJson(
+  _$AutocompleteQueryImpl instance,
+) => <String, dynamic>{
+  'q': instance.q,
+  'location': instance.location,
+  'gl': instance.gl,
+  'hl': instance.hl,
+};
+
+_$WebpageQueryImpl _$$WebpageQueryImplFromJson(Map<String, dynamic> json) =>
+    _$WebpageQueryImpl(
       url: json['url'] as String,
       includeMarkdown: json['includeMarkdown'] as bool?,
       q: json['q'] as String?,
     );
 
-Map<String, dynamic> _$WebpageQueryToJson(_WebpageQuery instance) =>
+Map<String, dynamic> _$$WebpageQueryImplToJson(_$WebpageQueryImpl instance) =>
     <String, dynamic>{
       'url': instance.url,
       'includeMarkdown': instance.includeMarkdown,
