@@ -1,8 +1,6 @@
-/// Support for doing something awesome.
+/// Library entry point for the Serper API wrapper.
 ///
-/// More dartdocs go here.
+/// Exports the [Serper] class for use by package clients.
 library;
 
 export 'src/flutter_serper_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
