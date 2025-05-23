@@ -193,6 +193,32 @@ Future<void> main() async {
     } catch (e) {
       print('Error calling API with mixin: $e');
     }
+
+    // Example 9: Using SerperResponseProcessor utility class
+    print('\nExample of using SerperResponseProcessor:');
+
+    // Calculate total credits used across multiple API calls
+    final totalCredits = SerperResponseProcessor.calculateTotalCredits([
+      searchResults,
+      imageResults,
+      newsResults,
+    ]);
+    print('Total credits used across 3 API calls: $totalCredits');
+
+    // Generate a usage report
+    final usageReport = SerperResponseProcessor.createUsageReport([
+      searchResults,
+      imageResults,
+      newsResults,
+    ]);
+
+    print('API Usage Report:');
+    print('- Total credits: ${usageReport['totalCredits']}');
+    print(
+      '- Average credits per call: ${usageReport['averageCreditsPerCall']}',
+    );
+    print('- Number of API calls: ${usageReport['callCount']}');
+    print('- Report timestamp: ${usageReport['timestamp']}');
   } catch (e) {
     print('Error: $e');
   }

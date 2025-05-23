@@ -1,8 +1,6 @@
-/// Library entry point for the Serper API wrapper.
-///
-/// Exports the [Serper] class, query models, and response models for use by package clients.
-library flutter_serper;
+// A Dart package for the Serper API with strongly-typed models and polymorphic response handling.
 
 export 'src/flutter_serper_base.dart';
 export 'src/queries.dart';
 export 'src/responses.dart';
+export 'src/utils.dart';

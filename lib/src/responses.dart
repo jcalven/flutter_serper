@@ -3,18 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'responses.freezed.dart';
 part 'responses.g.dart';
 
-/// Base class for all Serper API responses.
-@freezed
-class BaseSerperResponse with _$BaseSerperResponse {
-  const factory BaseSerperResponse({
-    required Map<String, dynamic> searchParameters,
-    required int credits,
-  }) = _BaseSerperResponse;
-
-  factory BaseSerperResponse.fromJson(Map<String, dynamic> json) =>
-      _$BaseSerperResponseFromJson(json);
-}
-
 /// Mixin containing common fields for all Serper API responses.
 /// This allows us to reuse the common fields in all response classes.
 mixin SerperResponseMixin {

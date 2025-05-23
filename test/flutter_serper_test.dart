@@ -171,4 +171,54 @@ void main() {
       expect(response.results.first.credits, equals(5));
     });
   });
+
+  group('SerperResponseMixin', () {
+    test('Can handle responses polymorphically', () {
+      // Arrange
+      final searchJson = {
+        'searchParameters': {'q': 'test', 'gl': 'us'},
+        'organic': [
+          {
+            'title': 'Test Result',
+            'link': 'https://example.com',
+            'snippet': 'This is a test result',
+            'position': 1,
+          },
+        ],
+        'credits': 10,
+      };
+
+      final imagesJson = {
+        'searchParameters': {'q': 'test image', 'gl': 'us'},
+        'images': [
+          {
+            'title': 'Test Image',
+            'imageUrl': 'https://example.com/image.jpg',
+            'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+            'source': 'Example Source',
+            'sourceUrl': 'https://example.com',
+            'position': 1,
+          },
+        ],
+        'credits': 5,
+      };
+
+      // Act
+      final searchResponse = SearchResponse.fromJson(searchJson);
+      final imagesResponse = ImagesResponse.fromJson(imagesJson);
+
+      // Function that works with any SerperResponseMixin
+      int getCreditsUsed(SerperResponseMixin response) {
+        return response.credits;
+      }
+
+      // Assert
+      expect(getCreditsUsed(searchResponse), equals(10));
+      expect(getCreditsUsed(imagesResponse), equals(5));
+
+      // Verify both types implement the mixin correctly
+      expect(searchResponse.searchParameters['q'], equals('test'));
+      expect(imagesResponse.searchParameters['q'], equals('test image'));
+    });
+  });
 }

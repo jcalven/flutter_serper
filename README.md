@@ -6,7 +6,7 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
 
 - Strongly-typed query and response models using Freezed
 - Type-safe responses for all API endpoints that match the Serper API schema
-- Common response inheritance through `SerperResponseMixin` for polymorphic handling
+- Common response inheritance through `SerperResponseMixin` for polymorphic handling of response types
 - Support for all Serper API endpoints:
   - Google Search
   - Images
@@ -223,7 +223,7 @@ try {
 
 ## Polymorphic Response Handling
 
-All API endpoint responses (except for Webpage API) implement `SerperResponseMixin`, which provides access to common fields. This allows for polymorphic handling of responses:
+All API endpoint responses (except for Webpage API) implement `SerperResponseMixin`, which provides access to common fields like `searchParameters` and `credits`. This mixin-based approach allows for polymorphic handling of different response types without relying on traditional inheritance:
 
 ```dart
 // Function that works with any Serper API response

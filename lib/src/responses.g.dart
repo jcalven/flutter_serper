@@ -6,20 +6,6 @@ part of 'responses.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BaseSerperResponseImpl _$$BaseSerperResponseImplFromJson(
-  Map<String, dynamic> json,
-) => _$BaseSerperResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
-  credits: (json['credits'] as num).toInt(),
-);
-
-Map<String, dynamic> _$$BaseSerperResponseImplToJson(
-  _$BaseSerperResponseImpl instance,
-) => <String, dynamic>{
-  'searchParameters': instance.searchParameters,
-  'credits': instance.credits,
-};
-
 _$SearchResponseImpl _$$SearchResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$SearchResponseImpl(
