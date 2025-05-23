@@ -34,7 +34,8 @@ class SerperApiException implements Exception {
 /// Provides methods for all supported Serper API endpoints, including search, images, videos, places, maps, reviews,
 /// news, shopping, lens, scholar, patents, autocomplete, and webpage scraping.
 ///
-/// All methods use the Dio HTTP client and return strongly-typed response objects.
+/// All methods use the Dio HTTP client and return strongly-typed response objects that implement [SerperResponseMixin],
+/// allowing for polymorphic handling of responses.
 ///
 /// Example usage:
 /// ```dart
@@ -42,7 +43,6 @@ class SerperApiException implements Exception {
 /// final searchResults = await serper.search([SearchQuery(q: 'coffee shop')]);
 /// print(searchResults.organic.length);
 /// ```
-
 class Serper {
   /// The base URL for Google endpoints.
   static const String _googleBaseUrl = 'https://google.serper.dev';
@@ -114,6 +114,50 @@ class Serper {
     }
   }
 
+  /// Get a value that implements [SerperResponseMixin] from the response.
+  ///
+  /// This method can be used to get any response type that implements [SerperResponseMixin],
+  /// allowing for polymorphic handling of responses.
+  T getResponseWithMixin<T extends SerperResponseMixin>(
+    dynamic response,
+    T Function(Map<String, dynamic>) fromJson,
+  ) {
+    if (response is! Map<String, dynamic>) {
+      throw SerperApiException(
+        message: 'Invalid API response format: expected a JSON object',
+      );
+    }
+    return fromJson(response);
+  }
+
+  /// Generic method to call any Serper API and return a response that implements [SerperResponseMixin].
+  ///
+  /// This method can be used when you want to handle responses in a polymorphic way.
+  ///
+  /// Example:
+  /// ```dart
+  /// final response = await serper.callApiWithMixin<SearchResponse>(
+  ///   '/search',
+  ///   [SearchQuery(q: 'coffee').toJson()],
+  ///   SearchResponse.fromJson,
+  /// );
+  /// // Can use response as SerperResponseMixin
+  /// print(response.credits);
+  /// ```
+  Future<T> callApiWithMixin<T extends SerperResponseMixin>(
+    String endpoint,
+    List<Map<String, dynamic>> queryData,
+    T Function(Map<String, dynamic>) fromJson, {
+    bool isScrape = false,
+  }) async {
+    assert(
+      queryData.isNotEmpty && queryData.length <= 100,
+      'You must provide 1-100 queries.',
+    );
+    final response = await _post(endpoint, queryData, isScrape: isScrape);
+    return getResponseWithMixin(response, fromJson);
+  }
+
   /// Calls the Serper Search API.
   ///
   /// Accepts a list of [SearchQuery] objects (up to 100).
@@ -124,7 +168,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/search', data);
-    return SearchResponse.fromJson(response);
+    return getResponseWithMixin(response, SearchResponse.fromJson);
   }
 
   /// Calls the Serper Images API.
@@ -137,7 +181,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/images', data);
-    return ImagesResponse.fromJson(response);
+    return getResponseWithMixin(response, ImagesResponse.fromJson);
   }
 
   /// Calls the Serper Videos API.
@@ -150,7 +194,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/videos', data);
-    return VideosResponse.fromJson(response);
+    return getResponseWithMixin(response, VideosResponse.fromJson);
   }
 
   /// Calls the Serper Places API.
@@ -163,7 +207,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/places', data);
-    return PlacesResponse.fromJson(response);
+    return getResponseWithMixin(response, PlacesResponse.fromJson);
   }
 
   /// Calls the Serper Maps API.
@@ -176,7 +220,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/maps', data);
-    return MapsResponse.fromJson(response);
+    return getResponseWithMixin(response, MapsResponse.fromJson);
   }
 
   /// Calls the Serper Reviews API.
@@ -189,7 +233,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/reviews', data);
-    return ReviewsResponse.fromJson(response);
+    return getResponseWithMixin(response, ReviewsResponse.fromJson);
   }
 
   /// Calls the Serper News API.
@@ -202,7 +246,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/news', data);
-    return NewsResponse.fromJson(response);
+    return getResponseWithMixin(response, NewsResponse.fromJson);
   }
 
   /// Calls the Serper Shopping API.
@@ -215,7 +259,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/shopping', data);
-    return ShoppingResponse.fromJson(response);
+    return getResponseWithMixin(response, ShoppingResponse.fromJson);
   }
 
   /// Calls the Serper Lens (Image Search) API.
@@ -228,7 +272,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/lens', data);
-    return LensResponse.fromJson(response);
+    return getResponseWithMixin(response, LensResponse.fromJson);
   }
 
   /// Calls the Serper Scholar API.
@@ -241,7 +285,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/scholar', data);
-    return ScholarResponse.fromJson(response);
+    return getResponseWithMixin(response, ScholarResponse.fromJson);
   }
 
   /// Calls the Serper Patents API.
@@ -254,7 +298,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/patents', data);
-    return PatentsResponse.fromJson(response);
+    return getResponseWithMixin(response, PatentsResponse.fromJson);
   }
 
   /// Calls the Serper Autocomplete API.
@@ -269,7 +313,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/autocomplete', data);
-    return AutocompleteResponse.fromJson(response);
+    return getResponseWithMixin(response, AutocompleteResponse.fromJson);
   }
 
   /// Calls the Serper Webpage API (scraping).
@@ -281,7 +325,7 @@ class Serper {
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/', data, isScrape: true);
+    final response = await _post('/webpage', data, isScrape: true);
     return WebpageResponse.fromJson(response);
   }
 }

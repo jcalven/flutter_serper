@@ -1,5 +1,11 @@
 import 'package:flutter_serper/flutter_serper.dart';
 
+// Example function that can process any Serper API response
+void processResponse(SerperResponseMixin response) {
+  print('API call used ${response.credits} credits');
+  print('Search parameters: ${response.searchParameters}');
+}
+
 Future<void> main() async {
   // Initialize the Serper client with your API key
   final serper = Serper(apiKey: 'YOUR_API_KEY');
@@ -16,9 +22,11 @@ Future<void> main() async {
   try {
     final searchResults = await serper.search([searchQuery]);
 
+    // Process with polymorphic function
+    processResponse(searchResults);
+
     // Access strongly-typed response fields
-    print('Found ${searchResults.organic.length} organic results');
-    print('Search credits used: ${searchResults.credits}');
+    print('\nFound ${searchResults.organic.length} organic results');
 
     if (searchResults.organic.isNotEmpty) {
       final firstResult = searchResults.organic.first;
@@ -140,6 +148,50 @@ Future<void> main() async {
 
     for (final suggestion in autocompleteResults.suggestions.take(3)) {
       print('- ${suggestion.value}');
+    }
+
+    // Example 7: Using polymorphic API handling
+    print('\nExample of polymorphic API handling:');
+
+    // Create a function that works with any Serper API response
+    void processPolymorphicResponse(SerperResponseMixin response) {
+      print('This function works with any Serper response type');
+      print('Search parameters: ${response.searchParameters}');
+      print('Credits used: ${response.credits}');
+    }
+
+    // Process different response types with the same function
+    print('\nHandling SearchResponse polymorphically:');
+    processPolymorphicResponse(searchResults);
+
+    print('\nHandling ImagesResponse polymorphically:');
+    processPolymorphicResponse(imageResults);
+
+    print('\nHandling NewsResponse polymorphically:');
+    processPolymorphicResponse(newsResults);
+
+    // Example 8: Using the callApiWithMixin method
+    print('\nUsing callApiWithMixin with SearchResponse:');
+    final polymorphicQuery =
+        SearchQuery(q: 'specialty coffee', num: 3).toJson();
+
+    try {
+      final polymorphicResults = await serper.callApiWithMixin<SearchResponse>(
+        '/search',
+        [polymorphicQuery],
+        SearchResponse.fromJson,
+      );
+
+      // We can access common properties via the mixin
+      print('Credits used: ${polymorphicResults.credits}');
+
+      // And also specific properties of the concrete type
+      print('Found ${polymorphicResults.organic.length} organic results');
+
+      // We can pass this to any function accepting SerperResponseMixin
+      processPolymorphicResponse(polymorphicResults);
+    } catch (e) {
+      print('Error calling API with mixin: $e');
     }
   } catch (e) {
     print('Error: $e');

@@ -6,6 +6,7 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
 
 - Strongly-typed query and response models using Freezed
 - Type-safe responses for all API endpoints that match the Serper API schema
+- Common response inheritance through `SerperResponseMixin` for polymorphic handling
 - Support for all Serper API endpoints:
   - Google Search
   - Images
@@ -218,6 +219,43 @@ try {
 } catch (e) {
   print('Other error: $e');
 }
+```
+
+## Polymorphic Response Handling
+
+All API endpoint responses (except for Webpage API) implement `SerperResponseMixin`, which provides access to common fields. This allows for polymorphic handling of responses:
+
+```dart
+// Function that works with any Serper API response
+void processApiResponse(SerperResponseMixin response) {
+  print('Credits used: ${response.credits}');
+  print('Search parameters: ${response.searchParameters}');
+}
+
+// Use with different response types
+final searchResults = await serper.search([SearchQuery(q: 'coffee')]);
+final imageResults = await serper.images([ImagesQuery(q: 'coffee')]);
+
+// Both work with the same function
+processApiResponse(searchResults);
+processApiResponse(imageResults);
+```
+
+You can also use the generic API method to work with responses polymorphically:
+
+```dart
+// Generic method to make any API call
+final results = await serper.callApiWithMixin<SearchResponse>(
+  '/search',
+  [SearchQuery(q: 'coffee').toJson()],
+  SearchResponse.fromJson,
+);
+
+// Can access mixin properties
+print('Credits: ${results.credits}');
+
+// And also specific properties of the concrete type
+print('Found ${results.organic.length} organic results');
 ```
 
 ## License

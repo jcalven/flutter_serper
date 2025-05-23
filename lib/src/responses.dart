@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'responses.freezed.dart';
 part 'responses.g.dart';
@@ -16,9 +15,16 @@ class BaseSerperResponse with _$BaseSerperResponse {
       _$BaseSerperResponseFromJson(json);
 }
 
+/// Mixin containing common fields for all Serper API responses.
+/// This allows us to reuse the common fields in all response classes.
+mixin SerperResponseMixin {
+  Map<String, dynamic> get searchParameters;
+  int get credits;
+}
+
 /// Response for the Serper Search API.
 @freezed
-class SearchResponse with _$SearchResponse {
+class SearchResponse with _$SearchResponse, SerperResponseMixin {
   const factory SearchResponse({
     required Map<String, dynamic> searchParameters,
     required List<OrganicResult> organic,
@@ -182,7 +188,7 @@ class LocalResultsResult with _$LocalResultsResult {
 
 /// Response for the Serper Images API.
 @freezed
-class ImagesResponse with _$ImagesResponse {
+class ImagesResponse with _$ImagesResponse, SerperResponseMixin {
   const factory ImagesResponse({
     required Map<String, dynamic> searchParameters,
     required List<ImageResult> images,
@@ -213,7 +219,7 @@ class ImageResult with _$ImageResult {
 
 /// Response for the Serper Places API.
 @freezed
-class PlacesResponse with _$PlacesResponse {
+class PlacesResponse with _$PlacesResponse, SerperResponseMixin {
   const factory PlacesResponse({
     required Map<String, dynamic> searchParameters,
     required List<PlaceResult> places,
@@ -247,7 +253,7 @@ class PlaceResult with _$PlaceResult {
 
 /// Response for the Serper Videos API.
 @freezed
-class VideosResponse with _$VideosResponse {
+class VideosResponse with _$VideosResponse, SerperResponseMixin {
   const factory VideosResponse({
     required Map<String, dynamic> searchParameters,
     required List<VideoResult> videos,
@@ -280,7 +286,7 @@ class VideoResult with _$VideoResult {
 
 /// Response for the Serper Maps API.
 @freezed
-class MapsResponse with _$MapsResponse {
+class MapsResponse with _$MapsResponse, SerperResponseMixin {
   const factory MapsResponse({
     required Map<String, dynamic> searchParameters,
     required MapResult place,
@@ -345,7 +351,7 @@ class MapResultPhoto with _$MapResultPhoto {
 
 /// Response for the Serper Reviews API.
 @freezed
-class ReviewsResponse with _$ReviewsResponse {
+class ReviewsResponse with _$ReviewsResponse, SerperResponseMixin {
   const factory ReviewsResponse({
     required Map<String, dynamic> searchParameters,
     required List<PlaceReview> reviews,
@@ -377,7 +383,7 @@ class PlaceReview with _$PlaceReview {
 
 /// Response for the Serper News API.
 @freezed
-class NewsResponse with _$NewsResponse {
+class NewsResponse with _$NewsResponse, SerperResponseMixin {
   const factory NewsResponse({
     required Map<String, dynamic> searchParameters,
     required List<NewsResult> news,
@@ -407,7 +413,7 @@ class NewsResult with _$NewsResult {
 
 /// Response for the Serper Shopping API.
 @freezed
-class ShoppingResponse with _$ShoppingResponse {
+class ShoppingResponse with _$ShoppingResponse, SerperResponseMixin {
   const factory ShoppingResponse({
     required Map<String, dynamic> searchParameters,
     required List<ShoppingResult> shopping,
@@ -437,7 +443,7 @@ class ShoppingResult with _$ShoppingResult {
 
 /// Response for the Serper Lens (Image Search) API.
 @freezed
-class LensResponse with _$LensResponse {
+class LensResponse with _$LensResponse, SerperResponseMixin {
   const factory LensResponse({
     required Map<String, dynamic> searchParameters,
     required List<LensResult> organic,
@@ -465,7 +471,7 @@ class LensResult with _$LensResult {
 
 /// Response for the Serper Scholar API.
 @freezed
-class ScholarResponse with _$ScholarResponse {
+class ScholarResponse with _$ScholarResponse, SerperResponseMixin {
   const factory ScholarResponse({
     required Map<String, dynamic> searchParameters,
     required List<ScholarResult> organic,
@@ -496,7 +502,7 @@ class ScholarResult with _$ScholarResult {
 
 /// Response for the Serper Patents API.
 @freezed
-class PatentsResponse with _$PatentsResponse {
+class PatentsResponse with _$PatentsResponse, SerperResponseMixin {
   const factory PatentsResponse({
     required Map<String, dynamic> searchParameters,
     required List<PatentResult> organic,
@@ -546,7 +552,7 @@ class PatentFigure with _$PatentFigure {
 
 /// Response for the Serper Autocomplete API.
 @freezed
-class AutocompleteResponse with _$AutocompleteResponse {
+class AutocompleteResponse with _$AutocompleteResponse, SerperResponseMixin {
   const factory AutocompleteResponse({
     required Map<String, dynamic> searchParameters,
     required List<AutocompleteSuggestion> suggestions,
