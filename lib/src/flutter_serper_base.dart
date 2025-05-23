@@ -1,21 +1,47 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/src/queries.dart';
+import 'package:flutter_serper/src/responses.dart';
+
+/// Exception thrown when there is an error with the Serper API.
+class SerperApiException implements Exception {
+  /// The error message.
+  final String message;
+
+  /// The HTTP status code, if available.
+  final int? statusCode;
+
+  /// The API endpoint that was called.
+  final String? endpoint;
+
+  /// The response data, if available.
+  final Map<String, dynamic>? responseData;
+
+  /// Creates a new [SerperApiException].
+  SerperApiException({
+    required this.message,
+    this.statusCode,
+    this.endpoint,
+    this.responseData,
+  });
+
+  @override
+  String toString() => message;
+}
 
 /// A wrapper for the Serper API.
 ///
 /// Provides methods for all supported Serper API endpoints, including search, images, videos, places, maps, reviews,
 /// news, shopping, lens, scholar, patents, autocomplete, and webpage scraping.
 ///
-/// All methods use the Dio HTTP client and return the decoded response data.
+/// All methods use the Dio HTTP client and return strongly-typed response objects.
 ///
 /// Example usage:
 /// ```dart
 /// final serper = Serper(apiKey: 'your-api-key');
-/// final searchResults = await serper.search([{'q': 'coffee shop'}]);
+/// final searchResults = await serper.search([SearchQuery(q: 'coffee shop')]);
+/// print(searchResults.organic.length);
 /// ```
-
-// Query classes are now in queries.dart
 
 class Serper {
   /// The base URL for Google endpoints.
@@ -49,167 +75,213 @@ class Serper {
   }) async {
     final url =
         isScrape ? '$_scrapeBaseUrl$endpoint' : '$_googleBaseUrl$endpoint';
-    final response = await _dio.request(
-      url,
-      options: Options(method: 'POST', headers: _headers),
-      data: json.encode(data),
-    );
-    return response.data;
+    try {
+      final response = await _dio.request(
+        url,
+        options: Options(method: 'POST', headers: _headers),
+        data: json.encode(data),
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        // If we have a response body, try to extract error details
+        final statusCode = e.response!.statusCode;
+        final Map<String, dynamic>? errorData =
+            e.response!.data is Map
+                ? e.response!.data as Map<String, dynamic>
+                : null;
+
+        final errorMessage = errorData?['message'] ?? e.message;
+        throw SerperApiException(
+          message: 'Serper API error: $errorMessage',
+          statusCode: statusCode,
+          endpoint: endpoint,
+          responseData: errorData,
+        );
+      } else {
+        // Network error or no response
+        throw SerperApiException(
+          message: 'Network error: ${e.message}',
+          endpoint: endpoint,
+        );
+      }
+    } catch (e) {
+      // Any other error
+      throw SerperApiException(
+        message: 'Error making API request: $e',
+        endpoint: endpoint,
+      );
+    }
   }
 
   /// Calls the Serper Search API.
   ///
   /// Accepts a list of [SearchQuery] objects (up to 100).
-  Future<dynamic> search(List<SearchQuery> queries) async {
+  Future<SearchResponse> search(List<SearchQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/search', data);
+    final response = await _post('/search', data);
+    return SearchResponse.fromJson(response);
   }
 
   /// Calls the Serper Images API.
   ///
   /// Accepts a list of [ImagesQuery] objects (up to 100).
-  Future<dynamic> images(List<ImagesQuery> queries) async {
+  Future<ImagesResponse> images(List<ImagesQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/images', data);
+    final response = await _post('/images', data);
+    return ImagesResponse.fromJson(response);
   }
 
   /// Calls the Serper Videos API.
   ///
   /// Accepts a list of [VideosQuery] objects (up to 100).
-  Future<dynamic> videos(List<VideosQuery> queries) async {
+  Future<VideosResponse> videos(List<VideosQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/videos', data);
+    final response = await _post('/videos', data);
+    return VideosResponse.fromJson(response);
   }
 
   /// Calls the Serper Places API.
   ///
   /// Accepts a list of [PlacesQuery] objects (up to 100).
-  Future<dynamic> places(List<PlacesQuery> queries) async {
+  Future<PlacesResponse> places(List<PlacesQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/places', data);
+    final response = await _post('/places', data);
+    return PlacesResponse.fromJson(response);
   }
 
   /// Calls the Serper Maps API.
   ///
   /// Accepts a list of [MapsQuery] objects (up to 100).
-  Future<dynamic> maps(List<MapsQuery> queries) async {
+  Future<MapsResponse> maps(List<MapsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/maps', data);
+    final response = await _post('/maps', data);
+    return MapsResponse.fromJson(response);
   }
 
   /// Calls the Serper Reviews API.
   ///
   /// Accepts a list of [ReviewsQuery] objects (up to 100).
-  Future<dynamic> reviews(List<ReviewsQuery> queries) async {
+  Future<ReviewsResponse> reviews(List<ReviewsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/reviews', data);
+    final response = await _post('/reviews', data);
+    return ReviewsResponse.fromJson(response);
   }
 
   /// Calls the Serper News API.
   ///
   /// Accepts a list of [NewsQuery] objects (up to 100).
-  Future<dynamic> news(List<NewsQuery> queries) async {
+  Future<NewsResponse> news(List<NewsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/news', data);
+    final response = await _post('/news', data);
+    return NewsResponse.fromJson(response);
   }
 
   /// Calls the Serper Shopping API.
   ///
   /// Accepts a list of [ShoppingQuery] objects (up to 100).
-  Future<dynamic> shopping(List<ShoppingQuery> queries) async {
+  Future<ShoppingResponse> shopping(List<ShoppingQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/shopping', data);
+    final response = await _post('/shopping', data);
+    return ShoppingResponse.fromJson(response);
   }
 
   /// Calls the Serper Lens (Image Search) API.
   ///
   /// Accepts a list of [LensQuery] objects (up to 100).
-  Future<dynamic> lens(List<LensQuery> queries) async {
+  Future<LensResponse> lens(List<LensQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/lens', data);
+    final response = await _post('/lens', data);
+    return LensResponse.fromJson(response);
   }
 
   /// Calls the Serper Scholar API.
   ///
   /// Accepts a list of [ScholarQuery] objects (up to 100).
-  Future<dynamic> scholar(List<ScholarQuery> queries) async {
+  Future<ScholarResponse> scholar(List<ScholarQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/scholar', data);
+    final response = await _post('/scholar', data);
+    return ScholarResponse.fromJson(response);
   }
 
   /// Calls the Serper Patents API.
   ///
   /// Accepts a list of [PatentsQuery] objects (up to 100).
-  Future<dynamic> patents(List<PatentsQuery> queries) async {
+  Future<PatentsResponse> patents(List<PatentsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/patents', data);
+    final response = await _post('/patents', data);
+    return PatentsResponse.fromJson(response);
   }
 
   /// Calls the Serper Autocomplete API.
   ///
   /// Accepts a list of [AutocompleteQuery] objects (up to 100).
-  Future<dynamic> autocomplete(List<AutocompleteQuery> queries) async {
+  Future<AutocompleteResponse> autocomplete(
+    List<AutocompleteQuery> queries,
+  ) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/autocomplete', data);
+    final response = await _post('/autocomplete', data);
+    return AutocompleteResponse.fromJson(response);
   }
 
   /// Calls the Serper Webpage API (scraping).
   ///
   /// Accepts a list of [WebpageQuery] objects (up to 100).
-  Future<dynamic> webpage(List<WebpageQuery> queries) async {
+  Future<WebpageResponse> webpage(List<WebpageQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
-    return _post('/', data, isScrape: true);
+    final response = await _post('/', data, isScrape: true);
+    return WebpageResponse.fromJson(response);
   }
 }
