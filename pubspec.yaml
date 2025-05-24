@@ -1,5 +1,5 @@
 name: flutter_serper
-description: A Dart package that provides a strongly-typed wrapper for the Serper API with polymorphic response handling through SerperResponseMixin.
+description: A Dart package that provides a strongly-typed wrapper for the Serper API.
 version: 1.0.0
 
 environment:
