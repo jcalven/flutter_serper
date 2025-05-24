@@ -1,4 +1,4 @@
-import 'package:flutter_serper/flutter_serper.dart';
+import 'package:flutter_serper/src/models/queries/queries.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'responses.freezed.dart';

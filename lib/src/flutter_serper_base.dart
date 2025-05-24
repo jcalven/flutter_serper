@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_serper/src/queries.dart';
-import 'package:flutter_serper/src/responses.dart';
+import 'package:flutter_serper/src/models/queries/queries.dart';
+import 'package:flutter_serper/src/models/responses/responses.dart';
 
 /// Exception thrown when there is an error with the Serper API.
 class SerperApiException implements Exception {

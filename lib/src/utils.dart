@@ -1,5 +1,5 @@
 // A utility class that provides helper methods for working with Serper API responses.
-import 'package:flutter_serper/src/responses.dart';
+import 'package:flutter_serper/src/models/responses/responses.dart';
 
 /// A utility class that provides helper methods for working with Serper API responses.
 class SerperResponseProcessor {
@@ -42,8 +42,11 @@ class SerperResponseProcessor {
     List<SerperResponseMixin> responses,
   ) {
     return responses
-        .map((response) =>
-            (response.searchParameters as dynamic).toJson() as Map<String, dynamic>)
+        .map(
+          (response) =>
+              (response.searchParameters as dynamic).toJson()
+                  as Map<String, dynamic>,
+        )
         .toList();
   }
 
