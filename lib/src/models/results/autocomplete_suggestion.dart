@@ -1,6 +1,6 @@
 part of 'results.dart';
 
-/// Autocomplete suggestion result.
+/// Autocomplete suggestion.
 @freezed
 class AutocompleteSuggestion with _$AutocompleteSuggestion {
   const factory AutocompleteSuggestion({required String value}) =
