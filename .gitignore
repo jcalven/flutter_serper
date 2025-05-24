@@ -12,6 +12,7 @@ docs/
 coverage/
 .test_coverage.dart
 build/
+instruct.md
 
 # Ignore .env file
 .env
