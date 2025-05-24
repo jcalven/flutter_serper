@@ -15,61 +15,48 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-SearchQuery _$SearchQueryFromJson(Map<String, dynamic> json) {
-  return _SearchQuery.fromJson(json);
+AutocompleteQuery _$AutocompleteQueryFromJson(Map<String, dynamic> json) {
+  return _AutocompleteQuery.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SearchQuery {
+mixin _$AutocompleteQuery {
   String get q => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get gl => throw _privateConstructorUsedError;
   String? get hl => throw _privateConstructorUsedError;
-  int? get num => throw _privateConstructorUsedError;
-  bool? get autocorrect => throw _privateConstructorUsedError;
-  String? get tbs => throw _privateConstructorUsedError;
-  int? get page => throw _privateConstructorUsedError;
 
-  /// Serializes this SearchQuery to a JSON map.
+  /// Serializes this AutocompleteQuery to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of SearchQuery
+  /// Create a copy of AutocompleteQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SearchQueryCopyWith<SearchQuery> get copyWith =>
+  $AutocompleteQueryCopyWith<AutocompleteQuery> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchQueryCopyWith<$Res> {
-  factory $SearchQueryCopyWith(
-    SearchQuery value,
-    $Res Function(SearchQuery) then,
-  ) = _$SearchQueryCopyWithImpl<$Res, SearchQuery>;
+abstract class $AutocompleteQueryCopyWith<$Res> {
+  factory $AutocompleteQueryCopyWith(
+    AutocompleteQuery value,
+    $Res Function(AutocompleteQuery) then,
+  ) = _$AutocompleteQueryCopyWithImpl<$Res, AutocompleteQuery>;
   @useResult
-  $Res call({
-    String q,
-    String? location,
-    String? gl,
-    String? hl,
-    int? num,
-    bool? autocorrect,
-    String? tbs,
-    int? page,
-  });
+  $Res call({String q, String? location, String? gl, String? hl});
 }
 
 /// @nodoc
-class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
-    implements $SearchQueryCopyWith<$Res> {
-  _$SearchQueryCopyWithImpl(this._value, this._then);
+class _$AutocompleteQueryCopyWithImpl<$Res, $Val extends AutocompleteQuery>
+    implements $AutocompleteQueryCopyWith<$Res> {
+  _$AutocompleteQueryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchQuery
+  /// Create a copy of AutocompleteQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -78,10 +65,6 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
     Object? location = freezed,
     Object? gl = freezed,
     Object? hl = freezed,
-    Object? num = freezed,
-    Object? autocorrect = freezed,
-    Object? tbs = freezed,
-    Object? page = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -105,26 +88,6 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
                     ? _value.hl
                     : hl // ignore: cast_nullable_to_non_nullable
                         as String?,
-            num:
-                freezed == num
-                    ? _value.num
-                    : num // ignore: cast_nullable_to_non_nullable
-                        as int?,
-            autocorrect:
-                freezed == autocorrect
-                    ? _value.autocorrect
-                    : autocorrect // ignore: cast_nullable_to_non_nullable
-                        as bool?,
-            tbs:
-                freezed == tbs
-                    ? _value.tbs
-                    : tbs // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            page:
-                freezed == page
-                    ? _value.page
-                    : page // ignore: cast_nullable_to_non_nullable
-                        as int?,
           )
           as $Val,
     );
@@ -132,36 +95,27 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
 }
 
 /// @nodoc
-abstract class _$$SearchQueryImplCopyWith<$Res>
-    implements $SearchQueryCopyWith<$Res> {
-  factory _$$SearchQueryImplCopyWith(
-    _$SearchQueryImpl value,
-    $Res Function(_$SearchQueryImpl) then,
-  ) = __$$SearchQueryImplCopyWithImpl<$Res>;
+abstract class _$$AutocompleteQueryImplCopyWith<$Res>
+    implements $AutocompleteQueryCopyWith<$Res> {
+  factory _$$AutocompleteQueryImplCopyWith(
+    _$AutocompleteQueryImpl value,
+    $Res Function(_$AutocompleteQueryImpl) then,
+  ) = __$$AutocompleteQueryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String q,
-    String? location,
-    String? gl,
-    String? hl,
-    int? num,
-    bool? autocorrect,
-    String? tbs,
-    int? page,
-  });
+  $Res call({String q, String? location, String? gl, String? hl});
 }
 
 /// @nodoc
-class __$$SearchQueryImplCopyWithImpl<$Res>
-    extends _$SearchQueryCopyWithImpl<$Res, _$SearchQueryImpl>
-    implements _$$SearchQueryImplCopyWith<$Res> {
-  __$$SearchQueryImplCopyWithImpl(
-    _$SearchQueryImpl _value,
-    $Res Function(_$SearchQueryImpl) _then,
+class __$$AutocompleteQueryImplCopyWithImpl<$Res>
+    extends _$AutocompleteQueryCopyWithImpl<$Res, _$AutocompleteQueryImpl>
+    implements _$$AutocompleteQueryImplCopyWith<$Res> {
+  __$$AutocompleteQueryImplCopyWithImpl(
+    _$AutocompleteQueryImpl _value,
+    $Res Function(_$AutocompleteQueryImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of SearchQuery
+  /// Create a copy of AutocompleteQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -170,13 +124,9 @@ class __$$SearchQueryImplCopyWithImpl<$Res>
     Object? location = freezed,
     Object? gl = freezed,
     Object? hl = freezed,
-    Object? num = freezed,
-    Object? autocorrect = freezed,
-    Object? tbs = freezed,
-    Object? page = freezed,
   }) {
     return _then(
-      _$SearchQueryImpl(
+      _$AutocompleteQueryImpl(
         q:
             null == q
                 ? _value.q
@@ -197,26 +147,6 @@ class __$$SearchQueryImplCopyWithImpl<$Res>
                 ? _value.hl
                 : hl // ignore: cast_nullable_to_non_nullable
                     as String?,
-        num:
-            freezed == num
-                ? _value.num
-                : num // ignore: cast_nullable_to_non_nullable
-                    as int?,
-        autocorrect:
-            freezed == autocorrect
-                ? _value.autocorrect
-                : autocorrect // ignore: cast_nullable_to_non_nullable
-                    as bool?,
-        tbs:
-            freezed == tbs
-                ? _value.tbs
-                : tbs // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        page:
-            freezed == page
-                ? _value.page
-                : page // ignore: cast_nullable_to_non_nullable
-                    as int?,
       ),
     );
   }
@@ -224,20 +154,16 @@ class __$$SearchQueryImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SearchQueryImpl implements _SearchQuery {
-  const _$SearchQueryImpl({
+class _$AutocompleteQueryImpl implements _AutocompleteQuery {
+  const _$AutocompleteQueryImpl({
     required this.q,
     this.location,
     this.gl,
     this.hl,
-    this.num,
-    this.autocorrect,
-    this.tbs,
-    this.page,
   });
 
-  factory _$SearchQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SearchQueryImplFromJson(json);
+  factory _$AutocompleteQueryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AutocompleteQueryImplFromJson(json);
 
   @override
   final String q;
@@ -247,79 +173,55 @@ class _$SearchQueryImpl implements _SearchQuery {
   final String? gl;
   @override
   final String? hl;
-  @override
-  final int? num;
-  @override
-  final bool? autocorrect;
-  @override
-  final String? tbs;
-  @override
-  final int? page;
 
   @override
   String toString() {
-    return 'SearchQuery(q: $q, location: $location, gl: $gl, hl: $hl, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+    return 'AutocompleteQuery(q: $q, location: $location, gl: $gl, hl: $hl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchQueryImpl &&
+            other is _$AutocompleteQueryImpl &&
             (identical(other.q, q) || other.q == q) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.gl, gl) || other.gl == gl) &&
-            (identical(other.hl, hl) || other.hl == hl) &&
-            (identical(other.num, num) || other.num == num) &&
-            (identical(other.autocorrect, autocorrect) ||
-                other.autocorrect == autocorrect) &&
-            (identical(other.tbs, tbs) || other.tbs == tbs) &&
-            (identical(other.page, page) || other.page == page));
+            (identical(other.hl, hl) || other.hl == hl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    q,
-    location,
-    gl,
-    hl,
-    num,
-    autocorrect,
-    tbs,
-    page,
-  );
+  int get hashCode => Object.hash(runtimeType, q, location, gl, hl);
 
-  /// Create a copy of SearchQuery
+  /// Create a copy of AutocompleteQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
-      __$$SearchQueryImplCopyWithImpl<_$SearchQueryImpl>(this, _$identity);
+  _$$AutocompleteQueryImplCopyWith<_$AutocompleteQueryImpl> get copyWith =>
+      __$$AutocompleteQueryImplCopyWithImpl<_$AutocompleteQueryImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SearchQueryImplToJson(this);
+    return _$$AutocompleteQueryImplToJson(this);
   }
 }
 
-abstract class _SearchQuery implements SearchQuery {
-  const factory _SearchQuery({
+abstract class _AutocompleteQuery implements AutocompleteQuery {
+  const factory _AutocompleteQuery({
     required final String q,
     final String? location,
     final String? gl,
     final String? hl,
-    final int? num,
-    final bool? autocorrect,
-    final String? tbs,
-    final int? page,
-  }) = _$SearchQueryImpl;
+  }) = _$AutocompleteQueryImpl;
 
-  factory _SearchQuery.fromJson(Map<String, dynamic> json) =
-      _$SearchQueryImpl.fromJson;
+  factory _AutocompleteQuery.fromJson(Map<String, dynamic> json) =
+      _$AutocompleteQueryImpl.fromJson;
 
   @override
   String get q;
@@ -329,20 +231,12 @@ abstract class _SearchQuery implements SearchQuery {
   String? get gl;
   @override
   String? get hl;
-  @override
-  int? get num;
-  @override
-  bool? get autocorrect;
-  @override
-  String? get tbs;
-  @override
-  int? get page;
 
-  /// Create a copy of SearchQuery
+  /// Create a copy of AutocompleteQuery
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
+  _$$AutocompleteQueryImplCopyWith<_$AutocompleteQueryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3468,48 +3362,61 @@ abstract class _PatentsQuery implements PatentsQuery {
       throw _privateConstructorUsedError;
 }
 
-AutocompleteQuery _$AutocompleteQueryFromJson(Map<String, dynamic> json) {
-  return _AutocompleteQuery.fromJson(json);
+SearchQuery _$SearchQueryFromJson(Map<String, dynamic> json) {
+  return _SearchQuery.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AutocompleteQuery {
+mixin _$SearchQuery {
   String get q => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get gl => throw _privateConstructorUsedError;
   String? get hl => throw _privateConstructorUsedError;
+  int? get num => throw _privateConstructorUsedError;
+  bool? get autocorrect => throw _privateConstructorUsedError;
+  String? get tbs => throw _privateConstructorUsedError;
+  int? get page => throw _privateConstructorUsedError;
 
-  /// Serializes this AutocompleteQuery to a JSON map.
+  /// Serializes this SearchQuery to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AutocompleteQuery
+  /// Create a copy of SearchQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AutocompleteQueryCopyWith<AutocompleteQuery> get copyWith =>
+  $SearchQueryCopyWith<SearchQuery> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AutocompleteQueryCopyWith<$Res> {
-  factory $AutocompleteQueryCopyWith(
-    AutocompleteQuery value,
-    $Res Function(AutocompleteQuery) then,
-  ) = _$AutocompleteQueryCopyWithImpl<$Res, AutocompleteQuery>;
+abstract class $SearchQueryCopyWith<$Res> {
+  factory $SearchQueryCopyWith(
+    SearchQuery value,
+    $Res Function(SearchQuery) then,
+  ) = _$SearchQueryCopyWithImpl<$Res, SearchQuery>;
   @useResult
-  $Res call({String q, String? location, String? gl, String? hl});
+  $Res call({
+    String q,
+    String? location,
+    String? gl,
+    String? hl,
+    int? num,
+    bool? autocorrect,
+    String? tbs,
+    int? page,
+  });
 }
 
 /// @nodoc
-class _$AutocompleteQueryCopyWithImpl<$Res, $Val extends AutocompleteQuery>
-    implements $AutocompleteQueryCopyWith<$Res> {
-  _$AutocompleteQueryCopyWithImpl(this._value, this._then);
+class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
+    implements $SearchQueryCopyWith<$Res> {
+  _$SearchQueryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AutocompleteQuery
+  /// Create a copy of SearchQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3518,6 +3425,10 @@ class _$AutocompleteQueryCopyWithImpl<$Res, $Val extends AutocompleteQuery>
     Object? location = freezed,
     Object? gl = freezed,
     Object? hl = freezed,
+    Object? num = freezed,
+    Object? autocorrect = freezed,
+    Object? tbs = freezed,
+    Object? page = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -3541,6 +3452,26 @@ class _$AutocompleteQueryCopyWithImpl<$Res, $Val extends AutocompleteQuery>
                     ? _value.hl
                     : hl // ignore: cast_nullable_to_non_nullable
                         as String?,
+            num:
+                freezed == num
+                    ? _value.num
+                    : num // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            autocorrect:
+                freezed == autocorrect
+                    ? _value.autocorrect
+                    : autocorrect // ignore: cast_nullable_to_non_nullable
+                        as bool?,
+            tbs:
+                freezed == tbs
+                    ? _value.tbs
+                    : tbs // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            page:
+                freezed == page
+                    ? _value.page
+                    : page // ignore: cast_nullable_to_non_nullable
+                        as int?,
           )
           as $Val,
     );
@@ -3548,27 +3479,36 @@ class _$AutocompleteQueryCopyWithImpl<$Res, $Val extends AutocompleteQuery>
 }
 
 /// @nodoc
-abstract class _$$AutocompleteQueryImplCopyWith<$Res>
-    implements $AutocompleteQueryCopyWith<$Res> {
-  factory _$$AutocompleteQueryImplCopyWith(
-    _$AutocompleteQueryImpl value,
-    $Res Function(_$AutocompleteQueryImpl) then,
-  ) = __$$AutocompleteQueryImplCopyWithImpl<$Res>;
+abstract class _$$SearchQueryImplCopyWith<$Res>
+    implements $SearchQueryCopyWith<$Res> {
+  factory _$$SearchQueryImplCopyWith(
+    _$SearchQueryImpl value,
+    $Res Function(_$SearchQueryImpl) then,
+  ) = __$$SearchQueryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String q, String? location, String? gl, String? hl});
+  $Res call({
+    String q,
+    String? location,
+    String? gl,
+    String? hl,
+    int? num,
+    bool? autocorrect,
+    String? tbs,
+    int? page,
+  });
 }
 
 /// @nodoc
-class __$$AutocompleteQueryImplCopyWithImpl<$Res>
-    extends _$AutocompleteQueryCopyWithImpl<$Res, _$AutocompleteQueryImpl>
-    implements _$$AutocompleteQueryImplCopyWith<$Res> {
-  __$$AutocompleteQueryImplCopyWithImpl(
-    _$AutocompleteQueryImpl _value,
-    $Res Function(_$AutocompleteQueryImpl) _then,
+class __$$SearchQueryImplCopyWithImpl<$Res>
+    extends _$SearchQueryCopyWithImpl<$Res, _$SearchQueryImpl>
+    implements _$$SearchQueryImplCopyWith<$Res> {
+  __$$SearchQueryImplCopyWithImpl(
+    _$SearchQueryImpl _value,
+    $Res Function(_$SearchQueryImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of AutocompleteQuery
+  /// Create a copy of SearchQuery
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3577,9 +3517,13 @@ class __$$AutocompleteQueryImplCopyWithImpl<$Res>
     Object? location = freezed,
     Object? gl = freezed,
     Object? hl = freezed,
+    Object? num = freezed,
+    Object? autocorrect = freezed,
+    Object? tbs = freezed,
+    Object? page = freezed,
   }) {
     return _then(
-      _$AutocompleteQueryImpl(
+      _$SearchQueryImpl(
         q:
             null == q
                 ? _value.q
@@ -3600,6 +3544,26 @@ class __$$AutocompleteQueryImplCopyWithImpl<$Res>
                 ? _value.hl
                 : hl // ignore: cast_nullable_to_non_nullable
                     as String?,
+        num:
+            freezed == num
+                ? _value.num
+                : num // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        autocorrect:
+            freezed == autocorrect
+                ? _value.autocorrect
+                : autocorrect // ignore: cast_nullable_to_non_nullable
+                    as bool?,
+        tbs:
+            freezed == tbs
+                ? _value.tbs
+                : tbs // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        page:
+            freezed == page
+                ? _value.page
+                : page // ignore: cast_nullable_to_non_nullable
+                    as int?,
       ),
     );
   }
@@ -3607,16 +3571,20 @@ class __$$AutocompleteQueryImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AutocompleteQueryImpl implements _AutocompleteQuery {
-  const _$AutocompleteQueryImpl({
+class _$SearchQueryImpl implements _SearchQuery {
+  const _$SearchQueryImpl({
     required this.q,
     this.location,
     this.gl,
     this.hl,
+    this.num,
+    this.autocorrect,
+    this.tbs,
+    this.page,
   });
 
-  factory _$AutocompleteQueryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AutocompleteQueryImplFromJson(json);
+  factory _$SearchQueryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchQueryImplFromJson(json);
 
   @override
   final String q;
@@ -3626,55 +3594,79 @@ class _$AutocompleteQueryImpl implements _AutocompleteQuery {
   final String? gl;
   @override
   final String? hl;
+  @override
+  final int? num;
+  @override
+  final bool? autocorrect;
+  @override
+  final String? tbs;
+  @override
+  final int? page;
 
   @override
   String toString() {
-    return 'AutocompleteQuery(q: $q, location: $location, gl: $gl, hl: $hl)';
+    return 'SearchQuery(q: $q, location: $location, gl: $gl, hl: $hl, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AutocompleteQueryImpl &&
+            other is _$SearchQueryImpl &&
             (identical(other.q, q) || other.q == q) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.gl, gl) || other.gl == gl) &&
-            (identical(other.hl, hl) || other.hl == hl));
+            (identical(other.hl, hl) || other.hl == hl) &&
+            (identical(other.num, num) || other.num == num) &&
+            (identical(other.autocorrect, autocorrect) ||
+                other.autocorrect == autocorrect) &&
+            (identical(other.tbs, tbs) || other.tbs == tbs) &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, q, location, gl, hl);
+  int get hashCode => Object.hash(
+    runtimeType,
+    q,
+    location,
+    gl,
+    hl,
+    num,
+    autocorrect,
+    tbs,
+    page,
+  );
 
-  /// Create a copy of AutocompleteQuery
+  /// Create a copy of SearchQuery
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AutocompleteQueryImplCopyWith<_$AutocompleteQueryImpl> get copyWith =>
-      __$$AutocompleteQueryImplCopyWithImpl<_$AutocompleteQueryImpl>(
-        this,
-        _$identity,
-      );
+  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
+      __$$SearchQueryImplCopyWithImpl<_$SearchQueryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AutocompleteQueryImplToJson(this);
+    return _$$SearchQueryImplToJson(this);
   }
 }
 
-abstract class _AutocompleteQuery implements AutocompleteQuery {
-  const factory _AutocompleteQuery({
+abstract class _SearchQuery implements SearchQuery {
+  const factory _SearchQuery({
     required final String q,
     final String? location,
     final String? gl,
     final String? hl,
-  }) = _$AutocompleteQueryImpl;
+    final int? num,
+    final bool? autocorrect,
+    final String? tbs,
+    final int? page,
+  }) = _$SearchQueryImpl;
 
-  factory _AutocompleteQuery.fromJson(Map<String, dynamic> json) =
-      _$AutocompleteQueryImpl.fromJson;
+  factory _SearchQuery.fromJson(Map<String, dynamic> json) =
+      _$SearchQueryImpl.fromJson;
 
   @override
   String get q;
@@ -3684,12 +3676,20 @@ abstract class _AutocompleteQuery implements AutocompleteQuery {
   String? get gl;
   @override
   String? get hl;
+  @override
+  int? get num;
+  @override
+  bool? get autocorrect;
+  @override
+  String? get tbs;
+  @override
+  int? get page;
 
-  /// Create a copy of AutocompleteQuery
+  /// Create a copy of SearchQuery
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AutocompleteQueryImplCopyWith<_$AutocompleteQueryImpl> get copyWith =>
+  _$$SearchQueryImplCopyWith<_$SearchQueryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

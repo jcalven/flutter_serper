@@ -6,29 +6,23 @@ part of 'queries.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SearchQueryImpl _$$SearchQueryImplFromJson(Map<String, dynamic> json) =>
-    _$SearchQueryImpl(
-      q: json['q'] as String,
-      location: json['location'] as String?,
-      gl: json['gl'] as String?,
-      hl: json['hl'] as String?,
-      num: (json['num'] as num?)?.toInt(),
-      autocorrect: json['autocorrect'] as bool?,
-      tbs: json['tbs'] as String?,
-      page: (json['page'] as num?)?.toInt(),
-    );
+_$AutocompleteQueryImpl _$$AutocompleteQueryImplFromJson(
+  Map<String, dynamic> json,
+) => _$AutocompleteQueryImpl(
+  q: json['q'] as String,
+  location: json['location'] as String?,
+  gl: json['gl'] as String?,
+  hl: json['hl'] as String?,
+);
 
-Map<String, dynamic> _$$SearchQueryImplToJson(_$SearchQueryImpl instance) =>
-    <String, dynamic>{
-      'q': instance.q,
-      'location': instance.location,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'num': instance.num,
-      'autocorrect': instance.autocorrect,
-      'tbs': instance.tbs,
-      'page': instance.page,
-    };
+Map<String, dynamic> _$$AutocompleteQueryImplToJson(
+  _$AutocompleteQueryImpl instance,
+) => <String, dynamic>{
+  'q': instance.q,
+  'location': instance.location,
+  'gl': instance.gl,
+  'hl': instance.hl,
+};
 
 _$ImagesQueryImpl _$$ImagesQueryImplFromJson(Map<String, dynamic> json) =>
     _$ImagesQueryImpl(
@@ -258,23 +252,29 @@ Map<String, dynamic> _$$PatentsQueryImplToJson(_$PatentsQueryImpl instance) =>
       'page': instance.page,
     };
 
-_$AutocompleteQueryImpl _$$AutocompleteQueryImplFromJson(
-  Map<String, dynamic> json,
-) => _$AutocompleteQueryImpl(
-  q: json['q'] as String,
-  location: json['location'] as String?,
-  gl: json['gl'] as String?,
-  hl: json['hl'] as String?,
-);
+_$SearchQueryImpl _$$SearchQueryImplFromJson(Map<String, dynamic> json) =>
+    _$SearchQueryImpl(
+      q: json['q'] as String,
+      location: json['location'] as String?,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      num: (json['num'] as num?)?.toInt(),
+      autocorrect: json['autocorrect'] as bool?,
+      tbs: json['tbs'] as String?,
+      page: (json['page'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$$AutocompleteQueryImplToJson(
-  _$AutocompleteQueryImpl instance,
-) => <String, dynamic>{
-  'q': instance.q,
-  'location': instance.location,
-  'gl': instance.gl,
-  'hl': instance.hl,
-};
+Map<String, dynamic> _$$SearchQueryImplToJson(_$SearchQueryImpl instance) =>
+    <String, dynamic>{
+      'q': instance.q,
+      'location': instance.location,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'num': instance.num,
+      'autocorrect': instance.autocorrect,
+      'tbs': instance.tbs,
+      'page': instance.page,
+    };
 
 _$WebpageQueryImpl _$$WebpageQueryImplFromJson(Map<String, dynamic> json) =>
     _$WebpageQueryImpl(
