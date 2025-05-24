@@ -6,8 +6,7 @@
 .pub
 pubspec.lock
 
-# Exclude .github/.idea/ directory
-.github/
+# Exclude .idea/ directory
 docs/
 coverage/
 .test_coverage.dart

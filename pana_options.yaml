@@ -1,0 +1,9 @@
+analyzer:
+  # Exclude generated files from analysis
+  exclude:
+    - "lib/src/models/**/*.freezed.dart"
+    - "lib/src/models/**/*.g.dart"
+  # Enable strong mode for stricter type checking
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

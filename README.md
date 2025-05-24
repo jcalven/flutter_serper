@@ -1,5 +1,8 @@
 # flutter_serper
 
+[![flutter_serper](https://github.com/username/flutter_serper/actions/workflows/main.yaml/badge.svg)](https://github.com/username/flutter_serper/actions/workflows/main.yaml)
+[![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)
+
 A Dart package that provides a strongly-typed wrapper for the [Serper API](https://serper.dev/), allowing you to perform Google search operations and extract data from webpages.
 
 ## Features
@@ -23,6 +26,7 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
   - Webpage Scraping
 - Support for batch requests (up to 100 queries per call)
 - Full control over all available query parameters
+- Comprehensive documentation with parameter and response field descriptions
 
 ## Installation
 
@@ -221,40 +225,44 @@ try {
 }
 ```
 
-## Polymorphic Response Handling
+## Development
 
-All API endpoint responses (except for Webpage API) implement `SerperResponseMixin`, which provides access to common fields like `searchParameters` and `credits`. This mixin-based approach allows for polymorphic handling of different response types without relying on traditional inheritance:
+### Workflow
 
-```dart
-// Function that works with any Serper API response
-void processApiResponse(SerperResponseMixin response) {
-  print('Credits used: ${response.credits}');
-  print('Search parameters: ${response.searchParameters}');
-}
+This package follows the [Very Good Ventures](https://verygood.ventures/) workflow for Dart packages:
 
-// Use with different response types
-final searchResults = await serper.search([SearchQuery(q: 'coffee')]);
-final imageResults = await serper.images([ImagesQuery(q: 'coffee')]);
+1. All changes should be made in feature branches from `main`
+2. Pull requests should follow the [Conventional Commits](https://www.conventionalcommits.org/) specification
+3. CI automatically verifies formatting, static analysis, and tests
+4. Releases are automated using version tags
 
-// Both work with the same function
-processApiResponse(searchResults);
-processApiResponse(imageResults);
+### Release Process
+
+To create a new release:
+
+```bash
+# For a patch release (0.0.X)
+./tool/release.sh patch
+
+# For a minor release (0.X.0)
+./tool/release.sh minor
+
+# For a major release (X.0.0)
+./tool/release.sh major
+
+# For a pre-release (beta version)
+./tool/release.sh pre-release
+
+# To convert a pre-release to a stable release
+./tool/release.sh release
 ```
 
-You can also use the generic API method to work with responses polymorphically:
-
-```dart
-// Generic method to make any API call
-final results = await serper.callApiWithMixin<SearchResponse>(
-  '/search',
-  [SearchQuery(q: 'coffee').toJson()],
-  SearchResponse.fromJson,
-);
-
-// Can access mixin properties
-print('Credits: ${results.credits}');
-
-// And also specific properties of the concrete type
+The release script will:
+1. Ensure you're on the main branch
+2. Run tests to verify everything works
+3. Bump the version in pubspec.yaml and update CHANGELOG.md
+4. Commit and tag the changes
+5. Push to GitHub, which triggers the publish workflow
 print('Found ${results.organic.length} organic results');
 ```
 

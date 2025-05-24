@@ -7,6 +7,9 @@
 - Implemented documentation with `{@macro}` syntax for all models
 - Updated example to highlight the documentation improvements
 - Ensured consistent documentation across all 50+ model classes
+- Added CI/CD workflows for automated testing and publishing
+- Created automated version management and release tools
+- Updated README with development and release process documentation
 
 ## 1.2.0
 

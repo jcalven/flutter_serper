@@ -1,0 +1,7 @@
+{
+    "publishing": {
+        "description": "A Dart package that provides a strongly-typed wrapper for the Serper API.",
+        "repository": "https://github.com/username/flutter_serper",
+        "licenseName": "MIT"
+    }
+}

@@ -1,0 +1,44 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Run every Monday at midnight
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  dependency_updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 'stable'
+      
+      - name: Install dependencies
+        run: dart pub get
+      
+      - name: Check for outdated dependencies
+        id: outdated
+        run: |
+          OUTDATED=$(dart pub outdated --format=json)
+          echo "OUTDATED=$OUTDATED" >> $GITHUB_OUTPUT
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update dependencies"
+          title: "chore: update dependencies"
+          body: |
+            This PR updates outdated dependencies to their latest versions.
+            
+            Dependency changes:
+            ```
+            ${{ steps.outdated.outputs.OUTDATED }}
+            ```
+            
+            Please review and test before merging.
+          branch: dependency-updates
+          base: main
+          labels: dependencies
