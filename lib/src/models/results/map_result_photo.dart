@@ -1,13 +1,18 @@
 part of 'results.dart';
 
-/// Map result photo.
+/// Photo associated with a map result from the Serper Maps API.
 @freezed
 abstract class MapResultPhoto with _$MapResultPhoto {
+  /// Creates a [MapResultPhoto].
   const factory MapResultPhoto({
+    /// {@macro ResultDocTemplates.imageUrlDoc}
     required String imageUrl,
+
+    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
     required String thumbnailUrl,
   }) = _MapResultPhoto;
 
+  /// Creates a [MapResultPhoto] from a JSON map.
   factory MapResultPhoto.fromJson(Map<String, dynamic> json) =>
       _$MapResultPhotoFromJson(json);
 }

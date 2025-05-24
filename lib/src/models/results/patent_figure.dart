@@ -1,13 +1,18 @@
 part of 'results.dart';
 
-/// Patent figure.
+/// Patent figure image from the Serper Patents API.
 @freezed
 abstract class PatentFigure with _$PatentFigure {
+  /// Creates a [PatentFigure].
   const factory PatentFigure({
+    /// {@macro ResultDocTemplates.imageUrlDoc}
     required String imageUrl,
+
+    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
     required String thumbnailUrl,
   }) = _PatentFigure;
 
+  /// Creates a [PatentFigure] from a JSON map.
   factory PatentFigure.fromJson(Map<String, dynamic> json) =>
       _$PatentFigureFromJson(json);
 }
