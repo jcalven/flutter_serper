@@ -1,3 +1,4 @@
+import 'package:flutter_serper/flutter_serper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'responses.freezed.dart';
@@ -5,16 +6,16 @@ part 'responses.g.dart';
 
 /// Mixin containing common fields for all Serper API responses.
 /// This allows us to reuse the common fields in all response classes.
-mixin SerperResponseMixin {
-  Map<String, dynamic> get searchParameters;
+mixin SerperResponseMixin<T> {
+  T get searchParameters;
   int get credits;
 }
 
 /// Response for the Serper Search API.
 @freezed
-class SearchResponse with _$SearchResponse, SerperResponseMixin {
+class SearchResponse with _$SearchResponse, SerperResponseMixin<SearchQuery> {
   const factory SearchResponse({
-    required Map<String, dynamic> searchParameters,
+    required SearchQuery searchParameters,
     required List<OrganicResult> organic,
     List<RelatedSearchResult>? relatedSearches,
     List<PeopleAlsoAskResult>? peopleAlsoAsk,
@@ -22,7 +23,7 @@ class SearchResponse with _$SearchResponse, SerperResponseMixin {
     List<TopStoriesResult>? topStories,
     List<TwitterResult>? twitter,
     List<ImagesResult>? images,
-    List<KnowledgeGraphResult>? knowledgeGraph,
+    KnowledgeGraphResult? knowledgeGraph,
     List<LocalResultsResult>? localResults,
     required int credits,
   }) = _SearchResponse;
@@ -43,7 +44,7 @@ class OrganicResult with _$OrganicResult {
     int? ratingCount,
     String? imageUrl,
     required int position,
-    String? sitelinks,
+    dynamic sitelinks,
   }) = _OrganicResult;
 
   factory OrganicResult.fromJson(Map<String, dynamic> json) =>
@@ -176,10 +177,11 @@ class LocalResultsResult with _$LocalResultsResult {
 
 /// Response for the Serper Images API.
 @freezed
-class ImagesResponse with _$ImagesResponse, SerperResponseMixin {
+class ImagesResponse with _$ImagesResponse, SerperResponseMixin<ImagesQuery> {
   const factory ImagesResponse({
-    required Map<String, dynamic> searchParameters,
+    required ImagesQuery searchParameters,
     required List<ImageResult> images,
+    KnowledgeGraphResult? knowledgeGraph,
     required int credits,
   }) = _ImagesResponse;
 
@@ -190,27 +192,30 @@ class ImagesResponse with _$ImagesResponse, SerperResponseMixin {
 /// Image result.
 @freezed
 class ImageResult with _$ImageResult {
+  /// Creates an [ImageResult].
   const factory ImageResult({
-    required String title,
-    required String imageUrl,
-    required String thumbnailUrl,
-    required String source,
-    required String sourceUrl,
+    String? title,
+    String? imageUrl,
+    String? thumbnailUrl,
+    String? source,
+    String? sourceUrl,
     String? price,
     String? domain,
     required int position,
   }) = _ImageResult;
 
+  /// Creates an [ImageResult] from a JSON map.
   factory ImageResult.fromJson(Map<String, dynamic> json) =>
       _$ImageResultFromJson(json);
 }
 
 /// Response for the Serper Places API.
 @freezed
-class PlacesResponse with _$PlacesResponse, SerperResponseMixin {
+class PlacesResponse with _$PlacesResponse, SerperResponseMixin<PlacesQuery> {
   const factory PlacesResponse({
-    required Map<String, dynamic> searchParameters,
+    required PlacesQuery searchParameters,
     required List<PlaceResult> places,
+    KnowledgeGraphResult? knowledgeGraph,
     required int credits,
   }) = _PlacesResponse;
 
@@ -241,10 +246,11 @@ class PlaceResult with _$PlaceResult {
 
 /// Response for the Serper Videos API.
 @freezed
-class VideosResponse with _$VideosResponse, SerperResponseMixin {
+class VideosResponse with _$VideosResponse, SerperResponseMixin<VideosQuery> {
   const factory VideosResponse({
-    required Map<String, dynamic> searchParameters,
+    required VideosQuery searchParameters,
     required List<VideoResult> videos,
+    KnowledgeGraphResult? knowledgeGraph,
     required int credits,
   }) = _VideosResponse;
 
@@ -274,9 +280,9 @@ class VideoResult with _$VideoResult {
 
 /// Response for the Serper Maps API.
 @freezed
-class MapsResponse with _$MapsResponse, SerperResponseMixin {
+class MapsResponse with _$MapsResponse, SerperResponseMixin<MapsQuery> {
   const factory MapsResponse({
-    required Map<String, dynamic> searchParameters,
+    required MapsQuery searchParameters,
     required MapResult place,
     required int credits,
   }) = _MapsResponse;
@@ -339,9 +345,10 @@ class MapResultPhoto with _$MapResultPhoto {
 
 /// Response for the Serper Reviews API.
 @freezed
-class ReviewsResponse with _$ReviewsResponse, SerperResponseMixin {
+class ReviewsResponse
+    with _$ReviewsResponse, SerperResponseMixin<ReviewsQuery> {
   const factory ReviewsResponse({
-    required Map<String, dynamic> searchParameters,
+    required ReviewsQuery searchParameters,
     required List<PlaceReview> reviews,
     String? nextPageToken,
     required int credits,
@@ -371,10 +378,11 @@ class PlaceReview with _$PlaceReview {
 
 /// Response for the Serper News API.
 @freezed
-class NewsResponse with _$NewsResponse, SerperResponseMixin {
+class NewsResponse with _$NewsResponse, SerperResponseMixin<NewsQuery> {
   const factory NewsResponse({
-    required Map<String, dynamic> searchParameters,
+    required NewsQuery searchParameters,
     required List<NewsResult> news,
+    KnowledgeGraphResult? knowledgeGraph,
     required int credits,
   }) = _NewsResponse;
 
@@ -401,10 +409,12 @@ class NewsResult with _$NewsResult {
 
 /// Response for the Serper Shopping API.
 @freezed
-class ShoppingResponse with _$ShoppingResponse, SerperResponseMixin {
+class ShoppingResponse
+    with _$ShoppingResponse, SerperResponseMixin<ShoppingQuery> {
   const factory ShoppingResponse({
-    required Map<String, dynamic> searchParameters,
+    required ShoppingQuery searchParameters,
     required List<ShoppingResult> shopping,
+    KnowledgeGraphResult? knowledgeGraph,
     required int credits,
   }) = _ShoppingResponse;
 
@@ -431,9 +441,9 @@ class ShoppingResult with _$ShoppingResult {
 
 /// Response for the Serper Lens (Image Search) API.
 @freezed
-class LensResponse with _$LensResponse, SerperResponseMixin {
+class LensResponse with _$LensResponse, SerperResponseMixin<LensQuery> {
   const factory LensResponse({
-    required Map<String, dynamic> searchParameters,
+    required LensQuery searchParameters,
     required List<LensResult> organic,
     required int credits,
   }) = _LensResponse;
@@ -459,9 +469,10 @@ class LensResult with _$LensResult {
 
 /// Response for the Serper Scholar API.
 @freezed
-class ScholarResponse with _$ScholarResponse, SerperResponseMixin {
+class ScholarResponse
+    with _$ScholarResponse, SerperResponseMixin<ScholarQuery> {
   const factory ScholarResponse({
-    required Map<String, dynamic> searchParameters,
+    required ScholarQuery searchParameters,
     required List<ScholarResult> organic,
     required int credits,
   }) = _ScholarResponse;
@@ -490,9 +501,10 @@ class ScholarResult with _$ScholarResult {
 
 /// Response for the Serper Patents API.
 @freezed
-class PatentsResponse with _$PatentsResponse, SerperResponseMixin {
+class PatentsResponse
+    with _$PatentsResponse, SerperResponseMixin<PatentsQuery> {
   const factory PatentsResponse({
-    required Map<String, dynamic> searchParameters,
+    required PatentsQuery searchParameters,
     required List<PatentResult> organic,
     required int credits,
   }) = _PatentsResponse;
@@ -540,9 +552,10 @@ class PatentFigure with _$PatentFigure {
 
 /// Response for the Serper Autocomplete API.
 @freezed
-class AutocompleteResponse with _$AutocompleteResponse, SerperResponseMixin {
+class AutocompleteResponse
+    with _$AutocompleteResponse, SerperResponseMixin<AutocompleteQuery> {
   const factory AutocompleteResponse({
-    required Map<String, dynamic> searchParameters,
+    required AutocompleteQuery searchParameters,
     required List<AutocompleteSuggestion> suggestions,
     required int credits,
   }) = _AutocompleteResponse;

@@ -92,7 +92,8 @@ void main() {
 
       // Assert
       expect(response, isA<SearchResponse>());
-      expect(response.searchParameters, isA<Map<String, dynamic>>());
+      expect(response.searchParameters, isA<SearchQuery>());
+      expect(response.searchParameters.q, equals('test'));
       expect(response.organic, hasLength(1));
       expect(response.organic.first.title, equals('Test Result'));
       expect(response.organic.first.link, equals('https://example.com'));
@@ -125,7 +126,8 @@ void main() {
 
       // Assert
       expect(response, isA<ImagesResponse>());
-      expect(response.searchParameters, isA<Map<String, dynamic>>());
+      expect(response.searchParameters, isA<ImagesQuery>());
+      expect(response.searchParameters.q, equals('test image'));
       expect(response.images, hasLength(1));
       expect(response.images.first.title, equals('Test Image'));
       expect(
@@ -217,8 +219,8 @@ void main() {
       expect(getCreditsUsed(imagesResponse), equals(5));
 
       // Verify both types implement the mixin correctly
-      expect(searchResponse.searchParameters['q'], equals('test'));
-      expect(imagesResponse.searchParameters['q'], equals('test image'));
+      expect(searchResponse.searchParameters.q, equals('test'));
+      expect(imagesResponse.searchParameters.q, equals('test image'));
     });
   });
 }

@@ -9,7 +9,9 @@ part of 'responses.dart';
 _$SearchResponseImpl _$$SearchResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$SearchResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: SearchQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   organic:
       (json['organic'] as List<dynamic>)
           .map((e) => OrganicResult.fromJson(e as Map<String, dynamic>))
@@ -39,9 +41,11 @@ _$SearchResponseImpl _$$SearchResponseImplFromJson(
           ?.map((e) => ImagesResult.fromJson(e as Map<String, dynamic>))
           .toList(),
   knowledgeGraph:
-      (json['knowledgeGraph'] as List<dynamic>?)
-          ?.map((e) => KnowledgeGraphResult.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      json['knowledgeGraph'] == null
+          ? null
+          : KnowledgeGraphResult.fromJson(
+            json['knowledgeGraph'] as Map<String, dynamic>,
+          ),
   localResults:
       (json['localResults'] as List<dynamic>?)
           ?.map((e) => LocalResultsResult.fromJson(e as Map<String, dynamic>))
@@ -75,7 +79,7 @@ _$OrganicResultImpl _$$OrganicResultImplFromJson(Map<String, dynamic> json) =>
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
       imageUrl: json['imageUrl'] as String?,
       position: (json['position'] as num).toInt(),
-      sitelinks: json['sitelinks'] as String?,
+      sitelinks: json['sitelinks'],
     );
 
 Map<String, dynamic> _$$OrganicResultImplToJson(_$OrganicResultImpl instance) =>
@@ -259,11 +263,19 @@ Map<String, dynamic> _$$LocalResultsResultImplToJson(
 
 _$ImagesResponseImpl _$$ImagesResponseImplFromJson(Map<String, dynamic> json) =>
     _$ImagesResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: ImagesQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       images:
           (json['images'] as List<dynamic>)
               .map((e) => ImageResult.fromJson(e as Map<String, dynamic>))
               .toList(),
+      knowledgeGraph:
+          json['knowledgeGraph'] == null
+              ? null
+              : KnowledgeGraphResult.fromJson(
+                json['knowledgeGraph'] as Map<String, dynamic>,
+              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -272,16 +284,17 @@ Map<String, dynamic> _$$ImagesResponseImplToJson(
 ) => <String, dynamic>{
   'searchParameters': instance.searchParameters,
   'images': instance.images,
+  'knowledgeGraph': instance.knowledgeGraph,
   'credits': instance.credits,
 };
 
 _$ImageResultImpl _$$ImageResultImplFromJson(Map<String, dynamic> json) =>
     _$ImageResultImpl(
-      title: json['title'] as String,
-      imageUrl: json['imageUrl'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-      source: json['source'] as String,
-      sourceUrl: json['sourceUrl'] as String,
+      title: json['title'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+      source: json['source'] as String?,
+      sourceUrl: json['sourceUrl'] as String?,
       price: json['price'] as String?,
       domain: json['domain'] as String?,
       position: (json['position'] as num).toInt(),
@@ -301,11 +314,19 @@ Map<String, dynamic> _$$ImageResultImplToJson(_$ImageResultImpl instance) =>
 
 _$PlacesResponseImpl _$$PlacesResponseImplFromJson(Map<String, dynamic> json) =>
     _$PlacesResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: PlacesQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       places:
           (json['places'] as List<dynamic>)
               .map((e) => PlaceResult.fromJson(e as Map<String, dynamic>))
               .toList(),
+      knowledgeGraph:
+          json['knowledgeGraph'] == null
+              ? null
+              : KnowledgeGraphResult.fromJson(
+                json['knowledgeGraph'] as Map<String, dynamic>,
+              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -314,6 +335,7 @@ Map<String, dynamic> _$$PlacesResponseImplToJson(
 ) => <String, dynamic>{
   'searchParameters': instance.searchParameters,
   'places': instance.places,
+  'knowledgeGraph': instance.knowledgeGraph,
   'credits': instance.credits,
 };
 
@@ -352,11 +374,19 @@ Map<String, dynamic> _$$PlaceResultImplToJson(_$PlaceResultImpl instance) =>
 
 _$VideosResponseImpl _$$VideosResponseImplFromJson(Map<String, dynamic> json) =>
     _$VideosResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: VideosQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       videos:
           (json['videos'] as List<dynamic>)
               .map((e) => VideoResult.fromJson(e as Map<String, dynamic>))
               .toList(),
+      knowledgeGraph:
+          json['knowledgeGraph'] == null
+              ? null
+              : KnowledgeGraphResult.fromJson(
+                json['knowledgeGraph'] as Map<String, dynamic>,
+              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -365,6 +395,7 @@ Map<String, dynamic> _$$VideosResponseImplToJson(
 ) => <String, dynamic>{
   'searchParameters': instance.searchParameters,
   'videos': instance.videos,
+  'knowledgeGraph': instance.knowledgeGraph,
   'credits': instance.credits,
 };
 
@@ -398,7 +429,9 @@ Map<String, dynamic> _$$VideoResultImplToJson(_$VideoResultImpl instance) =>
 
 _$MapsResponseImpl _$$MapsResponseImplFromJson(Map<String, dynamic> json) =>
     _$MapsResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: MapsQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       place: MapResult.fromJson(json['place'] as Map<String, dynamic>),
       credits: (json['credits'] as num).toInt(),
     );
@@ -496,7 +529,9 @@ Map<String, dynamic> _$$MapResultPhotoImplToJson(
 _$ReviewsResponseImpl _$$ReviewsResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$ReviewsResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: ReviewsQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   reviews:
       (json['reviews'] as List<dynamic>)
           .map((e) => PlaceReview.fromJson(e as Map<String, dynamic>))
@@ -540,11 +575,19 @@ Map<String, dynamic> _$$PlaceReviewImplToJson(_$PlaceReviewImpl instance) =>
 
 _$NewsResponseImpl _$$NewsResponseImplFromJson(Map<String, dynamic> json) =>
     _$NewsResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: NewsQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       news:
           (json['news'] as List<dynamic>)
               .map((e) => NewsResult.fromJson(e as Map<String, dynamic>))
               .toList(),
+      knowledgeGraph:
+          json['knowledgeGraph'] == null
+              ? null
+              : KnowledgeGraphResult.fromJson(
+                json['knowledgeGraph'] as Map<String, dynamic>,
+              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -552,6 +595,7 @@ Map<String, dynamic> _$$NewsResponseImplToJson(_$NewsResponseImpl instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'news': instance.news,
+      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 
@@ -580,11 +624,19 @@ Map<String, dynamic> _$$NewsResultImplToJson(_$NewsResultImpl instance) =>
 _$ShoppingResponseImpl _$$ShoppingResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$ShoppingResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: ShoppingQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   shopping:
       (json['shopping'] as List<dynamic>)
           .map((e) => ShoppingResult.fromJson(e as Map<String, dynamic>))
           .toList(),
+  knowledgeGraph:
+      json['knowledgeGraph'] == null
+          ? null
+          : KnowledgeGraphResult.fromJson(
+            json['knowledgeGraph'] as Map<String, dynamic>,
+          ),
   credits: (json['credits'] as num).toInt(),
 );
 
@@ -593,6 +645,7 @@ Map<String, dynamic> _$$ShoppingResponseImplToJson(
 ) => <String, dynamic>{
   'searchParameters': instance.searchParameters,
   'shopping': instance.shopping,
+  'knowledgeGraph': instance.knowledgeGraph,
   'credits': instance.credits,
 };
 
@@ -621,7 +674,9 @@ Map<String, dynamic> _$$ShoppingResultImplToJson(
 
 _$LensResponseImpl _$$LensResponseImplFromJson(Map<String, dynamic> json) =>
     _$LensResponseImpl(
-      searchParameters: json['searchParameters'] as Map<String, dynamic>,
+      searchParameters: LensQuery.fromJson(
+        json['searchParameters'] as Map<String, dynamic>,
+      ),
       organic:
           (json['organic'] as List<dynamic>)
               .map((e) => LensResult.fromJson(e as Map<String, dynamic>))
@@ -657,7 +712,9 @@ Map<String, dynamic> _$$LensResultImplToJson(_$LensResultImpl instance) =>
 _$ScholarResponseImpl _$$ScholarResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$ScholarResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: ScholarQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   organic:
       (json['organic'] as List<dynamic>)
           .map((e) => ScholarResult.fromJson(e as Map<String, dynamic>))
@@ -700,7 +757,9 @@ Map<String, dynamic> _$$ScholarResultImplToJson(_$ScholarResultImpl instance) =>
 _$PatentsResponseImpl _$$PatentsResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$PatentsResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: PatentsQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   organic:
       (json['organic'] as List<dynamic>)
           .map((e) => PatentResult.fromJson(e as Map<String, dynamic>))
@@ -772,7 +831,9 @@ Map<String, dynamic> _$$PatentFigureImplToJson(_$PatentFigureImpl instance) =>
 _$AutocompleteResponseImpl _$$AutocompleteResponseImplFromJson(
   Map<String, dynamic> json,
 ) => _$AutocompleteResponseImpl(
-  searchParameters: json['searchParameters'] as Map<String, dynamic>,
+  searchParameters: AutocompleteQuery.fromJson(
+    json['searchParameters'] as Map<String, dynamic>,
+  ),
   suggestions:
       (json['suggestions'] as List<dynamic>)
           .map(

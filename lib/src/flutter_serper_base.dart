@@ -168,7 +168,13 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/search', data);
-    return getResponseWithMixin(response, SearchResponse.fromJson);
+    print('DEBUG: Raw Search API response from _post:');
+    print(response);
+    final Map<String, dynamic> result =
+        (response is List && response.isNotEmpty && response.first is Map)
+            ? response.first as Map<String, dynamic>
+            : response as Map<String, dynamic>;
+    return getResponseWithMixin(result, SearchResponse.fromJson);
   }
 
   /// Calls the Serper Images API.
@@ -181,7 +187,13 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/images', data);
-    return getResponseWithMixin(response, ImagesResponse.fromJson);
+    print('DEBUG: Raw Images API response from _post:');
+    print(response);
+    final Map<String, dynamic> result =
+        (response is List && response.isNotEmpty && response.first is Map)
+            ? response.first as Map<String, dynamic>
+            : response as Map<String, dynamic>;
+    return getResponseWithMixin(result, ImagesResponse.fromJson);
   }
 
   /// Calls the Serper Videos API.
@@ -313,7 +325,13 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/autocomplete', data);
-    return getResponseWithMixin(response, AutocompleteResponse.fromJson);
+    print('DEBUG: Raw Autocomplete API response from _post:');
+    print(response);
+    final Map<String, dynamic> result =
+        (response is List && response.isNotEmpty && response.first is Map)
+            ? response.first as Map<String, dynamic>
+            : response as Map<String, dynamic>;
+    return getResponseWithMixin(result, AutocompleteResponse.fromJson);
   }
 
   /// Calls the Serper Webpage API (scraping).

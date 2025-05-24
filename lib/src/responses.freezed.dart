@@ -21,8 +21,7 @@ SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  SearchQuery get searchParameters => throw _privateConstructorUsedError;
   List<OrganicResult> get organic => throw _privateConstructorUsedError;
   List<RelatedSearchResult>? get relatedSearches =>
       throw _privateConstructorUsedError;
@@ -32,7 +31,7 @@ mixin _$SearchResponse {
   List<TopStoriesResult>? get topStories => throw _privateConstructorUsedError;
   List<TwitterResult>? get twitter => throw _privateConstructorUsedError;
   List<ImagesResult>? get images => throw _privateConstructorUsedError;
-  List<KnowledgeGraphResult>? get knowledgeGraph =>
+  KnowledgeGraphResult? get knowledgeGraph =>
       throw _privateConstructorUsedError;
   List<LocalResultsResult>? get localResults =>
       throw _privateConstructorUsedError;
@@ -56,7 +55,7 @@ abstract class $SearchResponseCopyWith<$Res> {
   ) = _$SearchResponseCopyWithImpl<$Res, SearchResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    SearchQuery searchParameters,
     List<OrganicResult> organic,
     List<RelatedSearchResult>? relatedSearches,
     List<PeopleAlsoAskResult>? peopleAlsoAsk,
@@ -64,10 +63,13 @@ abstract class $SearchResponseCopyWith<$Res> {
     List<TopStoriesResult>? topStories,
     List<TwitterResult>? twitter,
     List<ImagesResult>? images,
-    List<KnowledgeGraphResult>? knowledgeGraph,
+    KnowledgeGraphResult? knowledgeGraph,
     List<LocalResultsResult>? localResults,
     int credits,
   });
+
+  $SearchQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -103,7 +105,7 @@ class _$SearchResponseCopyWithImpl<$Res, $Val extends SearchResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as SearchQuery,
             organic:
                 null == organic
                     ? _value.organic
@@ -143,7 +145,7 @@ class _$SearchResponseCopyWithImpl<$Res, $Val extends SearchResponse>
                 freezed == knowledgeGraph
                     ? _value.knowledgeGraph
                     : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-                        as List<KnowledgeGraphResult>?,
+                        as KnowledgeGraphResult?,
             localResults:
                 freezed == localResults
                     ? _value.localResults
@@ -158,6 +160,30 @@ class _$SearchResponseCopyWithImpl<$Res, $Val extends SearchResponse>
           as $Val,
     );
   }
+
+  /// Create a copy of SearchResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchQueryCopyWith<$Res> get searchParameters {
+    return $SearchQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SearchResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -170,7 +196,7 @@ abstract class _$$SearchResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    SearchQuery searchParameters,
     List<OrganicResult> organic,
     List<RelatedSearchResult>? relatedSearches,
     List<PeopleAlsoAskResult>? peopleAlsoAsk,
@@ -178,10 +204,15 @@ abstract class _$$SearchResponseImplCopyWith<$Res>
     List<TopStoriesResult>? topStories,
     List<TwitterResult>? twitter,
     List<ImagesResult>? images,
-    List<KnowledgeGraphResult>? knowledgeGraph,
+    KnowledgeGraphResult? knowledgeGraph,
     List<LocalResultsResult>? localResults,
     int credits,
   });
+
+  @override
+  $SearchQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -214,9 +245,9 @@ class __$$SearchResponseImplCopyWithImpl<$Res>
       _$SearchResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as SearchQuery,
         organic:
             null == organic
                 ? _value._organic
@@ -254,9 +285,9 @@ class __$$SearchResponseImplCopyWithImpl<$Res>
                     as List<ImagesResult>?,
         knowledgeGraph:
             freezed == knowledgeGraph
-                ? _value._knowledgeGraph
+                ? _value.knowledgeGraph
                 : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-                    as List<KnowledgeGraphResult>?,
+                    as KnowledgeGraphResult?,
         localResults:
             freezed == localResults
                 ? _value._localResults
@@ -276,7 +307,7 @@ class __$$SearchResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SearchResponseImpl implements _SearchResponse {
   const _$SearchResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<OrganicResult> organic,
     final List<RelatedSearchResult>? relatedSearches,
     final List<PeopleAlsoAskResult>? peopleAlsoAsk,
@@ -284,31 +315,23 @@ class _$SearchResponseImpl implements _SearchResponse {
     final List<TopStoriesResult>? topStories,
     final List<TwitterResult>? twitter,
     final List<ImagesResult>? images,
-    final List<KnowledgeGraphResult>? knowledgeGraph,
+    this.knowledgeGraph,
     final List<LocalResultsResult>? localResults,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _organic = organic,
+  }) : _organic = organic,
        _relatedSearches = relatedSearches,
        _peopleAlsoAsk = peopleAlsoAsk,
        _places = places,
        _topStories = topStories,
        _twitter = twitter,
        _images = images,
-       _knowledgeGraph = knowledgeGraph,
        _localResults = localResults;
 
   factory _$SearchResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final SearchQuery searchParameters;
   final List<OrganicResult> _organic;
   @override
   List<OrganicResult> get organic {
@@ -377,16 +400,8 @@ class _$SearchResponseImpl implements _SearchResponse {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<KnowledgeGraphResult>? _knowledgeGraph;
   @override
-  List<KnowledgeGraphResult>? get knowledgeGraph {
-    final value = _knowledgeGraph;
-    if (value == null) return null;
-    if (_knowledgeGraph is EqualUnmodifiableListView) return _knowledgeGraph;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final KnowledgeGraphResult? knowledgeGraph;
   final List<LocalResultsResult>? _localResults;
   @override
   List<LocalResultsResult>? get localResults {
@@ -410,10 +425,8 @@ class _$SearchResponseImpl implements _SearchResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._organic, _organic) &&
             const DeepCollectionEquality().equals(
               other._relatedSearches,
@@ -430,10 +443,8 @@ class _$SearchResponseImpl implements _SearchResponse {
             ) &&
             const DeepCollectionEquality().equals(other._twitter, _twitter) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality().equals(
-              other._knowledgeGraph,
-              _knowledgeGraph,
-            ) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             const DeepCollectionEquality().equals(
               other._localResults,
               _localResults,
@@ -445,7 +456,7 @@ class _$SearchResponseImpl implements _SearchResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_organic),
     const DeepCollectionEquality().hash(_relatedSearches),
     const DeepCollectionEquality().hash(_peopleAlsoAsk),
@@ -453,7 +464,7 @@ class _$SearchResponseImpl implements _SearchResponse {
     const DeepCollectionEquality().hash(_topStories),
     const DeepCollectionEquality().hash(_twitter),
     const DeepCollectionEquality().hash(_images),
-    const DeepCollectionEquality().hash(_knowledgeGraph),
+    knowledgeGraph,
     const DeepCollectionEquality().hash(_localResults),
     credits,
   );
@@ -477,7 +488,7 @@ class _$SearchResponseImpl implements _SearchResponse {
 
 abstract class _SearchResponse implements SearchResponse {
   const factory _SearchResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final SearchQuery searchParameters,
     required final List<OrganicResult> organic,
     final List<RelatedSearchResult>? relatedSearches,
     final List<PeopleAlsoAskResult>? peopleAlsoAsk,
@@ -485,7 +496,7 @@ abstract class _SearchResponse implements SearchResponse {
     final List<TopStoriesResult>? topStories,
     final List<TwitterResult>? twitter,
     final List<ImagesResult>? images,
-    final List<KnowledgeGraphResult>? knowledgeGraph,
+    final KnowledgeGraphResult? knowledgeGraph,
     final List<LocalResultsResult>? localResults,
     required final int credits,
   }) = _$SearchResponseImpl;
@@ -494,7 +505,7 @@ abstract class _SearchResponse implements SearchResponse {
       _$SearchResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  SearchQuery get searchParameters;
   @override
   List<OrganicResult> get organic;
   @override
@@ -510,7 +521,7 @@ abstract class _SearchResponse implements SearchResponse {
   @override
   List<ImagesResult>? get images;
   @override
-  List<KnowledgeGraphResult>? get knowledgeGraph;
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   List<LocalResultsResult>? get localResults;
   @override
@@ -538,7 +549,7 @@ mixin _$OrganicResult {
   int? get ratingCount => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
-  String? get sitelinks => throw _privateConstructorUsedError;
+  dynamic get sitelinks => throw _privateConstructorUsedError;
 
   /// Serializes this OrganicResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -566,7 +577,7 @@ abstract class $OrganicResultCopyWith<$Res> {
     int? ratingCount,
     String? imageUrl,
     int position,
-    String? sitelinks,
+    dynamic sitelinks,
   });
 }
 
@@ -641,7 +652,7 @@ class _$OrganicResultCopyWithImpl<$Res, $Val extends OrganicResult>
                 freezed == sitelinks
                     ? _value.sitelinks
                     : sitelinks // ignore: cast_nullable_to_non_nullable
-                        as String?,
+                        as dynamic,
           )
           as $Val,
     );
@@ -666,7 +677,7 @@ abstract class _$$OrganicResultImplCopyWith<$Res>
     int? ratingCount,
     String? imageUrl,
     int position,
-    String? sitelinks,
+    dynamic sitelinks,
   });
 }
 
@@ -740,7 +751,7 @@ class __$$OrganicResultImplCopyWithImpl<$Res>
             freezed == sitelinks
                 ? _value.sitelinks
                 : sitelinks // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as dynamic,
       ),
     );
   }
@@ -781,7 +792,7 @@ class _$OrganicResultImpl implements _OrganicResult {
   @override
   final int position;
   @override
-  final String? sitelinks;
+  final dynamic sitelinks;
 
   @override
   String toString() {
@@ -804,8 +815,7 @@ class _$OrganicResultImpl implements _OrganicResult {
                 other.imageUrl == imageUrl) &&
             (identical(other.position, position) ||
                 other.position == position) &&
-            (identical(other.sitelinks, sitelinks) ||
-                other.sitelinks == sitelinks));
+            const DeepCollectionEquality().equals(other.sitelinks, sitelinks));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -820,7 +830,7 @@ class _$OrganicResultImpl implements _OrganicResult {
     ratingCount,
     imageUrl,
     position,
-    sitelinks,
+    const DeepCollectionEquality().hash(sitelinks),
   );
 
   /// Create a copy of OrganicResult
@@ -847,7 +857,7 @@ abstract class _OrganicResult implements OrganicResult {
     final int? ratingCount,
     final String? imageUrl,
     required final int position,
-    final String? sitelinks,
+    final dynamic sitelinks,
   }) = _$OrganicResultImpl;
 
   factory _OrganicResult.fromJson(Map<String, dynamic> json) =
@@ -870,7 +880,7 @@ abstract class _OrganicResult implements OrganicResult {
   @override
   int get position;
   @override
-  String? get sitelinks;
+  dynamic get sitelinks;
 
   /// Create a copy of OrganicResult
   /// with the given fields replaced by the non-null parameter values.
@@ -3090,9 +3100,10 @@ ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ImagesResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  ImagesQuery get searchParameters => throw _privateConstructorUsedError;
   List<ImageResult> get images => throw _privateConstructorUsedError;
+  KnowledgeGraphResult? get knowledgeGraph =>
+      throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
   /// Serializes this ImagesResponse to a JSON map.
@@ -3113,10 +3124,14 @@ abstract class $ImagesResponseCopyWith<$Res> {
   ) = _$ImagesResponseCopyWithImpl<$Res, ImagesResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ImagesQuery searchParameters,
     List<ImageResult> images,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  $ImagesQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -3136,6 +3151,7 @@ class _$ImagesResponseCopyWithImpl<$Res, $Val extends ImagesResponse>
   $Res call({
     Object? searchParameters = null,
     Object? images = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
@@ -3144,12 +3160,17 @@ class _$ImagesResponseCopyWithImpl<$Res, $Val extends ImagesResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as ImagesQuery,
             images:
                 null == images
                     ? _value.images
                     : images // ignore: cast_nullable_to_non_nullable
                         as List<ImageResult>,
+            knowledgeGraph:
+                freezed == knowledgeGraph
+                    ? _value.knowledgeGraph
+                    : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                        as KnowledgeGraphResult?,
             credits:
                 null == credits
                     ? _value.credits
@@ -3158,6 +3179,30 @@ class _$ImagesResponseCopyWithImpl<$Res, $Val extends ImagesResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of ImagesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImagesQueryCopyWith<$Res> get searchParameters {
+    return $ImagesQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ImagesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
   }
 }
 
@@ -3171,10 +3216,16 @@ abstract class _$$ImagesResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ImagesQuery searchParameters,
     List<ImageResult> images,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  @override
+  $ImagesQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -3193,20 +3244,26 @@ class __$$ImagesResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? searchParameters = null,
     Object? images = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
       _$ImagesResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as ImagesQuery,
         images:
             null == images
                 ? _value._images
                 : images // ignore: cast_nullable_to_non_nullable
                     as List<ImageResult>,
+        knowledgeGraph:
+            freezed == knowledgeGraph
+                ? _value.knowledgeGraph
+                : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                    as KnowledgeGraphResult?,
         credits:
             null == credits
                 ? _value.credits
@@ -3221,23 +3278,17 @@ class __$$ImagesResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImagesResponseImpl implements _ImagesResponse {
   const _$ImagesResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<ImageResult> images,
+    this.knowledgeGraph,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _images = images;
+  }) : _images = images;
 
   factory _$ImagesResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImagesResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final ImagesQuery searchParameters;
   final List<ImageResult> _images;
   @override
   List<ImageResult> get images {
@@ -3247,11 +3298,13 @@ class _$ImagesResponseImpl implements _ImagesResponse {
   }
 
   @override
+  final KnowledgeGraphResult? knowledgeGraph;
+  @override
   final int credits;
 
   @override
   String toString() {
-    return 'ImagesResponse(searchParameters: $searchParameters, images: $images, credits: $credits)';
+    return 'ImagesResponse(searchParameters: $searchParameters, images: $images, knowledgeGraph: $knowledgeGraph, credits: $credits)';
   }
 
   @override
@@ -3259,11 +3312,11 @@ class _$ImagesResponseImpl implements _ImagesResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImagesResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
@@ -3271,8 +3324,9 @@ class _$ImagesResponseImpl implements _ImagesResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_images),
+    knowledgeGraph,
     credits,
   );
 
@@ -3295,8 +3349,9 @@ class _$ImagesResponseImpl implements _ImagesResponse {
 
 abstract class _ImagesResponse implements ImagesResponse {
   const factory _ImagesResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final ImagesQuery searchParameters,
     required final List<ImageResult> images,
+    final KnowledgeGraphResult? knowledgeGraph,
     required final int credits,
   }) = _$ImagesResponseImpl;
 
@@ -3304,9 +3359,11 @@ abstract class _ImagesResponse implements ImagesResponse {
       _$ImagesResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  ImagesQuery get searchParameters;
   @override
   List<ImageResult> get images;
+  @override
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   int get credits;
 
@@ -3324,11 +3381,11 @@ ImageResult _$ImageResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ImageResult {
-  String get title => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get thumbnailUrl => throw _privateConstructorUsedError;
-  String get source => throw _privateConstructorUsedError;
-  String get sourceUrl => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
+  String? get source => throw _privateConstructorUsedError;
+  String? get sourceUrl => throw _privateConstructorUsedError;
   String? get price => throw _privateConstructorUsedError;
   String? get domain => throw _privateConstructorUsedError;
   int get position => throw _privateConstructorUsedError;
@@ -3351,11 +3408,11 @@ abstract class $ImageResultCopyWith<$Res> {
   ) = _$ImageResultCopyWithImpl<$Res, ImageResult>;
   @useResult
   $Res call({
-    String title,
-    String imageUrl,
-    String thumbnailUrl,
-    String source,
-    String sourceUrl,
+    String? title,
+    String? imageUrl,
+    String? thumbnailUrl,
+    String? source,
+    String? sourceUrl,
     String? price,
     String? domain,
     int position,
@@ -3377,11 +3434,11 @@ class _$ImageResultCopyWithImpl<$Res, $Val extends ImageResult>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? imageUrl = null,
-    Object? thumbnailUrl = null,
-    Object? source = null,
-    Object? sourceUrl = null,
+    Object? title = freezed,
+    Object? imageUrl = freezed,
+    Object? thumbnailUrl = freezed,
+    Object? source = freezed,
+    Object? sourceUrl = freezed,
     Object? price = freezed,
     Object? domain = freezed,
     Object? position = null,
@@ -3389,30 +3446,30 @@ class _$ImageResultCopyWithImpl<$Res, $Val extends ImageResult>
     return _then(
       _value.copyWith(
             title:
-                null == title
+                freezed == title
                     ? _value.title
                     : title // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             imageUrl:
-                null == imageUrl
+                freezed == imageUrl
                     ? _value.imageUrl
                     : imageUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             thumbnailUrl:
-                null == thumbnailUrl
+                freezed == thumbnailUrl
                     ? _value.thumbnailUrl
                     : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             source:
-                null == source
+                freezed == source
                     ? _value.source
                     : source // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             sourceUrl:
-                null == sourceUrl
+                freezed == sourceUrl
                     ? _value.sourceUrl
                     : sourceUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             price:
                 freezed == price
                     ? _value.price
@@ -3444,11 +3501,11 @@ abstract class _$$ImageResultImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String title,
-    String imageUrl,
-    String thumbnailUrl,
-    String source,
-    String sourceUrl,
+    String? title,
+    String? imageUrl,
+    String? thumbnailUrl,
+    String? source,
+    String? sourceUrl,
     String? price,
     String? domain,
     int position,
@@ -3469,11 +3526,11 @@ class __$$ImageResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? imageUrl = null,
-    Object? thumbnailUrl = null,
-    Object? source = null,
-    Object? sourceUrl = null,
+    Object? title = freezed,
+    Object? imageUrl = freezed,
+    Object? thumbnailUrl = freezed,
+    Object? source = freezed,
+    Object? sourceUrl = freezed,
     Object? price = freezed,
     Object? domain = freezed,
     Object? position = null,
@@ -3481,30 +3538,30 @@ class __$$ImageResultImplCopyWithImpl<$Res>
     return _then(
       _$ImageResultImpl(
         title:
-            null == title
+            freezed == title
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         imageUrl:
-            null == imageUrl
+            freezed == imageUrl
                 ? _value.imageUrl
                 : imageUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         thumbnailUrl:
-            null == thumbnailUrl
+            freezed == thumbnailUrl
                 ? _value.thumbnailUrl
                 : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         source:
-            null == source
+            freezed == source
                 ? _value.source
                 : source // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         sourceUrl:
-            null == sourceUrl
+            freezed == sourceUrl
                 ? _value.sourceUrl
                 : sourceUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         price:
             freezed == price
                 ? _value.price
@@ -3529,11 +3586,11 @@ class __$$ImageResultImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ImageResultImpl implements _ImageResult {
   const _$ImageResultImpl({
-    required this.title,
-    required this.imageUrl,
-    required this.thumbnailUrl,
-    required this.source,
-    required this.sourceUrl,
+    this.title,
+    this.imageUrl,
+    this.thumbnailUrl,
+    this.source,
+    this.sourceUrl,
     this.price,
     this.domain,
     required this.position,
@@ -3543,15 +3600,15 @@ class _$ImageResultImpl implements _ImageResult {
       _$$ImageResultImplFromJson(json);
 
   @override
-  final String title;
+  final String? title;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
   @override
-  final String source;
+  final String? source;
   @override
-  final String sourceUrl;
+  final String? sourceUrl;
   @override
   final String? price;
   @override
@@ -3613,11 +3670,11 @@ class _$ImageResultImpl implements _ImageResult {
 
 abstract class _ImageResult implements ImageResult {
   const factory _ImageResult({
-    required final String title,
-    required final String imageUrl,
-    required final String thumbnailUrl,
-    required final String source,
-    required final String sourceUrl,
+    final String? title,
+    final String? imageUrl,
+    final String? thumbnailUrl,
+    final String? source,
+    final String? sourceUrl,
     final String? price,
     final String? domain,
     required final int position,
@@ -3627,15 +3684,15 @@ abstract class _ImageResult implements ImageResult {
       _$ImageResultImpl.fromJson;
 
   @override
-  String get title;
+  String? get title;
   @override
-  String get imageUrl;
+  String? get imageUrl;
   @override
-  String get thumbnailUrl;
+  String? get thumbnailUrl;
   @override
-  String get source;
+  String? get source;
   @override
-  String get sourceUrl;
+  String? get sourceUrl;
   @override
   String? get price;
   @override
@@ -3657,9 +3714,10 @@ PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlacesResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  PlacesQuery get searchParameters => throw _privateConstructorUsedError;
   List<PlaceResult> get places => throw _privateConstructorUsedError;
+  KnowledgeGraphResult? get knowledgeGraph =>
+      throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
   /// Serializes this PlacesResponse to a JSON map.
@@ -3680,10 +3738,14 @@ abstract class $PlacesResponseCopyWith<$Res> {
   ) = _$PlacesResponseCopyWithImpl<$Res, PlacesResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    PlacesQuery searchParameters,
     List<PlaceResult> places,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  $PlacesQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -3703,6 +3765,7 @@ class _$PlacesResponseCopyWithImpl<$Res, $Val extends PlacesResponse>
   $Res call({
     Object? searchParameters = null,
     Object? places = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
@@ -3711,12 +3774,17 @@ class _$PlacesResponseCopyWithImpl<$Res, $Val extends PlacesResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as PlacesQuery,
             places:
                 null == places
                     ? _value.places
                     : places // ignore: cast_nullable_to_non_nullable
                         as List<PlaceResult>,
+            knowledgeGraph:
+                freezed == knowledgeGraph
+                    ? _value.knowledgeGraph
+                    : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                        as KnowledgeGraphResult?,
             credits:
                 null == credits
                     ? _value.credits
@@ -3725,6 +3793,30 @@ class _$PlacesResponseCopyWithImpl<$Res, $Val extends PlacesResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of PlacesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlacesQueryCopyWith<$Res> get searchParameters {
+    return $PlacesQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of PlacesResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
   }
 }
 
@@ -3738,10 +3830,16 @@ abstract class _$$PlacesResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    PlacesQuery searchParameters,
     List<PlaceResult> places,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  @override
+  $PlacesQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -3760,20 +3858,26 @@ class __$$PlacesResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? searchParameters = null,
     Object? places = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
       _$PlacesResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as PlacesQuery,
         places:
             null == places
                 ? _value._places
                 : places // ignore: cast_nullable_to_non_nullable
                     as List<PlaceResult>,
+        knowledgeGraph:
+            freezed == knowledgeGraph
+                ? _value.knowledgeGraph
+                : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                    as KnowledgeGraphResult?,
         credits:
             null == credits
                 ? _value.credits
@@ -3788,23 +3892,17 @@ class __$$PlacesResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PlacesResponseImpl implements _PlacesResponse {
   const _$PlacesResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<PlaceResult> places,
+    this.knowledgeGraph,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _places = places;
+  }) : _places = places;
 
   factory _$PlacesResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlacesResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final PlacesQuery searchParameters;
   final List<PlaceResult> _places;
   @override
   List<PlaceResult> get places {
@@ -3814,11 +3912,13 @@ class _$PlacesResponseImpl implements _PlacesResponse {
   }
 
   @override
+  final KnowledgeGraphResult? knowledgeGraph;
+  @override
   final int credits;
 
   @override
   String toString() {
-    return 'PlacesResponse(searchParameters: $searchParameters, places: $places, credits: $credits)';
+    return 'PlacesResponse(searchParameters: $searchParameters, places: $places, knowledgeGraph: $knowledgeGraph, credits: $credits)';
   }
 
   @override
@@ -3826,11 +3926,11 @@ class _$PlacesResponseImpl implements _PlacesResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlacesResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._places, _places) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
@@ -3838,8 +3938,9 @@ class _$PlacesResponseImpl implements _PlacesResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_places),
+    knowledgeGraph,
     credits,
   );
 
@@ -3862,8 +3963,9 @@ class _$PlacesResponseImpl implements _PlacesResponse {
 
 abstract class _PlacesResponse implements PlacesResponse {
   const factory _PlacesResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final PlacesQuery searchParameters,
     required final List<PlaceResult> places,
+    final KnowledgeGraphResult? knowledgeGraph,
     required final int credits,
   }) = _$PlacesResponseImpl;
 
@@ -3871,9 +3973,11 @@ abstract class _PlacesResponse implements PlacesResponse {
       _$PlacesResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  PlacesQuery get searchParameters;
   @override
   List<PlaceResult> get places;
+  @override
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   int get credits;
 
@@ -4303,9 +4407,10 @@ VideosResponse _$VideosResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VideosResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  VideosQuery get searchParameters => throw _privateConstructorUsedError;
   List<VideoResult> get videos => throw _privateConstructorUsedError;
+  KnowledgeGraphResult? get knowledgeGraph =>
+      throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
   /// Serializes this VideosResponse to a JSON map.
@@ -4326,10 +4431,14 @@ abstract class $VideosResponseCopyWith<$Res> {
   ) = _$VideosResponseCopyWithImpl<$Res, VideosResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    VideosQuery searchParameters,
     List<VideoResult> videos,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  $VideosQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -4349,6 +4458,7 @@ class _$VideosResponseCopyWithImpl<$Res, $Val extends VideosResponse>
   $Res call({
     Object? searchParameters = null,
     Object? videos = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
@@ -4357,12 +4467,17 @@ class _$VideosResponseCopyWithImpl<$Res, $Val extends VideosResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as VideosQuery,
             videos:
                 null == videos
                     ? _value.videos
                     : videos // ignore: cast_nullable_to_non_nullable
                         as List<VideoResult>,
+            knowledgeGraph:
+                freezed == knowledgeGraph
+                    ? _value.knowledgeGraph
+                    : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                        as KnowledgeGraphResult?,
             credits:
                 null == credits
                     ? _value.credits
@@ -4371,6 +4486,30 @@ class _$VideosResponseCopyWithImpl<$Res, $Val extends VideosResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of VideosResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VideosQueryCopyWith<$Res> get searchParameters {
+    return $VideosQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of VideosResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
   }
 }
 
@@ -4384,10 +4523,16 @@ abstract class _$$VideosResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    VideosQuery searchParameters,
     List<VideoResult> videos,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  @override
+  $VideosQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -4406,20 +4551,26 @@ class __$$VideosResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? searchParameters = null,
     Object? videos = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
       _$VideosResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as VideosQuery,
         videos:
             null == videos
                 ? _value._videos
                 : videos // ignore: cast_nullable_to_non_nullable
                     as List<VideoResult>,
+        knowledgeGraph:
+            freezed == knowledgeGraph
+                ? _value.knowledgeGraph
+                : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                    as KnowledgeGraphResult?,
         credits:
             null == credits
                 ? _value.credits
@@ -4434,23 +4585,17 @@ class __$$VideosResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$VideosResponseImpl implements _VideosResponse {
   const _$VideosResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<VideoResult> videos,
+    this.knowledgeGraph,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _videos = videos;
+  }) : _videos = videos;
 
   factory _$VideosResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$VideosResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final VideosQuery searchParameters;
   final List<VideoResult> _videos;
   @override
   List<VideoResult> get videos {
@@ -4460,11 +4605,13 @@ class _$VideosResponseImpl implements _VideosResponse {
   }
 
   @override
+  final KnowledgeGraphResult? knowledgeGraph;
+  @override
   final int credits;
 
   @override
   String toString() {
-    return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, credits: $credits)';
+    return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, knowledgeGraph: $knowledgeGraph, credits: $credits)';
   }
 
   @override
@@ -4472,11 +4619,11 @@ class _$VideosResponseImpl implements _VideosResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideosResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._videos, _videos) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
@@ -4484,8 +4631,9 @@ class _$VideosResponseImpl implements _VideosResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_videos),
+    knowledgeGraph,
     credits,
   );
 
@@ -4508,8 +4656,9 @@ class _$VideosResponseImpl implements _VideosResponse {
 
 abstract class _VideosResponse implements VideosResponse {
   const factory _VideosResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final VideosQuery searchParameters,
     required final List<VideoResult> videos,
+    final KnowledgeGraphResult? knowledgeGraph,
     required final int credits,
   }) = _$VideosResponseImpl;
 
@@ -4517,9 +4666,11 @@ abstract class _VideosResponse implements VideosResponse {
       _$VideosResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  VideosQuery get searchParameters;
   @override
   List<VideoResult> get videos;
+  @override
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   int get credits;
 
@@ -4917,8 +5068,7 @@ MapsResponse _$MapsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MapsResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  MapsQuery get searchParameters => throw _privateConstructorUsedError;
   MapResult get place => throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
@@ -4939,12 +5089,9 @@ abstract class $MapsResponseCopyWith<$Res> {
     $Res Function(MapsResponse) then,
   ) = _$MapsResponseCopyWithImpl<$Res, MapsResponse>;
   @useResult
-  $Res call({
-    Map<String, dynamic> searchParameters,
-    MapResult place,
-    int credits,
-  });
+  $Res call({MapsQuery searchParameters, MapResult place, int credits});
 
+  $MapsQueryCopyWith<$Res> get searchParameters;
   $MapResultCopyWith<$Res> get place;
 }
 
@@ -4973,7 +5120,7 @@ class _$MapsResponseCopyWithImpl<$Res, $Val extends MapsResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as MapsQuery,
             place:
                 null == place
                     ? _value.place
@@ -4987,6 +5134,16 @@ class _$MapsResponseCopyWithImpl<$Res, $Val extends MapsResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of MapsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MapsQueryCopyWith<$Res> get searchParameters {
+    return $MapsQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
   }
 
   /// Create a copy of MapsResponse
@@ -5009,12 +5166,10 @@ abstract class _$$MapsResponseImplCopyWith<$Res>
   ) = __$$MapsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    Map<String, dynamic> searchParameters,
-    MapResult place,
-    int credits,
-  });
+  $Res call({MapsQuery searchParameters, MapResult place, int credits});
 
+  @override
+  $MapsQueryCopyWith<$Res> get searchParameters;
   @override
   $MapResultCopyWith<$Res> get place;
 }
@@ -5041,9 +5196,9 @@ class __$$MapsResponseImplCopyWithImpl<$Res>
       _$MapsResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as MapsQuery,
         place:
             null == place
                 ? _value.place
@@ -5063,22 +5218,16 @@ class __$$MapsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MapsResponseImpl implements _MapsResponse {
   const _$MapsResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required this.place,
     required this.credits,
-  }) : _searchParameters = searchParameters;
+  });
 
   factory _$MapsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$MapsResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final MapsQuery searchParameters;
   @override
   final MapResult place;
   @override
@@ -5094,22 +5243,16 @@ class _$MapsResponseImpl implements _MapsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MapsResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             (identical(other.place, place) || other.place == place) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
-    place,
-    credits,
-  );
+  int get hashCode =>
+      Object.hash(runtimeType, searchParameters, place, credits);
 
   /// Create a copy of MapsResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -5127,7 +5270,7 @@ class _$MapsResponseImpl implements _MapsResponse {
 
 abstract class _MapsResponse implements MapsResponse {
   const factory _MapsResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final MapsQuery searchParameters,
     required final MapResult place,
     required final int credits,
   }) = _$MapsResponseImpl;
@@ -5136,7 +5279,7 @@ abstract class _MapsResponse implements MapsResponse {
       _$MapsResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  MapsQuery get searchParameters;
   @override
   MapResult get place;
   @override
@@ -6139,8 +6282,7 @@ ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReviewsResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  ReviewsQuery get searchParameters => throw _privateConstructorUsedError;
   List<PlaceReview> get reviews => throw _privateConstructorUsedError;
   String? get nextPageToken => throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
@@ -6163,11 +6305,13 @@ abstract class $ReviewsResponseCopyWith<$Res> {
   ) = _$ReviewsResponseCopyWithImpl<$Res, ReviewsResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ReviewsQuery searchParameters,
     List<PlaceReview> reviews,
     String? nextPageToken,
     int credits,
   });
+
+  $ReviewsQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -6196,7 +6340,7 @@ class _$ReviewsResponseCopyWithImpl<$Res, $Val extends ReviewsResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as ReviewsQuery,
             reviews:
                 null == reviews
                     ? _value.reviews
@@ -6216,6 +6360,16 @@ class _$ReviewsResponseCopyWithImpl<$Res, $Val extends ReviewsResponse>
           as $Val,
     );
   }
+
+  /// Create a copy of ReviewsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ReviewsQueryCopyWith<$Res> get searchParameters {
+    return $ReviewsQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -6228,11 +6382,14 @@ abstract class _$$ReviewsResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ReviewsQuery searchParameters,
     List<PlaceReview> reviews,
     String? nextPageToken,
     int credits,
   });
+
+  @override
+  $ReviewsQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -6258,9 +6415,9 @@ class __$$ReviewsResponseImplCopyWithImpl<$Res>
       _$ReviewsResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as ReviewsQuery,
         reviews:
             null == reviews
                 ? _value._reviews
@@ -6285,24 +6442,17 @@ class __$$ReviewsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewsResponseImpl implements _ReviewsResponse {
   const _$ReviewsResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<PlaceReview> reviews,
     this.nextPageToken,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _reviews = reviews;
+  }) : _reviews = reviews;
 
   factory _$ReviewsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewsResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final ReviewsQuery searchParameters;
   final List<PlaceReview> _reviews;
   @override
   List<PlaceReview> get reviews {
@@ -6326,10 +6476,8 @@ class _$ReviewsResponseImpl implements _ReviewsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReviewsResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
             (identical(other.nextPageToken, nextPageToken) ||
                 other.nextPageToken == nextPageToken) &&
@@ -6340,7 +6488,7 @@ class _$ReviewsResponseImpl implements _ReviewsResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_reviews),
     nextPageToken,
     credits,
@@ -6365,7 +6513,7 @@ class _$ReviewsResponseImpl implements _ReviewsResponse {
 
 abstract class _ReviewsResponse implements ReviewsResponse {
   const factory _ReviewsResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final ReviewsQuery searchParameters,
     required final List<PlaceReview> reviews,
     final String? nextPageToken,
     required final int credits,
@@ -6375,7 +6523,7 @@ abstract class _ReviewsResponse implements ReviewsResponse {
       _$ReviewsResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  ReviewsQuery get searchParameters;
   @override
   List<PlaceReview> get reviews;
   @override
@@ -6729,9 +6877,10 @@ NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NewsResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  NewsQuery get searchParameters => throw _privateConstructorUsedError;
   List<NewsResult> get news => throw _privateConstructorUsedError;
+  KnowledgeGraphResult? get knowledgeGraph =>
+      throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
   /// Serializes this NewsResponse to a JSON map.
@@ -6752,10 +6901,14 @@ abstract class $NewsResponseCopyWith<$Res> {
   ) = _$NewsResponseCopyWithImpl<$Res, NewsResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    NewsQuery searchParameters,
     List<NewsResult> news,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  $NewsQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -6775,6 +6928,7 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
   $Res call({
     Object? searchParameters = null,
     Object? news = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
@@ -6783,12 +6937,17 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as NewsQuery,
             news:
                 null == news
                     ? _value.news
                     : news // ignore: cast_nullable_to_non_nullable
                         as List<NewsResult>,
+            knowledgeGraph:
+                freezed == knowledgeGraph
+                    ? _value.knowledgeGraph
+                    : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                        as KnowledgeGraphResult?,
             credits:
                 null == credits
                     ? _value.credits
@@ -6797,6 +6956,30 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NewsQueryCopyWith<$Res> get searchParameters {
+    return $NewsQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
   }
 }
 
@@ -6810,10 +6993,16 @@ abstract class _$$NewsResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    NewsQuery searchParameters,
     List<NewsResult> news,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  @override
+  $NewsQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -6832,20 +7021,26 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? searchParameters = null,
     Object? news = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
       _$NewsResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as NewsQuery,
         news:
             null == news
                 ? _value._news
                 : news // ignore: cast_nullable_to_non_nullable
                     as List<NewsResult>,
+        knowledgeGraph:
+            freezed == knowledgeGraph
+                ? _value.knowledgeGraph
+                : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                    as KnowledgeGraphResult?,
         credits:
             null == credits
                 ? _value.credits
@@ -6860,23 +7055,17 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NewsResponseImpl implements _NewsResponse {
   const _$NewsResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<NewsResult> news,
+    this.knowledgeGraph,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _news = news;
+  }) : _news = news;
 
   factory _$NewsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final NewsQuery searchParameters;
   final List<NewsResult> _news;
   @override
   List<NewsResult> get news {
@@ -6886,11 +7075,13 @@ class _$NewsResponseImpl implements _NewsResponse {
   }
 
   @override
+  final KnowledgeGraphResult? knowledgeGraph;
+  @override
   final int credits;
 
   @override
   String toString() {
-    return 'NewsResponse(searchParameters: $searchParameters, news: $news, credits: $credits)';
+    return 'NewsResponse(searchParameters: $searchParameters, news: $news, knowledgeGraph: $knowledgeGraph, credits: $credits)';
   }
 
   @override
@@ -6898,11 +7089,11 @@ class _$NewsResponseImpl implements _NewsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewsResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._news, _news) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
@@ -6910,8 +7101,9 @@ class _$NewsResponseImpl implements _NewsResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_news),
+    knowledgeGraph,
     credits,
   );
 
@@ -6931,8 +7123,9 @@ class _$NewsResponseImpl implements _NewsResponse {
 
 abstract class _NewsResponse implements NewsResponse {
   const factory _NewsResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final NewsQuery searchParameters,
     required final List<NewsResult> news,
+    final KnowledgeGraphResult? knowledgeGraph,
     required final int credits,
   }) = _$NewsResponseImpl;
 
@@ -6940,9 +7133,11 @@ abstract class _NewsResponse implements NewsResponse {
       _$NewsResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  NewsQuery get searchParameters;
   @override
   List<NewsResult> get news;
+  @override
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   int get credits;
 
@@ -7268,9 +7463,10 @@ ShoppingResponse _$ShoppingResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShoppingResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  ShoppingQuery get searchParameters => throw _privateConstructorUsedError;
   List<ShoppingResult> get shopping => throw _privateConstructorUsedError;
+  KnowledgeGraphResult? get knowledgeGraph =>
+      throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
   /// Serializes this ShoppingResponse to a JSON map.
@@ -7291,10 +7487,14 @@ abstract class $ShoppingResponseCopyWith<$Res> {
   ) = _$ShoppingResponseCopyWithImpl<$Res, ShoppingResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ShoppingQuery searchParameters,
     List<ShoppingResult> shopping,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  $ShoppingQueryCopyWith<$Res> get searchParameters;
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -7314,6 +7514,7 @@ class _$ShoppingResponseCopyWithImpl<$Res, $Val extends ShoppingResponse>
   $Res call({
     Object? searchParameters = null,
     Object? shopping = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
@@ -7322,12 +7523,17 @@ class _$ShoppingResponseCopyWithImpl<$Res, $Val extends ShoppingResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as ShoppingQuery,
             shopping:
                 null == shopping
                     ? _value.shopping
                     : shopping // ignore: cast_nullable_to_non_nullable
                         as List<ShoppingResult>,
+            knowledgeGraph:
+                freezed == knowledgeGraph
+                    ? _value.knowledgeGraph
+                    : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                        as KnowledgeGraphResult?,
             credits:
                 null == credits
                     ? _value.credits
@@ -7336,6 +7542,30 @@ class _$ShoppingResponseCopyWithImpl<$Res, $Val extends ShoppingResponse>
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of ShoppingResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ShoppingQueryCopyWith<$Res> get searchParameters {
+    return $ShoppingQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ShoppingResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
+    if (_value.knowledgeGraph == null) {
+      return null;
+    }
+
+    return $KnowledgeGraphResultCopyWith<$Res>(_value.knowledgeGraph!, (value) {
+      return _then(_value.copyWith(knowledgeGraph: value) as $Val);
+    });
   }
 }
 
@@ -7349,10 +7579,16 @@ abstract class _$$ShoppingResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ShoppingQuery searchParameters,
     List<ShoppingResult> shopping,
+    KnowledgeGraphResult? knowledgeGraph,
     int credits,
   });
+
+  @override
+  $ShoppingQueryCopyWith<$Res> get searchParameters;
+  @override
+  $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
 }
 
 /// @nodoc
@@ -7371,20 +7607,26 @@ class __$$ShoppingResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? searchParameters = null,
     Object? shopping = null,
+    Object? knowledgeGraph = freezed,
     Object? credits = null,
   }) {
     return _then(
       _$ShoppingResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as ShoppingQuery,
         shopping:
             null == shopping
                 ? _value._shopping
                 : shopping // ignore: cast_nullable_to_non_nullable
                     as List<ShoppingResult>,
+        knowledgeGraph:
+            freezed == knowledgeGraph
+                ? _value.knowledgeGraph
+                : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+                    as KnowledgeGraphResult?,
         credits:
             null == credits
                 ? _value.credits
@@ -7399,23 +7641,17 @@ class __$$ShoppingResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ShoppingResponseImpl implements _ShoppingResponse {
   const _$ShoppingResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<ShoppingResult> shopping,
+    this.knowledgeGraph,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _shopping = shopping;
+  }) : _shopping = shopping;
 
   factory _$ShoppingResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ShoppingResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final ShoppingQuery searchParameters;
   final List<ShoppingResult> _shopping;
   @override
   List<ShoppingResult> get shopping {
@@ -7425,11 +7661,13 @@ class _$ShoppingResponseImpl implements _ShoppingResponse {
   }
 
   @override
+  final KnowledgeGraphResult? knowledgeGraph;
+  @override
   final int credits;
 
   @override
   String toString() {
-    return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, credits: $credits)';
+    return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, knowledgeGraph: $knowledgeGraph, credits: $credits)';
   }
 
   @override
@@ -7437,11 +7675,11 @@ class _$ShoppingResponseImpl implements _ShoppingResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShoppingResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._shopping, _shopping) &&
+            (identical(other.knowledgeGraph, knowledgeGraph) ||
+                other.knowledgeGraph == knowledgeGraph) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
 
@@ -7449,8 +7687,9 @@ class _$ShoppingResponseImpl implements _ShoppingResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_shopping),
+    knowledgeGraph,
     credits,
   );
 
@@ -7473,8 +7712,9 @@ class _$ShoppingResponseImpl implements _ShoppingResponse {
 
 abstract class _ShoppingResponse implements ShoppingResponse {
   const factory _ShoppingResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final ShoppingQuery searchParameters,
     required final List<ShoppingResult> shopping,
+    final KnowledgeGraphResult? knowledgeGraph,
     required final int credits,
   }) = _$ShoppingResponseImpl;
 
@@ -7482,9 +7722,11 @@ abstract class _ShoppingResponse implements ShoppingResponse {
       _$ShoppingResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  ShoppingQuery get searchParameters;
   @override
   List<ShoppingResult> get shopping;
+  @override
+  KnowledgeGraphResult? get knowledgeGraph;
   @override
   int get credits;
 
@@ -7814,8 +8056,7 @@ LensResponse _$LensResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LensResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  LensQuery get searchParameters => throw _privateConstructorUsedError;
   List<LensResult> get organic => throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
@@ -7837,10 +8078,12 @@ abstract class $LensResponseCopyWith<$Res> {
   ) = _$LensResponseCopyWithImpl<$Res, LensResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    LensQuery searchParameters,
     List<LensResult> organic,
     int credits,
   });
+
+  $LensQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -7868,7 +8111,7 @@ class _$LensResponseCopyWithImpl<$Res, $Val extends LensResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as LensQuery,
             organic:
                 null == organic
                     ? _value.organic
@@ -7883,6 +8126,16 @@ class _$LensResponseCopyWithImpl<$Res, $Val extends LensResponse>
           as $Val,
     );
   }
+
+  /// Create a copy of LensResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LensQueryCopyWith<$Res> get searchParameters {
+    return $LensQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -7895,10 +8148,13 @@ abstract class _$$LensResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    LensQuery searchParameters,
     List<LensResult> organic,
     int credits,
   });
+
+  @override
+  $LensQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -7923,9 +8179,9 @@ class __$$LensResponseImplCopyWithImpl<$Res>
       _$LensResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as LensQuery,
         organic:
             null == organic
                 ? _value._organic
@@ -7945,23 +8201,16 @@ class __$$LensResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LensResponseImpl implements _LensResponse {
   const _$LensResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<LensResult> organic,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _organic = organic;
+  }) : _organic = organic;
 
   factory _$LensResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LensResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final LensQuery searchParameters;
   final List<LensResult> _organic;
   @override
   List<LensResult> get organic {
@@ -7983,10 +8232,8 @@ class _$LensResponseImpl implements _LensResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LensResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._organic, _organic) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
@@ -7995,7 +8242,7 @@ class _$LensResponseImpl implements _LensResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_organic),
     credits,
   );
@@ -8016,7 +8263,7 @@ class _$LensResponseImpl implements _LensResponse {
 
 abstract class _LensResponse implements LensResponse {
   const factory _LensResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final LensQuery searchParameters,
     required final List<LensResult> organic,
     required final int credits,
   }) = _$LensResponseImpl;
@@ -8025,7 +8272,7 @@ abstract class _LensResponse implements LensResponse {
       _$LensResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  LensQuery get searchParameters;
   @override
   List<LensResult> get organic;
   @override
@@ -8301,8 +8548,7 @@ ScholarResponse _$ScholarResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScholarResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  ScholarQuery get searchParameters => throw _privateConstructorUsedError;
   List<ScholarResult> get organic => throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
@@ -8324,10 +8570,12 @@ abstract class $ScholarResponseCopyWith<$Res> {
   ) = _$ScholarResponseCopyWithImpl<$Res, ScholarResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ScholarQuery searchParameters,
     List<ScholarResult> organic,
     int credits,
   });
+
+  $ScholarQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -8355,7 +8603,7 @@ class _$ScholarResponseCopyWithImpl<$Res, $Val extends ScholarResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as ScholarQuery,
             organic:
                 null == organic
                     ? _value.organic
@@ -8370,6 +8618,16 @@ class _$ScholarResponseCopyWithImpl<$Res, $Val extends ScholarResponse>
           as $Val,
     );
   }
+
+  /// Create a copy of ScholarResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScholarQueryCopyWith<$Res> get searchParameters {
+    return $ScholarQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -8382,10 +8640,13 @@ abstract class _$$ScholarResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    ScholarQuery searchParameters,
     List<ScholarResult> organic,
     int credits,
   });
+
+  @override
+  $ScholarQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -8410,9 +8671,9 @@ class __$$ScholarResponseImplCopyWithImpl<$Res>
       _$ScholarResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as ScholarQuery,
         organic:
             null == organic
                 ? _value._organic
@@ -8432,23 +8693,16 @@ class __$$ScholarResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ScholarResponseImpl implements _ScholarResponse {
   const _$ScholarResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<ScholarResult> organic,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _organic = organic;
+  }) : _organic = organic;
 
   factory _$ScholarResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScholarResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final ScholarQuery searchParameters;
   final List<ScholarResult> _organic;
   @override
   List<ScholarResult> get organic {
@@ -8470,10 +8724,8 @@ class _$ScholarResponseImpl implements _ScholarResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScholarResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._organic, _organic) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
@@ -8482,7 +8734,7 @@ class _$ScholarResponseImpl implements _ScholarResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_organic),
     credits,
   );
@@ -8506,7 +8758,7 @@ class _$ScholarResponseImpl implements _ScholarResponse {
 
 abstract class _ScholarResponse implements ScholarResponse {
   const factory _ScholarResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final ScholarQuery searchParameters,
     required final List<ScholarResult> organic,
     required final int credits,
   }) = _$ScholarResponseImpl;
@@ -8515,7 +8767,7 @@ abstract class _ScholarResponse implements ScholarResponse {
       _$ScholarResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  ScholarQuery get searchParameters;
   @override
   List<ScholarResult> get organic;
   @override
@@ -8865,8 +9117,7 @@ PatentsResponse _$PatentsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PatentsResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  PatentsQuery get searchParameters => throw _privateConstructorUsedError;
   List<PatentResult> get organic => throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
 
@@ -8888,10 +9139,12 @@ abstract class $PatentsResponseCopyWith<$Res> {
   ) = _$PatentsResponseCopyWithImpl<$Res, PatentsResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    PatentsQuery searchParameters,
     List<PatentResult> organic,
     int credits,
   });
+
+  $PatentsQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -8919,7 +9172,7 @@ class _$PatentsResponseCopyWithImpl<$Res, $Val extends PatentsResponse>
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as PatentsQuery,
             organic:
                 null == organic
                     ? _value.organic
@@ -8934,6 +9187,16 @@ class _$PatentsResponseCopyWithImpl<$Res, $Val extends PatentsResponse>
           as $Val,
     );
   }
+
+  /// Create a copy of PatentsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PatentsQueryCopyWith<$Res> get searchParameters {
+    return $PatentsQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -8946,10 +9209,13 @@ abstract class _$$PatentsResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    PatentsQuery searchParameters,
     List<PatentResult> organic,
     int credits,
   });
+
+  @override
+  $PatentsQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -8974,9 +9240,9 @@ class __$$PatentsResponseImplCopyWithImpl<$Res>
       _$PatentsResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as PatentsQuery,
         organic:
             null == organic
                 ? _value._organic
@@ -8996,23 +9262,16 @@ class __$$PatentsResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PatentsResponseImpl implements _PatentsResponse {
   const _$PatentsResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<PatentResult> organic,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _organic = organic;
+  }) : _organic = organic;
 
   factory _$PatentsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$PatentsResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final PatentsQuery searchParameters;
   final List<PatentResult> _organic;
   @override
   List<PatentResult> get organic {
@@ -9034,10 +9293,8 @@ class _$PatentsResponseImpl implements _PatentsResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PatentsResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(other._organic, _organic) &&
             (identical(other.credits, credits) || other.credits == credits));
   }
@@ -9046,7 +9303,7 @@ class _$PatentsResponseImpl implements _PatentsResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_organic),
     credits,
   );
@@ -9070,7 +9327,7 @@ class _$PatentsResponseImpl implements _PatentsResponse {
 
 abstract class _PatentsResponse implements PatentsResponse {
   const factory _PatentsResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final PatentsQuery searchParameters,
     required final List<PatentResult> organic,
     required final int credits,
   }) = _$PatentsResponseImpl;
@@ -9079,7 +9336,7 @@ abstract class _PatentsResponse implements PatentsResponse {
       _$PatentsResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  PatentsQuery get searchParameters;
   @override
   List<PatentResult> get organic;
   @override
@@ -9784,8 +10041,7 @@ AutocompleteResponse _$AutocompleteResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AutocompleteResponse {
-  Map<String, dynamic> get searchParameters =>
-      throw _privateConstructorUsedError;
+  AutocompleteQuery get searchParameters => throw _privateConstructorUsedError;
   List<AutocompleteSuggestion> get suggestions =>
       throw _privateConstructorUsedError;
   int get credits => throw _privateConstructorUsedError;
@@ -9808,10 +10064,12 @@ abstract class $AutocompleteResponseCopyWith<$Res> {
   ) = _$AutocompleteResponseCopyWithImpl<$Res, AutocompleteResponse>;
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    AutocompleteQuery searchParameters,
     List<AutocompleteSuggestion> suggestions,
     int credits,
   });
+
+  $AutocompleteQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -9842,7 +10100,7 @@ class _$AutocompleteResponseCopyWithImpl<
                 null == searchParameters
                     ? _value.searchParameters
                     : searchParameters // ignore: cast_nullable_to_non_nullable
-                        as Map<String, dynamic>,
+                        as AutocompleteQuery,
             suggestions:
                 null == suggestions
                     ? _value.suggestions
@@ -9857,6 +10115,16 @@ class _$AutocompleteResponseCopyWithImpl<
           as $Val,
     );
   }
+
+  /// Create a copy of AutocompleteResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AutocompleteQueryCopyWith<$Res> get searchParameters {
+    return $AutocompleteQueryCopyWith<$Res>(_value.searchParameters, (value) {
+      return _then(_value.copyWith(searchParameters: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -9869,10 +10137,13 @@ abstract class _$$AutocompleteResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Map<String, dynamic> searchParameters,
+    AutocompleteQuery searchParameters,
     List<AutocompleteSuggestion> suggestions,
     int credits,
   });
+
+  @override
+  $AutocompleteQueryCopyWith<$Res> get searchParameters;
 }
 
 /// @nodoc
@@ -9897,9 +10168,9 @@ class __$$AutocompleteResponseImplCopyWithImpl<$Res>
       _$AutocompleteResponseImpl(
         searchParameters:
             null == searchParameters
-                ? _value._searchParameters
+                ? _value.searchParameters
                 : searchParameters // ignore: cast_nullable_to_non_nullable
-                    as Map<String, dynamic>,
+                    as AutocompleteQuery,
         suggestions:
             null == suggestions
                 ? _value._suggestions
@@ -9919,23 +10190,16 @@ class __$$AutocompleteResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AutocompleteResponseImpl implements _AutocompleteResponse {
   const _$AutocompleteResponseImpl({
-    required final Map<String, dynamic> searchParameters,
+    required this.searchParameters,
     required final List<AutocompleteSuggestion> suggestions,
     required this.credits,
-  }) : _searchParameters = searchParameters,
-       _suggestions = suggestions;
+  }) : _suggestions = suggestions;
 
   factory _$AutocompleteResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$AutocompleteResponseImplFromJson(json);
 
-  final Map<String, dynamic> _searchParameters;
   @override
-  Map<String, dynamic> get searchParameters {
-    if (_searchParameters is EqualUnmodifiableMapView) return _searchParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_searchParameters);
-  }
-
+  final AutocompleteQuery searchParameters;
   final List<AutocompleteSuggestion> _suggestions;
   @override
   List<AutocompleteSuggestion> get suggestions {
@@ -9957,10 +10221,8 @@ class _$AutocompleteResponseImpl implements _AutocompleteResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AutocompleteResponseImpl &&
-            const DeepCollectionEquality().equals(
-              other._searchParameters,
-              _searchParameters,
-            ) &&
+            (identical(other.searchParameters, searchParameters) ||
+                other.searchParameters == searchParameters) &&
             const DeepCollectionEquality().equals(
               other._suggestions,
               _suggestions,
@@ -9972,7 +10234,7 @@ class _$AutocompleteResponseImpl implements _AutocompleteResponse {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    const DeepCollectionEquality().hash(_searchParameters),
+    searchParameters,
     const DeepCollectionEquality().hash(_suggestions),
     credits,
   );
@@ -9997,7 +10259,7 @@ class _$AutocompleteResponseImpl implements _AutocompleteResponse {
 
 abstract class _AutocompleteResponse implements AutocompleteResponse {
   const factory _AutocompleteResponse({
-    required final Map<String, dynamic> searchParameters,
+    required final AutocompleteQuery searchParameters,
     required final List<AutocompleteSuggestion> suggestions,
     required final int credits,
   }) = _$AutocompleteResponseImpl;
@@ -10006,7 +10268,7 @@ abstract class _AutocompleteResponse implements AutocompleteResponse {
       _$AutocompleteResponseImpl.fromJson;
 
   @override
-  Map<String, dynamic> get searchParameters;
+  AutocompleteQuery get searchParameters;
   @override
   List<AutocompleteSuggestion> get suggestions;
   @override

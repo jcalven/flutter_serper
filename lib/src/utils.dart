@@ -41,7 +41,10 @@ class SerperResponseProcessor {
   static List<Map<String, dynamic>> mergeSearchParameters(
     List<SerperResponseMixin> responses,
   ) {
-    return responses.map((response) => response.searchParameters).toList();
+    return responses
+        .map((response) =>
+            (response.searchParameters as dynamic).toJson() as Map<String, dynamic>)
+        .toList();
   }
 
   /// Creates a summary report from multiple API responses.
