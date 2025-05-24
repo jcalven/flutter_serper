@@ -1,7 +1,7 @@
 import 'package:flutter_serper/flutter_serper.dart';
 
 // Example function that can process any Serper API response
-void processResponse(SerperResponseMixin response) {
+void processResponse(SerperResponse response) {
   print('API call used ${response.credits} credits');
   print('Search parameters: ${response.searchParameters}');
 }
@@ -154,7 +154,7 @@ Future<void> main() async {
     print('\nExample of polymorphic API handling:');
 
     // Create a function that works with any Serper API response
-    void processPolymorphicResponse(SerperResponseMixin response) {
+    void processPolymorphicResponse(SerperResponse response) {
       print('This function works with any Serper response type');
       print('Search parameters: ${response.searchParameters}');
       print('Credits used: ${response.credits}');

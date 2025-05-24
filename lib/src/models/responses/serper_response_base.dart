@@ -1,13 +1,15 @@
 part of 'responses.dart';
 
-/// Class containing common fields for all Serper API responses.
-/// This allows us to reuse the common fields in all response classes.
+/// Base class containing common fields for all Serper API responses.
+///
+/// This abstract class allows us to reuse the common fields and
+/// implementation in all Serper API response classes.
 sealed class SerperResponse<T> {
   const SerperResponse({required this.searchParameters, required this.credits});
 
-  // / The search parameters used for the query.
+  /// {@macro ResponseDocTemplates.searchParametersDoc}
   final T searchParameters;
 
-  /// The number of credits used for the query.
+  /// {@macro ResponseDocTemplates.creditsDoc}
   final int credits;
 }

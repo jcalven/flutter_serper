@@ -10,9 +10,18 @@ abstract class ImagesResponse extends SerperResponse<ImagesQuery>
   });
 
   const factory ImagesResponse({
+    /// {@macro ResponseDocTemplates.searchParametersDoc}
     required ImagesQuery searchParameters,
+
+    /// List of image results returned by the API
+    ///
+    /// Contains all the image results that match the search query.
     required List<ImageResult> images,
+
+    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
     KnowledgeGraphResult? knowledgeGraph,
+
+    /// {@macro ResponseDocTemplates.creditsDoc}
     required int credits,
   }) = _ImagesResponse;
 

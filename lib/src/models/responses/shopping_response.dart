@@ -8,10 +8,20 @@ abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
     required super.searchParameters,
     required super.credits,
   });
+
   const factory ShoppingResponse({
+    /// {@macro ResponseDocTemplates.searchParametersDoc}
     required ShoppingQuery searchParameters,
+
+    /// List of shopping results returned by the API
+    ///
+    /// Contains products that match the search query.
     required List<ShoppingResult> shopping,
+
+    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
     KnowledgeGraphResult? knowledgeGraph,
+
+    /// {@macro ResponseDocTemplates.creditsDoc}
     required int credits,
   }) = _ShoppingResponse;
 

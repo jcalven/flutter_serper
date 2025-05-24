@@ -1,11 +1,15 @@
 part of 'responses.dart';
 
-/// {@template webpage_response}
-/// Represents a response from the Serper Webpage API.
-/// {@endtemplate}
+/// Response for the Serper Webpage API.
+///
+/// Unlike other Serper APIs, the Webpage API has a different structure and
+/// doesn't follow the standard SerperResponse base class pattern.
 @freezed
 abstract class WebpageResponse with _$WebpageResponse {
   const factory WebpageResponse({
+    /// {@macro ResponseDocTemplates.resultsDoc}
+    ///
+    /// For Webpage API, these are the extracted webpage content results.
     required List<WebpageResult> results,
     // Note: Webpage API has a different structure from other APIs
   }) = _WebpageResponse;

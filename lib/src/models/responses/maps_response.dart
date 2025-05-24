@@ -10,8 +10,15 @@ abstract class MapsResponse extends SerperResponse<MapsQuery>
   });
 
   const factory MapsResponse({
+    /// {@macro ResponseDocTemplates.searchParametersDoc}
     required MapsQuery searchParameters,
+
+    /// The place details returned by the Maps API
+    ///
+    /// Contains detailed information about a specific place.
     required MapResult place,
+
+    /// {@macro ResponseDocTemplates.creditsDoc}
     required int credits,
   }) = _MapsResponse;
 
