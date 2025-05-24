@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Knowledge graph result.
 @freezed
-class KnowledgeGraphResult with _$KnowledgeGraphResult {
+abstract class KnowledgeGraphResult with _$KnowledgeGraphResult {
   const factory KnowledgeGraphResult({
     required String title,
     String? type,

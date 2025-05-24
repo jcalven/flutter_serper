@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Video result.
 @freezed
-class VideoResult with _$VideoResult {
+abstract class VideoResult with _$VideoResult {
   const factory VideoResult({
     required String title,
     required String link,

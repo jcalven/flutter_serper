@@ -2,8 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Reviews API.
 @freezed
-class ReviewsResponse
-    with _$ReviewsResponse, SerperResponseMixin<ReviewsQuery> {
+abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
+    with _$ReviewsResponse {
+  const ReviewsResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory ReviewsResponse({
     required ReviewsQuery searchParameters,
     required List<PlaceReview> reviews,

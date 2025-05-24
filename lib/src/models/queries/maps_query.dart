@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Maps API.
 @freezed
-class MapsQuery with _$MapsQuery {
+abstract class MapsQuery with _$MapsQuery {
   const factory MapsQuery({
     required String q,
     String? hl,

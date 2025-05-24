@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Maps result.
 @freezed
-class MapResult with _$MapResult {
+abstract class MapResult with _$MapResult {
   const factory MapResult({
     required String title,
     required String cid,

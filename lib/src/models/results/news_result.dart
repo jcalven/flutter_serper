@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// News result.
 @freezed
-class NewsResult with _$NewsResult {
+abstract class NewsResult with _$NewsResult {
   const factory NewsResult({
     required String title,
     required String link,

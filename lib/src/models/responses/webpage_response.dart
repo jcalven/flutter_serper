@@ -4,7 +4,7 @@ part of 'responses.dart';
 /// Represents a response from the Serper Webpage API.
 /// {@endtemplate}
 @freezed
-class WebpageResponse with _$WebpageResponse {
+abstract class WebpageResponse with _$WebpageResponse {
   const factory WebpageResponse({
     required List<WebpageResult> results,
     // Note: Webpage API has a different structure from other APIs

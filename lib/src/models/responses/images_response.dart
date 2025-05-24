@@ -2,7 +2,13 @@ part of 'responses.dart';
 
 /// Response for the Serper Images API.
 @freezed
-class ImagesResponse with _$ImagesResponse, SerperResponseMixin<ImagesQuery> {
+abstract class ImagesResponse extends SerperResponse<ImagesQuery>
+    with _$ImagesResponse {
+  const ImagesResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
+
   const factory ImagesResponse({
     required ImagesQuery searchParameters,
     required List<ImageResult> images,

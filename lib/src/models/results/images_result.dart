@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Images result in search response.
 @freezed
-class ImagesResult with _$ImagesResult {
+abstract class ImagesResult with _$ImagesResult {
   const factory ImagesResult({
     required String title,
     required String imageUrl,

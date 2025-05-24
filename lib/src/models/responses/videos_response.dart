@@ -2,7 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Videos API.
 @freezed
-class VideosResponse with _$VideosResponse, SerperResponseMixin<VideosQuery> {
+abstract class VideosResponse extends SerperResponse<VideosQuery>
+    with _$VideosResponse {
+  const VideosResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory VideosResponse({
     required VideosQuery searchParameters,
     required List<VideoResult> videos,

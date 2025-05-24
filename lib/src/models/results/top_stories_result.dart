@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Top stories result.
 @freezed
-class TopStoriesResult with _$TopStoriesResult {
+abstract class TopStoriesResult with _$TopStoriesResult {
   const factory TopStoriesResult({
     required String title,
     required String link,

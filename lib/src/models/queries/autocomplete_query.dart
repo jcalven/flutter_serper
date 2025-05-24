@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Autocomplete API.
 @freezed
-class AutocompleteQuery with _$AutocompleteQuery {
+abstract class AutocompleteQuery with _$AutocompleteQuery {
   const factory AutocompleteQuery({
     required String q,
     String? location,

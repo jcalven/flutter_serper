@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Map result review.
 @freezed
-class MapResultReview with _$MapResultReview {
+abstract class MapResultReview with _$MapResultReview {
   const factory MapResultReview({
     required String author,
     required String authorUrl,

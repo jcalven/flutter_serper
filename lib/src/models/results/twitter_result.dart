@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Twitter result.
 @freezed
-class TwitterResult with _$TwitterResult {
+abstract class TwitterResult with _$TwitterResult {
   const factory TwitterResult({
     String? title,
     required String link,

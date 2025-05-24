@@ -6,16 +6,16 @@ part of 'results.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AutocompleteSuggestionImpl _$$AutocompleteSuggestionImplFromJson(
+_AutocompleteSuggestion _$AutocompleteSuggestionFromJson(
   Map<String, dynamic> json,
-) => _$AutocompleteSuggestionImpl(value: json['value'] as String);
+) => _AutocompleteSuggestion(value: json['value'] as String);
 
-Map<String, dynamic> _$$AutocompleteSuggestionImplToJson(
-  _$AutocompleteSuggestionImpl instance,
+Map<String, dynamic> _$AutocompleteSuggestionToJson(
+  _AutocompleteSuggestion instance,
 ) => <String, dynamic>{'value': instance.value};
 
-_$OrganicResultImpl _$$OrganicResultImplFromJson(Map<String, dynamic> json) =>
-    _$OrganicResultImpl(
+_OrganicResult _$OrganicResultFromJson(Map<String, dynamic> json) =>
+    _OrganicResult(
       title: json['title'] as String,
       link: json['link'] as String,
       snippet: json['snippet'] as String,
@@ -27,7 +27,7 @@ _$OrganicResultImpl _$$OrganicResultImplFromJson(Map<String, dynamic> json) =>
       sitelinks: json['sitelinks'],
     );
 
-Map<String, dynamic> _$$OrganicResultImplToJson(_$OrganicResultImpl instance) =>
+Map<String, dynamic> _$OrganicResultToJson(_OrganicResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
@@ -40,25 +40,23 @@ Map<String, dynamic> _$$OrganicResultImplToJson(_$OrganicResultImpl instance) =>
       'sitelinks': instance.sitelinks,
     };
 
-_$RelatedSearchResultImpl _$$RelatedSearchResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$RelatedSearchResultImpl(query: json['query'] as String);
+_RelatedSearchResult _$RelatedSearchResultFromJson(Map<String, dynamic> json) =>
+    _RelatedSearchResult(query: json['query'] as String);
 
-Map<String, dynamic> _$$RelatedSearchResultImplToJson(
-  _$RelatedSearchResultImpl instance,
+Map<String, dynamic> _$RelatedSearchResultToJson(
+  _RelatedSearchResult instance,
 ) => <String, dynamic>{'query': instance.query};
 
-_$PeopleAlsoAskResultImpl _$$PeopleAlsoAskResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$PeopleAlsoAskResultImpl(
-  question: json['question'] as String,
-  snippet: json['snippet'] as String?,
-  title: json['title'] as String?,
-  link: json['link'] as String?,
-);
+_PeopleAlsoAskResult _$PeopleAlsoAskResultFromJson(Map<String, dynamic> json) =>
+    _PeopleAlsoAskResult(
+      question: json['question'] as String,
+      snippet: json['snippet'] as String?,
+      title: json['title'] as String?,
+      link: json['link'] as String?,
+    );
 
-Map<String, dynamic> _$$PeopleAlsoAskResultImplToJson(
-  _$PeopleAlsoAskResultImpl instance,
+Map<String, dynamic> _$PeopleAlsoAskResultToJson(
+  _PeopleAlsoAskResult instance,
 ) => <String, dynamic>{
   'question': instance.question,
   'snippet': instance.snippet,
@@ -66,8 +64,8 @@ Map<String, dynamic> _$$PeopleAlsoAskResultImplToJson(
   'link': instance.link,
 };
 
-_$PlacesResultImpl _$$PlacesResultImplFromJson(Map<String, dynamic> json) =>
-    _$PlacesResultImpl(
+_PlacesResult _$PlacesResultFromJson(Map<String, dynamic> json) =>
+    _PlacesResult(
       title: json['title'] as String,
       address: json['address'] as String,
       phone: json['phone'] as String?,
@@ -83,7 +81,7 @@ _$PlacesResultImpl _$$PlacesResultImplFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$PlacesResultImplToJson(_$PlacesResultImpl instance) =>
+Map<String, dynamic> _$PlacesResultToJson(_PlacesResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'address': instance.address,
@@ -97,51 +95,49 @@ Map<String, dynamic> _$$PlacesResultImplToJson(_$PlacesResultImpl instance) =>
       'position': instance.position,
     };
 
-_$TopStoriesResultImpl _$$TopStoriesResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$TopStoriesResultImpl(
-  title: json['title'] as String,
-  link: json['link'] as String,
-  date: json['date'] as String?,
-  source: json['source'] as String?,
-  imageUrl: json['imageUrl'] as String?,
-  snippet: json['snippet'] as String?,
-);
+_TopStoriesResult _$TopStoriesResultFromJson(Map<String, dynamic> json) =>
+    _TopStoriesResult(
+      title: json['title'] as String,
+      link: json['link'] as String,
+      date: json['date'] as String?,
+      source: json['source'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      snippet: json['snippet'] as String?,
+    );
 
-Map<String, dynamic> _$$TopStoriesResultImplToJson(
-  _$TopStoriesResultImpl instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'link': instance.link,
-  'date': instance.date,
-  'source': instance.source,
-  'imageUrl': instance.imageUrl,
-  'snippet': instance.snippet,
-};
+Map<String, dynamic> _$TopStoriesResultToJson(_TopStoriesResult instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'link': instance.link,
+      'date': instance.date,
+      'source': instance.source,
+      'imageUrl': instance.imageUrl,
+      'snippet': instance.snippet,
+    };
 
-_$TwitterResultImpl _$$TwitterResultImplFromJson(Map<String, dynamic> json) =>
-    _$TwitterResultImpl(
+_TwitterResult _$TwitterResultFromJson(Map<String, dynamic> json) =>
+    _TwitterResult(
       title: json['title'] as String?,
       link: json['link'] as String,
       snippet: json['snippet'] as String?,
     );
 
-Map<String, dynamic> _$$TwitterResultImplToJson(_$TwitterResultImpl instance) =>
+Map<String, dynamic> _$TwitterResultToJson(_TwitterResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
       'snippet': instance.snippet,
     };
 
-_$ImagesResultImpl _$$ImagesResultImplFromJson(Map<String, dynamic> json) =>
-    _$ImagesResultImpl(
+_ImagesResult _$ImagesResultFromJson(Map<String, dynamic> json) =>
+    _ImagesResult(
       title: json['title'] as String,
       imageUrl: json['imageUrl'] as String,
       source: json['source'] as String,
       sourceUrl: json['sourceUrl'] as String,
     );
 
-Map<String, dynamic> _$$ImagesResultImplToJson(_$ImagesResultImpl instance) =>
+Map<String, dynamic> _$ImagesResultToJson(_ImagesResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'imageUrl': instance.imageUrl,
@@ -149,9 +145,9 @@ Map<String, dynamic> _$$ImagesResultImplToJson(_$ImagesResultImpl instance) =>
       'sourceUrl': instance.sourceUrl,
     };
 
-_$KnowledgeGraphResultImpl _$$KnowledgeGraphResultImplFromJson(
+_KnowledgeGraphResult _$KnowledgeGraphResultFromJson(
   Map<String, dynamic> json,
-) => _$KnowledgeGraphResultImpl(
+) => _KnowledgeGraphResult(
   title: json['title'] as String,
   type: json['type'] as String?,
   imageUrl: json['imageUrl'] as String?,
@@ -161,8 +157,8 @@ _$KnowledgeGraphResultImpl _$$KnowledgeGraphResultImplFromJson(
   descriptionSource: json['descriptionSource'] as String?,
 );
 
-Map<String, dynamic> _$$KnowledgeGraphResultImplToJson(
-  _$KnowledgeGraphResultImpl instance,
+Map<String, dynamic> _$KnowledgeGraphResultToJson(
+  _KnowledgeGraphResult instance,
 ) => <String, dynamic>{
   'title': instance.title,
   'type': instance.type,
@@ -173,52 +169,49 @@ Map<String, dynamic> _$$KnowledgeGraphResultImplToJson(
   'descriptionSource': instance.descriptionSource,
 };
 
-_$LocalResultsResultImpl _$$LocalResultsResultImplFromJson(
-  Map<String, dynamic> json,
-) => _$LocalResultsResultImpl(
-  title: json['title'] as String,
-  address: json['address'] as String,
-  phone: json['phone'] as String?,
-  website: json['website'] as String?,
-  rating: (json['rating'] as num?)?.toDouble(),
-  reviewCount: (json['reviewCount'] as num?)?.toInt(),
-  priceLevel: json['priceLevel'] as String?,
-  openingHours:
-      (json['openingHours'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-  moreHours: json['moreHours'] as List<dynamic>?,
-  position: (json['position'] as num).toInt(),
-);
-
-Map<String, dynamic> _$$LocalResultsResultImplToJson(
-  _$LocalResultsResultImpl instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'address': instance.address,
-  'phone': instance.phone,
-  'website': instance.website,
-  'rating': instance.rating,
-  'reviewCount': instance.reviewCount,
-  'priceLevel': instance.priceLevel,
-  'openingHours': instance.openingHours,
-  'moreHours': instance.moreHours,
-  'position': instance.position,
-};
-
-_$ImageResultImpl _$$ImageResultImplFromJson(Map<String, dynamic> json) =>
-    _$ImageResultImpl(
-      title: json['title'] as String?,
-      imageUrl: json['imageUrl'] as String?,
-      thumbnailUrl: json['thumbnailUrl'] as String?,
-      source: json['source'] as String?,
-      sourceUrl: json['sourceUrl'] as String?,
-      price: json['price'] as String?,
-      domain: json['domain'] as String?,
+_LocalResultsResult _$LocalResultsResultFromJson(Map<String, dynamic> json) =>
+    _LocalResultsResult(
+      title: json['title'] as String,
+      address: json['address'] as String,
+      phone: json['phone'] as String?,
+      website: json['website'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      reviewCount: (json['reviewCount'] as num?)?.toInt(),
+      priceLevel: json['priceLevel'] as String?,
+      openingHours:
+          (json['openingHours'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
+      moreHours: json['moreHours'] as List<dynamic>?,
       position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ImageResultImplToJson(_$ImageResultImpl instance) =>
+Map<String, dynamic> _$LocalResultsResultToJson(_LocalResultsResult instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'address': instance.address,
+      'phone': instance.phone,
+      'website': instance.website,
+      'rating': instance.rating,
+      'reviewCount': instance.reviewCount,
+      'priceLevel': instance.priceLevel,
+      'openingHours': instance.openingHours,
+      'moreHours': instance.moreHours,
+      'position': instance.position,
+    };
+
+_ImageResult _$ImageResultFromJson(Map<String, dynamic> json) => _ImageResult(
+  title: json['title'] as String?,
+  imageUrl: json['imageUrl'] as String?,
+  thumbnailUrl: json['thumbnailUrl'] as String?,
+  source: json['source'] as String?,
+  sourceUrl: json['sourceUrl'] as String?,
+  price: json['price'] as String?,
+  domain: json['domain'] as String?,
+  position: (json['position'] as num).toInt(),
+);
+
+Map<String, dynamic> _$ImageResultToJson(_ImageResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'imageUrl': instance.imageUrl,
@@ -230,25 +223,24 @@ Map<String, dynamic> _$$ImageResultImplToJson(_$ImageResultImpl instance) =>
       'position': instance.position,
     };
 
-_$PlaceResultImpl _$$PlaceResultImplFromJson(Map<String, dynamic> json) =>
-    _$PlaceResultImpl(
-      title: json['title'] as String,
-      address: json['address'] as String,
-      phone: json['phone'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
-      reviewCount: (json['reviewCount'] as num?)?.toInt(),
-      website: json['website'] as String?,
-      type: json['type'] as String?,
-      priceLevel: json['priceLevel'] as String?,
-      openingHours:
-          (json['openingHours'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      cid: json['cid'] as String?,
-      position: (json['position'] as num).toInt(),
-    );
+_PlaceResult _$PlaceResultFromJson(Map<String, dynamic> json) => _PlaceResult(
+  title: json['title'] as String,
+  address: json['address'] as String,
+  phone: json['phone'] as String?,
+  rating: (json['rating'] as num?)?.toDouble(),
+  reviewCount: (json['reviewCount'] as num?)?.toInt(),
+  website: json['website'] as String?,
+  type: json['type'] as String?,
+  priceLevel: json['priceLevel'] as String?,
+  openingHours:
+      (json['openingHours'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+  cid: json['cid'] as String?,
+  position: (json['position'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$PlaceResultImplToJson(_$PlaceResultImpl instance) =>
+Map<String, dynamic> _$PlaceResultToJson(_PlaceResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'address': instance.address,
@@ -263,21 +255,20 @@ Map<String, dynamic> _$$PlaceResultImplToJson(_$PlaceResultImpl instance) =>
       'position': instance.position,
     };
 
-_$VideoResultImpl _$$VideoResultImplFromJson(Map<String, dynamic> json) =>
-    _$VideoResultImpl(
-      title: json['title'] as String,
-      link: json['link'] as String,
-      snippet: json['snippet'] as String?,
-      source: json['source'] as String?,
-      channelLink: json['channelLink'] as String?,
-      date: json['date'] as String?,
-      duration: json['duration'] as String?,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-      viewCount: (json['viewCount'] as num?)?.toInt(),
-      position: (json['position'] as num).toInt(),
-    );
+_VideoResult _$VideoResultFromJson(Map<String, dynamic> json) => _VideoResult(
+  title: json['title'] as String,
+  link: json['link'] as String,
+  snippet: json['snippet'] as String?,
+  source: json['source'] as String?,
+  channelLink: json['channelLink'] as String?,
+  date: json['date'] as String?,
+  duration: json['duration'] as String?,
+  thumbnailUrl: json['thumbnailUrl'] as String,
+  viewCount: (json['viewCount'] as num?)?.toInt(),
+  position: (json['position'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$VideoResultImplToJson(_$VideoResultImpl instance) =>
+Map<String, dynamic> _$VideoResultToJson(_VideoResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
@@ -291,38 +282,35 @@ Map<String, dynamic> _$$VideoResultImplToJson(_$VideoResultImpl instance) =>
       'position': instance.position,
     };
 
-_$MapResultImpl _$$MapResultImplFromJson(Map<String, dynamic> json) =>
-    _$MapResultImpl(
-      title: json['title'] as String,
-      cid: json['cid'] as String,
-      address: json['address'] as String,
-      rating: (json['rating'] as num).toDouble(),
-      reviewCount: (json['reviewCount'] as num).toInt(),
-      priceLevel: json['priceLevel'] as String,
-      type: json['type'] as String,
-      phone: json['phone'] as String?,
-      website: json['website'] as String?,
-      categories:
-          (json['categories'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      openingHours:
-          (json['openingHours'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      reviews:
-          (json['reviews'] as List<dynamic>?)
-              ?.map((e) => MapResultReview.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      photos:
-          (json['photos'] as List<dynamic>?)
-              ?.map((e) => MapResultPhoto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      additionalInfo: json['additionalInfo'] as Map<String, dynamic>?,
-      description: json['description'] as String?,
-    );
+_MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
+  title: json['title'] as String,
+  cid: json['cid'] as String,
+  address: json['address'] as String,
+  rating: (json['rating'] as num).toDouble(),
+  reviewCount: (json['reviewCount'] as num).toInt(),
+  priceLevel: json['priceLevel'] as String,
+  type: json['type'] as String,
+  phone: json['phone'] as String?,
+  website: json['website'] as String?,
+  categories:
+      (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  openingHours:
+      (json['openingHours'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+  reviews:
+      (json['reviews'] as List<dynamic>?)
+          ?.map((e) => MapResultReview.fromJson(e as Map<String, dynamic>))
+          .toList(),
+  photos:
+      (json['photos'] as List<dynamic>?)
+          ?.map((e) => MapResultPhoto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+  additionalInfo: json['additionalInfo'] as Map<String, dynamic>?,
+  description: json['description'] as String?,
+);
 
-Map<String, dynamic> _$$MapResultImplToJson(_$MapResultImpl instance) =>
+Map<String, dynamic> _$MapResultToJson(_MapResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'cid': instance.cid,
@@ -341,52 +329,48 @@ Map<String, dynamic> _$$MapResultImplToJson(_$MapResultImpl instance) =>
       'description': instance.description,
     };
 
-_$MapResultReviewImpl _$$MapResultReviewImplFromJson(
-  Map<String, dynamic> json,
-) => _$MapResultReviewImpl(
-  author: json['author'] as String,
-  authorUrl: json['authorUrl'] as String,
-  text: json['text'] as String,
-  rating: (json['rating'] as num).toDouble(),
-  date: json['date'] as String,
-);
-
-Map<String, dynamic> _$$MapResultReviewImplToJson(
-  _$MapResultReviewImpl instance,
-) => <String, dynamic>{
-  'author': instance.author,
-  'authorUrl': instance.authorUrl,
-  'text': instance.text,
-  'rating': instance.rating,
-  'date': instance.date,
-};
-
-_$MapResultPhotoImpl _$$MapResultPhotoImplFromJson(Map<String, dynamic> json) =>
-    _$MapResultPhotoImpl(
-      imageUrl: json['imageUrl'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-    );
-
-Map<String, dynamic> _$$MapResultPhotoImplToJson(
-  _$MapResultPhotoImpl instance,
-) => <String, dynamic>{
-  'imageUrl': instance.imageUrl,
-  'thumbnailUrl': instance.thumbnailUrl,
-};
-
-_$PlaceReviewImpl _$$PlaceReviewImplFromJson(Map<String, dynamic> json) =>
-    _$PlaceReviewImpl(
+_MapResultReview _$MapResultReviewFromJson(Map<String, dynamic> json) =>
+    _MapResultReview(
       author: json['author'] as String,
       authorUrl: json['authorUrl'] as String,
       text: json['text'] as String,
       rating: (json['rating'] as num).toDouble(),
       date: json['date'] as String,
-      id: json['id'] as String?,
-      isLocalGuide: json['isLocalGuide'] as bool?,
-      position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$PlaceReviewImplToJson(_$PlaceReviewImpl instance) =>
+Map<String, dynamic> _$MapResultReviewToJson(_MapResultReview instance) =>
+    <String, dynamic>{
+      'author': instance.author,
+      'authorUrl': instance.authorUrl,
+      'text': instance.text,
+      'rating': instance.rating,
+      'date': instance.date,
+    };
+
+_MapResultPhoto _$MapResultPhotoFromJson(Map<String, dynamic> json) =>
+    _MapResultPhoto(
+      imageUrl: json['imageUrl'] as String,
+      thumbnailUrl: json['thumbnailUrl'] as String,
+    );
+
+Map<String, dynamic> _$MapResultPhotoToJson(_MapResultPhoto instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'thumbnailUrl': instance.thumbnailUrl,
+    };
+
+_PlaceReview _$PlaceReviewFromJson(Map<String, dynamic> json) => _PlaceReview(
+  author: json['author'] as String,
+  authorUrl: json['authorUrl'] as String,
+  text: json['text'] as String,
+  rating: (json['rating'] as num).toDouble(),
+  date: json['date'] as String,
+  id: json['id'] as String?,
+  isLocalGuide: json['isLocalGuide'] as bool?,
+  position: (json['position'] as num).toInt(),
+);
+
+Map<String, dynamic> _$PlaceReviewToJson(_PlaceReview instance) =>
     <String, dynamic>{
       'author': instance.author,
       'authorUrl': instance.authorUrl,
@@ -398,18 +382,17 @@ Map<String, dynamic> _$$PlaceReviewImplToJson(_$PlaceReviewImpl instance) =>
       'position': instance.position,
     };
 
-_$NewsResultImpl _$$NewsResultImplFromJson(Map<String, dynamic> json) =>
-    _$NewsResultImpl(
-      title: json['title'] as String,
-      link: json['link'] as String,
-      snippet: json['snippet'] as String,
-      date: json['date'] as String,
-      source: json['source'] as String,
-      imageUrl: json['imageUrl'] as String?,
-      position: (json['position'] as num).toInt(),
-    );
+_NewsResult _$NewsResultFromJson(Map<String, dynamic> json) => _NewsResult(
+  title: json['title'] as String,
+  link: json['link'] as String,
+  snippet: json['snippet'] as String,
+  date: json['date'] as String,
+  source: json['source'] as String,
+  imageUrl: json['imageUrl'] as String?,
+  position: (json['position'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$NewsResultImplToJson(_$NewsResultImpl instance) =>
+Map<String, dynamic> _$NewsResultToJson(_NewsResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
@@ -420,8 +403,8 @@ Map<String, dynamic> _$$NewsResultImplToJson(_$NewsResultImpl instance) =>
       'position': instance.position,
     };
 
-_$ShoppingResultImpl _$$ShoppingResultImplFromJson(Map<String, dynamic> json) =>
-    _$ShoppingResultImpl(
+_ShoppingResult _$ShoppingResultFromJson(Map<String, dynamic> json) =>
+    _ShoppingResult(
       title: json['title'] as String,
       source: json['source'] as String?,
       link: json['link'] as String,
@@ -431,28 +414,26 @@ _$ShoppingResultImpl _$$ShoppingResultImplFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ShoppingResultImplToJson(
-  _$ShoppingResultImpl instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'source': instance.source,
-  'link': instance.link,
-  'price': instance.price,
-  'delivery': instance.delivery,
-  'imageUrl': instance.imageUrl,
-  'position': instance.position,
-};
+Map<String, dynamic> _$ShoppingResultToJson(_ShoppingResult instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'source': instance.source,
+      'link': instance.link,
+      'price': instance.price,
+      'delivery': instance.delivery,
+      'imageUrl': instance.imageUrl,
+      'position': instance.position,
+    };
 
-_$LensResultImpl _$$LensResultImplFromJson(Map<String, dynamic> json) =>
-    _$LensResultImpl(
-      title: json['title'] as String,
-      source: json['source'] as String,
-      link: json['link'] as String,
-      imageUrl: json['imageUrl'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-    );
+_LensResult _$LensResultFromJson(Map<String, dynamic> json) => _LensResult(
+  title: json['title'] as String,
+  source: json['source'] as String,
+  link: json['link'] as String,
+  imageUrl: json['imageUrl'] as String,
+  thumbnailUrl: json['thumbnailUrl'] as String,
+);
 
-Map<String, dynamic> _$$LensResultImplToJson(_$LensResultImpl instance) =>
+Map<String, dynamic> _$LensResultToJson(_LensResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'source': instance.source,
@@ -461,8 +442,8 @@ Map<String, dynamic> _$$LensResultImplToJson(_$LensResultImpl instance) =>
       'thumbnailUrl': instance.thumbnailUrl,
     };
 
-_$ScholarResultImpl _$$ScholarResultImplFromJson(Map<String, dynamic> json) =>
-    _$ScholarResultImpl(
+_ScholarResult _$ScholarResultFromJson(Map<String, dynamic> json) =>
+    _ScholarResult(
       title: json['title'] as String,
       link: json['link'] as String,
       publicationInfo: json['publicationInfo'] as String,
@@ -473,7 +454,7 @@ _$ScholarResultImpl _$$ScholarResultImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
     );
 
-Map<String, dynamic> _$$ScholarResultImplToJson(_$ScholarResultImpl instance) =>
+Map<String, dynamic> _$ScholarResultToJson(_ScholarResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
@@ -485,8 +466,8 @@ Map<String, dynamic> _$$ScholarResultImplToJson(_$ScholarResultImpl instance) =>
       'id': instance.id,
     };
 
-_$PatentResultImpl _$$PatentResultImplFromJson(Map<String, dynamic> json) =>
-    _$PatentResultImpl(
+_PatentResult _$PatentResultFromJson(Map<String, dynamic> json) =>
+    _PatentResult(
       title: json['title'] as String,
       snippet: json['snippet'] as String,
       link: json['link'] as String,
@@ -507,7 +488,7 @@ _$PatentResultImpl _$$PatentResultImplFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$PatentResultImplToJson(_$PatentResultImpl instance) =>
+Map<String, dynamic> _$PatentResultToJson(_PatentResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'snippet': instance.snippet,
@@ -526,27 +507,27 @@ Map<String, dynamic> _$$PatentResultImplToJson(_$PatentResultImpl instance) =>
       'position': instance.position,
     };
 
-_$PatentFigureImpl _$$PatentFigureImplFromJson(Map<String, dynamic> json) =>
-    _$PatentFigureImpl(
+_PatentFigure _$PatentFigureFromJson(Map<String, dynamic> json) =>
+    _PatentFigure(
       imageUrl: json['imageUrl'] as String,
       thumbnailUrl: json['thumbnailUrl'] as String,
     );
 
-Map<String, dynamic> _$$PatentFigureImplToJson(_$PatentFigureImpl instance) =>
+Map<String, dynamic> _$PatentFigureToJson(_PatentFigure instance) =>
     <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'thumbnailUrl': instance.thumbnailUrl,
     };
 
-_$WebpageResultImpl _$$WebpageResultImplFromJson(Map<String, dynamic> json) =>
-    _$WebpageResultImpl(
+_WebpageResult _$WebpageResultFromJson(Map<String, dynamic> json) =>
+    _WebpageResult(
       text: json['text'] as String,
       markdown: json['markdown'] as String?,
       metadata: json['metadata'] as Map<String, dynamic>?,
       credits: (json['credits'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$WebpageResultImplToJson(_$WebpageResultImpl instance) =>
+Map<String, dynamic> _$WebpageResultToJson(_WebpageResult instance) =>
     <String, dynamic>{
       'text': instance.text,
       'markdown': instance.markdown,

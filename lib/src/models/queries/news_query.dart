@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper News API.
 @freezed
-class NewsQuery with _$NewsQuery {
+abstract class NewsQuery with _$NewsQuery {
   const factory NewsQuery({
     required String q,
     String? location,

@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Search API.
 @freezed
-class SearchQuery with _$SearchQuery {
+abstract class SearchQuery with _$SearchQuery {
   const factory SearchQuery({
     required String q,
     String? location,

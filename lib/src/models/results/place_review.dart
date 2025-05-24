@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Place review.
 @freezed
-class PlaceReview with _$PlaceReview {
+abstract class PlaceReview with _$PlaceReview {
   const factory PlaceReview({
     required String author,
     required String authorUrl,

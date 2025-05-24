@@ -4,7 +4,7 @@ part of 'results.dart';
 /// Represents a single result in a Serper Webpage API response.
 /// {@endtemplate}
 @freezed
-class WebpageResult with _$WebpageResult {
+abstract class WebpageResult with _$WebpageResult {
   const factory WebpageResult({
     required String text,
     String? markdown,

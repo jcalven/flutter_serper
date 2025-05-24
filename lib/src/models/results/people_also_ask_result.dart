@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// People also ask result.
 @freezed
-class PeopleAlsoAskResult with _$PeopleAlsoAskResult {
+abstract class PeopleAlsoAskResult with _$PeopleAlsoAskResult {
   const factory PeopleAlsoAskResult({
     required String question,
     String? snippet,

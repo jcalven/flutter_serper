@@ -18,7 +18,7 @@ class SerperResponseProcessor {
   /// ]);
   /// print('Total credits used: $totalCredits');
   /// ```
-  static int calculateTotalCredits(List<SerperResponseMixin> responses) {
+  static int calculateTotalCredits(List<SerperResponse> responses) {
     return responses.fold(0, (total, response) => total + response.credits);
   }
 
@@ -39,7 +39,7 @@ class SerperResponseProcessor {
   /// print('All search parameters: $allParams');
   /// ```
   static List<Map<String, dynamic>> mergeSearchParameters(
-    List<SerperResponseMixin> responses,
+    List<SerperResponse> responses,
   ) {
     return responses
         .map(
@@ -68,7 +68,7 @@ class SerperResponseProcessor {
   /// print('API Usage Report: ${report['totalCredits']} credits used');
   /// ```
   static Map<String, dynamic> createUsageReport(
-    List<SerperResponseMixin> responses,
+    List<SerperResponse> responses,
   ) {
     final totalCredits = calculateTotalCredits(responses);
     final parameters = mergeSearchParameters(responses);

@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Images API.
 @freezed
-class ImagesQuery with _$ImagesQuery {
+abstract class ImagesQuery with _$ImagesQuery {
   const factory ImagesQuery({
     required String q,
     String? location,

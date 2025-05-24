@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Videos API.
 @freezed
-class VideosQuery with _$VideosQuery {
+abstract class VideosQuery with _$VideosQuery {
   const factory VideosQuery({
     required String q,
     String? location,

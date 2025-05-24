@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Patent figure.
 @freezed
-class PatentFigure with _$PatentFigure {
+abstract class PatentFigure with _$PatentFigure {
   const factory PatentFigure({
     required String imageUrl,
     required String thumbnailUrl,

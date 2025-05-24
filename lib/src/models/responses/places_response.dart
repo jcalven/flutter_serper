@@ -2,7 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Places API.
 @freezed
-class PlacesResponse with _$PlacesResponse, SerperResponseMixin<PlacesQuery> {
+abstract class PlacesResponse extends SerperResponse<PlacesQuery>
+    with _$PlacesResponse {
+  const PlacesResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory PlacesResponse({
     required PlacesQuery searchParameters,
     required List<PlaceResult> places,

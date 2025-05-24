@@ -2,7 +2,13 @@ part of 'responses.dart';
 
 /// Response for the Serper Maps API.
 @freezed
-class MapsResponse with _$MapsResponse, SerperResponseMixin<MapsQuery> {
+abstract class MapsResponse extends SerperResponse<MapsQuery>
+    with _$MapsResponse {
+  const MapsResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
+
   const factory MapsResponse({
     required MapsQuery searchParameters,
     required MapResult place,

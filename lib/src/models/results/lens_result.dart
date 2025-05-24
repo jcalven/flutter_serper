@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Lens (Image Search) result.
 @freezed
-class LensResult with _$LensResult {
+abstract class LensResult with _$LensResult {
   const factory LensResult({
     required String title,
     required String source,

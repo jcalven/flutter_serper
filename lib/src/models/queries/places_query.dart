@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Places API.
 @freezed
-class PlacesQuery with _$PlacesQuery {
+abstract class PlacesQuery with _$PlacesQuery {
   const factory PlacesQuery({
     required String q,
     String? location,

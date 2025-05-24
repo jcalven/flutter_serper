@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Organic search result.
 @freezed
-class OrganicResult with _$OrganicResult {
+abstract class OrganicResult with _$OrganicResult {
   const factory OrganicResult({
     required String title,
     required String link,

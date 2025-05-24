@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Image result.
 @freezed
-class ImageResult with _$ImageResult {
+abstract class ImageResult with _$ImageResult {
   /// Creates an [ImageResult].
   const factory ImageResult({
     String? title,

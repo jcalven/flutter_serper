@@ -2,7 +2,8 @@ import 'package:flutter_serper/src/models/results/results.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_serper/src/models/queries/queries.dart';
 
-part 'serper_response_mixin.dart';
+part 'serper_response_base.dart';
+// part 'serper_response_mixin.dart';
 part 'search_response.dart';
 part 'images_response.dart';
 part 'places_response.dart';

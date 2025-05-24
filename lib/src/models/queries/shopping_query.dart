@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Shopping API.
 @freezed
-class ShoppingQuery with _$ShoppingQuery {
+abstract class ShoppingQuery with _$ShoppingQuery {
   const factory ShoppingQuery({
     required String q,
     String? location,

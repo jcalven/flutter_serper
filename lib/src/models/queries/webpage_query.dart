@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Webpage API (scraping).
 @freezed
-class WebpageQuery with _$WebpageQuery {
+abstract class WebpageQuery with _$WebpageQuery {
   const factory WebpageQuery({
     required String url,
     bool? includeMarkdown,

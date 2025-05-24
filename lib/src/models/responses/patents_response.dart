@@ -2,8 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Patents API.
 @freezed
-class PatentsResponse
-    with _$PatentsResponse, SerperResponseMixin<PatentsQuery> {
+abstract class PatentsResponse extends SerperResponse<PatentsQuery>
+    with _$PatentsResponse {
+  const PatentsResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory PatentsResponse({
     required PatentsQuery searchParameters,
     required List<PatentResult> organic,

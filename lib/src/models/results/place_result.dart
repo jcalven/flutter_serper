@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Place result.
 @freezed
-class PlaceResult with _$PlaceResult {
+abstract class PlaceResult with _$PlaceResult {
   const factory PlaceResult({
     required String title,
     required String address,

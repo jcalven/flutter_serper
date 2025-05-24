@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Shopping result.
 @freezed
-class ShoppingResult with _$ShoppingResult {
+abstract class ShoppingResult with _$ShoppingResult {
   const factory ShoppingResult({
     required String title,
     String? source,

@@ -2,7 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Search API.
 @freezed
-class SearchResponse with _$SearchResponse, SerperResponseMixin<SearchQuery> {
+abstract class SearchResponse extends SerperResponse<SearchQuery>
+    with _$SearchResponse {
+  const SearchResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory SearchResponse({
     required SearchQuery searchParameters,
     required List<OrganicResult> organic,

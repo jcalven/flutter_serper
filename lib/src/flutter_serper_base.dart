@@ -118,7 +118,7 @@ class Serper {
   ///
   /// This method can be used to get any response type that implements [SerperResponseMixin],
   /// allowing for polymorphic handling of responses.
-  T getResponseWithMixin<T extends SerperResponseMixin>(
+  T getResponseWithMixin<T extends SerperResponse>(
     dynamic response,
     T Function(Map<String, dynamic>) fromJson,
   ) {
@@ -144,7 +144,7 @@ class Serper {
   /// // Can use response as SerperResponseMixin
   /// print(response.credits);
   /// ```
-  Future<T> callApiWithMixin<T extends SerperResponseMixin>(
+  Future<T> callApiWithMixin<T extends SerperResponse>(
     String endpoint,
     List<Map<String, dynamic>> queryData,
     T Function(Map<String, dynamic>) fromJson, {

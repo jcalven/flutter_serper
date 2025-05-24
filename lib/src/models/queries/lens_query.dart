@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Lens (Image Search) API.
 @freezed
-class LensQuery with _$LensQuery {
+abstract class LensQuery with _$LensQuery {
   const factory LensQuery({
     required String url,
     String? location,

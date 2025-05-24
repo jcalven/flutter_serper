@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Scholar result.
 @freezed
-class ScholarResult with _$ScholarResult {
+abstract class ScholarResult with _$ScholarResult {
   const factory ScholarResult({
     required String title,
     required String link,

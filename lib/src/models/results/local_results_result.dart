@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Local results result.
 @freezed
-class LocalResultsResult with _$LocalResultsResult {
+abstract class LocalResultsResult with _$LocalResultsResult {
   const factory LocalResultsResult({
     required String title,
     required String address,

@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Scholar API.
 @freezed
-class ScholarQuery with _$ScholarQuery {
+abstract class ScholarQuery with _$ScholarQuery {
   const factory ScholarQuery({
     required String q,
     String? location,

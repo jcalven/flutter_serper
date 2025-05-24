@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Patents API.
 @freezed
-class PatentsQuery with _$PatentsQuery {
+abstract class PatentsQuery with _$PatentsQuery {
   const factory PatentsQuery({
     required String q,
     String? location,

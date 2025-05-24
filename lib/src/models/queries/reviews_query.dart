@@ -2,7 +2,7 @@ part of 'queries.dart';
 
 /// Query object for the Serper Reviews API.
 @freezed
-class ReviewsQuery with _$ReviewsQuery {
+abstract class ReviewsQuery with _$ReviewsQuery {
   const factory ReviewsQuery({
     required String cid,
     required String fid,

@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Patent result.
 @freezed
-class PatentResult with _$PatentResult {
+abstract class PatentResult with _$PatentResult {
   const factory PatentResult({
     required String title,
     required String snippet,

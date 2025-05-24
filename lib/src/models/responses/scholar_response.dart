@@ -2,8 +2,12 @@ part of 'responses.dart';
 
 /// Response for the Serper Scholar API.
 @freezed
-class ScholarResponse
-    with _$ScholarResponse, SerperResponseMixin<ScholarQuery> {
+abstract class ScholarResponse extends SerperResponse<ScholarQuery>
+    with _$ScholarResponse {
+  const ScholarResponse._({
+    required super.searchParameters,
+    required super.credits,
+  });
   const factory ScholarResponse({
     required ScholarQuery searchParameters,
     required List<ScholarResult> organic,

@@ -2,7 +2,7 @@ part of 'results.dart';
 
 /// Places result for search results.
 @freezed
-class PlacesResult with _$PlacesResult {
+abstract class PlacesResult with _$PlacesResult {
   const factory PlacesResult({
     required String title,
     required String address,
