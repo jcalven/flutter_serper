@@ -1,3 +1,13 @@
+## 1.3.0
+
+- Added centralized documentation templates for all model types
+- Created `QueryDocTemplates` with reusable documentation for query parameters
+- Created `ResponseDocTemplates` with reusable documentation for response fields
+- Created `ResultDocTemplates` with reusable documentation for result fields
+- Implemented documentation with `{@macro}` syntax for all models
+- Updated example to highlight the documentation improvements
+- Ensured consistent documentation across all 50+ model classes
+
 ## 1.2.0
 
 - Removed `BaseSerperResponse` class in favor of the mixin-based approach

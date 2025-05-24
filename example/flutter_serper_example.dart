@@ -11,12 +11,13 @@ Future<void> main() async {
   final serper = Serper(apiKey: 'YOUR_API_KEY');
 
   // Example 1: Perform a Google search
+  // Note: All query parameters are well-documented with standardized templates
   final searchQuery = SearchQuery(
-    q: 'coffee shops',
-    location: 'New York',
-    gl: 'us',
-    hl: 'en',
-    num: 10,
+    q: 'coffee shops', // Search query string
+    location: 'New York', // Geographic location for search context
+    gl: 'us', // Google country code
+    hl: 'en', // Language code for results
+    num: 10, // Number of results to return
   );
 
   try {
@@ -58,10 +59,11 @@ Future<void> main() async {
     }
 
     // Example 2: Search for images
+    // Using documented query parameters with consistent behavior
     final imagesQuery = ImagesQuery(
-      q: 'coffee beans',
-      location: 'New York',
-      num: 5,
+      q: 'coffee beans', // Search query string
+      location: 'New York', // Geographic location for search context
+      num: 5, // Number of results to return
     );
 
     final imageResults = await serper.images([imagesQuery]);
@@ -76,9 +78,10 @@ Future<void> main() async {
     }
 
     // Example 3: Places search for local businesses
+    // All parameters have consistent documentation across different query types
     final placesQuery = PlacesQuery(
-      q: 'coffee shops',
-      location: 'San Francisco',
+      q: 'coffee shops', // Search query string
+      location: 'San Francisco', // Geographic location for search context
     );
 
     final placesResults = await serper.places([placesQuery]);
@@ -103,9 +106,10 @@ Future<void> main() async {
     }
 
     // Example 4: Get news articles
+    // Similar parameters have consistent documentation across query types
     final newsQuery = NewsQuery(
-      q: 'coffee industry',
-      location: 'United States',
+      q: 'coffee industry', // Search query string
+      location: 'United States', // Geographic location for search context
     );
 
     final newsResults = await serper.news([newsQuery]);
@@ -121,8 +125,8 @@ Future<void> main() async {
 
     // Example 5: Scrape a webpage
     final webpageQuery = WebpageQuery(
-      url: 'https://example.com',
-      includeMarkdown: true,
+      url: 'https://example.com', // URL to extract content from
+      includeMarkdown: true, // Whether to include markdown in the response
     );
 
     final webpageResults = await serper.webpage([webpageQuery]);
@@ -136,9 +140,10 @@ Future<void> main() async {
     }
 
     // Example 6: Get autocomplete suggestions
+    // The documentation is consistent across all query types
     final autocompleteQuery = AutocompleteQuery(
-      q: 'coffee',
-      location: 'San Francisco',
+      q: 'coffee', // Partial search query string to autocomplete
+      location: 'San Francisco', // Geographic location for search context
     );
 
     final autocompleteResults = await serper.autocomplete([autocompleteQuery]);
