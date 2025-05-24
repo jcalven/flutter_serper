@@ -4,11 +4,22 @@ part of 'queries.dart';
 @freezed
 abstract class LensQuery with _$LensQuery {
   const factory LensQuery({
+    /// {@macro QueryDocTemplates.urlDoc}
     required String url,
+
+    /// {@macro QueryDocTemplates.locationDoc}
     String? location,
+
+    /// {@macro QueryDocTemplates.glDoc}
     String? gl,
+
+    /// {@macro QueryDocTemplates.hlDoc}
     String? hl,
+
+    /// {@macro QueryDocTemplates.tbsDoc}
     String? tbs,
+
+    /// Optional query string to refine the image search
     String? q,
   }) = _LensQuery;
 

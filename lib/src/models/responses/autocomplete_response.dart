@@ -18,15 +18,3 @@ abstract class AutocompleteResponse extends SerperResponse<AutocompleteQuery>
   factory AutocompleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AutocompleteResponseFromJson(json);
 }
-
-void func() {
-  final a = AutocompleteResponse(
-    searchParameters: AutocompleteQuery(q: 'example'),
-    suggestions: [AutocompleteSuggestion(value: 'Example Suggestion')],
-    credits: 100,
-  );
-
-  a.credits;
-
-  AutocompleteQuery(q: 'example');
-}
