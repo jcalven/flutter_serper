@@ -126,7 +126,7 @@ class Serper {
                 ? e.response!.data as Map<String, dynamic>
                 : null;
 
-        final errorMessage = errorData?['message'] ?? e.message;
+        final errorMessage = errorData?['message'] ?? e.message ?? 'Unknown Dio error';
         throw SerperApiException(
           message: 'Serper API error: $errorMessage',
           statusCode: statusCode,
@@ -137,7 +137,7 @@ class Serper {
         // Network error or no response
         throw SerperApiException(
           message:
-              'Network error: ${e.message ?? 'Connection failed'}', // Provide a default message if e.message is null
+              'Network error: ${e.message ?? 'Connection failed'}', 
           endpoint: endpoint,
         );
       }
@@ -150,234 +150,465 @@ class Serper {
     }
   }
 
-  /// Deserializes the API response into a specific type that extends [SerperResponse].
-  ///
-  /// This method is used internally to convert the raw JSON response into a typed object.
-  T _deserializeResponse<T extends SerperResponse<dynamic>>(
-    dynamic response,
+  /// Deserializes a single API response object into a specific type that extends [SerperResponse].
+  T _deserializeSingleItemResponse<T extends SerperResponse<dynamic>>(
+    dynamic responseObject,
     T Function(Map<String, dynamic>) fromJson,
+    String endpoint,
   ) {
-    if (response is! Map<String, dynamic>) {
+    if (responseObject is! Map<String, dynamic>) {
       throw SerperApiException(
-        message: 'Invalid API response format: expected a JSON object',
+        message: 'Invalid API response format: expected a JSON object for single item.',
+        endpoint: endpoint,
       );
     }
-    return fromJson(response);
+    return fromJson(responseObject);
   }
 
-  /// Generic method to call any Serper API and return a response that extends [SerperResponse].
+  /// Deserializes an API response (potentially a list) into a list of specific types that extend [SerperResponse].
+  List<T> _deserializeListResponse<T extends SerperResponse<dynamic>>(
+    dynamic rawResponse,
+    T Function(Map<String, dynamic>) fromJson,
+    String endpoint,
+    int numQueriesSent,
+  ) {
+    final List<T> results = [];
+    if (rawResponse is List) {
+      if (rawResponse.isEmpty && numQueriesSent > 0) {
+        // This could be valid if the API returns an empty list for a batch query that yields no results.
+        // However, if it's consistently an issue, it might indicate an error.
+        // For now, we'll allow empty lists.
+      }
+      for (final item in rawResponse) {
+        if (item is Map<String, dynamic>) {
+          results.add(fromJson(item));
+        } else {
+          throw SerperApiException(
+            message: 'Invalid item in API response list: expected a JSON object.',
+            endpoint: endpoint,
+          );
+        }
+      }
+    } else if (rawResponse is Map<String, dynamic>) {
+      // If a single query was sent in the batch, and the API returns a single object.
+      if (numQueriesSent == 1) {
+        results.add(fromJson(rawResponse));
+      } else {
+        throw SerperApiException(
+          message: 'API returned a single JSON object for multiple queries sent. Expected a list.',
+          endpoint: endpoint,
+        );
+      }
+    } else if (rawResponse == null && numQueriesSent > 0) {
+       throw SerperApiException(
+          message: 'API returned null response for a batch query.',
+          endpoint: endpoint,
+        );
+    }
+    // If rawResponse is null and numQueriesSent is 0, it's an empty list of queries, so an empty list of results is fine.
+    // If rawResponse is of an unexpected type for non-empty queries, it's an error.
+    else if (numQueriesSent > 0) {
+       throw SerperApiException(
+        message: 'Invalid API response format: expected a JSON list, or a single JSON object for a single query in a batch.',
+        endpoint: endpoint,
+      );
+    }
+    return results;
+  }
+
+
+  /// Generic method to call any Serper API.
   ///
-  /// This method can be used when you want to handle responses in a polymorphic way.
+  /// Sends the provided [queryData] (expected to be a list of serialized queries)
+  /// to the specified [endpoint]. If the API returns a list of responses,
+  /// this method deserializes and returns the *first* response object.
+  /// If the API returns a single response object, it's deserialized and returned.
+  ///
+  /// Use this method for advanced scenarios or when dealing with new/experimental
+  /// API endpoints not yet covered by specific methods. For batch operations
+  /// where all results are needed, use the dedicated "Batch" methods (e.g., `searchBatch`).
   ///
   /// Example:
   /// ```dart
   /// final response = await serper.callApi<SearchResponse>(
   ///   '/search',
-  ///   [SearchQuery(q: 'coffee').toJson()],
+  ///   [SearchQuery(q: 'coffee').toJson()], // queryData is a List
   ///   SearchResponse.fromJson,
   /// );
-  /// // Can use response as SearchResponse or SerperResponse
-  /// // print(response.credits); // Accessing credits would now depend on ResponseUtilityMixin
+  /// // response is a single SearchResponse object
   /// ```
   Future<T> callApi<T extends SerperResponse<dynamic>>(
     String endpoint,
-    List<Map<String, dynamic>> queryData,
+    List<Map<String, dynamic>> queryData, // Still takes a list of query data
     T Function(Map<String, dynamic>) fromJson, {
     bool isScrape = false,
   }) async {
     assert(
       queryData.isNotEmpty && queryData.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for callApi.',
     );
-    final response = await _post(endpoint, queryData, isScrape: isScrape);
-    return _deserializeResponse(response, fromJson);
+    final rawResponse = await _post(endpoint, queryData, isScrape: isScrape);
+
+    dynamic singleItemData;
+    if (rawResponse is List) {
+      if (rawResponse.isNotEmpty && rawResponse.first is Map<String, dynamic>) {
+        singleItemData = rawResponse.first as Map<String, dynamic>;
+      } else if (rawResponse.isEmpty) {
+        throw SerperApiException(message: 'API returned an empty list for callApi', endpoint: endpoint, responseData: {'queryData': queryData});
+      } else {
+        throw SerperApiException(message: 'API returned a list with invalid first item for callApi', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+      }
+    } else if (rawResponse is Map<String, dynamic>) {
+      singleItemData = rawResponse;
+    } else {
+      throw SerperApiException(message: 'Unexpected API response format for callApi', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+    }
+    return _deserializeSingleItemResponse(singleItemData, fromJson, endpoint);
   }
 
-  /// Calls the Serper Search API.
+  /// Calls the Serper Search API for a single query.
+  ///
+  /// Accepts a single [SearchQuery] object.
+  Future<SearchResponse> search(SearchQuery query) async {
+    final endpoint = '/search';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    dynamic singleItemData;
+    if (rawResponse is List) {
+      if (rawResponse.isNotEmpty && rawResponse.first is Map<String, dynamic>) {
+        singleItemData = rawResponse.first as Map<String, dynamic>;
+      } else if (rawResponse.isEmpty) {
+        throw SerperApiException(message: 'API returned an empty list for single search query', endpoint: endpoint, responseData: {'query': query.toJson()});
+      } else {
+        throw SerperApiException(message: 'API returned a list with invalid item for single search query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+      }
+    } else if (rawResponse is Map<String, dynamic>) {
+      singleItemData = rawResponse;
+    } else {
+      throw SerperApiException(message: 'Unexpected API response format for single search query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+    }
+    return _deserializeSingleItemResponse(singleItemData, SearchResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Search API for a batch of queries.
   ///
   /// Accepts a list of [SearchQuery] objects (up to 100).
-  Future<SearchResponse> search(List<SearchQuery> queries) async {
+  Future<List<SearchResponse>> searchBatch(List<SearchQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for searchBatch.',
     );
+    final endpoint = '/search';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/search', data);
-    // The API might return a list with a single response map, or just the map.
-    // This was a source of previous bugs, ensure robust handling.
-    final Map<String, dynamic> result =
-        (response is List && response.isNotEmpty && response.first is Map)
-            ? response.first as Map<String, dynamic>
-            : response as Map<String, dynamic>;
-    return _deserializeResponse(result, SearchResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, SearchResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Images API.
+  /// Calls the Serper Images API for a single query.
+  ///
+  /// Accepts a single [ImagesQuery] object.
+  Future<ImagesResponse> images(ImagesQuery query) async {
+    final endpoint = '/images';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    dynamic singleItemData;
+     if (rawResponse is List) {
+      if (rawResponse.isNotEmpty && rawResponse.first is Map<String, dynamic>) {
+        singleItemData = rawResponse.first as Map<String, dynamic>;
+      } else if (rawResponse.isEmpty) {
+        throw SerperApiException(message: 'API returned an empty list for single images query', endpoint: endpoint, responseData: {'query': query.toJson()});
+      } else {
+        throw SerperApiException(message: 'API returned a list with invalid item for single images query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+      }
+    } else if (rawResponse is Map<String, dynamic>) {
+      singleItemData = rawResponse;
+    } else {
+      throw SerperApiException(message: 'Unexpected API response format for single images query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+    }
+    return _deserializeSingleItemResponse(singleItemData, ImagesResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Images API for a batch of queries.
   ///
   /// Accepts a list of [ImagesQuery] objects (up to 100).
-  Future<ImagesResponse> images(List<ImagesQuery> queries) async {
+  Future<List<ImagesResponse>> imagesBatch(List<ImagesQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for imagesBatch.',
     );
+    final endpoint = '/images';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/images', data);
-    final Map<String, dynamic> result =
-        (response is List && response.isNotEmpty && response.first is Map)
-            ? response.first as Map<String, dynamic>
-            : response as Map<String, dynamic>;
-    return _deserializeResponse(result, ImagesResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, ImagesResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Videos API.
+  /// Calls the Serper Videos API for a single query.
+  ///
+  /// Accepts a single [VideosQuery] object.
+  Future<VideosResponse> videos(VideosQuery query) async {
+    final endpoint = '/videos';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    // For videos, places, maps etc., the API consistently returns a single map for a single query.
+    return _deserializeSingleItemResponse(rawResponse, VideosResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Videos API for a batch of queries.
   ///
   /// Accepts a list of [VideosQuery] objects (up to 100).
-  Future<VideosResponse> videos(List<VideosQuery> queries) async {
+  Future<List<VideosResponse>> videosBatch(List<VideosQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for videosBatch.',
     );
+    final endpoint = '/videos';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/videos', data);
-    return _deserializeResponse(response, VideosResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, VideosResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Places API.
+  /// Calls the Serper Places API for a single query.
+  ///
+  /// Accepts a single [PlacesQuery] object.
+  Future<PlacesResponse> places(PlacesQuery query) async {
+    final endpoint = '/places';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, PlacesResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Places API for a batch of queries.
   ///
   /// Accepts a list of [PlacesQuery] objects (up to 100).
-  Future<PlacesResponse> places(List<PlacesQuery> queries) async {
+  Future<List<PlacesResponse>> placesBatch(List<PlacesQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for placesBatch.',
     );
+    final endpoint = '/places';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/places', data);
-    return _deserializeResponse(response, PlacesResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, PlacesResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Maps API.
+  /// Calls the Serper Maps API for a single query.
+  ///
+  /// Accepts a single [MapsQuery] object.
+  Future<MapsResponse> maps(MapsQuery query) async {
+    final endpoint = '/maps';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, MapsResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Maps API for a batch of queries.
   ///
   /// Accepts a list of [MapsQuery] objects (up to 100).
-  Future<MapsResponse> maps(List<MapsQuery> queries) async {
+  Future<List<MapsResponse>> mapsBatch(List<MapsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for mapsBatch.',
     );
+    final endpoint = '/maps';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/maps', data);
-    return _deserializeResponse(response, MapsResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, MapsResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Reviews API.
+  /// Calls the Serper Reviews API for a single query.
+  ///
+  /// Accepts a single [ReviewsQuery] object.
+  Future<ReviewsResponse> reviews(ReviewsQuery query) async {
+    final endpoint = '/reviews';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, ReviewsResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Reviews API for a batch of queries.
   ///
   /// Accepts a list of [ReviewsQuery] objects (up to 100).
-  Future<ReviewsResponse> reviews(List<ReviewsQuery> queries) async {
+  Future<List<ReviewsResponse>> reviewsBatch(List<ReviewsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for reviewsBatch.',
     );
+    final endpoint = '/reviews';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/reviews', data);
-    return _deserializeResponse(response, ReviewsResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, ReviewsResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper News API.
+  /// Calls the Serper News API for a single query.
+  ///
+  /// Accepts a single [NewsQuery] object.
+  Future<NewsResponse> news(NewsQuery query) async {
+    final endpoint = '/news';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, NewsResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper News API for a batch of queries.
   ///
   /// Accepts a list of [NewsQuery] objects (up to 100).
-  Future<NewsResponse> news(List<NewsQuery> queries) async {
+  Future<List<NewsResponse>> newsBatch(List<NewsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for newsBatch.',
     );
+    final endpoint = '/news';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/news', data);
-    return _deserializeResponse(response, NewsResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, NewsResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Shopping API.
+  /// Calls the Serper Shopping API for a single query.
+  ///
+  /// Accepts a single [ShoppingQuery] object.
+  Future<ShoppingResponse> shopping(ShoppingQuery query) async {
+    final endpoint = '/shopping';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, ShoppingResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Shopping API for a batch of queries.
   ///
   /// Accepts a list of [ShoppingQuery] objects (up to 100).
-  Future<ShoppingResponse> shopping(List<ShoppingQuery> queries) async {
+  Future<List<ShoppingResponse>> shoppingBatch(List<ShoppingQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for shoppingBatch.',
     );
+    final endpoint = '/shopping';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/shopping', data);
-    return _deserializeResponse(response, ShoppingResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, ShoppingResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Lens (Image Search) API.
+  /// Calls the Serper Lens (Image Search) API for a single query.
+  ///
+  /// Accepts a single [LensQuery] object.
+  Future<LensResponse> lens(LensQuery query) async {
+    final endpoint = '/lens';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, LensResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Lens (Image Search) API for a batch of queries.
   ///
   /// Accepts a list of [LensQuery] objects (up to 100).
-  Future<LensResponse> lens(List<LensQuery> queries) async {
+  Future<List<LensResponse>> lensBatch(List<LensQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for lensBatch.',
     );
+    final endpoint = '/lens';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/lens', data);
-    return _deserializeResponse(response, LensResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, LensResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Scholar API.
+  /// Calls the Serper Scholar API for a single query.
+  ///
+  /// Accepts a single [ScholarQuery] object.
+  Future<ScholarResponse> scholar(ScholarQuery query) async {
+    final endpoint = '/scholar';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, ScholarResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Scholar API for a batch of queries.
   ///
   /// Accepts a list of [ScholarQuery] objects (up to 100).
-  Future<ScholarResponse> scholar(List<ScholarQuery> queries) async {
+  Future<List<ScholarResponse>> scholarBatch(List<ScholarQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for scholarBatch.',
     );
+    final endpoint = '/scholar';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/scholar', data);
-    return _deserializeResponse(response, ScholarResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, ScholarResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Patents API.
+  /// Calls the Serper Patents API for a single query.
+  ///
+  /// Accepts a single [PatentsQuery] object.
+  Future<PatentsResponse> patents(PatentsQuery query) async {
+    final endpoint = '/patents';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+    return _deserializeSingleItemResponse(rawResponse, PatentsResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Patents API for a batch of queries.
   ///
   /// Accepts a list of [PatentsQuery] objects (up to 100).
-  Future<PatentsResponse> patents(List<PatentsQuery> queries) async {
+  Future<List<PatentsResponse>> patentsBatch(List<PatentsQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for patentsBatch.',
     );
+    final endpoint = '/patents';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/patents', data);
-    return _deserializeResponse(response, PatentsResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, PatentsResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Autocomplete API.
+  /// Calls the Serper Autocomplete API for a single query.
+  ///
+  /// Accepts a single [AutocompleteQuery] object.
+  Future<AutocompleteResponse> autocomplete(AutocompleteQuery query) async {
+    final endpoint = '/autocomplete';
+    final rawResponse = await _post(endpoint, [query.toJson()]);
+     dynamic singleItemData;
+    if (rawResponse is List) {
+      if (rawResponse.isNotEmpty && rawResponse.first is Map<String, dynamic>) {
+        singleItemData = rawResponse.first as Map<String, dynamic>;
+      } else if (rawResponse.isEmpty) {
+        throw SerperApiException(message: 'API returned an empty list for single autocomplete query', endpoint: endpoint, responseData: {'query': query.toJson()});
+      } else {
+        throw SerperApiException(message: 'API returned a list with invalid item for single autocomplete query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+      }
+    } else if (rawResponse is Map<String, dynamic>) {
+      singleItemData = rawResponse;
+    } else {
+      throw SerperApiException(message: 'Unexpected API response format for single autocomplete query', endpoint: endpoint, responseData: {'rawResponse': rawResponse});
+    }
+    return _deserializeSingleItemResponse(singleItemData, AutocompleteResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Autocomplete API for a batch of queries.
   ///
   /// Accepts a list of [AutocompleteQuery] objects (up to 100).
-  Future<AutocompleteResponse> autocomplete(
+  Future<List<AutocompleteResponse>> autocompleteBatch(
     List<AutocompleteQuery> queries,
   ) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for autocompleteBatch.',
     );
+    final endpoint = '/autocomplete';
     final data = queries.map((q) => q.toJson()).toList();
-    final response = await _post('/autocomplete', data);
-    // The API might return a list with a single response map, or just the map.
-    final Map<String, dynamic> result =
-        (response is List && response.isNotEmpty && response.first is Map)
-            ? response.first as Map<String, dynamic>
-            : response as Map<String, dynamic>;
-    return _deserializeResponse(result, AutocompleteResponse.fromJson);
+    final response = await _post(endpoint, data);
+    return _deserializeListResponse(response, AutocompleteResponse.fromJson, endpoint, queries.length);
   }
 
-  /// Calls the Serper Webpage API (scraping).
+  /// Calls the Serper Webpage API (scraping) for a single query.
+  ///
+  /// Accepts a single [WebpageQuery] object.
+  /// Note: The Webpage API is a scraping endpoint and has a different base URL.
+  Future<WebpageResponse> webpage(WebpageQuery query) async {
+    final endpoint = '/webpage';
+    final rawResponse = await _post(endpoint, [query.toJson()], isScrape: true);
+    return _deserializeSingleItemResponse(rawResponse, WebpageResponse.fromJson, endpoint);
+  }
+
+  /// Calls the Serper Webpage API (scraping) for a batch of queries.
   ///
   /// Accepts a list of [WebpageQuery] objects (up to 100).
   /// Note: The Webpage API is a scraping endpoint and has a different base URL.
-  Future<WebpageResponse> webpage(List<WebpageQuery> queries) async {
+  Future<List<WebpageResponse>> webpageBatch(List<WebpageQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries.',
+      'You must provide 1-100 queries for webpageBatch.',
     );
+    final endpoint = '/webpage';
     final data = queries.map((q) => q.toJson()).toList();
-    // Pass isScrape: true to use the scrapeBaseUrl
-    final response = await _post('/webpage', data, isScrape: true);
-    return _deserializeResponse(response, WebpageResponse.fromJson);
+    final response = await _post(endpoint, data, isScrape: true);
+    return _deserializeListResponse(response, WebpageResponse.fromJson, endpoint, queries.length);
   }
 }
