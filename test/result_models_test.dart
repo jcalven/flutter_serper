@@ -1,4 +1,3 @@
-import 'package:flutter_serper/flutter_serper.dart';
 import 'package:flutter_serper/src/models/results/results.dart';
 import 'package:test/test.dart';
 
