@@ -927,6 +927,5 @@ void main() {
         ).called(1);
       });
     });
-    // Removed TODO as methods are now added
   });
 }
