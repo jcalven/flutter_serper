@@ -81,4 +81,22 @@ Starts at 1 for the first page.''';
 The URL to analyze.
 
 This is a required parameter and should be a valid URL.''';
+
+  /// Template for the Google Maps Place ID parameter
+  static const String placeIdDoc = '''
+Google Maps Place ID parameter.
+
+This is a unique identifier for a specific place in Google Maps.''';
+
+  /// Template for the Google Maps CID parameter
+  static const String cidDoc = '''
+Google Maps CID (Customer ID) parameter.
+
+This is a unique identifier used for places in Google Maps.''';
+
+  /// Template for the Google Maps FID parameter
+  static const String fidDoc = '''
+Google Maps FID (Feature ID) parameter.
+
+This is a unique identifier used for places in Google Maps.''';
 }

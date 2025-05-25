@@ -15,10 +15,10 @@ abstract class MapsQuery with _$MapsQuery {
     /// Format: "latitude,longitude"
     String? ll,
 
-    /// Optional Google Maps place ID parameter
+    /// {@macro QueryDocTemplates.placeIdDoc}
     String? placeId,
 
-    /// Optional Google Maps CID parameter
+    /// {@macro QueryDocTemplates.cidDoc}
     String? cid,
 
     /// {@macro QueryDocTemplates.pageDoc}

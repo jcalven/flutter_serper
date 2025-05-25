@@ -4,13 +4,13 @@ part of 'queries.dart';
 @freezed
 abstract class ReviewsQuery with _$ReviewsQuery {
   const factory ReviewsQuery({
-    /// Required Google CID parameter for the place
+    /// {@macro QueryDocTemplates.cidDoc}
     required String cid,
 
-    /// Required FID parameter for the place
+    /// {@macro QueryDocTemplates.fidDoc}
     required String fid,
 
-    /// Required Google Maps Place ID
+    /// {@macro QueryDocTemplates.placeIdDoc}
     required String placeId,
 
     /// {@macro QueryDocTemplates.glDoc}
