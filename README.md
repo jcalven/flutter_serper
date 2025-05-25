@@ -1,6 +1,5 @@
 # flutter_serper
 
-[![flutter_serper](https://github.com/username/flutter_serper/actions/workflows/main.yaml/badge.svg)](https://github.com/username/flutter_serper/actions/workflows/main.yaml)
 [![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)
 [![flutter_serper](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml)
 
