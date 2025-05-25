@@ -21,7 +21,7 @@ Future<void> main() async {
   );
 
   try {
-    final searchResults = await serper.search([searchQuery]);
+    final searchResults = await serper.search(searchQuery);
 
     // Process with polymorphic function
     processResponse(searchResults);
@@ -66,8 +66,8 @@ Future<void> main() async {
       num: 5, // Number of results to return
     );
 
-    final imageResults = await serper.images([imagesQuery]);
-    print('\nFound ${imageResults.images.length} image results');
+    final imageResults = await serper.images(imagesQuery);
+    print('\\nFound ${imageResults.images.length} image results');
 
     if (imageResults.images.isNotEmpty) {
       final firstImage = imageResults.images.first;
@@ -84,8 +84,8 @@ Future<void> main() async {
       location: 'San Francisco', // Geographic location for search context
     );
 
-    final placesResults = await serper.places([placesQuery]);
-    print('\nFound ${placesResults.places.length} places results');
+    final placesResults = await serper.places(placesQuery);
+    print('\\nFound ${placesResults.places.length} places results');
 
     if (placesResults.places.isNotEmpty) {
       final place = placesResults.places.first;
@@ -112,8 +112,8 @@ Future<void> main() async {
       location: 'United States', // Geographic location for search context
     );
 
-    final newsResults = await serper.news([newsQuery]);
-    print('\nFound ${newsResults.news.length} news results');
+    final newsResults = await serper.news(newsQuery);
+    print('\\nFound ${newsResults.news.length} news results');
 
     if (newsResults.news.isNotEmpty) {
       final article = newsResults.news.first;
@@ -129,8 +129,8 @@ Future<void> main() async {
       includeMarkdown: true, // Whether to include markdown in the response
     );
 
-    final webpageResults = await serper.webpage([webpageQuery]);
-    print('\nWebpage scraping results:');
+    final webpageResults = await serper.webpage(webpageQuery);
+    print('\\nWebpage scraping results:');
 
     if (webpageResults.results.isNotEmpty) {
       final webpage = webpageResults.results.first;
@@ -146,9 +146,9 @@ Future<void> main() async {
       location: 'San Francisco', // Geographic location for search context
     );
 
-    final autocompleteResults = await serper.autocomplete([autocompleteQuery]);
+    final autocompleteResults = await serper.autocomplete(autocompleteQuery);
     print(
-      '\nFound ${autocompleteResults.suggestions.length} autocomplete suggestions',
+      '\\nFound ${autocompleteResults.suggestions.length} autocomplete suggestions',
     );
 
     for (final suggestion in autocompleteResults.suggestions.take(3)) {

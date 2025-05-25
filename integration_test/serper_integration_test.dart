@@ -27,7 +27,7 @@ void main() {
 
       // Act & Assert
       try {
-        final searchResults = await serper.search([searchQuery]);
+        final searchResults = await serper.search(searchQuery);
         print('Raw Search API response:');
         print(searchResults);
         expect(searchResults.organic, isNotEmpty);
@@ -44,7 +44,7 @@ void main() {
 
       // Act & Assert
       try {
-        final imageResults = await serper.images([imagesQuery]);
+        final imageResults = await serper.images(imagesQuery);
         print('Raw Images API response:');
         print(imageResults);
         expect(imageResults.images, isNotEmpty);
@@ -61,9 +61,7 @@ void main() {
 
       // Act & Assert
       try {
-        final autocompleteResults = await serper.autocomplete([
-          autocompleteQuery,
-        ]);
+        final autocompleteResults = await serper.autocomplete(autocompleteQuery);
         print('Raw Autocomplete API response:');
         print(autocompleteResults);
         expect(autocompleteResults.suggestions, isNotEmpty);

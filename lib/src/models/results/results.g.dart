@@ -131,10 +131,10 @@ Map<String, dynamic> _$TwitterResultToJson(_TwitterResult instance) =>
 
 _ImagesResult _$ImagesResultFromJson(Map<String, dynamic> json) =>
     _ImagesResult(
-      title: json['title'] as String,
-      imageUrl: json['imageUrl'] as String,
-      source: json['source'] as String,
-      sourceUrl: json['sourceUrl'] as String,
+      title: json['title'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      source: json['source'] as String?,
+      sourceUrl: json['sourceUrl'] as String?,
     );
 
 Map<String, dynamic> _$ImagesResultToJson(_ImagesResult instance) =>

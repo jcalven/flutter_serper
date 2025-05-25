@@ -6,16 +6,16 @@ abstract class ImagesResult with _$ImagesResult {
   /// Creates an [ImagesResult].
   const factory ImagesResult({
     /// {@macro ResultDocTemplates.titleDoc}
-    required String title,
+    String? title,
 
     /// {@macro ResultDocTemplates.imageUrlDoc}
-    required String imageUrl,
+    String? imageUrl,
 
     /// {@macro ResultDocTemplates.sourceDoc}
-    required String source,
+    String? source,
 
     /// {@macro ResultDocTemplates.sourceUrlDoc}
-    required String sourceUrl,
+    String? sourceUrl,
   }) = _ImagesResult;
 
   /// Creates an [ImagesResult] from a JSON map.

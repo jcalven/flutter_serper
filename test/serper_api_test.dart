@@ -43,10 +43,9 @@ void main() {
   group('Serper API Client', () {
     group('search method', () {
       final searchQuery = SearchQuery(q: 'test query');
-      final List<SearchQuery> searchQueries = [searchQuery];
       final String expectedPath = 'https://google.serper.dev/search';
       final String expectedBody = jsonEncode(
-        searchQueries.map((e) => e.toJson()).toList(),
+        [searchQuery.toJson()],
       );
 
       test('returns SearchResponse on successful API call', () async {
@@ -65,7 +64,7 @@ void main() {
           ),
         );
 
-        final result = await serper.search(searchQueries);
+        final result = await serper.search(searchQuery); // Changed from searchQueries
 
         expect(result, isA<SearchResponse>());
         expect(result.searchParameters.q, 'test query');
@@ -84,10 +83,9 @@ void main() {
 
     group('images method', () {
       final imagesQuery = ImagesQuery(q: 'test images', gl: 'us');
-      final List<ImagesQuery> imagesQueries = [imagesQuery];
       final String expectedPath = 'https://google.serper.dev/images';
       final String expectedBody = jsonEncode(
-        imagesQueries.map((e) => e.toJson()).toList(),
+        [imagesQuery.toJson()],
       );
       final expectedResponse = {
         'searchParameters': {'q': 'test images', 'gl': 'us'},
@@ -118,7 +116,7 @@ void main() {
           ),
         );
 
-        final result = await serper.images(imagesQueries);
+        final result = await serper.images(imagesQuery); // Changed from imagesQueries
 
         expect(result, isA<ImagesResponse>());
         expect(result.images.length, equals(1));
@@ -140,10 +138,9 @@ void main() {
 
     group('news method', () {
       final newsQuery = NewsQuery(q: 'test news', gl: 'us');
-      final List<NewsQuery> newsQueries = [newsQuery];
       final String expectedPath = 'https://google.serper.dev/news';
       final String expectedBody = jsonEncode(
-        newsQueries.map((e) => e.toJson()).toList(),
+        [newsQuery.toJson()],
       );
       final expectedResponse = {
         'searchParameters': {'q': 'test news', 'gl': 'us'},
@@ -176,7 +173,7 @@ void main() {
           ),
         );
 
-        final result = await serper.news(newsQueries);
+        final result = await serper.news(newsQuery); // Changed from newsQueries
 
         expect(result, isA<NewsResponse>());
         expect(result.news.length, equals(1));
@@ -195,10 +192,9 @@ void main() {
 
     group('videos method', () {
       final videosQuery = VideosQuery(q: 'test videos', gl: 'us');
-      final List<VideosQuery> videosQueries = [videosQuery];
       final String expectedPath = 'https://google.serper.dev/videos';
       final String expectedBody = jsonEncode(
-        videosQueries.map((e) => e.toJson()).toList(),
+        [videosQuery.toJson()],
       );
       final expectedResponse = {
         'searchParameters': {'q': 'test videos', 'gl': 'us'},
@@ -229,7 +225,7 @@ void main() {
           ),
         );
 
-        final result = await serper.videos(videosQueries);
+        final result = await serper.videos(videosQuery); // Changed from videosQueries
 
         expect(result, isA<VideosResponse>());
         expect(result.videos.length, equals(1));
@@ -290,7 +286,7 @@ void main() {
         );
 
         // Act
-        final result = await serper.places([query]);
+        final result = await serper.places(query); // Changed from [query]
 
         // Assert
         verify(
@@ -347,7 +343,7 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.maps([query]);
+        final result = await serper.maps(query); // Changed from [query]
 
         // Assert
         verify(
@@ -404,7 +400,7 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.shopping([query]);
+        final result = await serper.shopping(query); // Changed from [query]
         // Assert
         verify(
           mockDio.request(
@@ -457,7 +453,7 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.lens([query]);
+        final result = await serper.lens(query); // Changed from [query]
         // Assert
         verify(
           mockDio.request(
@@ -515,7 +511,7 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.scholar([query]);
+        final result = await serper.scholar(query); // Changed from [query]
         // Assert
         verify(
           mockDio.request(
@@ -573,7 +569,7 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.patents([query]);
+        final result = await serper.patents(query); // Changed from [query]
         // Assert
         verify(
           mockDio.request(
@@ -639,7 +635,8 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.reviews([query]);
+        final result = await serper.reviews(query); // Changed from [query]
+
         // Assert
         verify(
           mockDio.request(
@@ -687,7 +684,8 @@ void main() {
           ),
         );
         // Act
-        final result = await serper.autocomplete([query]);
+        final result = await serper.autocomplete(query); // Changed from [query]
+
         // Assert
         verify(
           mockDio.request(
@@ -747,7 +745,7 @@ void main() {
         );
 
         // Act
-        final result = await serper.webpage([query]);
+        final result = await serper.webpage(query); // Changed from [query]
 
         // Assert
         verify(
@@ -909,10 +907,9 @@ void main() {
       // If those are not in scope, they need to be defined here or passed.
       // For simplicity, assuming they are accessible or re-declared if run in separate contexts.
       final searchQuery = SearchQuery(q: 'test query');
-      final List<SearchQuery> searchQueries = [searchQuery];
       final String expectedPath = 'https://google.serper.dev/search';
       final String expectedBody = jsonEncode(
-        searchQueries.map((e) => e.toJson()).toList(),
+        [searchQuery.toJson()],
       );
 
       test(
@@ -937,7 +934,7 @@ void main() {
           );
 
           expect(
-            () => serper.search(searchQueries),
+            () => serper.search(searchQuery),
             throwsA(
               isA<SerperApiException>()
                   .having(
@@ -978,7 +975,7 @@ void main() {
         );
 
         expect(
-          () => serper.search(searchQueries),
+          () => serper.search(searchQuery),
           throwsA(
             isA<SerperApiException>()
                 .having(

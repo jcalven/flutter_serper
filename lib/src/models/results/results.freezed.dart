@@ -1174,10 +1174,10 @@ as String?,
 mixin _$ImagesResult {
 
 /// {@macro ResultDocTemplates.titleDoc}
- String get title;/// {@macro ResultDocTemplates.imageUrlDoc}
- String get imageUrl;/// {@macro ResultDocTemplates.sourceDoc}
- String get source;/// {@macro ResultDocTemplates.sourceUrlDoc}
- String get sourceUrl;
+ String? get title;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.sourceDoc}
+ String? get source;/// {@macro ResultDocTemplates.sourceUrlDoc}
+ String? get sourceUrl;
 /// Create a copy of ImagesResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1210,7 +1210,7 @@ abstract mixin class $ImagesResultCopyWith<$Res>  {
   factory $ImagesResultCopyWith(ImagesResult value, $Res Function(ImagesResult) _then) = _$ImagesResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String imageUrl, String source, String sourceUrl
+ String? title, String? imageUrl, String? source, String? sourceUrl
 });
 
 
@@ -1227,13 +1227,13 @@ class _$ImagesResultCopyWithImpl<$Res>
 
 /// Create a copy of ImagesResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? imageUrl = null,Object? source = null,Object? sourceUrl = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? imageUrl = freezed,Object? source = freezed,Object? sourceUrl = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,sourceUrl: null == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,sourceUrl: freezed == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -1244,17 +1244,17 @@ as String,
 @JsonSerializable()
 
 class _ImagesResult implements ImagesResult {
-  const _ImagesResult({required this.title, required this.imageUrl, required this.source, required this.sourceUrl});
+  const _ImagesResult({this.title, this.imageUrl, this.source, this.sourceUrl});
   factory _ImagesResult.fromJson(Map<String, dynamic> json) => _$ImagesResultFromJson(json);
 
 /// {@macro ResultDocTemplates.titleDoc}
-@override final  String title;
+@override final  String? title;
 /// {@macro ResultDocTemplates.imageUrlDoc}
-@override final  String imageUrl;
+@override final  String? imageUrl;
 /// {@macro ResultDocTemplates.sourceDoc}
-@override final  String source;
+@override final  String? source;
 /// {@macro ResultDocTemplates.sourceUrlDoc}
-@override final  String sourceUrl;
+@override final  String? sourceUrl;
 
 /// Create a copy of ImagesResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1289,7 +1289,7 @@ abstract mixin class _$ImagesResultCopyWith<$Res> implements $ImagesResultCopyWi
   factory _$ImagesResultCopyWith(_ImagesResult value, $Res Function(_ImagesResult) _then) = __$ImagesResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String imageUrl, String source, String sourceUrl
+ String? title, String? imageUrl, String? source, String? sourceUrl
 });
 
 
@@ -1306,13 +1306,13 @@ class __$ImagesResultCopyWithImpl<$Res>
 
 /// Create a copy of ImagesResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? imageUrl = null,Object? source = null,Object? sourceUrl = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? imageUrl = freezed,Object? source = freezed,Object? sourceUrl = freezed,}) {
   return _then(_ImagesResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,sourceUrl: null == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,sourceUrl: freezed == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
