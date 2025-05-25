@@ -108,10 +108,56 @@ Map<String, dynamic> _$MapsQueryToJson(_MapsQuery instance) =>
       'page': instance.page,
     };
 
-_ReviewsQuery _$ReviewsQueryFromJson(Map<String, dynamic> json) =>
-    _ReviewsQuery(
+ReviewsQueryCid _$ReviewsQueryCidFromJson(Map<String, dynamic> json) =>
+    ReviewsQueryCid(
       cid: json['cid'] as String,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      sortBy: json['sortBy'] as String?,
+      topicId: json['topicId'] as String?,
+      nextPageToken: json['nextPageToken'] as String?,
+      q: json['q'] as String?,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$ReviewsQueryCidToJson(ReviewsQueryCid instance) =>
+    <String, dynamic>{
+      'cid': instance.cid,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'sortBy': instance.sortBy,
+      'topicId': instance.topicId,
+      'nextPageToken': instance.nextPageToken,
+      'q': instance.q,
+      'runtimeType': instance.$type,
+    };
+
+ReviewsQueryFid _$ReviewsQueryFidFromJson(Map<String, dynamic> json) =>
+    ReviewsQueryFid(
       fid: json['fid'] as String,
+      gl: json['gl'] as String?,
+      hl: json['hl'] as String?,
+      sortBy: json['sortBy'] as String?,
+      topicId: json['topicId'] as String?,
+      nextPageToken: json['nextPageToken'] as String?,
+      q: json['q'] as String?,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$ReviewsQueryFidToJson(ReviewsQueryFid instance) =>
+    <String, dynamic>{
+      'fid': instance.fid,
+      'gl': instance.gl,
+      'hl': instance.hl,
+      'sortBy': instance.sortBy,
+      'topicId': instance.topicId,
+      'nextPageToken': instance.nextPageToken,
+      'q': instance.q,
+      'runtimeType': instance.$type,
+    };
+
+ReviewsQueryPlaceId _$ReviewsQueryPlaceIdFromJson(Map<String, dynamic> json) =>
+    ReviewsQueryPlaceId(
       placeId: json['placeId'] as String,
       gl: json['gl'] as String?,
       hl: json['hl'] as String?,
@@ -119,20 +165,21 @@ _ReviewsQuery _$ReviewsQueryFromJson(Map<String, dynamic> json) =>
       topicId: json['topicId'] as String?,
       nextPageToken: json['nextPageToken'] as String?,
       q: json['q'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$ReviewsQueryToJson(_ReviewsQuery instance) =>
-    <String, dynamic>{
-      'cid': instance.cid,
-      'fid': instance.fid,
-      'placeId': instance.placeId,
-      'gl': instance.gl,
-      'hl': instance.hl,
-      'sortBy': instance.sortBy,
-      'topicId': instance.topicId,
-      'nextPageToken': instance.nextPageToken,
-      'q': instance.q,
-    };
+Map<String, dynamic> _$ReviewsQueryPlaceIdToJson(
+  ReviewsQueryPlaceId instance,
+) => <String, dynamic>{
+  'placeId': instance.placeId,
+  'gl': instance.gl,
+  'hl': instance.hl,
+  'sortBy': instance.sortBy,
+  'topicId': instance.topicId,
+  'nextPageToken': instance.nextPageToken,
+  'q': instance.q,
+  'runtimeType': instance.$type,
+};
 
 _NewsQuery _$NewsQueryFromJson(Map<String, dynamic> json) => _NewsQuery(
   q: json['q'] as String,

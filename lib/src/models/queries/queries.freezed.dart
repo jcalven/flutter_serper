@@ -676,8 +676,8 @@ mixin _$MapsQuery {
  String? get hl;/// Optional latitude and longitude parameter
 ///
 /// Format: "latitude,longitude"
- String? get ll;/// Optional Google Maps place ID parameter
- String? get placeId;/// Optional Google Maps CID parameter
+ String? get ll;/// {@macro QueryDocTemplates.placeIdDoc}
+ String? get placeId;/// {@macro QueryDocTemplates.cidDoc}
  String? get cid;/// {@macro QueryDocTemplates.pageDoc}
  int? get page;
 /// Create a copy of MapsQuery
@@ -759,9 +759,9 @@ class _MapsQuery implements MapsQuery {
 ///
 /// Format: "latitude,longitude"
 @override final  String? ll;
-/// Optional Google Maps place ID parameter
+/// {@macro QueryDocTemplates.placeIdDoc}
 @override final  String? placeId;
-/// Optional Google Maps CID parameter
+/// {@macro QueryDocTemplates.cidDoc}
 @override final  String? cid;
 /// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
@@ -831,14 +831,38 @@ as int?,
 
 }
 
+ReviewsQuery _$ReviewsQueryFromJson(
+  Map<String, dynamic> json
+) {
+        switch (json['runtimeType']) {
+                  case 'withCid':
+          return ReviewsQueryCid.fromJson(
+            json
+          );
+                case 'withFid':
+          return ReviewsQueryFid.fromJson(
+            json
+          );
+                case 'withPlaceId':
+          return ReviewsQueryPlaceId.fromJson(
+            json
+          );
+        
+          default:
+            throw CheckedFromJsonException(
+  json,
+  'runtimeType',
+  'ReviewsQuery',
+  'Invalid union type "${json['runtimeType']}"!'
+);
+        }
+      
+}
 
 /// @nodoc
 mixin _$ReviewsQuery {
 
-/// Required Google CID parameter for the place
- String get cid;/// Required FID parameter for the place
- String get fid;/// Required Google Maps Place ID
- String get placeId;/// {@macro QueryDocTemplates.glDoc}
+/// {@macro QueryDocTemplates.glDoc}
  String? get gl;/// {@macro QueryDocTemplates.hlDoc}
  String? get hl;/// Optional parameter to sort reviews
 ///
@@ -859,16 +883,16 @@ $ReviewsQueryCopyWith<ReviewsQuery> get copyWith => _$ReviewsQueryCopyWithImpl<R
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQuery&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQuery&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,cid,fid,placeId,gl,hl,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,gl,hl,sortBy,topicId,nextPageToken,q);
 
 @override
 String toString() {
-  return 'ReviewsQuery(cid: $cid, fid: $fid, placeId: $placeId, gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery(gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
 }
 
 
@@ -879,7 +903,7 @@ abstract mixin class $ReviewsQueryCopyWith<$Res>  {
   factory $ReviewsQueryCopyWith(ReviewsQuery value, $Res Function(ReviewsQuery) _then) = _$ReviewsQueryCopyWithImpl;
 @useResult
 $Res call({
- String cid, String fid, String placeId, String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
+ String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
 });
 
 
@@ -896,12 +920,9 @@ class _$ReviewsQueryCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cid = null,Object? fid = null,Object? placeId = null,Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
   return _then(_self.copyWith(
-cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
-as String,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
-as String,gl: freezed == gl ? _self.gl : gl // ignore: cast_nullable_to_non_nullable
+gl: freezed == gl ? _self.gl : gl // ignore: cast_nullable_to_non_nullable
 as String?,hl: freezed == hl ? _self.hl : hl // ignore: cast_nullable_to_non_nullable
 as String?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
 as String?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
@@ -917,16 +938,12 @@ as String?,
 /// @nodoc
 @JsonSerializable()
 
-class _ReviewsQuery implements ReviewsQuery {
-  const _ReviewsQuery({required this.cid, required this.fid, required this.placeId, this.gl, this.hl, this.sortBy, this.topicId, this.nextPageToken, this.q});
-  factory _ReviewsQuery.fromJson(Map<String, dynamic> json) => _$ReviewsQueryFromJson(json);
+class ReviewsQueryCid implements ReviewsQuery {
+  const ReviewsQueryCid({required this.cid, this.gl, this.hl, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withCid';
+  factory ReviewsQueryCid.fromJson(Map<String, dynamic> json) => _$ReviewsQueryCidFromJson(json);
 
-/// Required Google CID parameter for the place
-@override final  String cid;
-/// Required FID parameter for the place
-@override final  String fid;
-/// Required Google Maps Place ID
-@override final  String placeId;
+/// {@macro QueryDocTemplates.cidDoc}
+ final  String cid;
 /// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
 /// {@macro QueryDocTemplates.hlDoc}
@@ -942,40 +959,44 @@ class _ReviewsQuery implements ReviewsQuery {
 /// Optional query string to filter reviews
 @override final  String? q;
 
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ReviewsQueryCopyWith<_ReviewsQuery> get copyWith => __$ReviewsQueryCopyWithImpl<_ReviewsQuery>(this, _$identity);
+$ReviewsQueryCidCopyWith<ReviewsQueryCid> get copyWith => _$ReviewsQueryCidCopyWithImpl<ReviewsQueryCid>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$ReviewsQueryToJson(this, );
+  return _$ReviewsQueryCidToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReviewsQuery&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryCid&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,cid,fid,placeId,gl,hl,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,cid,gl,hl,sortBy,topicId,nextPageToken,q);
 
 @override
 String toString() {
-  return 'ReviewsQuery(cid: $cid, fid: $fid, placeId: $placeId, gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery.withCid(cid: $cid, gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ReviewsQueryCopyWith<$Res> implements $ReviewsQueryCopyWith<$Res> {
-  factory _$ReviewsQueryCopyWith(_ReviewsQuery value, $Res Function(_ReviewsQuery) _then) = __$ReviewsQueryCopyWithImpl;
+abstract mixin class $ReviewsQueryCidCopyWith<$Res> implements $ReviewsQueryCopyWith<$Res> {
+  factory $ReviewsQueryCidCopyWith(ReviewsQueryCid value, $Res Function(ReviewsQueryCid) _then) = _$ReviewsQueryCidCopyWithImpl;
 @override @useResult
 $Res call({
- String cid, String fid, String placeId, String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
+ String cid, String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
 });
 
 
@@ -983,20 +1004,206 @@ $Res call({
 
 }
 /// @nodoc
-class __$ReviewsQueryCopyWithImpl<$Res>
-    implements _$ReviewsQueryCopyWith<$Res> {
-  __$ReviewsQueryCopyWithImpl(this._self, this._then);
+class _$ReviewsQueryCidCopyWithImpl<$Res>
+    implements $ReviewsQueryCidCopyWith<$Res> {
+  _$ReviewsQueryCidCopyWithImpl(this._self, this._then);
 
-  final _ReviewsQuery _self;
-  final $Res Function(_ReviewsQuery) _then;
+  final ReviewsQueryCid _self;
+  final $Res Function(ReviewsQueryCid) _then;
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cid = null,Object? fid = null,Object? placeId = null,Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
-  return _then(_ReviewsQuery(
+@override @pragma('vm:prefer-inline') $Res call({Object? cid = null,Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+  return _then(ReviewsQueryCid(
 cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
-as String,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
+as String,gl: freezed == gl ? _self.gl : gl // ignore: cast_nullable_to_non_nullable
+as String?,hl: freezed == hl ? _self.hl : hl // ignore: cast_nullable_to_non_nullable
+as String?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
+as String?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
+as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class ReviewsQueryFid implements ReviewsQuery {
+  const ReviewsQueryFid({required this.fid, this.gl, this.hl, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withFid';
+  factory ReviewsQueryFid.fromJson(Map<String, dynamic> json) => _$ReviewsQueryFidFromJson(json);
+
+/// {@macro QueryDocTemplates.fidDoc}
+ final  String fid;
+/// {@macro QueryDocTemplates.glDoc}
+@override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
+@override final  String? hl;
+/// Optional parameter to sort reviews
+///
+/// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+@override final  String? sortBy;
+/// Optional topic ID to filter reviews by topic
+@override final  String? topicId;
+/// Optional token for pagination
+@override final  String? nextPageToken;
+/// Optional query string to filter reviews
+@override final  String? q;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of ReviewsQuery
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReviewsQueryFidCopyWith<ReviewsQueryFid> get copyWith => _$ReviewsQueryFidCopyWithImpl<ReviewsQueryFid>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ReviewsQueryFidToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryFid&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,fid,gl,hl,sortBy,topicId,nextPageToken,q);
+
+@override
+String toString() {
+  return 'ReviewsQuery.withFid(fid: $fid, gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ReviewsQueryFidCopyWith<$Res> implements $ReviewsQueryCopyWith<$Res> {
+  factory $ReviewsQueryFidCopyWith(ReviewsQueryFid value, $Res Function(ReviewsQueryFid) _then) = _$ReviewsQueryFidCopyWithImpl;
+@override @useResult
+$Res call({
+ String fid, String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
+});
+
+
+
+
+}
+/// @nodoc
+class _$ReviewsQueryFidCopyWithImpl<$Res>
+    implements $ReviewsQueryFidCopyWith<$Res> {
+  _$ReviewsQueryFidCopyWithImpl(this._self, this._then);
+
+  final ReviewsQueryFid _self;
+  final $Res Function(ReviewsQueryFid) _then;
+
+/// Create a copy of ReviewsQuery
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fid = null,Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+  return _then(ReviewsQueryFid(
+fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
+as String,gl: freezed == gl ? _self.gl : gl // ignore: cast_nullable_to_non_nullable
+as String?,hl: freezed == hl ? _self.hl : hl // ignore: cast_nullable_to_non_nullable
+as String?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
+as String?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
+as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class ReviewsQueryPlaceId implements ReviewsQuery {
+  const ReviewsQueryPlaceId({required this.placeId, this.gl, this.hl, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withPlaceId';
+  factory ReviewsQueryPlaceId.fromJson(Map<String, dynamic> json) => _$ReviewsQueryPlaceIdFromJson(json);
+
+/// {@macro QueryDocTemplates.placeIdDoc}
+ final  String placeId;
+/// {@macro QueryDocTemplates.glDoc}
+@override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
+@override final  String? hl;
+/// Optional parameter to sort reviews
+///
+/// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+@override final  String? sortBy;
+/// Optional topic ID to filter reviews by topic
+@override final  String? topicId;
+/// Optional token for pagination
+@override final  String? nextPageToken;
+/// Optional query string to filter reviews
+@override final  String? q;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of ReviewsQuery
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReviewsQueryPlaceIdCopyWith<ReviewsQueryPlaceId> get copyWith => _$ReviewsQueryPlaceIdCopyWithImpl<ReviewsQueryPlaceId>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ReviewsQueryPlaceIdToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryPlaceId&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.gl, gl) || other.gl == gl)&&(identical(other.hl, hl) || other.hl == hl)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,placeId,gl,hl,sortBy,topicId,nextPageToken,q);
+
+@override
+String toString() {
+  return 'ReviewsQuery.withPlaceId(placeId: $placeId, gl: $gl, hl: $hl, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ReviewsQueryPlaceIdCopyWith<$Res> implements $ReviewsQueryCopyWith<$Res> {
+  factory $ReviewsQueryPlaceIdCopyWith(ReviewsQueryPlaceId value, $Res Function(ReviewsQueryPlaceId) _then) = _$ReviewsQueryPlaceIdCopyWithImpl;
+@override @useResult
+$Res call({
+ String placeId, String? gl, String? hl, String? sortBy, String? topicId, String? nextPageToken, String? q
+});
+
+
+
+
+}
+/// @nodoc
+class _$ReviewsQueryPlaceIdCopyWithImpl<$Res>
+    implements $ReviewsQueryPlaceIdCopyWith<$Res> {
+  _$ReviewsQueryPlaceIdCopyWithImpl(this._self, this._then);
+
+  final ReviewsQueryPlaceId _self;
+  final $Res Function(ReviewsQueryPlaceId) _then;
+
+/// Create a copy of ReviewsQuery
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? placeId = null,Object? gl = freezed,Object? hl = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+  return _then(ReviewsQueryPlaceId(
+placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
 as String,gl: freezed == gl ? _self.gl : gl // ignore: cast_nullable_to_non_nullable
 as String?,hl: freezed == hl ? _self.hl : hl // ignore: cast_nullable_to_non_nullable
 as String?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
