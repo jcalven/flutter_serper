@@ -181,7 +181,7 @@ Future<void> main() async {
         SearchQuery(q: 'specialty coffee', num: 3).toJson();
 
     try {
-      final polymorphicResults = await serper.callApiWithMixin<SearchResponse>(
+      final polymorphicResults = await serper.callApi<SearchResponse>(
         '/search',
         [polymorphicQuery],
         SearchResponse.fromJson,
