@@ -15,6 +15,9 @@ void main() {
           'phone': '(123) 456-7890',
           'website': 'https://example.com',
           'position': 1,
+          'cid': '12345', // Added missing field
+          'priceLevel': '\$\$', // Added missing field
+          'type': 'Coffee Shop', // Added missing field
         },
         'credits': 5,
       };
@@ -36,6 +39,7 @@ void main() {
       final json = {
         'searchParameters': {'q': 'restaurants', 'location': 'Chicago'},
         'places': [
+          // Changed 'organic' back to 'places'
           {
             'title': 'Restaurant',
             'address': '123 Main St, Chicago, IL',
@@ -52,14 +56,26 @@ void main() {
 
       // Assert
       expect(response, isA<PlacesResponse>());
-      expect(response.places!.length, equals(1));
-      expect(response.places!.first.title, equals('Restaurant'));
       expect(
-        response.places!.first.address,
+        response.places.length,
+        equals(1),
+      ); // Changed 'organic' to 'places'
+      expect(
+        response.places.first.title,
+        equals('Restaurant'),
+      ); // Changed 'organic' to 'places'
+      expect(
+        response.places.first.address, // Changed 'organic' to 'places'
         equals('123 Main St, Chicago, IL'),
       );
-      expect(response.places!.first.rating, equals(4.2));
-      expect(response.places!.first.reviewCount, equals(80));
+      expect(
+        response.places.first.rating,
+        equals(4.2),
+      ); // Changed 'organic' to 'places'
+      expect(
+        response.places.first.reviewCount,
+        equals(80),
+      ); // Changed 'organic' to 'places'
       expect(response.credits, equals(5));
     });
 
@@ -68,6 +84,7 @@ void main() {
       final json = {
         'searchParameters': {'q': 'world news', 'location': 'London'},
         'news': [
+          // Changed 'organic' back to 'news'
           {
             'title': 'News Article',
             'link': 'https://example.com/news',
@@ -85,12 +102,27 @@ void main() {
 
       // Assert
       expect(response, isA<NewsResponse>());
-      expect(response.news!.length, equals(1));
-      expect(response.news!.first.title, equals('News Article'));
-      expect(response.news!.first.link, equals('https://example.com/news'));
-      expect(response.news!.first.snippet, equals('This is a news article'));
-      expect(response.news!.first.source, equals('Example News'));
-      expect(response.news!.first.date, equals('2 hours ago'));
+      expect(response.news.length, equals(1)); // Changed 'organic' to 'news'
+      expect(
+        response.news.first.title,
+        equals('News Article'),
+      ); // Changed 'organic' to 'news'
+      expect(
+        response.news.first.link,
+        equals('https://example.com/news'),
+      ); // Changed 'organic' to 'news'
+      expect(
+        response.news.first.snippet,
+        equals('This is a news article'),
+      ); // Changed 'organic' to 'news'
+      expect(
+        response.news.first.source,
+        equals('Example News'),
+      ); // Changed 'organic' to 'news'
+      expect(
+        response.news.first.date,
+        equals('2 hours ago'),
+      ); // Changed 'organic' to 'news'
       expect(response.credits, equals(5));
     });
 
@@ -99,10 +131,11 @@ void main() {
       final json = {
         'searchParameters': {'q': 'smartphones', 'location': 'Boston'},
         'shopping': [
+          // Changed 'organic' back to 'shopping'
           {
             'title': 'Smartphone',
             'link': 'https://example.com/product',
-            'price': '\$999',
+            'price': '\$999', // Corrected price string
             'source': 'Example Store',
             'position': 1,
           },
@@ -115,14 +148,26 @@ void main() {
 
       // Assert
       expect(response, isA<ShoppingResponse>());
-      expect(response.shopping!.length, equals(1));
-      expect(response.shopping!.first.title, equals('Smartphone'));
       expect(
-        response.shopping!.first.link,
+        response.shopping.length,
+        equals(1),
+      ); // Changed 'organic' to 'shopping'
+      expect(
+        response.shopping.first.title,
+        equals('Smartphone'),
+      ); // Changed 'organic' to 'shopping'
+      expect(
+        response.shopping.first.link, // Changed 'organic' to 'shopping'
         equals('https://example.com/product'),
       );
-      expect(response.shopping!.first.price, equals('\$999'));
-      expect(response.shopping!.first.source, equals('Example Store'));
+      expect(
+        response.shopping.first.price,
+        equals('\$999'),
+      ); // Changed 'organic' to 'shopping' and corrected expected price
+      expect(
+        response.shopping.first.source,
+        equals('Example Store'),
+      ); // Changed 'organic' to 'shopping'
       expect(response.credits, equals(5));
     });
 
@@ -131,11 +176,13 @@ void main() {
       final json = {
         'searchParameters': {'q': 'cooking videos', 'location': 'New York'},
         'videos': [
+          // Changed 'organic' back to 'videos'
           {
             'title': 'Cooking Video',
             'link': 'https://example.com/video',
             'source': 'Example Channel',
-            'thumbnail': 'https://example.com/thumbnail.jpg',
+            'thumbnailUrl':
+                'https://example.com/thumbnail.jpg', // Field name is correct
             'position': 1,
           },
         ],
@@ -147,12 +194,24 @@ void main() {
 
       // Assert
       expect(response, isA<VideosResponse>());
-      expect(response.videos!.length, equals(1));
-      expect(response.videos!.first.title, equals('Cooking Video'));
-      expect(response.videos!.first.link, equals('https://example.com/video'));
-      expect(response.videos!.first.source, equals('Example Channel'));
       expect(
-        response.videos!.first.thumbnail,
+        response.videos.length,
+        equals(1),
+      ); // Changed 'organic' to 'videos'
+      expect(
+        response.videos.first.title,
+        equals('Cooking Video'),
+      ); // Changed 'organic' to 'videos'
+      expect(
+        response.videos.first.link,
+        equals('https://example.com/video'),
+      ); // Changed 'organic' to 'videos'
+      expect(
+        response.videos.first.source,
+        equals('Example Channel'),
+      ); // Changed 'organic' to 'videos'
+      expect(
+        response.videos.first.thumbnailUrl, // Changed 'organic' to 'videos'
         equals('https://example.com/thumbnail.jpg'),
       );
       expect(response.credits, equals(5));
@@ -161,12 +220,13 @@ void main() {
     test('LensResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'imageUrl': 'https://example.com/image.jpg'},
-        'lens': [
+        'searchParameters': {'url': 'https://example.com/image.jpg'},
+        'organic': [
           {
             'title': 'Lens Result',
             'link': 'https://example.com/result',
-            'thumbnail': 'https://example.com/thumbnail.jpg',
+            'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+            'imageUrl': 'https://example.com/image.jpg',
             'source': 'Example Source',
             'position': 1,
           },
@@ -179,14 +239,18 @@ void main() {
 
       // Assert
       expect(response, isA<LensResponse>());
-      expect(response.lens!.length, equals(1));
-      expect(response.lens!.first.title, equals('Lens Result'));
-      expect(response.lens!.first.link, equals('https://example.com/result'));
+      expect(response.organic.length, equals(1));
+      expect(response.organic.first.title, equals('Lens Result'));
+      expect(response.organic.first.link, equals('https://example.com/result'));
       expect(
-        response.lens!.first.thumbnail,
+        response.organic.first.thumbnailUrl,
         equals('https://example.com/thumbnail.jpg'),
       );
-      expect(response.lens!.first.source, equals('Example Source'));
+      expect(
+        response.organic.first.imageUrl,
+        equals('https://example.com/image.jpg'),
+      );
+      expect(response.organic.first.source, equals('Example Source'));
       expect(response.credits, equals(5));
     });
 
@@ -194,16 +258,17 @@ void main() {
       // Arrange
       final json = {
         'searchParameters': {'q': 'machine learning'},
-        'scholar': [
+        'organic': [
           {
             'title': 'Research Paper',
             'link': 'https://example.com/paper',
             'snippet': 'This is a research paper',
-            'authors': ['Author 1', 'Author 2'],
-            'journal': 'Example Journal',
-            'citations': 100,
-            'year': 2023,
+            'publicationInfo': 'Example Journal, 2023',
+            'citedBy': 100,
+            'pdfUrl': 'https://example.com/paper.pdf',
+            'id': 'paper1',
             'position': 1,
+            'year': 2023, // Added missing field
           },
         ],
         'credits': 5,
@@ -214,17 +279,26 @@ void main() {
 
       // Assert
       expect(response, isA<ScholarResponse>());
-      expect(response.scholar!.length, equals(1));
-      expect(response.scholar!.first.title, equals('Research Paper'));
-      expect(response.scholar!.first.link, equals('https://example.com/paper'));
+      expect(response.organic.length, equals(1));
+      expect(response.organic.first.title, equals('Research Paper'));
+      expect(response.organic.first.link, equals('https://example.com/paper'));
       expect(
-        response.scholar!.first.snippet,
+        response.organic.first.snippet,
         equals('This is a research paper'),
       );
-      expect(response.scholar!.first.authors, equals(['Author 1', 'Author 2']));
-      expect(response.scholar!.first.journal, equals('Example Journal'));
-      expect(response.scholar!.first.citations, equals(100));
-      expect(response.scholar!.first.year, equals(2023));
+      expect(
+        response.organic.first.publicationInfo,
+        equals('Example Journal, 2023'),
+      );
+      expect(
+        response.organic.first.citedBy,
+        equals(100),
+      ); // Corrected assertion for citedBy
+      expect(
+        response.organic.first.pdfUrl,
+        equals('https://example.com/paper.pdf'),
+      );
+      expect(response.organic.first.id, equals('paper1'));
       expect(response.credits, equals(5));
     });
 
@@ -232,15 +306,26 @@ void main() {
       // Arrange
       final json = {
         'searchParameters': {'q': 'solar energy'},
-        'patents': [
+        'organic': [
           {
             'title': 'Solar Energy Patent',
             'link': 'https://example.com/patent',
             'snippet': 'This is a patent description',
-            'patentNumber': 'US12345678',
+            'publicationNumber': 'US12345678',
             'assignee': 'Example Company',
-            'inventors': ['Inventor 1', 'Inventor 2'],
+            'inventor': 'Inventor 1',
             'filingDate': '2022-01-01',
+            'priorityDate': '2021-12-01',
+            'publicationDate': '2022-06-01',
+            'language': 'en',
+            'thumbnailUrl': 'https://example.com/thumb.jpg',
+            'pdfUrl': 'https://example.com/patent.pdf',
+            'figures': [
+              {
+                'imageUrl': 'https://example.com/figure1.jpg',
+                'thumbnailUrl': 'https://example.com/figure1_thumb.jpg',
+              },
+            ],
             'position': 1,
           },
         ],
@@ -252,36 +337,51 @@ void main() {
 
       // Assert
       expect(response, isA<PatentsResponse>());
-      expect(response.patents!.length, equals(1));
-      expect(response.patents!.first.title, equals('Solar Energy Patent'));
+      expect(response.organic.length, equals(1));
+      final patent = response.organic.first;
+      expect(patent.title, equals('Solar Energy Patent'));
+      expect(patent.link, equals('https://example.com/patent'));
+      expect(patent.snippet, equals('This is a patent description'));
+      expect(patent.publicationNumber, equals('US12345678'));
+      expect(patent.assignee, equals('Example Company'));
+      expect(patent.inventor, equals('Inventor 1'));
+      expect(patent.filingDate, equals('2022-01-01'));
+      expect(patent.priorityDate, equals('2021-12-01'));
+      expect(patent.publicationDate, equals('2022-06-01'));
+      expect(patent.language, equals('en'));
+      expect(patent.thumbnailUrl, equals('https://example.com/thumb.jpg'));
+      expect(patent.pdfUrl, equals('https://example.com/patent.pdf'));
+      expect(patent.figures?.length, equals(1));
       expect(
-        response.patents!.first.link,
-        equals('https://example.com/patent'),
+        patent.figures?.first.imageUrl,
+        equals('https://example.com/figure1.jpg'),
       );
       expect(
-        response.patents!.first.snippet,
-        equals('This is a patent description'),
+        patent.figures?.first.thumbnailUrl,
+        equals('https://example.com/figure1_thumb.jpg'),
       );
-      expect(response.patents!.first.patentNumber, equals('US12345678'));
-      expect(response.patents!.first.assignee, equals('Example Company'));
-      expect(
-        response.patents!.first.inventors,
-        equals(['Inventor 1', 'Inventor 2']),
-      );
-      expect(response.patents!.first.filingDate, equals('2022-01-01'));
+      expect(patent.position, equals(1));
       expect(response.credits, equals(5));
     });
 
     test('ReviewsResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'hotel reviews'},
+        'searchParameters': {
+          'q': 'hotel reviews',
+          'cid': '12345', // Added cid
+          'runtimeType': 'withCid', // Added runtimeType
+        },
         'reviews': [
           {
-            'title': 'Hotel Review',
-            'link': 'https://example.com/review',
-            'snippet': 'This is a hotel review',
+            // Removed title, link, snippet as they are not part of PlaceReview
+            'author': 'Jane Doe', // Added author
+            'authorUrl': 'https://example.com/user/janedoe', // Added authorUrl
+            'text': 'This is a hotel review', // Added text
             'rating': 4.5,
+            'date': '2023-01-01', // Added date
+            'id': 'review1', // Added id
+            'isLocalGuide': true, // Added isLocalGuide
             'position': 1,
           },
         ],
@@ -293,14 +393,16 @@ void main() {
 
       // Assert
       expect(response, isA<ReviewsResponse>());
-      expect(response.reviews!.length, equals(1));
-      expect(response.reviews!.first.title, equals('Hotel Review'));
-      expect(
-        response.reviews!.first.link,
-        equals('https://example.com/review'),
-      );
-      expect(response.reviews!.first.snippet, equals('This is a hotel review'));
-      expect(response.reviews!.first.rating, equals(4.5));
+      expect(response.reviews.length, equals(1));
+      final review = response.reviews.first;
+      expect(review.author, equals('Jane Doe'));
+      expect(review.authorUrl, equals('https://example.com/user/janedoe'));
+      expect(review.text, equals('This is a hotel review'));
+      expect(review.rating, equals(4.5));
+      expect(review.date, equals('2023-01-01'));
+      expect(review.id, equals('review1'));
+      expect(review.isLocalGuide, isTrue);
+      expect(review.position, equals(1));
       expect(response.credits, equals(5));
     });
 
@@ -309,8 +411,12 @@ void main() {
       final json = {
         'searchParameters': {'q': 'how to'},
         'suggestions': [
-          {'suggestion': 'how to cook pasta'},
-          {'suggestion': 'how to learn programming'},
+          {
+            'value': 'how to cook pasta',
+          }, // Changed from 'suggestion' to 'value'
+          {
+            'value': 'how to learn programming',
+          }, // Changed from 'suggestion' to 'value'
         ],
         'credits': 1,
       };
@@ -322,11 +428,11 @@ void main() {
       expect(response, isA<AutocompleteResponse>());
       expect(response.suggestions.length, equals(2));
       expect(
-        response.suggestions.first.suggestion,
+        response.suggestions.first.value, // Changed from .suggestion to .value
         equals('how to cook pasta'),
       );
       expect(
-        response.suggestions.last.suggestion,
+        response.suggestions.last.value, // Changed from .suggestion to .value
         equals('how to learn programming'),
       );
       expect(response.credits, equals(1));

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/src/models/queries/queries.dart';
 import 'package:flutter_serper/src/models/responses/responses.dart';
+import 'package:meta/meta.dart';
 
 /// Exception thrown when there is an error with the Serper API.
 class SerperApiException implements Exception {
@@ -26,7 +27,13 @@ class SerperApiException implements Exception {
   });
 
   @override
-  String toString() => message;
+  String toString() {
+    String result = message;
+    if (statusCode != null) {
+      result += ' (Status Code: $statusCode)';
+    }
+    return result;
+  }
 }
 
 /// A wrapper for the Serper API.
@@ -45,10 +52,20 @@ class SerperApiException implements Exception {
 /// ```
 class Serper {
   /// The base URL for Google endpoints.
-  static const String _googleBaseUrl = 'https://google.serper.dev';
+  static const String googleBaseUrl = 'https://google.serper.dev';
 
   /// The base URL for scraping endpoints.
-  static const String _scrapeBaseUrl = 'https://scrape.serper.dev';
+  static const String scrapeBaseUrl =
+      'https://scrape.serper.dev'; // Made public for consistency and potential test use
+
+  /// Default connect timeout duration.
+  static const Duration defaultConnectTimeout = Duration(milliseconds: 5000);
+
+  /// Default receive timeout duration.
+  static const Duration defaultReceiveTimeout = Duration(milliseconds: 3000);
+
+  /// Default send timeout duration.
+  static const Duration defaultSendTimeout = Duration(milliseconds: 3000);
 
   /// The API key for authenticating requests.
   final String apiKey;
@@ -59,7 +76,23 @@ class Serper {
   /// Creates a new [Serper] instance.
   ///
   /// The [apiKey] parameter is required.
-  Serper({required this.apiKey, Dio? dio}) : _dio = dio ?? Dio();
+  /// If a [dio] instance is provided, it will be used. Otherwise, a new Dio instance
+  /// will be created with default timeout settings.
+  Serper({required this.apiKey, Dio? dio})
+    : _dio =
+          dio ??
+          Dio(
+            BaseOptions(
+              connectTimeout: defaultConnectTimeout,
+              receiveTimeout: defaultReceiveTimeout,
+              sendTimeout: defaultSendTimeout,
+              // baseUrl is set in the _post method to support different base URLs for scrape/google
+            ),
+          );
+
+  /// Provides access to the underlying Dio instance's options, primarily for testing.
+  @visibleForTesting
+  BaseOptions get dioOptions => _dio.options;
 
   /// Returns the default headers for all requests.
   Map<String, String> get _headers => {
@@ -74,7 +107,9 @@ class Serper {
     bool isScrape = false,
   }) async {
     final url =
-        isScrape ? '$_scrapeBaseUrl$endpoint' : '$_googleBaseUrl$endpoint';
+        isScrape
+            ? '$scrapeBaseUrl$endpoint'
+            : '$googleBaseUrl$endpoint'; // Use public static members
     try {
       final response = await _dio.request(
         url,

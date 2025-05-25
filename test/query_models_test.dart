@@ -4,45 +4,33 @@ import 'package:test/test.dart';
 void main() {
   group('Query Models - Additional Tests', () {
     test('MapsQuery serializes to JSON correctly', () {
-      // Arrange
       final query = MapsQuery(
         q: 'coffee shops',
-        location: 'San Francisco',
-        zoom: 15,
+        hl: 'en',
         ll: '37.7749,-122.4194',
+        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
+        cid: '1234567890',
+        page: 2,
       );
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('coffee shops'));
-      expect(json['location'], equals('San Francisco'));
-      expect(json['zoom'], equals(15));
+      expect(json['hl'], equals('en'));
       expect(json['ll'], equals('37.7749,-122.4194'));
+      expect(json['placeId'], equals('ChIJN1t_tDeuEmsRUsoyG83frY4'));
+      expect(json['cid'], equals('1234567890'));
+      expect(json['page'], equals(2));
     });
 
     test('PlacesQuery serializes to JSON correctly', () {
-      // Arrange
-      final query = PlacesQuery(
-        q: 'restaurants',
-        location: 'Chicago',
-        limit: 5,
-      );
-
-      // Act
+      final query = PlacesQuery(q: 'restaurants', location: 'Chicago');
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('restaurants'));
       expect(json['location'], equals('Chicago'));
-      expect(json['limit'], equals(5));
     });
 
     test('NewsQuery serializes to JSON correctly', () {
-      // Arrange
       final query = NewsQuery(
         q: 'world news',
         location: 'London',
@@ -50,11 +38,7 @@ void main() {
         hl: 'en',
         num: 10,
       );
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('world news'));
       expect(json['location'], equals('London'));
@@ -64,18 +48,13 @@ void main() {
     });
 
     test('ShoppingQuery serializes to JSON correctly', () {
-      // Arrange
       final query = ShoppingQuery(
         q: 'smartphones',
         location: 'Boston',
         gl: 'us',
         hl: 'en',
       );
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('smartphones'));
       expect(json['location'], equals('Boston'));
@@ -84,71 +63,46 @@ void main() {
     });
 
     test('LensQuery serializes to JSON correctly', () {
-      // Arrange
       final query = LensQuery(
-        imageUrl: 'https://example.com/image.jpg',
+        url: 'https://example.com/image.jpg',
         gl: 'us',
         hl: 'en',
       );
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['imageUrl'], equals('https://example.com/image.jpg'));
+      expect(json['url'], equals('https://example.com/image.jpg'));
       expect(json['gl'], equals('us'));
       expect(json['hl'], equals('en'));
     });
 
     test('ScholarQuery serializes to JSON correctly', () {
-      // Arrange
       final query = ScholarQuery(q: 'machine learning', hl: 'en');
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('machine learning'));
       expect(json['hl'], equals('en'));
     });
 
     test('PatentsQuery serializes to JSON correctly', () {
-      // Arrange
       final query = PatentsQuery(q: 'solar energy', hl: 'en');
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('solar energy'));
       expect(json['hl'], equals('en'));
     });
 
     test('ReviewsQuery serializes to JSON correctly', () {
-      // Arrange
-      final query = ReviewsQuery(q: 'hotel reviews', gl: 'us', hl: 'en');
-
-      // Act
+      final query = ReviewsQuery.withCid(cid: '12345', gl: 'us', hl: 'en');
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['q'], equals('hotel reviews'));
+      expect(json['cid'], equals('12345'));
       expect(json['gl'], equals('us'));
       expect(json['hl'], equals('en'));
     });
 
     test('AutocompleteQuery serializes to JSON correctly', () {
-      // Arrange
       final query = AutocompleteQuery(q: 'how to', gl: 'us', hl: 'en');
-
-      // Act
       final json = query.toJson();
-
-      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('how to'));
       expect(json['gl'], equals('us'));

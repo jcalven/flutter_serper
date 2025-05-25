@@ -31,7 +31,7 @@ void main() {
       expect(exception.responseData, equals({'error': 'Invalid API key'}));
     });
 
-    test('toString() returns only the message', () {
+    test('toString() returns the message and status code if available', () {
       // Create exception with all details
       final exception = SerperApiException(
         message: 'Complex error message',
@@ -40,8 +40,18 @@ void main() {
         responseData: {'error': 'Server error'},
       );
 
-      // toString should just return the message
-      expect(exception.toString(), equals('Complex error message'));
+      // toString should return the message and status code
+      expect(
+        exception.toString(),
+        equals('Complex error message (Status Code: 500)'),
+      );
+
+      // Test case where statusCode is null
+      final exceptionWithoutStatusCode = SerperApiException(
+        message: 'Another error',
+        endpoint: '/search',
+      );
+      expect(exceptionWithoutStatusCode.toString(), equals('Another error'));
     });
   });
 }

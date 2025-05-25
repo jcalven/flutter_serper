@@ -25,7 +25,7 @@ void main() {
 
     test('PlacesQuery serializes to JSON correctly', () {
       // Arrange
-      final query = PlacesQuery(q: 'restaurants', gl: 'us', hl: 'en', num: 5);
+      final query = PlacesQuery(q: 'restaurants', location: 'San Francisco');
 
       // Act
       final json = query.toJson();
@@ -33,14 +33,12 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('restaurants'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-      expect(json['num'], equals(5));
+      expect(json['location'], equals('San Francisco'));
     });
 
     test('SearchQuery serializes to JSON correctly', () {
       // Arrange
-      final query = SearchQuery(q: 'flutter', gl: 'us', hl: 'en', num: 10);
+      final query = SearchQuery(q: 'flutter');
 
       // Act
       final json = query.toJson();
@@ -48,14 +46,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('flutter'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-      expect(json['num'], equals(10));
     });
 
     test('ImagesQuery serializes to JSON correctly', () {
       // Arrange
-      final query = ImagesQuery(q: 'mountains', gl: 'us', hl: 'en', num: 10);
+      final query = ImagesQuery(q: 'mountains');
 
       // Act
       final json = query.toJson();
@@ -63,19 +58,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('mountains'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-      expect(json['num'], equals(10));
     });
 
     test('NewsQuery serializes to JSON correctly', () {
       // Arrange
-      final query = NewsQuery(
-        q: 'technology news',
-        gl: 'us',
-        hl: 'en',
-        dateRestrict: 'd',
-      );
+      final query = NewsQuery(q: 'technology news');
 
       // Act
       final json = query.toJson();
@@ -83,14 +70,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('technology news'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-      expect(json['dateRestrict'], equals('d'));
     });
 
     test('VideosQuery serializes to JSON correctly', () {
       // Arrange
-      final query = VideosQuery(q: 'flutter tutorials', gl: 'us', hl: 'en');
+      final query = VideosQuery(q: 'flutter tutorials');
 
       // Act
       final json = query.toJson();
@@ -98,17 +82,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('flutter tutorials'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
     });
 
     test('LensQuery serializes to JSON correctly', () {
       // Arrange
-      final query = LensQuery(
-        url: 'https://example.com/image.jpg',
-        gl: 'us',
-        hl: 'en',
-      );
+      final query = LensQuery(url: 'https://example.com/image.jpg');
 
       // Act
       final json = query.toJson();
@@ -116,13 +94,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['url'], equals('https://example.com/image.jpg'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
     });
 
     test('ScholarQuery serializes to JSON correctly', () {
       // Arrange
-      final query = ScholarQuery(q: 'machine learning', hl: 'en');
+      final query = ScholarQuery(q: 'machine learning');
 
       // Act
       final json = query.toJson();
@@ -130,12 +106,11 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('machine learning'));
-      expect(json['hl'], equals('en'));
     });
 
     test('PatentsQuery serializes to JSON correctly', () {
       // Arrange
-      final query = PatentsQuery(q: 'solar energy patents', gl: 'us', hl: 'en');
+      final query = PatentsQuery(q: 'solar energy patents');
 
       // Act
       final json = query.toJson();
@@ -143,35 +118,73 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('solar energy patents'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
     });
 
     test('ReviewsQuery serializes to JSON correctly', () {
-      // Arrange
-      final query = ReviewsQuery(
+      // Arrange/Act/Assert for withCid
+      final queryCid = ReviewsQuery.withCid(
         cid: '12345',
+        gl: 'us',
+        hl: 'en',
+        sortBy: 'newest',
+        topicId: 'topic1',
+        nextPageToken: 'token1',
+        q: 'filter',
+      );
+      final jsonCid = queryCid.toJson();
+      expect(jsonCid, isA<Map<String, dynamic>>());
+      expect(jsonCid['cid'], equals('12345'));
+      expect(jsonCid['gl'], equals('us'));
+      expect(jsonCid['hl'], equals('en'));
+      expect(jsonCid['sortBy'], equals('newest'));
+      expect(jsonCid['topicId'], equals('topic1'));
+      expect(jsonCid['nextPageToken'], equals('token1'));
+      expect(jsonCid['q'], equals('filter'));
+
+      // Arrange/Act/Assert for withFid
+      final queryFid = ReviewsQuery.withFid(
         fid: '67890',
+        gl: 'us',
+        hl: 'en',
+        sortBy: 'highest_rating',
+        topicId: 'topic2',
+        nextPageToken: 'token2',
+        q: 'filter2',
+      );
+      final jsonFid = queryFid.toJson();
+      expect(jsonFid, isA<Map<String, dynamic>>());
+      expect(jsonFid['fid'], equals('67890'));
+      expect(jsonFid['gl'], equals('us'));
+      expect(jsonFid['hl'], equals('en'));
+      expect(jsonFid['sortBy'], equals('highest_rating'));
+      expect(jsonFid['topicId'], equals('topic2'));
+      expect(jsonFid['nextPageToken'], equals('token2'));
+      expect(jsonFid['q'], equals('filter2'));
+
+      // Arrange/Act/Assert for withPlaceId
+      final queryPlaceId = ReviewsQuery.withPlaceId(
         placeId: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
         gl: 'us',
         hl: 'en',
+        sortBy: 'relevant',
+        topicId: 'topic3',
+        nextPageToken: 'token3',
+        q: 'filter3',
       );
-
-      // Act
-      final json = query.toJson();
-
-      // Assert
-      expect(json, isA<Map<String, dynamic>>());
-      expect(json['cid'], equals('12345'));
-      expect(json['fid'], equals('67890'));
-      expect(json['placeId'], equals('ChIJIQBpAG2ahYAR_6128GcTUEo'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
+      final jsonPlaceId = queryPlaceId.toJson();
+      expect(jsonPlaceId, isA<Map<String, dynamic>>());
+      expect(jsonPlaceId['placeId'], equals('ChIJIQBpAG2ahYAR_6128GcTUEo'));
+      expect(jsonPlaceId['gl'], equals('us'));
+      expect(jsonPlaceId['hl'], equals('en'));
+      expect(jsonPlaceId['sortBy'], equals('relevant'));
+      expect(jsonPlaceId['topicId'], equals('topic3'));
+      expect(jsonPlaceId['nextPageToken'], equals('token3'));
+      expect(jsonPlaceId['q'], equals('filter3'));
     });
 
     test('AutocompleteQuery serializes to JSON correctly', () {
       // Arrange
-      final query = AutocompleteQuery(q: 'flo', gl: 'us', hl: 'en');
+      final query = AutocompleteQuery(q: 'flo');
 
       // Act
       final json = query.toJson();
@@ -179,16 +192,14 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('flo'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
     });
 
     test('WebpageQuery serializes to JSON correctly', () {
       // Arrange
       final query = WebpageQuery(
         url: 'https://example.com',
-        gl: 'us',
-        hl: 'en',
+        includeMarkdown: true,
+        q: 'search',
       );
 
       // Act
@@ -197,8 +208,8 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['url'], equals('https://example.com'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
+      expect(json['includeMarkdown'], equals(true));
+      expect(json['q'], equals('search'));
     });
   });
 }

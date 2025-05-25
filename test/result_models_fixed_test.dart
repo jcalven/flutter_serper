@@ -14,9 +14,12 @@ void main() {
         'date': '2 hours ago',
         'imageUrl': 'https://example.com/image.jpg',
         'sitelinks': [
+          // Corrected sitelinks data
           {'title': 'Sublink 1', 'link': 'https://example.com/sublink1'},
           {'title': 'Sublink 2', 'link': 'https://example.com/sublink2'},
         ],
+        'rating': 4.2, // Added
+        'ratingCount': 88, // Added
       };
 
       // Act
@@ -30,11 +33,25 @@ void main() {
       expect(result.date, equals('2 hours ago'));
       expect(result.imageUrl, equals('https://example.com/image.jpg'));
       expect(result.sitelinks!.length, equals(2));
-      expect(result.sitelinks!.first.title, equals('Sublink 1'));
+      // Assuming sitelinks are List<Map<String, dynamic>> as per results.g.dart for OrganicResult
       expect(
-        result.sitelinks!.first.link,
+        (result.sitelinks!.first as Map<String, dynamic>)['title'],
+        equals('Sublink 1'),
+      );
+      expect(
+        (result.sitelinks!.first as Map<String, dynamic>)['link'],
         equals('https://example.com/sublink1'),
       );
+      expect(
+        (result.sitelinks![1] as Map<String, dynamic>)['title'],
+        equals('Sublink 2'),
+      );
+      expect(
+        (result.sitelinks![1] as Map<String, dynamic>)['link'],
+        equals('https://example.com/sublink2'),
+      );
+      expect(result.rating, equals(4.2)); // Added
+      expect(result.ratingCount, equals(88)); // Added
     });
 
     test('Image result deserializes from JSON correctly', () {
@@ -42,11 +59,13 @@ void main() {
       final json = {
         'title': 'Mountain View',
         'imageUrl': 'https://example.com/image.jpg',
-        'imageWidth': 800,
-        'imageHeight': 600,
+        // Removed imageWidth, imageHeight
         'source': 'Example.com',
         'sourceUrl': 'https://example.com',
         'position': 1,
+        'thumbnailUrl': 'https://example.com/image_thumb.jpg', // Added
+        'price': '\$15', // Corrected escaping
+        'domain': 'images.example.com', // Added
       };
 
       // Act
@@ -55,11 +74,16 @@ void main() {
       // Assert
       expect(result.title, equals('Mountain View'));
       expect(result.imageUrl, equals('https://example.com/image.jpg'));
-      expect(result.imageWidth, equals(800));
-      expect(result.imageHeight, equals(600));
+      // Removed imageWidth, imageHeight assertions
       expect(result.source, equals('Example.com'));
       expect(result.sourceUrl, equals('https://example.com'));
       expect(result.position, equals(1));
+      expect(
+        result.thumbnailUrl,
+        equals('https://example.com/image_thumb.jpg'),
+      ); // Added
+      expect(result.price, equals('\$15')); // Corrected escaping
+      expect(result.domain, equals('images.example.com')); // Added
     });
 
     test('Knowledge Graph result deserializes from JSON correctly', () {
@@ -98,10 +122,11 @@ void main() {
       // Arrange
       final json = {
         'question': 'What is Flutter?',
-        'answer': 'Flutter is an open-source UI framework',
+        'snippet':
+            'Flutter is an open-source UI framework', // Renamed from answer
         'title': 'Flutter - Build apps for any screen',
         'link': 'https://flutter.dev',
-        'date': '2 days ago',
+        // Removed date as it's not in the model
       };
 
       // Act
@@ -109,10 +134,13 @@ void main() {
 
       // Assert
       expect(result.question, equals('What is Flutter?'));
-      expect(result.answer, equals('Flutter is an open-source UI framework'));
+      expect(
+        result.snippet,
+        equals('Flutter is an open-source UI framework'),
+      ); // Renamed
       expect(result.title, equals('Flutter - Build apps for any screen'));
       expect(result.link, equals('https://flutter.dev'));
-      expect(result.date, equals('2 days ago'));
+      // Removed date assertion
     });
 
     test('Related Search result deserializes from JSON correctly', () {
@@ -137,6 +165,8 @@ void main() {
         'duration': '10:30',
         'viewCount': 10000,
         'position': 1,
+        'snippet': 'Learn Flutter basics', // Added
+        'date': '2023-10-26', // Added
       };
 
       // Act
@@ -151,6 +181,8 @@ void main() {
       expect(result.duration, equals('10:30'));
       expect(result.viewCount, equals(10000));
       expect(result.position, equals(1));
+      expect(result.snippet, equals('Learn Flutter basics')); // Added
+      expect(result.date, equals('2023-10-26')); // Added
     });
 
     test('News result deserializes from JSON correctly', () {
@@ -186,7 +218,8 @@ void main() {
         'source': 'News Source',
         'date': '1 hour ago',
         'imageUrl': 'https://example.com/breaking.jpg',
-        'position': 1,
+        // Removed position
+        'snippet': 'A breaking news snippet', // Added
       };
 
       // Act
@@ -198,7 +231,8 @@ void main() {
       expect(result.source, equals('News Source'));
       expect(result.date, equals('1 hour ago'));
       expect(result.imageUrl, equals('https://example.com/breaking.jpg'));
-      expect(result.position, equals(1));
+      // Removed position assertion
+      expect(result.snippet, equals('A breaking news snippet')); // Added
     });
 
     test('Shopping result deserializes from JSON correctly', () {
@@ -206,12 +240,12 @@ void main() {
       final json = {
         'title': 'Smartphone',
         'link': 'https://example.com/product',
-        'price': '\$999',
+        'price': '\$999', // Corrected escaping
         'source': 'Example Store',
         'imageUrl': 'https://example.com/product.jpg',
-        'rating': 4.5,
-        'reviewCount': 100,
+        // Removed rating, reviewCount
         'position': 1,
+        'delivery': 'Ships in 1-2 days', // Added
       };
 
       // Act
@@ -220,12 +254,12 @@ void main() {
       // Assert
       expect(result.title, equals('Smartphone'));
       expect(result.link, equals('https://example.com/product'));
-      expect(result.price, equals('\$999'));
+      expect(result.price, equals('\$999')); // Corrected escaping
       expect(result.source, equals('Example Store'));
       expect(result.imageUrl, equals('https://example.com/product.jpg'));
-      expect(result.rating, equals(4.5));
-      expect(result.reviewCount, equals(100));
+      // Removed rating, reviewCount assertions
       expect(result.position, equals(1));
+      expect(result.delivery, equals('Ships in 1-2 days')); // Added
     });
 
     test('Autocomplete Suggestion deserializes from JSON correctly', () {
@@ -242,22 +276,125 @@ void main() {
     test('Webpage result deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'title': 'Example Website',
-        'link': 'https://example.com',
-        'snippet': 'This is an example website...',
-        'favicon': 'https://example.com/favicon.ico',
-        'position': 1,
+        // Corrected to match WebpageResult model
+        'text': 'Main content of the webpage.',
+        'markdown': '## Webpage Content\\nMain content...',
+        'metadata': {'keywords': 'flutter, dart, mobile'},
+        'credits': 2,
       };
 
       // Act
       final result = WebpageResult.fromJson(json);
 
       // Assert
-      expect(result.title, equals('Example Website'));
-      expect(result.link, equals('https://example.com'));
-      expect(result.snippet, equals('This is an example website...'));
-      expect(result.favicon, equals('https://example.com/favicon.ico'));
+      expect(result.text, equals('Main content of the webpage.'));
+      expect(result.markdown, equals('## Webpage Content\\nMain content...'));
+      expect(result.metadata!['keywords'], equals('flutter, dart, mobile'));
+      expect(result.credits, equals(2));
+      // Removed title, link, snippet, favicon, position assertions
+    });
+
+    test('Place result deserializes from JSON correctly', () {
+      // Arrange
+      final Map<String, dynamic> placeResultJsonFixed = {
+        'title': 'Test Place',
+        'address': '123 Test St',
+        'phone': '555-1234',
+        'website': 'http://example.com/place',
+        'rating': 4.0,
+        'reviewCount': 50,
+        'type': 'Restaurant',
+        'priceLevel': '\$\$', // Corrected escaping for priceLevel
+        'openingHours': ['Mon: 9-5', 'Tue: 9-5'],
+        'cid': 'test_cid',
+        'position': 1,
+        // Fields not in model: latitude, longitude, category, imageUrl, placeId, userReviewCount, description
+      };
+
+      // Act
+      final result = PlaceResult.fromJson(placeResultJsonFixed);
+
+      // Assert
+      expect(result.title, equals('Test Place'));
+      expect(result.address, equals('123 Test St'));
+      expect(result.phone, equals('555-1234'));
+      expect(result.website, equals('http://example.com/place'));
+      expect(result.rating, equals(4.0));
+      expect(result.reviewCount, equals(50));
+      expect(result.type, equals('Restaurant'));
+      expect(result.priceLevel, equals('\$\$')); // Corrected escaping
+      expect(result.openingHours, equals(['Mon: 9-5', 'Tue: 9-5']));
+      expect(result.cid, equals('test_cid'));
       expect(result.position, equals(1));
+    });
+
+    test('Patent result deserializes from JSON correctly', () {
+      // Arrange
+      final Map<String, dynamic> patentResultJsonFixed = {
+        'title': 'Test Patent',
+        'link': 'http://example.com/patent',
+        'snippet': 'This is a test patent abstract.',
+        'priorityDate': '2022-01-01',
+        'filingDate': '2022-02-01',
+        'grantDate': '2023-01-01',
+        'publicationDate': '2022-06-01',
+        'inventor': 'John Doe',
+        'assignee': 'Test Corp',
+        'publicationNumber': 'US12345',
+        'language': 'en',
+        'thumbnailUrl': 'http://example.com/patent_thumb.jpg',
+        'pdfUrl': 'http://example.com/patent.pdf',
+        'figures': [
+          {
+            'imageUrl': 'http://example.com/figure1.jpg',
+            'thumbnailUrl': 'http://example.com/figure1_thumb.jpg',
+          },
+        ],
+        'position': 1,
+        // Fields not in model: source, date, patentOffice, relatedPatents, citedBy (as complex object or direct int), applicationNumber
+      };
+
+      // Act
+      final result = PatentResult.fromJson(patentResultJsonFixed);
+
+      // Assert
+      expect(result.title, equals('Test Patent'));
+      expect(result.link, equals('http://example.com/patent'));
+      expect(result.snippet, equals('This is a test patent abstract.'));
+      // ... assert other fields from patentResultJsonFixed
+      expect(result.inventor, equals('John Doe'));
+      expect(result.position, equals(1));
+      expect(
+        result.figures!.first.imageUrl,
+        equals('http://example.com/figure1.jpg'),
+      );
+    });
+
+    test('Scholar result deserializes from JSON correctly', () {
+      // Arrange
+      final Map<String, dynamic> scholarResultJsonFixed = {
+        'title': 'Test Scholar Article',
+        'link': 'http://example.com/scholar_article',
+        'publicationInfo': 'Authors, Journal, Year', // Corrected: is String
+        'snippet': 'This is a test scholar article snippet.',
+        'year': 2022, // Corrected: is int
+        'citedBy': 120, // Corrected: is int
+        'pdfUrl': 'http://example.com/scholar.pdf', // Corrected: is String
+        'id': 'scholar_id_123',
+        // Fields not in model: source, authors (as separate field), journal, volume, issue, pages, publisher, position
+      };
+
+      // Act
+      final result = ScholarResult.fromJson(scholarResultJsonFixed);
+
+      // Assert
+      expect(result.title, equals('Test Scholar Article'));
+      expect(result.link, equals('http://example.com/scholar_article'));
+      expect(result.publicationInfo, equals('Authors, Journal, Year'));
+      // ... assert other fields from scholarResultJsonFixed
+      expect(result.year, equals(2022));
+      expect(result.citedBy, equals(120));
+      expect(result.id, equals('scholar_id_123'));
     });
   });
 }

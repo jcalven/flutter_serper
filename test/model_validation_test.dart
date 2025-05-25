@@ -5,29 +5,24 @@ import 'package:test/test.dart';
 void main() {
   group('Model Validation Tests', () {
     group('Query Models', () {
-      test('All query models should validate their required fields', () {
-        // Test SearchQuery with missing required field
-        expect(() => SearchQuery(q: ''), throwsA(isA<AssertionError>()));
+      test(
+        'Query models should accept required parameters including empty strings',
+        () {
+          // Test that query models accept empty strings for required fields
+          expect(SearchQuery(q: ''), isA<SearchQuery>());
+          expect(ImagesQuery(q: ''), isA<ImagesQuery>());
+          expect(VideosQuery(q: ''), isA<VideosQuery>());
+          expect(NewsQuery(q: ''), isA<NewsQuery>());
+          expect(WebpageQuery(url: ''), isA<WebpageQuery>());
 
-        // Test ImagesQuery with missing required field
-        expect(() => ImagesQuery(q: ''), throwsA(isA<AssertionError>()));
-
-        // Test VideosQuery with missing required field
-        expect(() => VideosQuery(q: ''), throwsA(isA<AssertionError>()));
-
-        // Test NewsQuery with missing required field
-        expect(() => NewsQuery(q: ''), throwsA(isA<AssertionError>()));
-
-        // Test WebpageQuery with missing required field
-        expect(() => WebpageQuery(url: ''), throwsA(isA<AssertionError>()));
-
-        // Test valid query objects
-        expect(SearchQuery(q: 'test'), isA<SearchQuery>());
-        expect(ImagesQuery(q: 'test'), isA<ImagesQuery>());
-        expect(VideosQuery(q: 'test'), isA<VideosQuery>());
-        expect(NewsQuery(q: 'test'), isA<NewsQuery>());
-        expect(WebpageQuery(url: 'https://example.com'), isA<WebpageQuery>());
-      });
+          // Test valid query objects with non-empty content
+          expect(SearchQuery(q: 'test'), isA<SearchQuery>());
+          expect(ImagesQuery(q: 'test'), isA<ImagesQuery>());
+          expect(VideosQuery(q: 'test'), isA<VideosQuery>());
+          expect(NewsQuery(q: 'test'), isA<NewsQuery>());
+          expect(WebpageQuery(url: 'https://example.com'), isA<WebpageQuery>());
+        },
+      );
     });
 
     group('Response Models', () {

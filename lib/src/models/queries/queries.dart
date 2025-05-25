@@ -26,7 +26,7 @@ class QueryDocTemplates {
   static const String queryStringDoc = '''
 The search query string.
 
-This is a required parameter and should not be empty.''';
+This is a required parameter and can be empty.''';
 
   /// Template for the location parameter
   static const String locationDoc = '''

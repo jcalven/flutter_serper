@@ -10,11 +10,14 @@ void main() {
         'place': {
           'title': 'Coffee Shop',
           'address': '123 Main St, San Francisco, CA',
+          'cid': 'test_cid', // Added
+          'priceLevel': '\$\$', // Added
+          'type': 'Cafe', // Added
           'rating': 4.5,
           'reviewCount': 100,
           'phone': '(123) 456-7890',
           'website': 'https://example.com',
-          'position': 1,
+          // 'position': 1, // position is not a direct field of MapResult
         },
         'credits': 5,
       };
@@ -105,8 +108,6 @@ void main() {
           {
             'title': 'Mountain View',
             'imageUrl': 'https://example.com/mountain.jpg',
-            'imageWidth': 800,
-            'imageHeight': 600,
             'source': 'Example.com',
             'position': 1,
           },
@@ -125,8 +126,7 @@ void main() {
         response.images.first.imageUrl,
         equals('https://example.com/mountain.jpg'),
       );
-      expect(response.images.first.imageWidth, equals(800));
-      expect(response.images.first.imageHeight, equals(600));
+      expect(response.images.first.source, equals('Example.com'));
       expect(response.credits, equals(5));
     });
 
@@ -199,11 +199,14 @@ void main() {
     test('LensResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'image': 'https://example.com/image.jpg'},
+        'searchParameters': {
+          'url': 'https://example.com/image.jpg',
+        }, // Changed 'image' to 'url'
         'organic': [
           {
             'title': 'Lens Result',
             'link': 'https://example.com/result',
+            'imageUrl': 'https://example.com/image.jpg', // Added imageUrl
             'thumbnailUrl': 'https://example.com/thumbnail.jpg',
             'source': 'Example Source',
             'position': 1,
@@ -237,10 +240,11 @@ void main() {
             'title': 'Research Paper',
             'link': 'https://example.com/paper',
             'snippet': 'Abstract: This paper explores...',
-            'authors': ['Author 1', 'Author 2'],
-            'journal': 'Example Journal',
-            'citations': 100,
+            'publicationInfo': 'Example Journal, 2023',
             'year': 2023,
+            'citedBy': 100,
+            'pdfUrl': 'https://example.com/paper.pdf',
+            'id': 'paper123',
             'position': 1,
           },
         ],
@@ -253,16 +257,15 @@ void main() {
       // Assert
       expect(response, isA<ScholarResponse>());
       expect(response.organic.length, equals(1));
-      expect(response.organic.first.title, equals('Research Paper'));
-      expect(response.organic.first.link, equals('https://example.com/paper'));
-      expect(
-        response.organic.first.snippet,
-        equals('Abstract: This paper explores...'),
-      );
-      expect(response.organic.first.authors, equals(['Author 1', 'Author 2']));
-      expect(response.organic.first.journal, equals('Example Journal'));
-      expect(response.organic.first.citations, equals(100));
-      expect(response.organic.first.year, equals(2023));
+      final scholarResult = response.organic.first;
+      expect(scholarResult.title, equals('Research Paper'));
+      expect(scholarResult.link, equals('https://example.com/paper'));
+      expect(scholarResult.snippet, equals('Abstract: This paper explores...'));
+      expect(scholarResult.publicationInfo, equals('Example Journal, 2023'));
+      expect(scholarResult.year, equals(2023));
+      expect(scholarResult.citedBy, equals(100));
+      expect(scholarResult.pdfUrl, equals('https://example.com/paper.pdf'));
+      expect(scholarResult.id, equals('paper123'));
       expect(response.credits, equals(5));
     });
 
@@ -275,10 +278,26 @@ void main() {
             'title': 'Solar Energy Patent',
             'link': 'https://example.com/patent',
             'snippet': 'A method for converting solar energy...',
-            'patentNumber': 'US12345678',
+            'publicationNumber': 'US12345678',
             'assignee': 'Example Company',
-            'inventors': ['Inventor 1', 'Inventor 2'],
+            'inventor': 'Inventor 1',
             'filingDate': '2022-01-01',
+            'priorityDate': '2021-01-01',
+            'grantDate': '2023-01-01',
+            'publicationDate': '2022-06-01',
+            'language': 'en',
+            'thumbnailUrl': 'https://example.com/patent_thumb.jpg',
+            'pdfUrl': 'https://example.com/patent.pdf',
+            'figures': [
+              {
+                'imageUrl': 'https://example.com/figure1.jpg',
+                'thumbnailUrl': 'https://example.com/figure1_thumb.jpg',
+              },
+              {
+                'imageUrl': 'https://example.com/figure2.jpg',
+                'thumbnailUrl': 'https://example.com/figure2_thumb.jpg',
+              },
+            ],
             'position': 1,
           },
         ],
@@ -291,32 +310,53 @@ void main() {
       // Assert
       expect(response, isA<PatentsResponse>());
       expect(response.organic.length, equals(1));
-      expect(response.organic.first.title, equals('Solar Energy Patent'));
-      expect(response.organic.first.link, equals('https://example.com/patent'));
+      final patent = response.organic.first;
+      expect(patent.title, equals('Solar Energy Patent'));
+      expect(patent.link, equals('https://example.com/patent'));
+      expect(patent.snippet, equals('A method for converting solar energy...'));
+      expect(patent.publicationNumber, equals('US12345678'));
+      expect(patent.assignee, equals('Example Company'));
+      expect(patent.inventor, equals('Inventor 1'));
+      expect(patent.filingDate, equals('2022-01-01'));
+      expect(patent.priorityDate, equals('2021-01-01'));
+      expect(patent.grantDate, equals('2023-01-01'));
+      expect(patent.publicationDate, equals('2022-06-01'));
+      expect(patent.language, equals('en'));
       expect(
-        response.organic.first.snippet,
-        equals('A method for converting solar energy...'),
+        patent.thumbnailUrl,
+        equals('https://example.com/patent_thumb.jpg'),
       );
-      expect(response.organic.first.patentNumber, equals('US12345678'));
-      expect(response.organic.first.assignee, equals('Example Company'));
+      expect(patent.pdfUrl, equals('https://example.com/patent.pdf'));
+      expect(patent.figures?.length, equals(2));
       expect(
-        response.organic.first.inventors,
-        equals(['Inventor 1', 'Inventor 2']),
+        patent.figures?.first.imageUrl,
+        equals('https://example.com/figure1.jpg'),
       );
-      expect(response.organic.first.filingDate, equals('2022-01-01'));
+      expect(
+        patent.figures?.first.thumbnailUrl,
+        equals('https://example.com/figure1_thumb.jpg'),
+      );
+      expect(patent.position, equals(1));
       expect(response.credits, equals(5));
     });
 
     test('ReviewsResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'hotel reviews', 'cid': '12345'},
+        'searchParameters': {
+          'q': 'hotel reviews',
+          'cid': '12345',
+          'runtimeType': 'withCid', // Added runtimeType
+        },
         'reviews': [
           {
-            'reviewTitle': 'Hotel Review',
-            'reviewLink': 'https://example.com/review',
-            'reviewSnippet': 'This is a hotel review',
-            'starRating': 4.5,
+            'author': 'Jane Doe',
+            'authorUrl': 'https://example.com/user/janedoe',
+            'text': 'This is a hotel review',
+            'rating': 4.5,
+            'date': '2023-01-01',
+            'id': 'r1',
+            'isLocalGuide': true,
             'position': 1,
           },
         ],
@@ -329,15 +369,17 @@ void main() {
       // Assert
       expect(response, isA<ReviewsResponse>());
       expect(response.reviews.length, equals(1));
-      expect(response.reviews.first.reviewTitle, equals('Hotel Review'));
+      expect(response.reviews.first.author, equals('Jane Doe'));
       expect(
-        response.reviews.first.reviewLink,
-        equals('https://example.com/review'),
+        response.reviews.first.authorUrl,
+        equals('https://example.com/user/janedoe'),
       );
-      expect(
-        response.reviews.first.reviewSnippet,
-        equals('This is a hotel review'),
-      );
+      expect(response.reviews.first.text, equals('This is a hotel review'));
+      expect(response.reviews.first.rating, equals(4.5));
+      expect(response.reviews.first.date, equals('2023-01-01'));
+      expect(response.reviews.first.id, equals('r1'));
+      expect(response.reviews.first.isLocalGuide, isTrue);
+      expect(response.reviews.first.position, equals(1));
       expect(response.credits, equals(5));
     });
 
@@ -369,13 +411,12 @@ void main() {
         'searchParameters': {'url': 'https://example.com'},
         'results': [
           {
-            'title': 'Example Website',
-            'link': 'https://example.com',
-            'snippet': 'This is an example website...',
-            'position': 1,
+            'text': 'This is the webpage content',
+            'markdown': '# Webpage Content\n\nThis is the webpage content',
+            'metadata': {'title': 'Example Website'},
+            'credits': 5,
           },
         ],
-        'credits': 10,
       };
 
       // Act
@@ -384,13 +425,19 @@ void main() {
       // Assert
       expect(response, isA<WebpageResponse>());
       expect(response.results.length, equals(1));
-      expect(response.results.first.title, equals('Example Website'));
-      expect(response.results.first.link, equals('https://example.com'));
       expect(
-        response.results.first.snippet,
-        equals('This is an example website...'),
+        response.results.first.text,
+        equals('This is the webpage content'),
       );
-      expect(response.credits, equals(10));
+      expect(
+        response.results.first.markdown,
+        equals('# Webpage Content\n\nThis is the webpage content'),
+      );
+      expect(
+        response.results.first.metadata,
+        containsPair('title', 'Example Website'),
+      );
+      expect(response.results.first.credits, equals(5));
     });
   });
 }

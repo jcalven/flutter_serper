@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/flutter_serper.dart';
 import 'package:mockito/mockito.dart';
@@ -6,15 +7,34 @@ import 'package:test/test.dart';
 import 'mocks.mocks.dart';
 
 void main() {
+  late MockDio mockDio;
+  late Serper serper;
+
+  setUp(() {
+    mockDio = MockDio();
+    serper = Serper(apiKey: 'test_api_key', dio: mockDio);
+
+    // Default stub for any request to avoid MissingStubError for unhandled cases
+    when(
+      mockDio.request(
+        any,
+        data: anyNamed('data'),
+        options: anyNamed('options'),
+        cancelToken: anyNamed('cancelToken'),
+        onReceiveProgress: anyNamed('onReceiveProgress'),
+        onSendProgress: anyNamed('onSendProgress'),
+        queryParameters: anyNamed('queryParameters'),
+      ),
+    ).thenAnswer(
+      (_) async => Response(
+        data: {}, // Default empty map response
+        statusCode: 200,
+        requestOptions: RequestOptions(path: ''),
+      ),
+    );
+  });
+
   group('Serper API Additional Methods', () {
-    late MockDio mockDio;
-    late Serper serper;
-
-    setUp(() {
-      mockDio = MockDio();
-      serper = Serper(apiKey: 'test-api-key', dio: mockDio);
-    });
-
     test(
       'lens method calls the correct endpoint and returns LensResponse',
       () async {
@@ -22,22 +42,31 @@ void main() {
         final expectedResponse = {
           'searchParameters': {'url': 'https://example.com/image.jpg'},
           'organic': [
+            // Changed from 'lens' to 'organic'
             {
-              'title': 'Lens Result',
-              'link': 'https://example.com/result',
-              'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+              'title': 'Similar Image Result',
+              'link': 'https://example.com/similar-image',
               'source': 'Example Source',
-              'position': 1,
+              'imageUrl': 'https://example.com/similar-image.jpg',
+              'thumbnailUrl':
+                  'https://example.com/similar-image-thumb.jpg', // Added non-nullable thumbnailUrl
+              // 'position': 1, // LensResult doesn't have position
             },
           ],
-          'credits': 5,
+          'credits': 8,
         };
+        final query = LensQuery(url: 'https://example.com/image.jpg');
+        final requestData = json.encode([query.toJson()]);
 
         when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://google.serper.dev/lens',
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).thenAnswer(
           (_) async => Response(
@@ -46,83 +75,106 @@ void main() {
             requestOptions: RequestOptions(path: ''),
           ),
         );
-
         // Act
-        final result = await serper.lens([
-          LensQuery(url: 'https://example.com/image.jpg'),
-        ]);
-
+        final result = await serper.lens([query]);
         // Assert
         verify(
-          mockDio.post(
+          mockDio.request(
             'https://google.serper.dev/lens',
-            data: anyNamed('data'),
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).called(1);
-
         expect(result, isA<LensResponse>());
         expect(result.organic.length, equals(1));
-        expect(result.organic.first.title, equals('Lens Result'));
-        expect(result.credits, equals(5));
+        expect(result.organic.first.title, equals('Similar Image Result'));
+        expect(
+          result.organic.first.thumbnailUrl,
+          equals('https://example.com/similar-image-thumb.jpg'),
+        ); // Added assertion for thumbnailUrl
+        expect(result.credits, equals(8));
       },
     );
 
-    test(
-      'scholar method calls the correct endpoint and returns ScholarResponse',
-      () async {
-        // Arrange
-        final expectedResponse = {
-          'searchParameters': {'q': 'machine learning'},
-          'organic': [
-            {
-              'title': 'Research Paper',
-              'link': 'https://example.com/paper',
-              'snippet': 'Abstract: This paper explores...',
-              'authors': ['Author 1', 'Author 2'],
-              'journal': 'Example Journal',
-              'citations': 100,
-              'year': 2023,
-              'position': 1,
-            },
-          ],
-          'credits': 5,
-        };
-
-        when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
-            options: anyNamed('options'),
-          ),
-        ).thenAnswer(
-          (_) async => Response(
-            data: expectedResponse,
-            statusCode: 200,
-            requestOptions: RequestOptions(path: ''),
-          ),
-        );
-
-        // Act
-        final result = await serper.scholar([
-          ScholarQuery(q: 'machine learning'),
-        ]);
-
-        // Assert
-        verify(
-          mockDio.post(
-            'https://google.serper.dev/scholar',
-            data: anyNamed('data'),
-            options: anyNamed('options'),
-          ),
-        ).called(1);
-
-        expect(result, isA<ScholarResponse>());
-        expect(result.organic.length, equals(1));
-        expect(result.organic.first.title, equals('Research Paper'));
-        expect(result.credits, equals(5));
-      },
-    );
+    test('scholar method calls the correct endpoint and returns ScholarResponse', () async {
+      // Arrange
+      final expectedResponse = {
+        'searchParameters': {'q': 'machine learning'},
+        'organic': [
+          // Changed from 'scholar' to 'organic'
+          {
+            'title': 'Machine Learning Basics',
+            'link': 'https://example.com/ml-basics',
+            'snippet': 'An introduction to machine learning concepts.',
+            // 'source': 'Example University', // ScholarResult uses publicationInfo
+            'publicationInfo':
+                'Example University Press, Journal of ML', // Added non-nullable publicationInfo
+            // 'authors': ['John Doe', 'Jane Smith'], // ScholarResult doesn't have authors list
+            'year': 2023, // Added non-nullable year
+            // 'publicationDate': '2023-01-15', // ScholarResult uses year (int)
+            'citedBy': 150, // Added non-nullable citedBy (int)
+            // 'citedBy': {'value': 150, 'link': 'https://example.com/citations'}, // ScholarResult has citedBy as int
+            // 'position': 1, // ScholarResult doesn't have position
+            'pdfUrl':
+                'https://example.com/ml-basics.pdf', // Added non-nullable pdfUrl
+            'id': 'scholar_id_123', // Added non-nullable id
+          },
+        ],
+        'credits': 12,
+      };
+      final query = ScholarQuery(q: 'machine learning');
+      final requestData = json.encode([query.toJson()]);
+      when(
+        mockDio.request(
+          'https://google.serper.dev/scholar',
+          data: requestData,
+          options: anyNamed('options'),
+          cancelToken: anyNamed('cancelToken'),
+          onReceiveProgress: anyNamed('onReceiveProgress'),
+          onSendProgress: anyNamed('onSendProgress'),
+          queryParameters: anyNamed('queryParameters'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          data: expectedResponse,
+          statusCode: 200,
+          requestOptions: RequestOptions(path: ''),
+        ),
+      );
+      // Act
+      final result = await serper.scholar([query]);
+      // Assert
+      verify(
+        mockDio.request(
+          'https://google.serper.dev/scholar',
+          data: requestData,
+          options: anyNamed('options'),
+          cancelToken: anyNamed('cancelToken'),
+          onReceiveProgress: anyNamed('onReceiveProgress'),
+          onSendProgress: anyNamed('onSendProgress'),
+          queryParameters: anyNamed('queryParameters'),
+        ),
+      ).called(1);
+      expect(result, isA<ScholarResponse>());
+      expect(result.organic.length, equals(1));
+      expect(result.organic.first.title, equals('Machine Learning Basics'));
+      expect(
+        result.organic.first.publicationInfo,
+        equals('Example University Press, Journal of ML'),
+      );
+      expect(result.organic.first.year, equals(2023));
+      expect(result.organic.first.citedBy, equals(150));
+      expect(
+        result.organic.first.pdfUrl,
+        equals('https://example.com/ml-basics.pdf'),
+      );
+      expect(result.organic.first.id, equals('scholar_id_123'));
+      expect(result.credits, equals(12));
+    });
 
     test(
       'patents method calls the correct endpoint and returns PatentsResponse',
@@ -131,25 +183,51 @@ void main() {
         final expectedResponse = {
           'searchParameters': {'q': 'solar energy patents'},
           'organic': [
+            // Changed from 'patents' to 'organic'
             {
-              'title': 'Solar Energy Patent',
-              'link': 'https://example.com/patent',
-              'snippet': 'A method for converting solar energy...',
-              'patentNumber': 'US12345678',
-              'assignee': 'Example Company',
-              'inventors': ['Inventor 1', 'Inventor 2'],
-              'filingDate': '2022-01-01',
-              'position': 1,
+              'title': 'Solar Panel Innovation',
+              'link': 'https://example.com/solar-patent',
+              'snippet': 'A new type of solar panel technology.',
+              // 'source': 'USPTO', // PatentResult doesn't have source
+              // 'patentOffice': 'US', // PatentResult doesn't have patentOffice
+              'inventor':
+                  'Alice Brown, Bob Green', // Added non-nullable inventor (String)
+              'assignee': 'Solar Corp', // Added non-nullable assignee
+              'publicationDate': '2022-05-20', // Non-nullable
+              'priorityDate': '2021-05-20', // Non-nullable
+              'filingDate': '2021-10-10', // Added non-nullable filingDate
+              'grantDate': '2023-05-20', // Nullable, but good to include
+              'patentNumber':
+                  'US1234567B2', // Renamed from publicationNumber to patentNumber to match field, but model has publicationNumber
+              'publicationNumber':
+                  'US1234567B2', // Added non-nullable publicationNumber
+              // 'applicationNumber': 'US2022/123456', // PatentResult doesn't have applicationNumber
+              'language': 'en', // Added non-nullable language
+              'thumbnailUrl':
+                  'https://example.com/patent-thumb.jpg', // Added non-nullable thumbnailUrl
+              'pdfUrl': 'https://example.com/patent.pdf', // Nullable
+              'figures': [
+                {
+                  'imageUrl': 'https://example.com/figure1.jpg',
+                  'thumbnailUrl': 'https://example.com/figure1_thumb.jpg',
+                },
+              ],
+              'position': 1, // Non-nullable
             },
           ],
-          'credits': 5,
+          'credits': 20,
         };
-
+        final query = PatentsQuery(q: 'solar energy patents');
+        final requestData = json.encode([query.toJson()]);
         when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://google.serper.dev/patents',
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).thenAnswer(
           (_) async => Response(
@@ -158,25 +236,33 @@ void main() {
             requestOptions: RequestOptions(path: ''),
           ),
         );
-
         // Act
-        final result = await serper.patents([
-          PatentsQuery(q: 'solar energy patents'),
-        ]);
-
+        final result = await serper.patents([query]);
         // Assert
         verify(
-          mockDio.post(
+          mockDio.request(
             'https://google.serper.dev/patents',
-            data: anyNamed('data'),
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).called(1);
-
         expect(result, isA<PatentsResponse>());
         expect(result.organic.length, equals(1));
-        expect(result.organic.first.title, equals('Solar Energy Patent'));
-        expect(result.credits, equals(5));
+        final patent = result.organic.first;
+        expect(patent.title, equals('Solar Panel Innovation'));
+        expect(patent.inventor, equals('Alice Brown, Bob Green'));
+        expect(patent.assignee, equals('Solar Corp'));
+        expect(patent.publicationNumber, equals('US1234567B2'));
+        expect(patent.language, equals('en'));
+        expect(
+          patent.thumbnailUrl,
+          equals('https://example.com/patent-thumb.jpg'),
+        );
+        expect(result.credits, equals(20));
       },
     );
 
@@ -186,28 +272,40 @@ void main() {
         // Arrange
         final expectedResponse = {
           'searchParameters': {
-            'q': 'hotel reviews',
             'cid': '12345',
-            'fid': '67890',
-            'placeId': 'ChIJIQBpAG2ahYAR_6128GcTUEo',
+            'q': 'hotel reviews',
+            'runtimeType':
+                'withCid', // Added runtimeType for ReviewsQuery deserialization
           },
           'reviews': [
             {
-              'reviewTitle': 'Hotel Review',
-              'reviewLink': 'https://example.com/review',
-              'reviewSnippet': 'This is a hotel review',
-              'starRating': 4.5,
+              'author': 'Jane D.',
+              'authorUrl': 'https://example.com/jane',
+              'text': 'Wonderful stay, highly recommend.',
+              'rating': 5.0,
+              'date': '2023-10-01',
               'position': 1,
             },
           ],
-          'credits': 5,
+          'placeInfo': {
+            'title': 'Hotel Serper',
+            'address': '789 Pine St',
+            'rating': 4.9,
+            'ratingCount': 50,
+          },
+          'credits': 7,
         };
-
+        final query = ReviewsQuery.withCid(cid: '12345', q: 'hotel reviews');
+        final requestData = json.encode([query.toJson()]);
         when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://google.serper.dev/reviews',
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).thenAnswer(
           (_) async => Response(
@@ -216,30 +314,27 @@ void main() {
             requestOptions: RequestOptions(path: ''),
           ),
         );
-
         // Act
-        final result = await serper.reviews([
-          ReviewsQuery(
-            q: 'hotel reviews',
-            cid: '12345',
-            fid: '67890',
-            placeId: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
-          ),
-        ]);
-
+        final result = await serper.reviews([query]);
         // Assert
         verify(
-          mockDio.post(
+          mockDio.request(
             'https://google.serper.dev/reviews',
-            data: anyNamed('data'),
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).called(1);
-
         expect(result, isA<ReviewsResponse>());
         expect(result.reviews.length, equals(1));
-        expect(result.reviews.first.reviewTitle, equals('Hotel Review'));
-        expect(result.credits, equals(5));
+        expect(
+          result.reviews.first.text,
+          equals('Wonderful stay, highly recommend.'),
+        );
+        expect(result.credits, equals(7));
       },
     );
 
@@ -250,17 +345,22 @@ void main() {
         final expectedResponse = {
           'searchParameters': {'q': 'flo'},
           'suggestions': [
-            {'value': 'flutter'},
-            {'value': 'flowers'},
+            {'value': 'flutter documentation'},
+            {'value': 'flower delivery'},
           ],
-          'credits': 5,
+          'credits': 2,
         };
-
+        final query = AutocompleteQuery(q: 'flo');
+        final requestData = json.encode([query.toJson()]);
         when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://google.serper.dev/autocomplete',
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).thenAnswer(
           (_) async => Response(
@@ -269,23 +369,24 @@ void main() {
             requestOptions: RequestOptions(path: ''),
           ),
         );
-
         // Act
-        final result = await serper.autocomplete([AutocompleteQuery(q: 'flo')]);
-
+        final result = await serper.autocomplete([query]);
         // Assert
         verify(
-          mockDio.post(
+          mockDio.request(
             'https://google.serper.dev/autocomplete',
-            data: anyNamed('data'),
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).called(1);
-
         expect(result, isA<AutocompleteResponse>());
         expect(result.suggestions.length, equals(2));
-        expect(result.suggestions.first.value, equals('flutter'));
-        expect(result.credits, equals(5));
+        expect(result.suggestions.first.value, equals('flutter documentation'));
+        expect(result.credits, equals(2));
       },
     );
 
@@ -297,20 +398,28 @@ void main() {
           'searchParameters': {'url': 'https://example.com'},
           'results': [
             {
-              'title': 'Example Website',
-              'link': 'https://example.com',
-              'snippet': 'This is an example website...',
-              'position': 1,
+              'text': 'This is the extracted text from example.com.',
+              'markdown': '# Example Website\\nThis is an example snippet.',
+              'metadata': {
+                'title': 'Example Website',
+                'link': 'https://example.com',
+                'snippet': 'This is an example snippet.',
+              },
+              'credits': 1,
             },
           ],
-          'credits': 10,
         };
-
+        final query = WebpageQuery(url: 'https://example.com');
+        final requestData = json.encode([query.toJson()]);
         when(
-          mockDio.post(
-            any,
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://scrape.serper.dev/webpage', // Corrected URL
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).thenAnswer(
           (_) async => Response(
@@ -321,24 +430,39 @@ void main() {
         );
 
         // Act
-        final result = await serper.webpage([
-          WebpageQuery(url: 'https://example.com'),
-        ]);
+        final result = await serper.webpage([query]);
 
         // Assert
         verify(
-          mockDio.post(
-            'https://google.serper.dev/webpage',
-            data: anyNamed('data'),
+          mockDio.request(
+            'https://scrape.serper.dev/webpage', // Corrected URL
+            data: requestData,
             options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
           ),
         ).called(1);
 
         expect(result, isA<WebpageResponse>());
         expect(result.results.length, equals(1));
-        expect(result.results.first.title, equals('Example Website'));
-        expect(result.results.first.link, equals('https://example.com'));
-        expect(result.credits, equals(10));
+        final firstResult = result.results.first;
+        expect(
+          firstResult.text,
+          equals('This is the extracted text from example.com.'),
+        );
+        expect(
+          firstResult.markdown,
+          equals('# Example Website\\nThis is an example snippet.'),
+        );
+        expect(firstResult.metadata?['title'], equals('Example Website'));
+        expect(firstResult.metadata?['link'], equals('https://example.com'));
+        expect(
+          firstResult.metadata?['snippet'],
+          equals('This is an example snippet.'),
+        );
+        expect(firstResult.credits, equals(1));
       },
     );
   });
