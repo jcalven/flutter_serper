@@ -16,6 +16,9 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AutocompleteSuggestion {
 
+/// The suggested search query completion.
+///
+/// This is a possible completion of the user's partial query.
  String get value;
 /// Create a copy of AutocompleteSuggestion
 /// with the given fields replaced by the non-null parameter values.
@@ -83,6 +86,9 @@ class _AutocompleteSuggestion implements AutocompleteSuggestion {
   const _AutocompleteSuggestion({required this.value});
   factory _AutocompleteSuggestion.fromJson(Map<String, dynamic> json) => _$AutocompleteSuggestionFromJson(json);
 
+/// The suggested search query completion.
+///
+/// This is a possible completion of the user's partial query.
 @override final  String value;
 
 /// Create a copy of AutocompleteSuggestion
@@ -149,7 +155,21 @@ as String,
 /// @nodoc
 mixin _$OrganicResult {
 
- String get title; String get link; String get snippet; String? get date; double? get rating; int? get ratingCount; String? get imageUrl; int get position; dynamic get sitelinks;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.snippetDoc}
+ String get snippet;/// {@macro ResultDocTemplates.dateDoc}
+ String? get date;/// {@macro ResultDocTemplates.ratingDoc}
+ double? get rating;/// The count of ratings for this result.
+///
+/// Represents the number of user ratings that contributed to the overall rating.
+ int? get ratingCount;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;/// Additional links to specific sections within the result website.
+///
+/// These are subcategory links that provide direct access to different
+/// sections of the website.
+ dynamic get sitelinks;
 /// Create a copy of OrganicResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -224,14 +244,28 @@ class _OrganicResult implements OrganicResult {
   const _OrganicResult({required this.title, required this.link, required this.snippet, this.date, this.rating, this.ratingCount, this.imageUrl, required this.position, this.sitelinks});
   factory _OrganicResult.fromJson(Map<String, dynamic> json) => _$OrganicResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String snippet;
+/// {@macro ResultDocTemplates.dateDoc}
 @override final  String? date;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double? rating;
+/// The count of ratings for this result.
+///
+/// Represents the number of user ratings that contributed to the overall rating.
 @override final  int? ratingCount;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
+/// Additional links to specific sections within the result website.
+///
+/// These are subcategory links that provide direct access to different
+/// sections of the website.
 @override final  dynamic sitelinks;
 
 /// Create a copy of OrganicResult
@@ -306,6 +340,9 @@ as dynamic,
 /// @nodoc
 mixin _$RelatedSearchResult {
 
+/// The related search query text.
+///
+/// This is an alternative search term that users might be interested in.
  String get query;
 /// Create a copy of RelatedSearchResult
 /// with the given fields replaced by the non-null parameter values.
@@ -373,6 +410,9 @@ class _RelatedSearchResult implements RelatedSearchResult {
   const _RelatedSearchResult({required this.query});
   factory _RelatedSearchResult.fromJson(Map<String, dynamic> json) => _$RelatedSearchResultFromJson(json);
 
+/// The related search query text.
+///
+/// This is an alternative search term that users might be interested in.
 @override final  String query;
 
 /// Create a copy of RelatedSearchResult
@@ -439,7 +479,17 @@ as String,
 /// @nodoc
 mixin _$PeopleAlsoAskResult {
 
- String get question; String? get snippet; String? get title; String? get link;
+/// The question that people also ask about the search topic.
+ String get question;/// {@macro ResultDocTemplates.snippetDoc}
+///
+/// This is a brief answer to the question.
+ String? get snippet;/// {@macro ResultDocTemplates.titleDoc}
+///
+/// The title of the source that provides the answer.
+ String? get title;/// {@macro ResultDocTemplates.linkDoc}
+///
+/// Link to the source that provides more detailed information about the question.
+ String? get link;
 /// Create a copy of PeopleAlsoAskResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -509,9 +559,19 @@ class _PeopleAlsoAskResult implements PeopleAlsoAskResult {
   const _PeopleAlsoAskResult({required this.question, this.snippet, this.title, this.link});
   factory _PeopleAlsoAskResult.fromJson(Map<String, dynamic> json) => _$PeopleAlsoAskResultFromJson(json);
 
+/// The question that people also ask about the search topic.
 @override final  String question;
+/// {@macro ResultDocTemplates.snippetDoc}
+///
+/// This is a brief answer to the question.
 @override final  String? snippet;
+/// {@macro ResultDocTemplates.titleDoc}
+///
+/// The title of the source that provides the answer.
 @override final  String? title;
+/// {@macro ResultDocTemplates.linkDoc}
+///
+/// Link to the source that provides more detailed information about the question.
 @override final  String? link;
 
 /// Create a copy of PeopleAlsoAskResult
@@ -581,7 +641,25 @@ as String?,
 /// @nodoc
 mixin _$PlacesResult {
 
- String get title; String get address; String? get phone; double? get rating; int? get reviewCount; String? get website; String? get type; String? get priceLevel; List<String>? get openingHours; int? get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
+ String get address;/// The phone number of the place.
+ String? get phone;/// {@macro ResultDocTemplates.ratingDoc}
+ double? get rating;/// {@macro ResultDocTemplates.reviewCountDoc}
+ int? get reviewCount;/// The URL of the place's website.
+ String? get website;/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
+ String? get type;/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
+ String? get priceLevel;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// {@macro ResultDocTemplates.positionDoc}
+ int? get position;
 /// Create a copy of PlacesResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -657,15 +735,35 @@ class _PlacesResult implements PlacesResult {
   const _PlacesResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, final  List<String>? openingHours, this.position}): _openingHours = openingHours;
   factory _PlacesResult.fromJson(Map<String, dynamic> json) => _$PlacesResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
 @override final  String address;
+/// The phone number of the place.
 @override final  String? phone;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double? rating;
+/// {@macro ResultDocTemplates.reviewCountDoc}
 @override final  int? reviewCount;
+/// The URL of the place's website.
 @override final  String? website;
+/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
 @override final  String? type;
+/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String? priceLevel;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
  final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
 @override List<String>? get openingHours {
   final value = _openingHours;
   if (value == null) return null;
@@ -674,6 +772,7 @@ class _PlacesResult implements PlacesResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int? position;
 
 /// Create a copy of PlacesResult
@@ -749,7 +848,17 @@ as int?,
 /// @nodoc
 mixin _$TopStoriesResult {
 
- String get title; String get link; String? get date; String? get source; String? get imageUrl; String? get snippet;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For top stories, this is typically the publication date.
+ String? get date;/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For top stories, this is the name of the news outlet.
+ String? get source;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.snippetDoc}
+ String? get snippet;
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -821,11 +930,21 @@ class _TopStoriesResult implements TopStoriesResult {
   const _TopStoriesResult({required this.title, required this.link, this.date, this.source, this.imageUrl, this.snippet});
   factory _TopStoriesResult.fromJson(Map<String, dynamic> json) => _$TopStoriesResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For top stories, this is typically the publication date.
 @override final  String? date;
+/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For top stories, this is the name of the news outlet.
 @override final  String? source;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String? snippet;
 
 /// Create a copy of TopStoriesResult
@@ -897,7 +1016,16 @@ as String?,
 /// @nodoc
 mixin _$TwitterResult {
 
- String? get title; String get link; String? get snippet;
+/// {@macro ResultDocTemplates.titleDoc}
+///
+/// For Twitter results, this is typically the username or post title.
+ String? get title;/// {@macro ResultDocTemplates.linkDoc}
+///
+/// For Twitter results, this is the URL to the specific tweet.
+ String get link;/// {@macro ResultDocTemplates.snippetDoc}
+///
+/// For Twitter results, this is typically the text content of the tweet.
+ String? get snippet;
 /// Create a copy of TwitterResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -966,8 +1094,17 @@ class _TwitterResult implements TwitterResult {
   const _TwitterResult({this.title, required this.link, this.snippet});
   factory _TwitterResult.fromJson(Map<String, dynamic> json) => _$TwitterResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
+///
+/// For Twitter results, this is typically the username or post title.
 @override final  String? title;
+/// {@macro ResultDocTemplates.linkDoc}
+///
+/// For Twitter results, this is the URL to the specific tweet.
 @override final  String link;
+/// {@macro ResultDocTemplates.snippetDoc}
+///
+/// For Twitter results, this is typically the text content of the tweet.
 @override final  String? snippet;
 
 /// Create a copy of TwitterResult
@@ -1036,7 +1173,11 @@ as String?,
 /// @nodoc
 mixin _$ImagesResult {
 
- String get title; String get imageUrl; String get source; String get sourceUrl;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String get imageUrl;/// {@macro ResultDocTemplates.sourceDoc}
+ String get source;/// {@macro ResultDocTemplates.sourceUrlDoc}
+ String get sourceUrl;
 /// Create a copy of ImagesResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1106,9 +1247,13 @@ class _ImagesResult implements ImagesResult {
   const _ImagesResult({required this.title, required this.imageUrl, required this.source, required this.sourceUrl});
   factory _ImagesResult.fromJson(Map<String, dynamic> json) => _$ImagesResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String imageUrl;
+/// {@macro ResultDocTemplates.sourceDoc}
 @override final  String source;
+/// {@macro ResultDocTemplates.sourceUrlDoc}
 @override final  String sourceUrl;
 
 /// Create a copy of ImagesResult
@@ -1178,7 +1323,24 @@ as String,
 /// @nodoc
 mixin _$KnowledgeGraphResult {
 
- String get title; String? get type; String? get imageUrl; Map<String, dynamic>? get attributes; String? get description; String? get descriptionLink; String? get descriptionSource;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// The type of entity represented in the Knowledge Graph.
+///
+/// Examples include "Person", "Organization", "Place", etc.
+ String? get type;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// Additional attributes associated with this entity.
+///
+/// This is a map of key-value pairs containing various facts about the entity.
+ Map<String, dynamic>? get attributes;/// A description of the entity.
+///
+/// This provides additional context or explanation about the entity.
+ String? get description;/// A link to the source of the description.
+///
+/// This URL can be used to find more information about the entity.
+ String? get descriptionLink;/// The source of the description.
+///
+/// Indicates where the description text originated from.
+ String? get descriptionSource;
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1251,10 +1413,21 @@ class _KnowledgeGraphResult implements KnowledgeGraphResult {
   const _KnowledgeGraphResult({required this.title, this.type, this.imageUrl, final  Map<String, dynamic>? attributes, this.description, this.descriptionLink, this.descriptionSource}): _attributes = attributes;
   factory _KnowledgeGraphResult.fromJson(Map<String, dynamic> json) => _$KnowledgeGraphResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// The type of entity represented in the Knowledge Graph.
+///
+/// Examples include "Person", "Organization", "Place", etc.
 @override final  String? type;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// Additional attributes associated with this entity.
+///
+/// This is a map of key-value pairs containing various facts about the entity.
  final  Map<String, dynamic>? _attributes;
+/// Additional attributes associated with this entity.
+///
+/// This is a map of key-value pairs containing various facts about the entity.
 @override Map<String, dynamic>? get attributes {
   final value = _attributes;
   if (value == null) return null;
@@ -1263,8 +1436,17 @@ class _KnowledgeGraphResult implements KnowledgeGraphResult {
   return EqualUnmodifiableMapView(value);
 }
 
+/// A description of the entity.
+///
+/// This provides additional context or explanation about the entity.
 @override final  String? description;
+/// A link to the source of the description.
+///
+/// This URL can be used to find more information about the entity.
 @override final  String? descriptionLink;
+/// The source of the description.
+///
+/// Indicates where the description text originated from.
 @override final  String? descriptionSource;
 
 /// Create a copy of KnowledgeGraphResult
@@ -1337,7 +1519,25 @@ as String?,
 /// @nodoc
 mixin _$LocalResultsResult {
 
- String get title; String get address; String? get phone; String? get website; double? get rating; int? get reviewCount; String? get priceLevel; List<String>? get openingHours; List<dynamic>? get moreHours; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// The full address of the local business.
+///
+/// Typically includes street, city, state/province, and postal code.
+ String get address;/// The phone number of the local business.
+ String? get phone;/// The URL of the local business's website.
+ String? get website;/// {@macro ResultDocTemplates.ratingDoc}
+ double? get rating;/// {@macro ResultDocTemplates.reviewCountDoc}
+ int? get reviewCount;/// The price level of the local business.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
+ String? get priceLevel;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// Additional business hours information.
+///
+/// May include holiday hours, special hours, etc.
+ List<dynamic>? get moreHours;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of LocalResultsResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1413,14 +1613,31 @@ class _LocalResultsResult implements LocalResultsResult {
   const _LocalResultsResult({required this.title, required this.address, this.phone, this.website, this.rating, this.reviewCount, this.priceLevel, final  List<String>? openingHours, final  List<dynamic>? moreHours, required this.position}): _openingHours = openingHours,_moreHours = moreHours;
   factory _LocalResultsResult.fromJson(Map<String, dynamic> json) => _$LocalResultsResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// The full address of the local business.
+///
+/// Typically includes street, city, state/province, and postal code.
 @override final  String address;
+/// The phone number of the local business.
 @override final  String? phone;
+/// The URL of the local business's website.
 @override final  String? website;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double? rating;
+/// {@macro ResultDocTemplates.reviewCountDoc}
 @override final  int? reviewCount;
+/// The price level of the local business.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String? priceLevel;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
  final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
 @override List<String>? get openingHours {
   final value = _openingHours;
   if (value == null) return null;
@@ -1429,7 +1646,13 @@ class _LocalResultsResult implements LocalResultsResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// Additional business hours information.
+///
+/// May include holiday hours, special hours, etc.
  final  List<dynamic>? _moreHours;
+/// Additional business hours information.
+///
+/// May include holiday hours, special hours, etc.
 @override List<dynamic>? get moreHours {
   final value = _moreHours;
   if (value == null) return null;
@@ -1438,6 +1661,7 @@ class _LocalResultsResult implements LocalResultsResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of LocalResultsResult
@@ -1513,7 +1737,17 @@ as int,
 /// @nodoc
 mixin _$ImageResult {
 
- String? get title; String? get imageUrl; String? get thumbnailUrl; String? get source; String? get sourceUrl; String? get price; String? get domain; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String? get title;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String? get thumbnailUrl;/// {@macro ResultDocTemplates.sourceDoc}
+ String? get source;/// {@macro ResultDocTemplates.sourceUrlDoc}
+ String? get sourceUrl;/// {@macro ResultDocTemplates.priceDoc}
+ String? get price;/// The domain of the website hosting the image.
+///
+/// This is the root domain name of the source website.
+ String? get domain;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of ImageResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1587,13 +1821,23 @@ class _ImageResult implements ImageResult {
   const _ImageResult({this.title, this.imageUrl, this.thumbnailUrl, this.source, this.sourceUrl, this.price, this.domain, required this.position});
   factory _ImageResult.fromJson(Map<String, dynamic> json) => _$ImageResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String? title;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String? thumbnailUrl;
+/// {@macro ResultDocTemplates.sourceDoc}
 @override final  String? source;
+/// {@macro ResultDocTemplates.sourceUrlDoc}
 @override final  String? sourceUrl;
+/// {@macro ResultDocTemplates.priceDoc}
 @override final  String? price;
+/// The domain of the website hosting the image.
+///
+/// This is the root domain name of the source website.
 @override final  String? domain;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of ImageResult
@@ -1667,7 +1911,28 @@ as int,
 /// @nodoc
 mixin _$PlaceResult {
 
- String get title; String get address; String? get phone; double? get rating; int? get reviewCount; String? get website; String? get type; String? get priceLevel; List<String>? get openingHours; String? get cid; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
+ String get address;/// The phone number of the place.
+ String? get phone;/// {@macro ResultDocTemplates.ratingDoc}
+ double? get rating;/// {@macro ResultDocTemplates.reviewCountDoc}
+ int? get reviewCount;/// The URL of the place's website.
+ String? get website;/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
+ String? get type;/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
+ String? get priceLevel;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
+ String? get cid;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1744,15 +2009,35 @@ class _PlaceResult implements PlaceResult {
   const _PlaceResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, final  List<String>? openingHours, this.cid, required this.position}): _openingHours = openingHours;
   factory _PlaceResult.fromJson(Map<String, dynamic> json) => _$PlaceResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
 @override final  String address;
+/// The phone number of the place.
 @override final  String? phone;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double? rating;
+/// {@macro ResultDocTemplates.reviewCountDoc}
 @override final  int? reviewCount;
+/// The URL of the place's website.
 @override final  String? website;
+/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
 @override final  String? type;
+/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String? priceLevel;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
  final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
 @override List<String>? get openingHours {
   final value = _openingHours;
   if (value == null) return null;
@@ -1761,7 +2046,11 @@ class _PlaceResult implements PlaceResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
 @override final  String? cid;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of PlaceResult
@@ -1838,7 +2127,23 @@ as int,
 /// @nodoc
 mixin _$VideoResult {
 
- String get title; String get link; String? get snippet; String? get source; String? get channelLink; String? get date; String? get duration; String get thumbnailUrl; int? get viewCount; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.snippetDoc}
+ String? get snippet;/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For video results, this is typically the video platform or publisher.
+ String? get source;/// The URL to the channel that published the video.
+ String? get channelLink;/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For video results, this is typically the publication date.
+ String? get date;/// The duration or length of the video.
+///
+/// Typically formatted as a time string (e.g., "10:30").
+ String? get duration;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;/// The number of times the video has been viewed.
+ int? get viewCount;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1914,15 +2219,31 @@ class _VideoResult implements VideoResult {
   const _VideoResult({required this.title, required this.link, this.snippet, this.source, this.channelLink, this.date, this.duration, required this.thumbnailUrl, this.viewCount, required this.position});
   factory _VideoResult.fromJson(Map<String, dynamic> json) => _$VideoResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String? snippet;
+/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For video results, this is typically the video platform or publisher.
 @override final  String? source;
+/// The URL to the channel that published the video.
 @override final  String? channelLink;
+/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For video results, this is typically the publication date.
 @override final  String? date;
+/// The duration or length of the video.
+///
+/// Typically formatted as a time string (e.g., "10:30").
 @override final  String? duration;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String thumbnailUrl;
+/// The number of times the video has been viewed.
 @override final  int? viewCount;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of VideoResult
@@ -1998,7 +2319,42 @@ as int,
 /// @nodoc
 mixin _$MapResult {
 
- String get title; String get cid; String get address; double get rating; int get reviewCount; String get priceLevel; String get type; String? get phone; String? get website; List<String>? get categories; List<String>? get openingHours; List<MapResultReview>? get reviews; List<MapResultPhoto>? get photos; Map<String, dynamic>? get additionalInfo; String? get description;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
+ String get cid;/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
+ String get address;/// {@macro ResultDocTemplates.ratingDoc}
+ double get rating;/// {@macro ResultDocTemplates.reviewCountDoc}
+ int get reviewCount;/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
+ String get priceLevel;/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
+ String get type;/// The phone number of the place.
+ String? get phone;/// The URL of the place's website.
+ String? get website;/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
+ List<String>? get categories;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
+ List<MapResultReview>? get reviews;/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
+ List<MapResultPhoto>? get photos;/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
+ Map<String, dynamic>? get additionalInfo;/// A description of the place.
+///
+/// Provides additional context or explanation about the place.
+ String? get description;
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2079,16 +2435,39 @@ class _MapResult implements MapResult {
   const _MapResult({required this.title, required this.cid, required this.address, required this.rating, required this.reviewCount, required this.priceLevel, required this.type, this.phone, this.website, final  List<String>? categories, final  List<String>? openingHours, final  List<MapResultReview>? reviews, final  List<MapResultPhoto>? photos, final  Map<String, dynamic>? additionalInfo, this.description}): _categories = categories,_openingHours = openingHours,_reviews = reviews,_photos = photos,_additionalInfo = additionalInfo;
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
 @override final  String cid;
+/// The full address of the place.
+///
+/// Typically includes street, city, state/province, and postal code.
 @override final  String address;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double rating;
+/// {@macro ResultDocTemplates.reviewCountDoc}
 @override final  int reviewCount;
+/// The price level of the place.
+///
+/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String priceLevel;
+/// The type or category of the place.
+///
+/// Examples include "Restaurant", "Hotel", "Attraction", etc.
 @override final  String type;
+/// The phone number of the place.
 @override final  String? phone;
+/// The URL of the place's website.
 @override final  String? website;
+/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
  final  List<String>? _categories;
+/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
 @override List<String>? get categories {
   final value = _categories;
   if (value == null) return null;
@@ -2097,7 +2476,13 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
  final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
 @override List<String>? get openingHours {
   final value = _openingHours;
   if (value == null) return null;
@@ -2106,7 +2491,13 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
  final  List<MapResultReview>? _reviews;
+/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
 @override List<MapResultReview>? get reviews {
   final value = _reviews;
   if (value == null) return null;
@@ -2115,7 +2506,13 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
  final  List<MapResultPhoto>? _photos;
+/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
 @override List<MapResultPhoto>? get photos {
   final value = _photos;
   if (value == null) return null;
@@ -2124,7 +2521,13 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
  final  Map<String, dynamic>? _additionalInfo;
+/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
 @override Map<String, dynamic>? get additionalInfo {
   final value = _additionalInfo;
   if (value == null) return null;
@@ -2133,6 +2536,9 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableMapView(value);
 }
 
+/// A description of the place.
+///
+/// Provides additional context or explanation about the place.
 @override final  String? description;
 
 /// Create a copy of MapResult
@@ -2213,7 +2619,14 @@ as String?,
 /// @nodoc
 mixin _$MapResultReview {
 
- String get author; String get authorUrl; String get text; double get rating; String get date;
+/// The name of the review author.
+ String get author;/// The URL to the author's profile.
+ String get authorUrl;/// The text content of the review.
+///
+/// Contains the user's feedback about the place.
+ String get text;/// {@macro ResultDocTemplates.ratingDoc}
+ double get rating;/// {@macro ResultDocTemplates.dateDoc}
+ String get date;
 /// Create a copy of MapResultReview
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2284,10 +2697,17 @@ class _MapResultReview implements MapResultReview {
   const _MapResultReview({required this.author, required this.authorUrl, required this.text, required this.rating, required this.date});
   factory _MapResultReview.fromJson(Map<String, dynamic> json) => _$MapResultReviewFromJson(json);
 
+/// The name of the review author.
 @override final  String author;
+/// The URL to the author's profile.
 @override final  String authorUrl;
+/// The text content of the review.
+///
+/// Contains the user's feedback about the place.
 @override final  String text;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double rating;
+/// {@macro ResultDocTemplates.dateDoc}
 @override final  String date;
 
 /// Create a copy of MapResultReview
@@ -2358,7 +2778,9 @@ as String,
 /// @nodoc
 mixin _$MapResultPhoto {
 
- String get imageUrl; String get thumbnailUrl;
+/// {@macro ResultDocTemplates.imageUrlDoc}
+ String get imageUrl;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;
 /// Create a copy of MapResultPhoto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2426,7 +2848,9 @@ class _MapResultPhoto implements MapResultPhoto {
   const _MapResultPhoto({required this.imageUrl, required this.thumbnailUrl});
   factory _MapResultPhoto.fromJson(Map<String, dynamic> json) => _$MapResultPhotoFromJson(json);
 
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String imageUrl;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String thumbnailUrl;
 
 /// Create a copy of MapResultPhoto
@@ -2494,7 +2918,19 @@ as String,
 /// @nodoc
 mixin _$PlaceReview {
 
- String get author; String get authorUrl; String get text; double get rating; String get date; String? get id; bool? get isLocalGuide; int get position;
+/// The name of the review author.
+ String get author;/// The URL to the author's profile.
+ String get authorUrl;/// The text content of the review.
+///
+/// Contains the user's feedback about the place.
+ String get text;/// {@macro ResultDocTemplates.ratingDoc}
+ double get rating;/// {@macro ResultDocTemplates.dateDoc}
+ String get date;/// The unique identifier for this review.
+ String? get id;/// Whether the author is a Google Local Guide.
+///
+/// Local Guides are trusted reviewers in the Google Maps community.
+ bool? get isLocalGuide;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of PlaceReview
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2568,13 +3004,25 @@ class _PlaceReview implements PlaceReview {
   const _PlaceReview({required this.author, required this.authorUrl, required this.text, required this.rating, required this.date, this.id, this.isLocalGuide, required this.position});
   factory _PlaceReview.fromJson(Map<String, dynamic> json) => _$PlaceReviewFromJson(json);
 
+/// The name of the review author.
 @override final  String author;
+/// The URL to the author's profile.
 @override final  String authorUrl;
+/// The text content of the review.
+///
+/// Contains the user's feedback about the place.
 @override final  String text;
+/// {@macro ResultDocTemplates.ratingDoc}
 @override final  double rating;
+/// {@macro ResultDocTemplates.dateDoc}
 @override final  String date;
+/// The unique identifier for this review.
 @override final  String? id;
+/// Whether the author is a Google Local Guide.
+///
+/// Local Guides are trusted reviewers in the Google Maps community.
 @override final  bool? isLocalGuide;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of PlaceReview
@@ -2648,7 +3096,18 @@ as int,
 /// @nodoc
 mixin _$NewsResult {
 
- String get title; String get link; String get snippet; String get date; String get source; String? get imageUrl; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.snippetDoc}
+ String get snippet;/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For news results, this is typically the publication date.
+ String get date;/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For news results, this is the name of the news outlet.
+ String get source;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of NewsResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2721,12 +3180,23 @@ class _NewsResult implements NewsResult {
   const _NewsResult({required this.title, required this.link, required this.snippet, required this.date, required this.source, this.imageUrl, required this.position});
   factory _NewsResult.fromJson(Map<String, dynamic> json) => _$NewsResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String snippet;
+/// {@macro ResultDocTemplates.dateDoc}
+///
+/// For news results, this is typically the publication date.
 @override final  String date;
+/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For news results, this is the name of the news outlet.
 @override final  String source;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of NewsResult
@@ -2799,7 +3269,18 @@ as int,
 /// @nodoc
 mixin _$ShoppingResult {
 
- String get title; String? get source; String get link; String? get price; String? get delivery; String? get imageUrl; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For shopping results, this is typically the retailer or merchant name.
+ String? get source;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.priceDoc}
+ String? get price;/// Shipping or delivery information for the product.
+///
+/// May include cost, timeframe, or other delivery details.
+ String? get delivery;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String? get imageUrl;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of ShoppingResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2872,12 +3353,23 @@ class _ShoppingResult implements ShoppingResult {
   const _ShoppingResult({required this.title, this.source, required this.link, this.price, this.delivery, this.imageUrl, required this.position});
   factory _ShoppingResult.fromJson(Map<String, dynamic> json) => _$ShoppingResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.sourceDoc}
+///
+/// For shopping results, this is typically the retailer or merchant name.
 @override final  String? source;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.priceDoc}
 @override final  String? price;
+/// Shipping or delivery information for the product.
+///
+/// May include cost, timeframe, or other delivery details.
 @override final  String? delivery;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String? imageUrl;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of ShoppingResult
@@ -2950,7 +3442,12 @@ as int,
 /// @nodoc
 mixin _$LensResult {
 
- String get title; String get source; String get link; String get imageUrl; String get thumbnailUrl;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.sourceDoc}
+ String get source;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// {@macro ResultDocTemplates.imageUrlDoc}
+ String get imageUrl;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;
 /// Create a copy of LensResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3021,10 +3518,15 @@ class _LensResult implements LensResult {
   const _LensResult({required this.title, required this.source, required this.link, required this.imageUrl, required this.thumbnailUrl});
   factory _LensResult.fromJson(Map<String, dynamic> json) => _$LensResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.sourceDoc}
 @override final  String source;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String imageUrl;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String thumbnailUrl;
 
 /// Create a copy of LensResult
@@ -3095,7 +3597,19 @@ as String,
 /// @nodoc
 mixin _$ScholarResult {
 
- String get title; String get link; String get publicationInfo; String get snippet; int get year; int get citedBy; String get pdfUrl; String get id;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// Information about the publication.
+///
+/// Typically includes the journal name, conference, or publisher details.
+ String get publicationInfo;/// {@macro ResultDocTemplates.snippetDoc}
+ String get snippet;/// The year the academic paper was published.
+ int get year;/// The number of times this paper has been cited by other papers.
+///
+/// This is an indicator of the paper's influence in its field.
+ int get citedBy;/// URL to the PDF version of the academic paper.
+ String get pdfUrl;/// The unique identifier for this academic paper.
+ String get id;
 /// Create a copy of ScholarResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3169,13 +3683,25 @@ class _ScholarResult implements ScholarResult {
   const _ScholarResult({required this.title, required this.link, required this.publicationInfo, required this.snippet, required this.year, required this.citedBy, required this.pdfUrl, required this.id});
   factory _ScholarResult.fromJson(Map<String, dynamic> json) => _$ScholarResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// Information about the publication.
+///
+/// Typically includes the journal name, conference, or publisher details.
 @override final  String publicationInfo;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String snippet;
+/// The year the academic paper was published.
 @override final  int year;
+/// The number of times this paper has been cited by other papers.
+///
+/// This is an indicator of the paper's influence in its field.
 @override final  int citedBy;
+/// URL to the PDF version of the academic paper.
 @override final  String pdfUrl;
+/// The unique identifier for this academic paper.
 @override final  String id;
 
 /// Create a copy of ScholarResult
@@ -3249,7 +3775,26 @@ as String,
 /// @nodoc
 mixin _$PatentResult {
 
- String get title; String get snippet; String get link; String get priorityDate; String get filingDate; String? get grantDate; String get publicationDate; String get inventor; String get assignee; String get publicationNumber; String get language; String get thumbnailUrl; String? get pdfUrl; List<PatentFigure>? get figures; int get position;
+/// {@macro ResultDocTemplates.titleDoc}
+ String get title;/// {@macro ResultDocTemplates.snippetDoc}
+ String get snippet;/// {@macro ResultDocTemplates.linkDoc}
+ String get link;/// The priority date of the patent.
+///
+/// This is the earliest filing date in a family of patents.
+ String get priorityDate;/// The date when the patent application was filed.
+ String get filingDate;/// The date when the patent was granted, if applicable.
+ String? get grantDate;/// The date when the patent was published.
+ String get publicationDate;/// The name(s) of the inventor(s) of the patent.
+ String get inventor;/// The name of the entity to whom the patent is assigned.
+ String get assignee;/// The official publication number of the patent.
+ String get publicationNumber;/// The language in which the patent is written.
+ String get language;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;/// URL to the PDF version of the patent document.
+ String? get pdfUrl;/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
+ List<PatentFigure>? get figures;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3330,20 +3875,41 @@ class _PatentResult implements PatentResult {
   const _PatentResult({required this.title, required this.snippet, required this.link, required this.priorityDate, required this.filingDate, this.grantDate, required this.publicationDate, required this.inventor, required this.assignee, required this.publicationNumber, required this.language, required this.thumbnailUrl, this.pdfUrl, final  List<PatentFigure>? figures, required this.position}): _figures = figures;
   factory _PatentResult.fromJson(Map<String, dynamic> json) => _$PatentResultFromJson(json);
 
+/// {@macro ResultDocTemplates.titleDoc}
 @override final  String title;
+/// {@macro ResultDocTemplates.snippetDoc}
 @override final  String snippet;
+/// {@macro ResultDocTemplates.linkDoc}
 @override final  String link;
+/// The priority date of the patent.
+///
+/// This is the earliest filing date in a family of patents.
 @override final  String priorityDate;
+/// The date when the patent application was filed.
 @override final  String filingDate;
+/// The date when the patent was granted, if applicable.
 @override final  String? grantDate;
+/// The date when the patent was published.
 @override final  String publicationDate;
+/// The name(s) of the inventor(s) of the patent.
 @override final  String inventor;
+/// The name of the entity to whom the patent is assigned.
 @override final  String assignee;
+/// The official publication number of the patent.
 @override final  String publicationNumber;
+/// The language in which the patent is written.
 @override final  String language;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String thumbnailUrl;
+/// URL to the PDF version of the patent document.
 @override final  String? pdfUrl;
+/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
  final  List<PatentFigure>? _figures;
+/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
 @override List<PatentFigure>? get figures {
   final value = _figures;
   if (value == null) return null;
@@ -3352,6 +3918,7 @@ class _PatentResult implements PatentResult {
   return EqualUnmodifiableListView(value);
 }
 
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of PatentResult
@@ -3432,7 +3999,9 @@ as int,
 /// @nodoc
 mixin _$PatentFigure {
 
- String get imageUrl; String get thumbnailUrl;
+/// {@macro ResultDocTemplates.imageUrlDoc}
+ String get imageUrl;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;
 /// Create a copy of PatentFigure
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3500,7 +4069,9 @@ class _PatentFigure implements PatentFigure {
   const _PatentFigure({required this.imageUrl, required this.thumbnailUrl});
   factory _PatentFigure.fromJson(Map<String, dynamic> json) => _$PatentFigureFromJson(json);
 
+/// {@macro ResultDocTemplates.imageUrlDoc}
 @override final  String imageUrl;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
 @override final  String thumbnailUrl;
 
 /// Create a copy of PatentFigure
@@ -3568,7 +4139,19 @@ as String,
 /// @nodoc
 mixin _$WebpageResult {
 
- String get text; String? get markdown; Map<String, dynamic>? get metadata; int get credits;
+/// The extracted text content from the webpage.
+///
+/// This is the main content that has been parsed from the webpage.
+ String get text;/// The content formatted as markdown, if available.
+///
+/// This provides a structured representation of the content with formatting.
+ String? get markdown;/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
+ Map<String, dynamic>? get metadata;/// The number of credits used for extracting this webpage.
+///
+/// Serper API uses a credit-based system for billing.
+ int get credits;
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3638,9 +4221,21 @@ class _WebpageResult implements WebpageResult {
   const _WebpageResult({required this.text, this.markdown, final  Map<String, dynamic>? metadata, required this.credits}): _metadata = metadata;
   factory _WebpageResult.fromJson(Map<String, dynamic> json) => _$WebpageResultFromJson(json);
 
+/// The extracted text content from the webpage.
+///
+/// This is the main content that has been parsed from the webpage.
 @override final  String text;
+/// The content formatted as markdown, if available.
+///
+/// This provides a structured representation of the content with formatting.
 @override final  String? markdown;
+/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
  final  Map<String, dynamic>? _metadata;
+/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
 @override Map<String, dynamic>? get metadata {
   final value = _metadata;
   if (value == null) return null;
@@ -3649,6 +4244,9 @@ class _WebpageResult implements WebpageResult {
   return EqualUnmodifiableMapView(value);
 }
 
+/// The number of credits used for extracting this webpage.
+///
+/// Serper API uses a credit-based system for billing.
 @override final  int credits;
 
 /// Create a copy of WebpageResult

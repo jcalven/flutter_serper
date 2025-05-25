@@ -16,19 +16,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AutocompleteQuery {
 
-/// The query string to autocomplete.
-///
-/// This is a required parameter and should not be empty.
- String get q;/// Optional location to filter results.
-///
-/// This can be a city, state, or country.
- String? get location;/// Optional Google location parameter.
-///
-/// This can be used to specify a location bias.
- String? get gl;/// Optional language parameter.
-///
-/// This can be used to specify the language of the results.
-/// For example, 'en' for English, 'es' for Spanish, etc.
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
  String? get hl;
 /// Create a copy of AutocompleteQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -99,22 +90,13 @@ class _AutocompleteQuery implements AutocompleteQuery {
   const _AutocompleteQuery({required this.q, this.location, this.gl, this.hl});
   factory _AutocompleteQuery.fromJson(Map<String, dynamic> json) => _$AutocompleteQueryFromJson(json);
 
-/// The query string to autocomplete.
-///
-/// This is a required parameter and should not be empty.
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
-/// Optional location to filter results.
-///
-/// This can be a city, state, or country.
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
-/// Optional Google location parameter.
-///
-/// This can be used to specify a location bias.
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
-/// Optional language parameter.
-///
-/// This can be used to specify the language of the results.
-/// For example, 'en' for English, 'es' for Spanish, etc.
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
 
 /// Create a copy of AutocompleteQuery
@@ -184,7 +166,15 @@ as String?,
 /// @nodoc
 mixin _$ImagesQuery {
 
- String get q; String? get location; String? get gl; String? get hl; int? get num; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.numDoc}
+ int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of ImagesQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -258,13 +248,21 @@ class _ImagesQuery implements ImagesQuery {
   const _ImagesQuery({required this.q, this.location, this.gl, this.hl, this.num, this.autocorrect, this.tbs, this.page});
   factory _ImagesQuery.fromJson(Map<String, dynamic> json) => _$ImagesQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.numDoc}
 @override final  int? num;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of ImagesQuery
@@ -338,7 +336,14 @@ as int?,
 /// @nodoc
 mixin _$PlacesQuery {
 
- String get q; String? get location; String? get gl; String? get hl; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of PlacesQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -411,12 +416,19 @@ class _PlacesQuery implements PlacesQuery {
   const _PlacesQuery({required this.q, this.location, this.gl, this.hl, this.autocorrect, this.tbs, this.page});
   factory _PlacesQuery.fromJson(Map<String, dynamic> json) => _$PlacesQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of PlacesQuery
@@ -489,7 +501,15 @@ as int?,
 /// @nodoc
 mixin _$VideosQuery {
 
- String get q; String? get location; String? get gl; String? get hl; int? get num; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.numDoc}
+ int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of VideosQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -563,13 +583,21 @@ class _VideosQuery implements VideosQuery {
   const _VideosQuery({required this.q, this.location, this.gl, this.hl, this.num, this.autocorrect, this.tbs, this.page});
   factory _VideosQuery.fromJson(Map<String, dynamic> json) => _$VideosQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.numDoc}
 @override final  int? num;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of VideosQuery
@@ -643,7 +671,15 @@ as int?,
 /// @nodoc
 mixin _$MapsQuery {
 
- String get q; String? get hl; String? get ll; String? get placeId; String? get cid; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// Optional latitude and longitude parameter
+///
+/// Format: "latitude,longitude"
+ String? get ll;/// Optional Google Maps place ID parameter
+ String? get placeId;/// Optional Google Maps CID parameter
+ String? get cid;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of MapsQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -715,11 +751,19 @@ class _MapsQuery implements MapsQuery {
   const _MapsQuery({required this.q, this.hl, this.ll, this.placeId, this.cid, this.page});
   factory _MapsQuery.fromJson(Map<String, dynamic> json) => _$MapsQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// Optional latitude and longitude parameter
+///
+/// Format: "latitude,longitude"
 @override final  String? ll;
+/// Optional Google Maps place ID parameter
 @override final  String? placeId;
+/// Optional Google Maps CID parameter
 @override final  String? cid;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of MapsQuery
@@ -791,7 +835,18 @@ as int?,
 /// @nodoc
 mixin _$ReviewsQuery {
 
- String get cid; String get fid; String get placeId; String? get gl; String? get hl; String? get sortBy; String? get topicId; String? get nextPageToken; String? get q;
+/// Required Google CID parameter for the place
+ String get cid;/// Required FID parameter for the place
+ String get fid;/// Required Google Maps Place ID
+ String get placeId;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// Optional parameter to sort reviews
+///
+/// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+ String? get sortBy;/// Optional topic ID to filter reviews by topic
+ String? get topicId;/// Optional token for pagination
+ String? get nextPageToken;/// Optional query string to filter reviews
+ String? get q;
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -866,14 +921,25 @@ class _ReviewsQuery implements ReviewsQuery {
   const _ReviewsQuery({required this.cid, required this.fid, required this.placeId, this.gl, this.hl, this.sortBy, this.topicId, this.nextPageToken, this.q});
   factory _ReviewsQuery.fromJson(Map<String, dynamic> json) => _$ReviewsQueryFromJson(json);
 
+/// Required Google CID parameter for the place
 @override final  String cid;
+/// Required FID parameter for the place
 @override final  String fid;
+/// Required Google Maps Place ID
 @override final  String placeId;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// Optional parameter to sort reviews
+///
+/// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
 @override final  String? sortBy;
+/// Optional topic ID to filter reviews by topic
 @override final  String? topicId;
+/// Optional token for pagination
 @override final  String? nextPageToken;
+/// Optional query string to filter reviews
 @override final  String? q;
 
 /// Create a copy of ReviewsQuery
@@ -948,7 +1014,15 @@ as String?,
 /// @nodoc
 mixin _$NewsQuery {
 
- String get q; String? get location; String? get gl; String? get hl; int? get num; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.numDoc}
+ int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of NewsQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1022,13 +1096,21 @@ class _NewsQuery implements NewsQuery {
   const _NewsQuery({required this.q, this.location, this.gl, this.hl, this.num, this.autocorrect, this.tbs, this.page});
   factory _NewsQuery.fromJson(Map<String, dynamic> json) => _$NewsQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.numDoc}
 @override final  int? num;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of NewsQuery
@@ -1102,7 +1184,14 @@ as int?,
 /// @nodoc
 mixin _$ShoppingQuery {
 
- String get q; String? get location; String? get gl; String? get hl; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of ShoppingQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1175,12 +1264,19 @@ class _ShoppingQuery implements ShoppingQuery {
   const _ShoppingQuery({required this.q, this.location, this.gl, this.hl, this.autocorrect, this.tbs, this.page});
   factory _ShoppingQuery.fromJson(Map<String, dynamic> json) => _$ShoppingQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of ShoppingQuery
@@ -1253,7 +1349,13 @@ as int?,
 /// @nodoc
 mixin _$LensQuery {
 
- String get url; String? get location; String? get gl; String? get hl; String? get tbs; String? get q;
+/// {@macro QueryDocTemplates.urlDoc}
+ String get url;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// Optional query string to refine the image search
+ String? get q;
 /// Create a copy of LensQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1325,11 +1427,17 @@ class _LensQuery implements LensQuery {
   const _LensQuery({required this.url, this.location, this.gl, this.hl, this.tbs, this.q});
   factory _LensQuery.fromJson(Map<String, dynamic> json) => _$LensQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.urlDoc}
 @override final  String url;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// Optional query string to refine the image search
 @override final  String? q;
 
 /// Create a copy of LensQuery
@@ -1401,7 +1509,14 @@ as String?,
 /// @nodoc
 mixin _$ScholarQuery {
 
- String get q; String? get location; String? get gl; String? get hl; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of ScholarQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1474,12 +1589,19 @@ class _ScholarQuery implements ScholarQuery {
   const _ScholarQuery({required this.q, this.location, this.gl, this.hl, this.autocorrect, this.tbs, this.page});
   factory _ScholarQuery.fromJson(Map<String, dynamic> json) => _$ScholarQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of ScholarQuery
@@ -1552,7 +1674,15 @@ as int?,
 /// @nodoc
 mixin _$PatentsQuery {
 
- String get q; String? get location; String? get gl; String? get hl; int? get num; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.numDoc}
+ int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1626,13 +1756,21 @@ class _PatentsQuery implements PatentsQuery {
   const _PatentsQuery({required this.q, this.location, this.gl, this.hl, this.num, this.autocorrect, this.tbs, this.page});
   factory _PatentsQuery.fromJson(Map<String, dynamic> json) => _$PatentsQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.numDoc}
 @override final  int? num;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of PatentsQuery
@@ -1706,7 +1844,15 @@ as int?,
 /// @nodoc
 mixin _$SearchQuery {
 
- String get q; String? get location; String? get gl; String? get hl; int? get num; bool? get autocorrect; String? get tbs; int? get page;
+/// {@macro QueryDocTemplates.queryStringDoc}
+ String get q;/// {@macro QueryDocTemplates.locationDoc}
+ String? get location;/// {@macro QueryDocTemplates.glDoc}
+ String? get gl;/// {@macro QueryDocTemplates.hlDoc}
+ String? get hl;/// {@macro QueryDocTemplates.numDoc}
+ int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
+ bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDoc}
+ String? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+ int? get page;
 /// Create a copy of SearchQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1780,13 +1926,21 @@ class _SearchQuery implements SearchQuery {
   const _SearchQuery({required this.q, this.location, this.gl, this.hl, this.num, this.autocorrect, this.tbs, this.page});
   factory _SearchQuery.fromJson(Map<String, dynamic> json) => _$SearchQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.queryStringDoc}
 @override final  String q;
+/// {@macro QueryDocTemplates.locationDoc}
 @override final  String? location;
+/// {@macro QueryDocTemplates.glDoc}
 @override final  String? gl;
+/// {@macro QueryDocTemplates.hlDoc}
 @override final  String? hl;
+/// {@macro QueryDocTemplates.numDoc}
 @override final  int? num;
+/// {@macro QueryDocTemplates.autocorrectDoc}
 @override final  bool? autocorrect;
+/// {@macro QueryDocTemplates.tbsDoc}
 @override final  String? tbs;
+/// {@macro QueryDocTemplates.pageDoc}
 @override final  int? page;
 
 /// Create a copy of SearchQuery
@@ -1860,7 +2014,14 @@ as int?,
 /// @nodoc
 mixin _$WebpageQuery {
 
- String get url; bool? get includeMarkdown; String? get q;
+/// {@macro QueryDocTemplates.urlDoc}
+ String get url;/// Whether to include markdown in the response
+///
+/// When true, the API will return a markdown version of the webpage content.
+ bool? get includeMarkdown;/// Optional query string to search within the webpage
+///
+/// When provided, the API will return content relevant to this query.
+ String? get q;
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1929,8 +2090,15 @@ class _WebpageQuery implements WebpageQuery {
   const _WebpageQuery({required this.url, this.includeMarkdown, this.q});
   factory _WebpageQuery.fromJson(Map<String, dynamic> json) => _$WebpageQueryFromJson(json);
 
+/// {@macro QueryDocTemplates.urlDoc}
 @override final  String url;
+/// Whether to include markdown in the response
+///
+/// When true, the API will return a markdown version of the webpage content.
 @override final  bool? includeMarkdown;
+/// Optional query string to search within the webpage
+///
+/// When provided, the API will return content relevant to this query.
 @override final  String? q;
 
 /// Create a copy of WebpageQuery

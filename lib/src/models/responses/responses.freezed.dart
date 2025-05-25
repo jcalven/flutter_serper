@@ -16,7 +16,32 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SearchResponse {
 
- SearchQuery get searchParameters; List<OrganicResult> get organic; List<RelatedSearchResult>? get relatedSearches; List<PeopleAlsoAskResult>? get peopleAlsoAsk; List<PlacesResult>? get places; List<TopStoriesResult>? get topStories; List<TwitterResult>? get twitter; List<ImagesResult>? get images; KnowledgeGraphResult? get knowledgeGraph; List<LocalResultsResult>? get localResults; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ SearchQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+ List<OrganicResult> get organic;/// List of related search suggestions
+///
+/// Contains search terms related to the original query.
+ List<RelatedSearchResult>? get relatedSearches;/// List of "People Also Ask" questions
+///
+/// Contains common questions related to the search query.
+ List<PeopleAlsoAskResult>? get peopleAlsoAsk;/// List of place results, if any
+///
+/// Shown when the search query is related to places.
+ List<PlacesResult>? get places;/// List of top stories, if any
+///
+/// Shown when the search query is related to news or current events.
+ List<TopStoriesResult>? get topStories;/// List of Twitter results, if any
+///
+/// Shown when the search query is related to Twitter content.
+ List<TwitterResult>? get twitter;/// List of image results, if any
+///
+/// Shown when the search query is related to images.
+ List<ImagesResult>? get images;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// List of local business results, if any
+///
+/// Shown when the search query is related to local businesses.
+ List<LocalResultsResult>? get localResults;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -114,14 +139,22 @@ class _SearchResponse extends SearchResponse {
   const _SearchResponse({required final  SearchQuery searchParameters, required final  List<OrganicResult> organic, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, this.knowledgeGraph, final  List<LocalResultsResult>? localResults, required final  int credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._(searchParameters: searchParameters, credits: credits);
   factory _SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.organicDoc}
  final  List<OrganicResult> _organic;
+/// {@macro ResponseDocTemplates.organicDoc}
 @override List<OrganicResult> get organic {
   if (_organic is EqualUnmodifiableListView) return _organic;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_organic);
 }
 
+/// List of related search suggestions
+///
+/// Contains search terms related to the original query.
  final  List<RelatedSearchResult>? _relatedSearches;
+/// List of related search suggestions
+///
+/// Contains search terms related to the original query.
 @override List<RelatedSearchResult>? get relatedSearches {
   final value = _relatedSearches;
   if (value == null) return null;
@@ -130,7 +163,13 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// List of "People Also Ask" questions
+///
+/// Contains common questions related to the search query.
  final  List<PeopleAlsoAskResult>? _peopleAlsoAsk;
+/// List of "People Also Ask" questions
+///
+/// Contains common questions related to the search query.
 @override List<PeopleAlsoAskResult>? get peopleAlsoAsk {
   final value = _peopleAlsoAsk;
   if (value == null) return null;
@@ -139,7 +178,13 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// List of place results, if any
+///
+/// Shown when the search query is related to places.
  final  List<PlacesResult>? _places;
+/// List of place results, if any
+///
+/// Shown when the search query is related to places.
 @override List<PlacesResult>? get places {
   final value = _places;
   if (value == null) return null;
@@ -148,7 +193,13 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// List of top stories, if any
+///
+/// Shown when the search query is related to news or current events.
  final  List<TopStoriesResult>? _topStories;
+/// List of top stories, if any
+///
+/// Shown when the search query is related to news or current events.
 @override List<TopStoriesResult>? get topStories {
   final value = _topStories;
   if (value == null) return null;
@@ -157,7 +208,13 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// List of Twitter results, if any
+///
+/// Shown when the search query is related to Twitter content.
  final  List<TwitterResult>? _twitter;
+/// List of Twitter results, if any
+///
+/// Shown when the search query is related to Twitter content.
 @override List<TwitterResult>? get twitter {
   final value = _twitter;
   if (value == null) return null;
@@ -166,7 +223,13 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// List of image results, if any
+///
+/// Shown when the search query is related to images.
  final  List<ImagesResult>? _images;
+/// List of image results, if any
+///
+/// Shown when the search query is related to images.
 @override List<ImagesResult>? get images {
   final value = _images;
   if (value == null) return null;
@@ -175,8 +238,15 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// List of local business results, if any
+///
+/// Shown when the search query is related to local businesses.
  final  List<LocalResultsResult>? _localResults;
+/// List of local business results, if any
+///
+/// Shown when the search query is related to local businesses.
 @override List<LocalResultsResult>? get localResults {
   final value = _localResults;
   if (value == null) return null;
@@ -281,7 +351,13 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$ImagesResponse {
 
- ImagesQuery get searchParameters; List<ImageResult> get images; KnowledgeGraphResult? get knowledgeGraph; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ ImagesQuery get searchParameters;/// List of image results returned by the API
+///
+/// Contains all the image results that match the search query.
+ List<ImageResult> get images;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -372,13 +448,20 @@ class _ImagesResponse extends ImagesResponse {
   const _ImagesResponse({required final  ImagesQuery searchParameters, required final  List<ImageResult> images, this.knowledgeGraph, required final  int credits}): _images = images,super._(searchParameters: searchParameters, credits: credits);
   factory _ImagesResponse.fromJson(Map<String, dynamic> json) => _$ImagesResponseFromJson(json);
 
+/// List of image results returned by the API
+///
+/// Contains all the image results that match the search query.
  final  List<ImageResult> _images;
+/// List of image results returned by the API
+///
+/// Contains all the image results that match the search query.
 @override List<ImageResult> get images {
   if (_images is EqualUnmodifiableListView) return _images;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_images);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 
 /// Create a copy of ImagesResponse
@@ -469,7 +552,13 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$PlacesResponse {
 
- PlacesQuery get searchParameters; List<PlaceResult> get places; KnowledgeGraphResult? get knowledgeGraph; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ PlacesQuery get searchParameters;/// List of place results returned by the API
+///
+/// Contains places that match the search query.
+ List<PlaceResult> get places;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -560,13 +649,20 @@ class _PlacesResponse extends PlacesResponse {
   const _PlacesResponse({required final  PlacesQuery searchParameters, required final  List<PlaceResult> places, this.knowledgeGraph, required final  int credits}): _places = places,super._(searchParameters: searchParameters, credits: credits);
   factory _PlacesResponse.fromJson(Map<String, dynamic> json) => _$PlacesResponseFromJson(json);
 
+/// List of place results returned by the API
+///
+/// Contains places that match the search query.
  final  List<PlaceResult> _places;
+/// List of place results returned by the API
+///
+/// Contains places that match the search query.
 @override List<PlaceResult> get places {
   if (_places is EqualUnmodifiableListView) return _places;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_places);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 
 /// Create a copy of PlacesResponse
@@ -657,7 +753,13 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$VideosResponse {
 
- VideosQuery get searchParameters; List<VideoResult> get videos; KnowledgeGraphResult? get knowledgeGraph; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ VideosQuery get searchParameters;/// List of video results returned by the API
+///
+/// Contains videos that match the search query.
+ List<VideoResult> get videos;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -748,13 +850,20 @@ class _VideosResponse extends VideosResponse {
   const _VideosResponse({required final  VideosQuery searchParameters, required final  List<VideoResult> videos, this.knowledgeGraph, required final  int credits}): _videos = videos,super._(searchParameters: searchParameters, credits: credits);
   factory _VideosResponse.fromJson(Map<String, dynamic> json) => _$VideosResponseFromJson(json);
 
+/// List of video results returned by the API
+///
+/// Contains videos that match the search query.
  final  List<VideoResult> _videos;
+/// List of video results returned by the API
+///
+/// Contains videos that match the search query.
 @override List<VideoResult> get videos {
   if (_videos is EqualUnmodifiableListView) return _videos;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_videos);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 
 /// Create a copy of VideosResponse
@@ -845,7 +954,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$MapsResponse {
 
- MapsQuery get searchParameters; MapResult get place; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ MapsQuery get searchParameters;/// The place details returned by the Maps API
+///
+/// Contains detailed information about a specific place.
+ MapResult get place;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -932,6 +1046,9 @@ class _MapsResponse extends MapsResponse {
   const _MapsResponse({required final  MapsQuery searchParameters, required this.place, required final  int credits}): super._(searchParameters: searchParameters, credits: credits);
   factory _MapsResponse.fromJson(Map<String, dynamic> json) => _$MapsResponseFromJson(json);
 
+/// The place details returned by the Maps API
+///
+/// Contains detailed information about a specific place.
 @override final  MapResult place;
 
 /// Create a copy of MapsResponse
@@ -1018,7 +1135,15 @@ $MapResultCopyWith<$Res> get place {
 /// @nodoc
 mixin _$ReviewsResponse {
 
- ReviewsQuery get searchParameters; List<PlaceReview> get reviews; String? get nextPageToken; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ ReviewsQuery get searchParameters;/// List of place reviews returned by the API
+///
+/// Contains reviews for the specified place.
+ List<PlaceReview> get reviews;/// Token for fetching the next page of reviews
+///
+/// If more reviews are available, this token can be used to fetch the next batch.
+ String? get nextPageToken;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1097,13 +1222,22 @@ class _ReviewsResponse extends ReviewsResponse {
   const _ReviewsResponse({required final  ReviewsQuery searchParameters, required final  List<PlaceReview> reviews, this.nextPageToken, required final  int credits}): _reviews = reviews,super._(searchParameters: searchParameters, credits: credits);
   factory _ReviewsResponse.fromJson(Map<String, dynamic> json) => _$ReviewsResponseFromJson(json);
 
+/// List of place reviews returned by the API
+///
+/// Contains reviews for the specified place.
  final  List<PlaceReview> _reviews;
+/// List of place reviews returned by the API
+///
+/// Contains reviews for the specified place.
 @override List<PlaceReview> get reviews {
   if (_reviews is EqualUnmodifiableListView) return _reviews;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_reviews);
 }
 
+/// Token for fetching the next page of reviews
+///
+/// If more reviews are available, this token can be used to fetch the next batch.
 @override final  String? nextPageToken;
 
 /// Create a copy of ReviewsResponse
@@ -1182,7 +1316,13 @@ $ReviewsQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$NewsResponse {
 
- NewsQuery get searchParameters; List<NewsResult> get news; KnowledgeGraphResult? get knowledgeGraph; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ NewsQuery get searchParameters;/// List of news results returned by the API
+///
+/// Contains news articles that match the search query.
+ List<NewsResult> get news;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1273,13 +1413,20 @@ class _NewsResponse extends NewsResponse {
   const _NewsResponse({required final  NewsQuery searchParameters, required final  List<NewsResult> news, this.knowledgeGraph, required final  int credits}): _news = news,super._(searchParameters: searchParameters, credits: credits);
   factory _NewsResponse.fromJson(Map<String, dynamic> json) => _$NewsResponseFromJson(json);
 
+/// List of news results returned by the API
+///
+/// Contains news articles that match the search query.
  final  List<NewsResult> _news;
+/// List of news results returned by the API
+///
+/// Contains news articles that match the search query.
 @override List<NewsResult> get news {
   if (_news is EqualUnmodifiableListView) return _news;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_news);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 
 /// Create a copy of NewsResponse
@@ -1370,7 +1517,13 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$ShoppingResponse {
 
- ShoppingQuery get searchParameters; List<ShoppingResult> get shopping; KnowledgeGraphResult? get knowledgeGraph; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ ShoppingQuery get searchParameters;/// List of shopping results returned by the API
+///
+/// Contains products that match the search query.
+ List<ShoppingResult> get shopping;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1461,13 +1614,20 @@ class _ShoppingResponse extends ShoppingResponse {
   const _ShoppingResponse({required final  ShoppingQuery searchParameters, required final  List<ShoppingResult> shopping, this.knowledgeGraph, required final  int credits}): _shopping = shopping,super._(searchParameters: searchParameters, credits: credits);
   factory _ShoppingResponse.fromJson(Map<String, dynamic> json) => _$ShoppingResponseFromJson(json);
 
+/// List of shopping results returned by the API
+///
+/// Contains products that match the search query.
  final  List<ShoppingResult> _shopping;
+/// List of shopping results returned by the API
+///
+/// Contains products that match the search query.
 @override List<ShoppingResult> get shopping {
   if (_shopping is EqualUnmodifiableListView) return _shopping;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_shopping);
 }
 
+/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 
 /// Create a copy of ShoppingResponse
@@ -1558,7 +1718,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$LensResponse {
 
- LensQuery get searchParameters; List<LensResult> get organic; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ LensQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Lens API, these are results related to the image that was searched.
+ List<LensResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of LensResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1636,7 +1801,13 @@ class _LensResponse extends LensResponse {
   const _LensResponse({required final  LensQuery searchParameters, required final  List<LensResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
   factory _LensResponse.fromJson(Map<String, dynamic> json) => _$LensResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Lens API, these are results related to the image that was searched.
  final  List<LensResult> _organic;
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Lens API, these are results related to the image that was searched.
 @override List<LensResult> get organic {
   if (_organic is EqualUnmodifiableListView) return _organic;
   // ignore: implicit_dynamic_type
@@ -1719,7 +1890,12 @@ $LensQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$ScholarResponse {
 
- ScholarQuery get searchParameters; List<ScholarResult> get organic; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ ScholarQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Scholar API, these are the academic results that match the search query.
+ List<ScholarResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of ScholarResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1797,7 +1973,13 @@ class _ScholarResponse extends ScholarResponse {
   const _ScholarResponse({required final  ScholarQuery searchParameters, required final  List<ScholarResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
   factory _ScholarResponse.fromJson(Map<String, dynamic> json) => _$ScholarResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Scholar API, these are the academic results that match the search query.
  final  List<ScholarResult> _organic;
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Scholar API, these are the academic results that match the search query.
 @override List<ScholarResult> get organic {
   if (_organic is EqualUnmodifiableListView) return _organic;
   // ignore: implicit_dynamic_type
@@ -1880,7 +2062,12 @@ $ScholarQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$PatentsResponse {
 
- PatentsQuery get searchParameters; List<PatentResult> get organic; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ PatentsQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Patents API, these are the patent results that match the search query.
+ List<PatentResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of PatentsResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1958,7 +2145,13 @@ class _PatentsResponse extends PatentsResponse {
   const _PatentsResponse({required final  PatentsQuery searchParameters, required final  List<PatentResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
   factory _PatentsResponse.fromJson(Map<String, dynamic> json) => _$PatentsResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Patents API, these are the patent results that match the search query.
  final  List<PatentResult> _organic;
+/// {@macro ResponseDocTemplates.organicDoc}
+///
+/// For Patents API, these are the patent results that match the search query.
 @override List<PatentResult> get organic {
   if (_organic is EqualUnmodifiableListView) return _organic;
   // ignore: implicit_dynamic_type
@@ -2041,7 +2234,12 @@ $PatentsQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$AutocompleteResponse {
 
- AutocompleteQuery get searchParameters; List<AutocompleteSuggestion> get suggestions; int get credits;
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+ AutocompleteQuery get searchParameters;/// List of autocomplete suggestions returned by the API
+///
+/// Each suggestion is a possible completion of the user's query.
+ List<AutocompleteSuggestion> get suggestions;/// {@macro ResponseDocTemplates.creditsDoc}
+ int get credits;
 /// Create a copy of AutocompleteResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2119,7 +2317,13 @@ class _AutocompleteResponse extends AutocompleteResponse {
   const _AutocompleteResponse({required final  AutocompleteQuery searchParameters, required final  List<AutocompleteSuggestion> suggestions, required final  int credits}): _suggestions = suggestions,super._(searchParameters: searchParameters, credits: credits);
   factory _AutocompleteResponse.fromJson(Map<String, dynamic> json) => _$AutocompleteResponseFromJson(json);
 
+/// List of autocomplete suggestions returned by the API
+///
+/// Each suggestion is a possible completion of the user's query.
  final  List<AutocompleteSuggestion> _suggestions;
+/// List of autocomplete suggestions returned by the API
+///
+/// Each suggestion is a possible completion of the user's query.
 @override List<AutocompleteSuggestion> get suggestions {
   if (_suggestions is EqualUnmodifiableListView) return _suggestions;
   // ignore: implicit_dynamic_type
@@ -2202,6 +2406,9 @@ $AutocompleteQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$WebpageResponse {
 
+/// {@macro ResponseDocTemplates.resultsDoc}
+///
+/// For Webpage API, these are the extracted webpage content results.
  List<WebpageResult> get results;
 /// Create a copy of WebpageResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2269,7 +2476,13 @@ class _WebpageResponse implements WebpageResponse {
   const _WebpageResponse({required final  List<WebpageResult> results}): _results = results;
   factory _WebpageResponse.fromJson(Map<String, dynamic> json) => _$WebpageResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.resultsDoc}
+///
+/// For Webpage API, these are the extracted webpage content results.
  final  List<WebpageResult> _results;
+/// {@macro ResponseDocTemplates.resultsDoc}
+///
+/// For Webpage API, these are the extracted webpage content results.
 @override List<WebpageResult> get results {
   if (_results is EqualUnmodifiableListView) return _results;
   // ignore: implicit_dynamic_type
