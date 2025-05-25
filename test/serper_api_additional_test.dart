@@ -172,10 +172,7 @@ void main() {
           ),
         ).called(1);
         expect(result, isA<MapsResponse>());
-        expect(
-          result.place.title,
-          equals('Coffee Shop Name'),
-        );
+        expect(result.place.title, equals('Coffee Shop Name'));
         expect(result.credits, equals(5));
       },
     );
@@ -304,73 +301,76 @@ void main() {
       },
     );
 
-    test('scholar method calls the correct endpoint and returns ScholarResponse', () async {
-      // Arrange
-      final expectedResponse = {
-        'searchParameters': {'q': 'machine learning'},
-        'organic': [
-          {
-            'title': 'Machine Learning Basics',
-            'link': 'https://example.com/ml-basics',
-            'snippet': 'An introduction to machine learning concepts.',
-            'publicationInfo': 'Example University Press, Journal of ML',
-            'year': 2023,
-            'citedBy': 150,
-            'pdfUrl': 'https://example.com/ml-basics.pdf',
-            'id': 'scholar_id_123',
-          },
-        ],
-        'credits': 12,
-      };
-      final query = ScholarQuery(q: 'machine learning');
-      final requestData = json.encode([query.toJson()]);
-      when(
-        mockDio.request(
-          'https://google.serper.dev/scholar',
-          data: requestData,
-          options: anyNamed('options'),
-          cancelToken: anyNamed('cancelToken'),
-          onReceiveProgress: anyNamed('onReceiveProgress'),
-          onSendProgress: anyNamed('onSendProgress'),
-          queryParameters: anyNamed('queryParameters'),
-        ),
-      ).thenAnswer(
-        (_) async => Response(
-          data: expectedResponse,
-          statusCode: 200,
-          requestOptions: RequestOptions(path: ''),
-        ),
-      );
-      // Act
-      final result = await serper.scholar([query]);
-      // Assert
-      verify(
-        mockDio.request(
-          'https://google.serper.dev/scholar',
-          data: requestData,
-          options: anyNamed('options'),
-          cancelToken: anyNamed('cancelToken'),
-          onReceiveProgress: anyNamed('onReceiveProgress'),
-          onSendProgress: anyNamed('onSendProgress'),
-          queryParameters: anyNamed('queryParameters'),
-        ),
-      ).called(1);
-      expect(result, isA<ScholarResponse>());
-      expect(result.organic.length, equals(1));
-      expect(result.organic.first.title, equals('Machine Learning Basics'));
-      expect(
-        result.organic.first.publicationInfo,
-        equals('Example University Press, Journal of ML'),
-      );
-      expect(result.organic.first.year, equals(2023));
-      expect(result.organic.first.citedBy, equals(150));
-      expect(
-        result.organic.first.pdfUrl,
-        equals('https://example.com/ml-basics.pdf'),
-      );
-      expect(result.organic.first.id, equals('scholar_id_123'));
-      expect(result.credits, equals(12));
-    });
+    test(
+      'scholar method calls the correct endpoint and returns ScholarResponse',
+      () async {
+        // Arrange
+        final expectedResponse = {
+          'searchParameters': {'q': 'machine learning'},
+          'organic': [
+            {
+              'title': 'Machine Learning Basics',
+              'link': 'https://example.com/ml-basics',
+              'snippet': 'An introduction to machine learning concepts.',
+              'publicationInfo': 'Example University Press, Journal of ML',
+              'year': 2023,
+              'citedBy': 150,
+              'pdfUrl': 'https://example.com/ml-basics.pdf',
+              'id': 'scholar_id_123',
+            },
+          ],
+          'credits': 12,
+        };
+        final query = ScholarQuery(q: 'machine learning');
+        final requestData = json.encode([query.toJson()]);
+        when(
+          mockDio.request(
+            'https://google.serper.dev/scholar',
+            data: requestData,
+            options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
+          ),
+        ).thenAnswer(
+          (_) async => Response(
+            data: expectedResponse,
+            statusCode: 200,
+            requestOptions: RequestOptions(path: ''),
+          ),
+        );
+        // Act
+        final result = await serper.scholar([query]);
+        // Assert
+        verify(
+          mockDio.request(
+            'https://google.serper.dev/scholar',
+            data: requestData,
+            options: anyNamed('options'),
+            cancelToken: anyNamed('cancelToken'),
+            onReceiveProgress: anyNamed('onReceiveProgress'),
+            onSendProgress: anyNamed('onSendProgress'),
+            queryParameters: anyNamed('queryParameters'),
+          ),
+        ).called(1);
+        expect(result, isA<ScholarResponse>());
+        expect(result.organic.length, equals(1));
+        expect(result.organic.first.title, equals('Machine Learning Basics'));
+        expect(
+          result.organic.first.publicationInfo,
+          equals('Example University Press, Journal of ML'),
+        );
+        expect(result.organic.first.year, equals(2023));
+        expect(result.organic.first.citedBy, equals(150));
+        expect(
+          result.organic.first.pdfUrl,
+          equals('https://example.com/ml-basics.pdf'),
+        );
+        expect(result.organic.first.id, equals('scholar_id_123'));
+        expect(result.credits, equals(12));
+      },
+    );
 
     test(
       'patents method calls the correct endpoint and returns PatentsResponse',

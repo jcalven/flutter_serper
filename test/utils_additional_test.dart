@@ -1,5 +1,8 @@
 import 'package:flutter_serper/flutter_serper.dart';
 import 'package:test/test.dart';
+import 'package:dio/dio.dart'; // Added from fixed_test
+// Import the base file to access Serper class for its static constants
+import 'package:flutter_serper/src/flutter_serper_base.dart'; // Added from fixed_test
 
 void main() {
   group('SerperResponseProcessor - Additional Tests', () {
@@ -155,5 +158,55 @@ void main() {
         expect(params[3]['q'], equals('test video'));
       },
     );
+  });
+
+  // New group for tests from utils_additional_fixed_test.dart
+  group('Utility Tests from utils_additional_fixed_test.dart', () {
+    test('SerperApiException formats error messages correctly', () {
+      final exception = SerperApiException(
+        message: 'API Error',
+        statusCode: 400,
+        responseData: {'error': 'Bad Request', 'message': 'Invalid parameter'},
+      );
+
+      expect(exception.toString(), contains('API Error'));
+      expect(exception.toString(), contains('400'));
+      expect(exception.statusCode, equals(400));
+      expect(exception.responseData?['error'], equals('Bad Request'));
+    });
+
+    test('Serper default Dio options provides correct default values', () {
+      final serperClient = Serper(apiKey: 'test-key');
+      final dioOptions = serperClient.dioOptions;
+
+      expect(Serper.googleBaseUrl, equals('https://google.serper.dev'));
+      expect(dioOptions.connectTimeout, equals(Serper.defaultConnectTimeout));
+      expect(dioOptions.receiveTimeout, equals(Serper.defaultReceiveTimeout));
+      expect(dioOptions.sendTimeout, equals(Serper.defaultSendTimeout));
+    });
+
+    test('Serper allows custom Dio instance with different options', () {
+      final customBaseUrl = 'https://custom.example.com';
+      final customConnectTimeout = const Duration(milliseconds: 10000);
+      final customReceiveTimeout = const Duration(milliseconds: 6000);
+      final customSendTimeout = const Duration(milliseconds: 6000);
+
+      final customDio = Dio(
+        BaseOptions(
+          baseUrl: customBaseUrl,
+          connectTimeout: customConnectTimeout,
+          receiveTimeout: customReceiveTimeout,
+          sendTimeout: customSendTimeout,
+        ),
+      );
+
+      final serperClient = Serper(apiKey: 'test-key', dio: customDio);
+      final dioOptions = serperClient.dioOptions;
+
+      expect(dioOptions.baseUrl, equals(customBaseUrl));
+      expect(dioOptions.connectTimeout, equals(customConnectTimeout));
+      expect(dioOptions.receiveTimeout, equals(customReceiveTimeout));
+      expect(dioOptions.sendTimeout, equals(customSendTimeout));
+    });
   });
 }

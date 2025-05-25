@@ -10,8 +10,8 @@ void main() {
         hl: 'en',
         ll: '37.7749,-122.4194',
         placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4', // Updated placeId
-        cid: '1234567890',                     // Added cid
-        page: 2,                               // Added page
+        cid: '1234567890', // Added cid
+        page: 2, // Added page
       );
 
       // Act
@@ -68,10 +68,10 @@ void main() {
       // Arrange
       final query = NewsQuery(
         q: 'technology news', // from fixed
-        location: 'London',   // from _test
-        gl: 'uk',             // from _test
-        hl: 'en',             // from _test
-        num: 10,              // from _test
+        location: 'London', // from _test
+        gl: 'uk', // from _test
+        hl: 'en', // from _test
+        num: 10, // from _test
       );
 
       // Act
@@ -136,7 +136,7 @@ void main() {
       // Arrange
       final query = PatentsQuery(
         q: 'solar energy patents', // from fixed
-        hl: 'en',                  // from _test
+        hl: 'en', // from _test
       );
 
       // Act

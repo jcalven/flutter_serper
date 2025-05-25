@@ -42,7 +42,10 @@ void main() {
     test('PlacesResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'restaurants', 'location': 'Chicago'}, // from _test
+        'searchParameters': {
+          'q': 'restaurants',
+          'location': 'Chicago',
+        }, // from _test
         'places': [
           {
             'title': 'Restaurant', // from _test
@@ -62,10 +65,7 @@ void main() {
       expect(response, isA<PlacesResponse>());
       expect(response.places.length, equals(1));
       expect(response.places.first.title, equals('Restaurant'));
-      expect(
-        response.places.first.address,
-        equals('123 Main St, Chicago, IL'),
-      );
+      expect(response.places.first.address, equals('123 Main St, Chicago, IL'));
       expect(response.places.first.rating, equals(4.2));
       expect(response.places.first.reviewCount, equals(80));
       expect(response.credits, equals(5));
@@ -138,7 +138,10 @@ void main() {
     test('NewsResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'world news', 'location': 'London'}, // from _test
+        'searchParameters': {
+          'q': 'world news',
+          'location': 'London',
+        }, // from _test
         'news': [
           {
             'title': 'News Article', // from _test
@@ -160,10 +163,7 @@ void main() {
       expect(response.news.length, equals(1));
       expect(response.news.first.title, equals('News Article'));
       expect(response.news.first.link, equals('https://example.com/news'));
-      expect(
-        response.news.first.snippet,
-        equals('This is a news article'),
-      );
+      expect(response.news.first.snippet, equals('This is a news article'));
       expect(response.news.first.date, equals('2 hours ago'));
       expect(response.news.first.source, equals('Example News'));
       expect(response.credits, equals(5));
@@ -172,7 +172,10 @@ void main() {
     test('VideosResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'cooking videos', 'location': 'New York'}, // from _test
+        'searchParameters': {
+          'q': 'cooking videos',
+          'location': 'New York',
+        }, // from _test
         'videos': [
           {
             'title': 'Cooking Video', // from _test
@@ -238,9 +241,7 @@ void main() {
     test('LensResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {
-          'url': 'https://example.com/image.jpg',
-        },
+        'searchParameters': {'url': 'https://example.com/image.jpg'},
         'organic': [
           {
             'title': 'Lens Result',
@@ -262,7 +263,10 @@ void main() {
       expect(response.organic.length, equals(1));
       expect(response.organic.first.title, equals('Lens Result'));
       expect(response.organic.first.link, equals('https://example.com/result'));
-      expect(response.organic.first.imageUrl, equals('https://example.com/image.jpg'));
+      expect(
+        response.organic.first.imageUrl,
+        equals('https://example.com/image.jpg'),
+      );
       expect(
         response.organic.first.thumbnailUrl,
         equals('https://example.com/thumbnail.jpg'),
@@ -333,9 +337,10 @@ void main() {
                 'imageUrl': 'https://example.com/figure1.jpg',
                 'thumbnailUrl': 'https://example.com/figure1_thumb.jpg',
               },
-               {
+              {
                 'imageUrl': 'https://example.com/figure2.jpg', // from fixed
-                'thumbnailUrl': 'https://example.com/figure2_thumb.jpg', // from fixed
+                'thumbnailUrl':
+                    'https://example.com/figure2_thumb.jpg', // from fixed
               },
             ],
             'position': 1,
@@ -362,10 +367,7 @@ void main() {
       expect(patent.grantDate, equals('2023-01-01'));
       expect(patent.publicationDate, equals('2022-06-01'));
       expect(patent.language, equals('en'));
-      expect(
-        patent.thumbnailUrl,
-        equals('https://example.com/thumb.jpg'),
-      );
+      expect(patent.thumbnailUrl, equals('https://example.com/thumb.jpg'));
       expect(patent.pdfUrl, equals('https://example.com/patent.pdf'));
       expect(patent.figures?.length, equals(2));
       expect(
@@ -441,7 +443,10 @@ void main() {
       expect(response, isA<AutocompleteResponse>());
       expect(response.suggestions.length, equals(2));
       expect(response.suggestions.first.value, equals('how to cook pasta'));
-      expect(response.suggestions.last.value, equals('how to learn programming'));
+      expect(
+        response.suggestions.last.value,
+        equals('how to learn programming'),
+      );
       expect(response.credits, equals(1));
     });
 
