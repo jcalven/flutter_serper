@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Images API.
 @freezed
 abstract class ImagesResponse extends SerperResponse<ImagesQuery>
-    with _$ImagesResponse {
-  const ImagesResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$ImagesResponse, ResponseUtilityMixin<ImagesQuery> {
+  const ImagesResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory ImagesResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

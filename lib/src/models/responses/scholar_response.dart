@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Scholar API.
 @freezed
 abstract class ScholarResponse extends SerperResponse<ScholarQuery>
-    with _$ScholarResponse {
-  const ScholarResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$ScholarResponse, ResponseUtilityMixin<ScholarQuery> {
+  const ScholarResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory ScholarResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

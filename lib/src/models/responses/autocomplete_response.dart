@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Autocomplete API.
 @freezed
 abstract class AutocompleteResponse extends SerperResponse<AutocompleteQuery>
-    with _$AutocompleteResponse {
-  const AutocompleteResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$AutocompleteResponse, ResponseUtilityMixin<AutocompleteQuery> {
+  const AutocompleteResponse._(
+    // {
+    // required super.searchParameters,
+    // required super.credits,
+    // }
+  );
 
   const factory AutocompleteResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

@@ -56,7 +56,6 @@ _SearchResponse _$SearchResponseFromJson(
 Map<String, dynamic> _$SearchResponseToJson(_SearchResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'organic': instance.organic,
       'relatedSearches': instance.relatedSearches,
       'peopleAlsoAsk': instance.peopleAlsoAsk,
@@ -66,6 +65,7 @@ Map<String, dynamic> _$SearchResponseToJson(_SearchResponse instance) =>
       'images': instance.images,
       'knowledgeGraph': instance.knowledgeGraph,
       'localResults': instance.localResults,
+      'credits': instance.credits,
     };
 
 _ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>
@@ -89,9 +89,9 @@ _ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ImagesResponseToJson(_ImagesResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'images': instance.images,
       'knowledgeGraph': instance.knowledgeGraph,
+      'credits': instance.credits,
     };
 
 _PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) =>
@@ -115,9 +115,9 @@ _PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PlacesResponseToJson(_PlacesResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'places': instance.places,
       'knowledgeGraph': instance.knowledgeGraph,
+      'credits': instance.credits,
     };
 
 _VideosResponse _$VideosResponseFromJson(Map<String, dynamic> json) =>
@@ -141,9 +141,9 @@ _VideosResponse _$VideosResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VideosResponseToJson(_VideosResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'videos': instance.videos,
       'knowledgeGraph': instance.knowledgeGraph,
+      'credits': instance.credits,
     };
 
 _MapsResponse _$MapsResponseFromJson(Map<String, dynamic> json) =>
@@ -158,8 +158,8 @@ _MapsResponse _$MapsResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$MapsResponseToJson(_MapsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'place': instance.place,
+      'credits': instance.credits,
     };
 
 _ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
@@ -178,9 +178,9 @@ _ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ReviewsResponseToJson(_ReviewsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'reviews': instance.reviews,
       'nextPageToken': instance.nextPageToken,
+      'credits': instance.credits,
     };
 
 _NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) =>
@@ -204,9 +204,9 @@ _NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$NewsResponseToJson(_NewsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'news': instance.news,
       'knowledgeGraph': instance.knowledgeGraph,
+      'credits': instance.credits,
     };
 
 _ShoppingResponse _$ShoppingResponseFromJson(Map<String, dynamic> json) =>
@@ -230,9 +230,9 @@ _ShoppingResponse _$ShoppingResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ShoppingResponseToJson(_ShoppingResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'shopping': instance.shopping,
       'knowledgeGraph': instance.knowledgeGraph,
+      'credits': instance.credits,
     };
 
 _LensResponse _$LensResponseFromJson(Map<String, dynamic> json) =>
@@ -250,8 +250,8 @@ _LensResponse _$LensResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LensResponseToJson(_LensResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'organic': instance.organic,
+      'credits': instance.credits,
     };
 
 _ScholarResponse _$ScholarResponseFromJson(Map<String, dynamic> json) =>
@@ -269,8 +269,8 @@ _ScholarResponse _$ScholarResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ScholarResponseToJson(_ScholarResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'organic': instance.organic,
+      'credits': instance.credits,
     };
 
 _PatentsResponse _$PatentsResponseFromJson(Map<String, dynamic> json) =>
@@ -288,8 +288,8 @@ _PatentsResponse _$PatentsResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PatentsResponseToJson(_PatentsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'credits': instance.credits,
       'organic': instance.organic,
+      'credits': instance.credits,
     };
 
 _AutocompleteResponse _$AutocompleteResponseFromJson(
@@ -311,8 +311,8 @@ Map<String, dynamic> _$AutocompleteResponseToJson(
   _AutocompleteResponse instance,
 ) => <String, dynamic>{
   'searchParameters': instance.searchParameters,
-  'credits': instance.credits,
   'suggestions': instance.suggestions,
+  'credits': instance.credits,
 };
 
 _WebpageResponse _$WebpageResponseFromJson(Map<String, dynamic> json) =>

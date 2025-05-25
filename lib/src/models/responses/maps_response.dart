@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Maps API.
 @freezed
 abstract class MapsResponse extends SerperResponse<MapsQuery>
-    with _$MapsResponse {
-  const MapsResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$MapsResponse, ResponseUtilityMixin<MapsQuery> {
+  const MapsResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory MapsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

@@ -5,7 +5,7 @@ import 'package:flutter_serper/src/models/responses/responses.dart';
 class SerperResponseProcessor {
   /// Calculates the total credits used across multiple API responses.
   ///
-  /// This method works with any response type that implements [SerperResponseMixin].
+  /// This method works with any response type that implements [ResponseUtilityMixin].
   ///
   /// Example:
   /// ```dart
@@ -18,13 +18,13 @@ class SerperResponseProcessor {
   /// ]);
   /// print('Total credits used: $totalCredits');
   /// ```
-  static int calculateTotalCredits(List<SerperResponse> responses) {
+  static int calculateTotalCredits(List<ResponseUtilityMixin> responses) {
     return responses.fold(0, (total, response) => total + response.credits);
   }
 
   /// Extracts and merges search parameters from multiple API responses.
   ///
-  /// This method works with any response type that implements [SerperResponseMixin].
+  /// This method works with any response type that implements [ResponseUtilityMixin].
   /// It's useful for tracking what parameters were used across multiple API calls.
   ///
   /// Example:
@@ -39,7 +39,7 @@ class SerperResponseProcessor {
   /// print('All search parameters: $allParams');
   /// ```
   static List<Map<String, dynamic>> mergeSearchParameters(
-    List<SerperResponse> responses,
+    List<ResponseUtilityMixin> responses,
   ) {
     return responses
         .map(
@@ -68,7 +68,7 @@ class SerperResponseProcessor {
   /// print('API Usage Report: ${report['totalCredits']} credits used');
   /// ```
   static Map<String, dynamic> createUsageReport(
-    List<SerperResponse> responses,
+    List<ResponseUtilityMixin> responses,
   ) {
     final totalCredits = calculateTotalCredits(responses);
     final parameters = mergeSearchParameters(responses);

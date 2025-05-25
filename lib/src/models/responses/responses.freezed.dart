@@ -136,9 +136,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _SearchResponse extends SearchResponse {
-  const _SearchResponse({required final  SearchQuery searchParameters, required final  List<OrganicResult> organic, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, this.knowledgeGraph, final  List<LocalResultsResult>? localResults, required final  int credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._(searchParameters: searchParameters, credits: credits);
+  const _SearchResponse({required this.searchParameters, required final  List<OrganicResult> organic, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, this.knowledgeGraph, final  List<LocalResultsResult>? localResults, required this.credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._();
   factory _SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  SearchQuery searchParameters;
 /// {@macro ResponseDocTemplates.organicDoc}
  final  List<OrganicResult> _organic;
 /// {@macro ResponseDocTemplates.organicDoc}
@@ -255,6 +257,8 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -445,9 +449,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _ImagesResponse extends ImagesResponse {
-  const _ImagesResponse({required final  ImagesQuery searchParameters, required final  List<ImageResult> images, this.knowledgeGraph, required final  int credits}): _images = images,super._(searchParameters: searchParameters, credits: credits);
+  const _ImagesResponse({required this.searchParameters, required final  List<ImageResult> images, this.knowledgeGraph, required this.credits}): _images = images,super._();
   factory _ImagesResponse.fromJson(Map<String, dynamic> json) => _$ImagesResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  ImagesQuery searchParameters;
 /// List of image results returned by the API
 ///
 /// Contains all the image results that match the search query.
@@ -463,6 +469,8 @@ class _ImagesResponse extends ImagesResponse {
 
 /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -646,9 +654,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _PlacesResponse extends PlacesResponse {
-  const _PlacesResponse({required final  PlacesQuery searchParameters, required final  List<PlaceResult> places, this.knowledgeGraph, required final  int credits}): _places = places,super._(searchParameters: searchParameters, credits: credits);
+  const _PlacesResponse({required this.searchParameters, required final  List<PlaceResult> places, this.knowledgeGraph, required this.credits}): _places = places,super._();
   factory _PlacesResponse.fromJson(Map<String, dynamic> json) => _$PlacesResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  PlacesQuery searchParameters;
 /// List of place results returned by the API
 ///
 /// Contains places that match the search query.
@@ -664,6 +674,8 @@ class _PlacesResponse extends PlacesResponse {
 
 /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -847,9 +859,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _VideosResponse extends VideosResponse {
-  const _VideosResponse({required final  VideosQuery searchParameters, required final  List<VideoResult> videos, this.knowledgeGraph, required final  int credits}): _videos = videos,super._(searchParameters: searchParameters, credits: credits);
+  const _VideosResponse({required this.searchParameters, required final  List<VideoResult> videos, this.knowledgeGraph, required this.credits}): _videos = videos,super._();
   factory _VideosResponse.fromJson(Map<String, dynamic> json) => _$VideosResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  VideosQuery searchParameters;
 /// List of video results returned by the API
 ///
 /// Contains videos that match the search query.
@@ -865,6 +879,8 @@ class _VideosResponse extends VideosResponse {
 
 /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1043,13 +1059,17 @@ $MapResultCopyWith<$Res> get place {
 @JsonSerializable()
 
 class _MapsResponse extends MapsResponse {
-  const _MapsResponse({required final  MapsQuery searchParameters, required this.place, required final  int credits}): super._(searchParameters: searchParameters, credits: credits);
+  const _MapsResponse({required this.searchParameters, required this.place, required this.credits}): super._();
   factory _MapsResponse.fromJson(Map<String, dynamic> json) => _$MapsResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  MapsQuery searchParameters;
 /// The place details returned by the Maps API
 ///
 /// Contains detailed information about a specific place.
 @override final  MapResult place;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1219,9 +1239,11 @@ $ReviewsQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _ReviewsResponse extends ReviewsResponse {
-  const _ReviewsResponse({required final  ReviewsQuery searchParameters, required final  List<PlaceReview> reviews, this.nextPageToken, required final  int credits}): _reviews = reviews,super._(searchParameters: searchParameters, credits: credits);
+  const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, this.nextPageToken, required this.credits}): _reviews = reviews,super._();
   factory _ReviewsResponse.fromJson(Map<String, dynamic> json) => _$ReviewsResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  ReviewsQuery searchParameters;
 /// List of place reviews returned by the API
 ///
 /// Contains reviews for the specified place.
@@ -1239,6 +1261,8 @@ class _ReviewsResponse extends ReviewsResponse {
 ///
 /// If more reviews are available, this token can be used to fetch the next batch.
 @override final  String? nextPageToken;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1410,9 +1434,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _NewsResponse extends NewsResponse {
-  const _NewsResponse({required final  NewsQuery searchParameters, required final  List<NewsResult> news, this.knowledgeGraph, required final  int credits}): _news = news,super._(searchParameters: searchParameters, credits: credits);
+  const _NewsResponse({required this.searchParameters, required final  List<NewsResult> news, this.knowledgeGraph, required this.credits}): _news = news,super._();
   factory _NewsResponse.fromJson(Map<String, dynamic> json) => _$NewsResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  NewsQuery searchParameters;
 /// List of news results returned by the API
 ///
 /// Contains news articles that match the search query.
@@ -1428,6 +1454,8 @@ class _NewsResponse extends NewsResponse {
 
 /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1611,9 +1639,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _ShoppingResponse extends ShoppingResponse {
-  const _ShoppingResponse({required final  ShoppingQuery searchParameters, required final  List<ShoppingResult> shopping, this.knowledgeGraph, required final  int credits}): _shopping = shopping,super._(searchParameters: searchParameters, credits: credits);
+  const _ShoppingResponse({required this.searchParameters, required final  List<ShoppingResult> shopping, this.knowledgeGraph, required this.credits}): _shopping = shopping,super._();
   factory _ShoppingResponse.fromJson(Map<String, dynamic> json) => _$ShoppingResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  ShoppingQuery searchParameters;
 /// List of shopping results returned by the API
 ///
 /// Contains products that match the search query.
@@ -1629,6 +1659,8 @@ class _ShoppingResponse extends ShoppingResponse {
 
 /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
 @override final  KnowledgeGraphResult? knowledgeGraph;
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1798,9 +1830,11 @@ $LensQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _LensResponse extends LensResponse {
-  const _LensResponse({required final  LensQuery searchParameters, required final  List<LensResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
+  const _LensResponse({required this.searchParameters, required final  List<LensResult> organic, required this.credits}): _organic = organic,super._();
   factory _LensResponse.fromJson(Map<String, dynamic> json) => _$LensResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  LensQuery searchParameters;
 /// {@macro ResponseDocTemplates.organicDoc}
 ///
 /// For Lens API, these are results related to the image that was searched.
@@ -1814,6 +1848,8 @@ class _LensResponse extends LensResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of LensResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1970,9 +2006,11 @@ $ScholarQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _ScholarResponse extends ScholarResponse {
-  const _ScholarResponse({required final  ScholarQuery searchParameters, required final  List<ScholarResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
+  const _ScholarResponse({required this.searchParameters, required final  List<ScholarResult> organic, required this.credits}): _organic = organic,super._();
   factory _ScholarResponse.fromJson(Map<String, dynamic> json) => _$ScholarResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  ScholarQuery searchParameters;
 /// {@macro ResponseDocTemplates.organicDoc}
 ///
 /// For Scholar API, these are the academic results that match the search query.
@@ -1986,6 +2024,8 @@ class _ScholarResponse extends ScholarResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of ScholarResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2142,9 +2182,11 @@ $PatentsQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _PatentsResponse extends PatentsResponse {
-  const _PatentsResponse({required final  PatentsQuery searchParameters, required final  List<PatentResult> organic, required final  int credits}): _organic = organic,super._(searchParameters: searchParameters, credits: credits);
+  const _PatentsResponse({required this.searchParameters, required final  List<PatentResult> organic, required this.credits}): _organic = organic,super._();
   factory _PatentsResponse.fromJson(Map<String, dynamic> json) => _$PatentsResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  PatentsQuery searchParameters;
 /// {@macro ResponseDocTemplates.organicDoc}
 ///
 /// For Patents API, these are the patent results that match the search query.
@@ -2158,6 +2200,8 @@ class _PatentsResponse extends PatentsResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of PatentsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2314,9 +2358,11 @@ $AutocompleteQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _AutocompleteResponse extends AutocompleteResponse {
-  const _AutocompleteResponse({required final  AutocompleteQuery searchParameters, required final  List<AutocompleteSuggestion> suggestions, required final  int credits}): _suggestions = suggestions,super._(searchParameters: searchParameters, credits: credits);
+  const _AutocompleteResponse({required this.searchParameters, required final  List<AutocompleteSuggestion> suggestions, required this.credits}): _suggestions = suggestions,super._();
   factory _AutocompleteResponse.fromJson(Map<String, dynamic> json) => _$AutocompleteResponseFromJson(json);
 
+/// {@macro ResponseDocTemplates.searchParametersDoc}
+@override final  AutocompleteQuery searchParameters;
 /// List of autocomplete suggestions returned by the API
 ///
 /// Each suggestion is a possible completion of the user's query.
@@ -2330,6 +2376,8 @@ class _AutocompleteResponse extends AutocompleteResponse {
   return EqualUnmodifiableListView(_suggestions);
 }
 
+/// {@macro ResponseDocTemplates.creditsDoc}
+@override final  int credits;
 
 /// Create a copy of AutocompleteResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2472,8 +2520,8 @@ as List<WebpageResult>,
 /// @nodoc
 @JsonSerializable()
 
-class _WebpageResponse implements WebpageResponse {
-  const _WebpageResponse({required final  List<WebpageResult> results}): _results = results;
+class _WebpageResponse extends WebpageResponse {
+  const _WebpageResponse({required final  List<WebpageResult> results}): _results = results,super._();
   factory _WebpageResponse.fromJson(Map<String, dynamic> json) => _$WebpageResponseFromJson(json);
 
 /// {@macro ResponseDocTemplates.resultsDoc}

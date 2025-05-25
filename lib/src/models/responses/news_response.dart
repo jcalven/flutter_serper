@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper News API.
 @freezed
 abstract class NewsResponse extends SerperResponse<NewsQuery>
-    with _$NewsResponse {
-  const NewsResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$NewsResponse, ResponseUtilityMixin<NewsQuery> {
+  const NewsResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory NewsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

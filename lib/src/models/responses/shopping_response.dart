@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Shopping API.
 @freezed
 abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
-    with _$ShoppingResponse {
-  const ShoppingResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$ShoppingResponse, ResponseUtilityMixin<ShoppingQuery> {
+  const ShoppingResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory ShoppingResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

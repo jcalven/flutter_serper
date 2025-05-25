@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Search API.
 @freezed
 abstract class SearchResponse extends SerperResponse<SearchQuery>
-    with _$SearchResponse {
-  const SearchResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$SearchResponse, ResponseUtilityMixin<SearchQuery> {
+  const SearchResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory SearchResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

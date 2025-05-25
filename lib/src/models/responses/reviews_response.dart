@@ -3,11 +3,13 @@ part of 'responses.dart';
 /// Response for the Serper Reviews API.
 @freezed
 abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
-    with _$ReviewsResponse {
-  const ReviewsResponse._({
-    required super.searchParameters,
-    required super.credits,
-  });
+    with _$ReviewsResponse, ResponseUtilityMixin<ReviewsQuery> {
+  const ReviewsResponse._(
+    //   {
+    //   required super.searchParameters,
+    //   required super.credits,
+    // }
+  );
 
   const factory ReviewsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

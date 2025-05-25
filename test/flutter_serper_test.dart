@@ -209,8 +209,8 @@ void main() {
       final searchResponse = SearchResponse.fromJson(searchJson);
       final imagesResponse = ImagesResponse.fromJson(imagesJson);
 
-      // Function that works with any SerperResponseMixin
-      int getCreditsUsed(SerperResponse response) {
+      // Function that works with any ResponseUtilityMixin
+      int getCreditsUsed(ResponseUtilityMixin response) {
         return response.credits;
       }
 

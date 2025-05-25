@@ -5,7 +5,10 @@ part of 'responses.dart';
 /// Unlike other Serper APIs, the Webpage API has a different structure and
 /// doesn't follow the standard SerperResponse base class pattern.
 @freezed
-abstract class WebpageResponse with _$WebpageResponse {
+abstract class WebpageResponse extends SerperResponse<WebpageQuery>
+    with _$WebpageResponse {
+  const WebpageResponse._();
+
   const factory WebpageResponse({
     /// {@macro ResponseDocTemplates.resultsDoc}
     ///
