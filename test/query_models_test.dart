@@ -2,17 +2,22 @@ import 'package:flutter_serper/flutter_serper.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Query Models - Additional Tests', () {
+  group('Query Models - Tests', () {
     test('MapsQuery serializes to JSON correctly', () {
+      // Arrange
       final query = MapsQuery(
         q: 'coffee shops',
         hl: 'en',
         ll: '37.7749,-122.4194',
-        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
-        cid: '1234567890',
-        page: 2,
+        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4', // Updated placeId
+        cid: '1234567890',                     // Added cid
+        page: 2,                               // Added page
       );
+
+      // Act
       final json = query.toJson();
+
+      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('coffee shops'));
       expect(json['hl'], equals('en'));
@@ -23,30 +28,207 @@ void main() {
     });
 
     test('PlacesQuery serializes to JSON correctly', () {
-      final query = PlacesQuery(q: 'restaurants', location: 'Chicago');
+      // Arrange
+      final query = PlacesQuery(q: 'restaurants', location: 'San Francisco');
+
+      // Act
       final json = query.toJson();
+
+      // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('restaurants'));
-      expect(json['location'], equals('Chicago'));
+      expect(json['location'], equals('San Francisco'));
+    });
+
+    test('SearchQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = SearchQuery(q: 'flutter');
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('flutter'));
+    });
+
+    test('ImagesQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = ImagesQuery(q: 'mountains');
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('mountains'));
     });
 
     test('NewsQuery serializes to JSON correctly', () {
+      // Arrange
       final query = NewsQuery(
-        q: 'world news',
-        location: 'London',
-        gl: 'uk',
-        hl: 'en',
-        num: 10,
+        q: 'technology news', // from fixed
+        location: 'London',   // from _test
+        gl: 'uk',             // from _test
+        hl: 'en',             // from _test
+        num: 10,              // from _test
       );
+
+      // Act
       final json = query.toJson();
+
+      // Assert
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['q'], equals('world news'));
+      expect(json['q'], equals('technology news'));
       expect(json['location'], equals('London'));
       expect(json['gl'], equals('uk'));
       expect(json['hl'], equals('en'));
       expect(json['num'], equals(10));
     });
 
+    test('VideosQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = VideosQuery(q: 'flutter tutorials');
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('flutter tutorials'));
+    });
+
+    test('LensQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = LensQuery(
+        url: 'https://example.com/image.jpg',
+        gl: 'us', // Added
+        hl: 'en', // Added
+      );
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['url'], equals('https://example.com/image.jpg'));
+      expect(json['gl'], equals('us'));
+      expect(json['hl'], equals('en'));
+    });
+
+    test('ScholarQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = ScholarQuery(
+        q: 'machine learning',
+        hl: 'en', // Added
+      );
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('machine learning'));
+      expect(json['hl'], equals('en'));
+    });
+
+    test('PatentsQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = PatentsQuery(
+        q: 'solar energy patents', // from fixed
+        hl: 'en',                  // from _test
+      );
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('solar energy patents'));
+      expect(json['hl'], equals('en'));
+    });
+
+    test('ReviewsQuery serializes to JSON correctly', () {
+      // Arrange/Act/Assert for withCid
+      final queryCid = ReviewsQuery.withCid(
+        cid: '12345',
+        gl: 'us',
+        hl: 'en',
+        sortBy: 'newest',
+        topicId: 'topic1',
+        nextPageToken: 'token1',
+        q: 'filter',
+      );
+      final jsonCid = queryCid.toJson();
+      expect(jsonCid, isA<Map<String, dynamic>>());
+      expect(jsonCid['cid'], equals('12345'));
+      expect(jsonCid['gl'], equals('us'));
+      expect(jsonCid['hl'], equals('en'));
+      expect(jsonCid['sortBy'], equals('newest'));
+      expect(jsonCid['topicId'], equals('topic1'));
+      expect(jsonCid['nextPageToken'], equals('token1'));
+      expect(jsonCid['q'], equals('filter'));
+
+      // Arrange/Act/Assert for withFid
+      final queryFid = ReviewsQuery.withFid(
+        fid: '67890',
+        gl: 'us',
+        hl: 'en',
+        sortBy: 'highest_rating',
+        topicId: 'topic2',
+        nextPageToken: 'token2',
+        q: 'filter2',
+      );
+      final jsonFid = queryFid.toJson();
+      expect(jsonFid, isA<Map<String, dynamic>>());
+      expect(jsonFid['fid'], equals('67890'));
+      expect(jsonFid['gl'], equals('us'));
+      expect(jsonFid['hl'], equals('en'));
+      expect(jsonFid['sortBy'], equals('highest_rating'));
+      expect(jsonFid['topicId'], equals('topic2'));
+      expect(jsonFid['nextPageToken'], equals('token2'));
+      expect(jsonFid['q'], equals('filter2'));
+
+      // Arrange/Act/Assert for withPlaceId
+      final queryPlaceId = ReviewsQuery.withPlaceId(
+        placeId: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
+        gl: 'us',
+        hl: 'en',
+        sortBy: 'relevant',
+        topicId: 'topic3',
+        nextPageToken: 'token3',
+        q: 'filter3',
+      );
+      final jsonPlaceId = queryPlaceId.toJson();
+      expect(jsonPlaceId, isA<Map<String, dynamic>>());
+      expect(jsonPlaceId['placeId'], equals('ChIJIQBpAG2ahYAR_6128GcTUEo'));
+      expect(jsonPlaceId['gl'], equals('us'));
+      expect(jsonPlaceId['hl'], equals('en'));
+      expect(jsonPlaceId['sortBy'], equals('relevant'));
+      expect(jsonPlaceId['topicId'], equals('topic3'));
+      expect(jsonPlaceId['nextPageToken'], equals('token3'));
+      expect(jsonPlaceId['q'], equals('filter3'));
+    });
+
+    test('AutocompleteQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = AutocompleteQuery(
+        q: 'flo', // from fixed
+        gl: 'us', // from _test
+        hl: 'en', // from _test
+      );
+
+      // Act
+      final json = query.toJson();
+
+      // Assert
+      expect(json, isA<Map<String, dynamic>>());
+      expect(json['q'], equals('flo'));
+      expect(json['gl'], equals('us'));
+      expect(json['hl'], equals('en'));
+    });
+
+    // Added from query_models_test.dart
     test('ShoppingQuery serializes to JSON correctly', () {
       final query = ShoppingQuery(
         q: 'smartphones',
@@ -62,51 +244,22 @@ void main() {
       expect(json['hl'], equals('en'));
     });
 
-    test('LensQuery serializes to JSON correctly', () {
-      final query = LensQuery(
-        url: 'https://example.com/image.jpg',
-        gl: 'us',
-        hl: 'en',
+    test('WebpageQuery serializes to JSON correctly', () {
+      // Arrange
+      final query = WebpageQuery(
+        url: 'https://example.com',
+        includeMarkdown: true,
+        q: 'search',
       );
-      final json = query.toJson();
-      expect(json, isA<Map<String, dynamic>>());
-      expect(json['url'], equals('https://example.com/image.jpg'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-    });
 
-    test('ScholarQuery serializes to JSON correctly', () {
-      final query = ScholarQuery(q: 'machine learning', hl: 'en');
+      // Act
       final json = query.toJson();
-      expect(json, isA<Map<String, dynamic>>());
-      expect(json['q'], equals('machine learning'));
-      expect(json['hl'], equals('en'));
-    });
 
-    test('PatentsQuery serializes to JSON correctly', () {
-      final query = PatentsQuery(q: 'solar energy', hl: 'en');
-      final json = query.toJson();
+      // Assert
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['q'], equals('solar energy'));
-      expect(json['hl'], equals('en'));
-    });
-
-    test('ReviewsQuery serializes to JSON correctly', () {
-      final query = ReviewsQuery.withCid(cid: '12345', gl: 'us', hl: 'en');
-      final json = query.toJson();
-      expect(json, isA<Map<String, dynamic>>());
-      expect(json['cid'], equals('12345'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
-    });
-
-    test('AutocompleteQuery serializes to JSON correctly', () {
-      final query = AutocompleteQuery(q: 'how to', gl: 'us', hl: 'en');
-      final json = query.toJson();
-      expect(json, isA<Map<String, dynamic>>());
-      expect(json['q'], equals('how to'));
-      expect(json['gl'], equals('us'));
-      expect(json['hl'], equals('en'));
+      expect(json['url'], equals('https://example.com'));
+      expect(json['includeMarkdown'], equals(true));
+      expect(json['q'], equals('search'));
     });
   });
 }

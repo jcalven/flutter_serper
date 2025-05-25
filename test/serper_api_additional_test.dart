@@ -1,7 +1,9 @@
-import 'dart:convert'; // Add this import for json.encode
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/flutter_serper.dart';
+import 'package:flutter_serper/src/models/queries/queries.dart';
+import 'package:flutter_serper/src/models/responses/responses.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -17,8 +19,6 @@ void main() {
     mockDio = MockDio();
     serper = Serper(apiKey: 'test_api_key', dio: mockDio);
 
-    // Default stub for any request to avoid MissingStubError for unhandled cases
-    // This can be overridden in specific tests if a particular response is needed.
     when(
       mockDio.request(
         any,
@@ -31,7 +31,7 @@ void main() {
       ),
     ).thenAnswer(
       (_) async => Response(
-        data: {}, // Default empty map response
+        data: {},
         statusCode: 200,
         requestOptions: RequestOptions(path: ''),
       ),
@@ -118,15 +118,14 @@ void main() {
         // Arrange
         final expectedResponse = {
           'searchParameters': {'q': 'coffee shops'},
-          'place': // Changed from 'maps' to 'place' to match MapsResponse model
-              {
+          'place': {
             'title': 'Coffee Shop Name',
-            'cid': '67890', // Required
-            'address': '456 Oak St', // Required
-            'rating': 4.8, // Required
-            'reviewCount': 200, // Required
-            'priceLevel': '\$', // Required
-            'type': 'Coffee Shop Type', // Required
+            'cid': '67890',
+            'address': '456 Oak St',
+            'rating': 4.8,
+            'reviewCount': 200,
+            'priceLevel': '\$',
+            'type': 'Coffee Shop Type',
             'phone': '555-5678',
             'website': 'https://coffeeshop.example.com',
             'categories': ['Cafe', 'Bakery'],
@@ -135,7 +134,7 @@ void main() {
             'photos': [],
             'additionalInfo': {'outdoor_seating': 'yes'},
             'description': 'Best coffee in town.',
-          }, // End of place object
+          },
           'credits': 5,
         };
         final query = MapsQuery(q: 'coffee shops');
@@ -173,12 +172,10 @@ void main() {
           ),
         ).called(1);
         expect(result, isA<MapsResponse>());
-        // expect(result.maps.length, equals(1)); // MapsResponse has a single `place` field, not a list of `maps`
-        // expect(result.maps.first.title, equals('Coffee Shop Name'));
         expect(
           result.place.title,
           equals('Coffee Shop Name'),
-        ); // Corrected to use result.place
+        );
         expect(result.credits, equals(5));
       },
     );
@@ -252,21 +249,19 @@ void main() {
         final expectedResponse = {
           'searchParameters': {'url': 'https://example.com/image.jpg'},
           'organic': [
-            // Changed from 'lens' to 'organic'
             {
               'title': 'Similar Image Result',
               'link': 'https://example.com/similar-image',
               'source': 'Example Source',
               'imageUrl': 'https://example.com/similar-image.jpg',
-              'thumbnailUrl':
-                  'https://example.com/similar-image-thumb.jpg', // Added non-nullable thumbnailUrl
-              // 'position': 1, // LensResult doesn't have position
+              'thumbnailUrl': 'https://example.com/similar-image-thumb.jpg',
             },
           ],
           'credits': 8,
         };
         final query = LensQuery(url: 'https://example.com/image.jpg');
         final requestData = json.encode([query.toJson()]);
+
         when(
           mockDio.request(
             'https://google.serper.dev/lens',
@@ -299,11 +294,12 @@ void main() {
           ),
         ).called(1);
         expect(result, isA<LensResponse>());
-        expect(result.organic.length, equals(1)); // Changed from result.lens
+        expect(result.organic.length, equals(1));
+        expect(result.organic.first.title, equals('Similar Image Result'));
         expect(
-          result.organic.first.title,
-          equals('Similar Image Result'),
-        ); // Changed from result.lens
+          result.organic.first.thumbnailUrl,
+          equals('https://example.com/similar-image-thumb.jpg'),
+        );
         expect(result.credits, equals(8));
       },
     );
@@ -313,24 +309,15 @@ void main() {
       final expectedResponse = {
         'searchParameters': {'q': 'machine learning'},
         'organic': [
-          // Changed from 'scholar' to 'organic'
           {
             'title': 'Machine Learning Basics',
             'link': 'https://example.com/ml-basics',
             'snippet': 'An introduction to machine learning concepts.',
-            'publicationInfo':
-                'Example University Press, Journal of ML', // Added non-nullable publicationInfo
-            'year': 2023, // Added non-nullable year
-            'citedBy': 150, // Added non-nullable citedBy (int)
-            'pdfUrl':
-                'https://example.com/ml-basics.pdf', // Added non-nullable pdfUrl
-            'id': 'scholar_id_123', // Added non-nullable id
-            // 'source': 'Example University', // ScholarResult uses publicationInfo
-            // 'authors': ['John Doe', 'Jane Smith'], // ScholarResult doesn't have authors list
-            // 'publicationDate': '2023-01-15', // ScholarResult uses year (int)
-            // 'citedBy': {\n              //   'value': 150,\n              //   'link': 'https://example.com/citations'\n              // }, // ScholarResult has citedBy as int
-            // 'position': 1, // ScholarResult doesn't have position
-            // 'pdfLink': 'https://example.com/ml-basics.pdf', // pdfUrl is the correct field name
+            'publicationInfo': 'Example University Press, Journal of ML',
+            'year': 2023,
+            'citedBy': 150,
+            'pdfUrl': 'https://example.com/ml-basics.pdf',
+            'id': 'scholar_id_123',
           },
         ],
         'credits': 12,
@@ -369,11 +356,19 @@ void main() {
         ),
       ).called(1);
       expect(result, isA<ScholarResponse>());
-      expect(result.organic.length, equals(1)); // Changed from result.scholar
+      expect(result.organic.length, equals(1));
+      expect(result.organic.first.title, equals('Machine Learning Basics'));
       expect(
-        result.organic.first.title,
-        equals('Machine Learning Basics'),
-      ); // Changed from result.scholar
+        result.organic.first.publicationInfo,
+        equals('Example University Press, Journal of ML'),
+      );
+      expect(result.organic.first.year, equals(2023));
+      expect(result.organic.first.citedBy, equals(150));
+      expect(
+        result.organic.first.pdfUrl,
+        equals('https://example.com/ml-basics.pdf'),
+      );
+      expect(result.organic.first.id, equals('scholar_id_123'));
       expect(result.credits, equals(12));
     });
 
@@ -382,43 +377,34 @@ void main() {
       () async {
         // Arrange
         final expectedResponse = {
-          'searchParameters': {'q': 'solar energy'},
+          'searchParameters': {'q': 'solar energy patents'},
           'organic': [
-            // Changed from 'patents' to 'organic'
             {
               'title': 'Solar Panel Innovation',
               'link': 'https://example.com/solar-patent',
               'snippet': 'A new type of solar panel technology.',
-              'inventor':
-                  'Alice Brown, Bob Green', // Added non-nullable inventor (String)
-              'assignee': 'Solar Corp', // Added non-nullable assignee
-              'publicationDate': '2022-05-20', // Non-nullable
-              'priorityDate': '2021-05-20', // Non-nullable
-              'filingDate': '2021-10-10', // Added non-nullable filingDate
-              'grantDate': '2023-05-20', // Nullable, but good to include
-              'publicationNumber':
-                  'US1234567B2', // Added non-nullable publicationNumber
-              'language': 'en', // Added non-nullable language
-              'thumbnailUrl':
-                  'https://example.com/patent-thumb.jpg', // Added non-nullable thumbnailUrl
-              'pdfUrl': 'https://example.com/patent.pdf', // Nullable
+              'inventor': 'Alice Brown, Bob Green',
+              'assignee': 'Solar Corp',
+              'publicationDate': '2022-05-20',
+              'priorityDate': '2021-05-20',
+              'filingDate': '2021-10-10',
+              'grantDate': '2023-05-20',
+              'publicationNumber': 'US1234567B2',
+              'language': 'en',
+              'thumbnailUrl': 'https://example.com/patent-thumb.jpg',
+              'pdfUrl': 'https://example.com/patent.pdf',
               'figures': [
                 {
                   'imageUrl': 'https://example.com/figure1.jpg',
                   'thumbnailUrl': 'https://example.com/figure1_thumb.jpg',
                 },
               ],
-              'position': 1, // Non-nullable
-              // 'source': 'USPTO', // PatentResult doesn't have source
-              // 'patentOffice': 'US', // PatentResult doesn't have patentOffice
-              // 'inventors': ['Alice Brown', 'Bob Green'], // inventor is a String, not List<String>
-              // 'patentNumber': 'US1234567B2', // publicationNumber is the correct field name
-              // 'applicationNumber': 'US2022/123456', // PatentResult doesn't have applicationNumber
+              'position': 1,
             },
           ],
           'credits': 20,
         };
-        final query = PatentsQuery(q: 'solar energy');
+        final query = PatentsQuery(q: 'solar energy patents');
         final requestData = json.encode([query.toJson()]);
         when(
           mockDio.request(
@@ -452,11 +438,17 @@ void main() {
           ),
         ).called(1);
         expect(result, isA<PatentsResponse>());
-        expect(result.organic.length, equals(1)); // Changed from result.patents
+        expect(result.organic.length, equals(1));
+        final patent = result.organic.first;
+        expect(patent.title, equals('Solar Panel Innovation'));
+        expect(patent.inventor, equals('Alice Brown, Bob Green'));
+        expect(patent.assignee, equals('Solar Corp'));
+        expect(patent.publicationNumber, equals('US1234567B2'));
+        expect(patent.language, equals('en'));
         expect(
-          result.organic.first.title,
-          equals('Solar Panel Innovation'),
-        ); // Changed from result.patents
+          patent.thumbnailUrl,
+          equals('https://example.com/patent-thumb.jpg'),
+        );
         expect(result.credits, equals(20));
       },
     );
@@ -467,20 +459,18 @@ void main() {
         // Arrange
         final expectedResponse = {
           'searchParameters': {
-            'cid': 'test_cid',
-            'runtimeType':
-                'withCid', // Ensure runtimeType is correctly placed for ReviewsQuery deserialization
+            'cid': '12345',
+            'q': 'hotel reviews',
+            'runtimeType': 'withCid',
           },
           'reviews': [
             {
-              'author': 'Jane D.', // Was reviewerName
-              'authorUrl':
-                  'https://example.com/jane_d_profile', // Was link, and made more specific
-              'text': 'Wonderful stay, highly recommend.', // Was snippet
-              'rating': 5.0, // Ensure it's a double
+              'author': 'Jane D.',
+              'authorUrl': 'https://example.com/jane',
+              'text': 'Wonderful stay, highly recommend.',
+              'rating': 5.0,
               'date': '2023-10-01',
               'position': 1,
-              // Removed: title, source, link, imageUrl as they are not in PlaceReview model
             },
           ],
           'placeInfo': {
@@ -491,7 +481,7 @@ void main() {
           },
           'credits': 7,
         };
-        final query = ReviewsQuery.withCid(cid: 'test_cid', q: 'hotel reviews');
+        final query = ReviewsQuery.withCid(cid: '12345', q: 'hotel reviews');
         final requestData = json.encode([query.toJson()]);
         when(
           mockDio.request(
@@ -526,11 +516,10 @@ void main() {
         ).called(1);
         expect(result, isA<ReviewsResponse>());
         expect(result.reviews.length, equals(1));
-        // expect(result.reviews.first.title, equals('Great Hotel!')); // PlaceReview does not have a `title` field. It has `text` or `author`.
         expect(
           result.reviews.first.text,
           equals('Wonderful stay, highly recommend.'),
-        ); // Corrected to assert `text`
+        );
         expect(result.credits, equals(7));
       },
     );
@@ -540,18 +529,14 @@ void main() {
       () async {
         // Arrange
         final expectedResponse = {
-          'searchParameters': {'q': 'how to'},
+          'searchParameters': {'q': 'flo'},
           'suggestions': [
-            {
-              'value': 'how to tie a tie',
-            }, // Corrected from `suggestion` to `value`
-            {
-              'value': 'how to make pancakes',
-            }, // Corrected from `suggestion` to `value`
+            {'value': 'flutter documentation'},
+            {'value': 'flower delivery'},
           ],
           'credits': 2,
         };
-        final query = AutocompleteQuery(q: 'how to');
+        final query = AutocompleteQuery(q: 'flo');
         final requestData = json.encode([query.toJson()]);
         when(
           mockDio.request(
@@ -565,7 +550,7 @@ void main() {
           ),
         ).thenAnswer(
           (_) async => Response(
-            data: expectedResponse, // This should be a Map, not a List
+            data: expectedResponse,
             statusCode: 200,
             requestOptions: RequestOptions(path: ''),
           ),
@@ -586,10 +571,7 @@ void main() {
         ).called(1);
         expect(result, isA<AutocompleteResponse>());
         expect(result.suggestions.length, equals(2));
-        expect(
-          result.suggestions.first.value,
-          equals('how to tie a tie'),
-        ); // Corrected to use `value`
+        expect(result.suggestions.first.value, equals('flutter documentation'));
         expect(result.credits, equals(2));
       },
     );
@@ -603,7 +585,7 @@ void main() {
           'results': [
             {
               'text': 'This is the extracted text from example.com.',
-              'markdown': '# Example Website\\nThis is an example snippet.',
+              'markdown': '# Example Website\nThis is an example snippet.',
               'metadata': {
                 'title': 'Example Website',
                 'link': 'https://example.com',
@@ -617,7 +599,7 @@ void main() {
         final requestData = json.encode([query.toJson()]);
         when(
           mockDio.request(
-            'https://scrape.serper.dev/webpage', // Corrected URL
+            'https://scrape.serper.dev/webpage',
             data: requestData,
             options: anyNamed('options'),
             cancelToken: anyNamed('cancelToken'),
@@ -627,7 +609,7 @@ void main() {
           ),
         ).thenAnswer(
           (_) async => Response(
-            data: expectedResponse, // This should be a Map, not a List
+            data: expectedResponse,
             statusCode: 200,
             requestOptions: RequestOptions(path: ''),
           ),
@@ -639,7 +621,7 @@ void main() {
         // Assert
         verify(
           mockDio.request(
-            'https://scrape.serper.dev/webpage', // Corrected URL
+            'https://scrape.serper.dev/webpage',
             data: requestData,
             options: anyNamed('options'),
             cancelToken: anyNamed('cancelToken'),
@@ -658,7 +640,7 @@ void main() {
         );
         expect(
           firstResult.markdown,
-          equals('# Example Website\\nThis is an example snippet.'),
+          equals('# Example Website\nThis is an example snippet.'),
         );
         expect(firstResult.metadata?['title'], equals('Example Website'));
         expect(firstResult.metadata?['link'], equals('https://example.com'));
