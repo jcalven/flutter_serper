@@ -1,15 +1,10 @@
 part of 'responses.dart';
 
-/// Response for the Serper Lens (Image Search) API.
+/// Response for the Serper Lens API.
 @freezed
 abstract class LensResponse extends SerperResponse<LensQuery>
     with _$LensResponse, ResponseUtilityMixin<LensQuery> {
-  const LensResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const LensResponse._();
 
   const factory LensResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

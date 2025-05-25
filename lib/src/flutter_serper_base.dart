@@ -41,7 +41,7 @@ class SerperApiException implements Exception {
 /// Provides methods for all supported Serper API endpoints, including search, images, videos, places, maps, reviews,
 /// news, shopping, lens, scholar, patents, autocomplete, and webpage scraping.
 ///
-/// All methods use the Dio HTTP client and return strongly-typed response objects that implement [SerperResponseMixin],
+/// All methods use the Dio HTTP client and return strongly-typed response objects that extend [SerperResponse],
 /// allowing for polymorphic handling of responses.
 ///
 /// Example usage:
@@ -150,11 +150,10 @@ class Serper {
     }
   }
 
-  /// Get a value that implements [SerperResponseMixin] from the response.
+  /// Deserializes the API response into a specific type that extends [SerperResponse].
   ///
-  /// This method can be used to get any response type that implements [SerperResponseMixin],
-  /// allowing for polymorphic handling of responses.
-  T getResponseWithMixin<T extends SerperResponse>(
+  /// This method is used internally to convert the raw JSON response into a typed object.
+  T _deserializeResponse<T extends SerperResponse<dynamic>>(
     dynamic response,
     T Function(Map<String, dynamic>) fromJson,
   ) {
@@ -166,21 +165,21 @@ class Serper {
     return fromJson(response);
   }
 
-  /// Generic method to call any Serper API and return a response that implements [SerperResponseMixin].
+  /// Generic method to call any Serper API and return a response that extends [SerperResponse].
   ///
   /// This method can be used when you want to handle responses in a polymorphic way.
   ///
   /// Example:
   /// ```dart
-  /// final response = await serper.callApiWithMixin<SearchResponse>(
+  /// final response = await serper.callApi<SearchResponse>(
   ///   '/search',
   ///   [SearchQuery(q: 'coffee').toJson()],
   ///   SearchResponse.fromJson,
   /// );
-  /// // Can use response as SerperResponseMixin
-  /// print(response.credits);
+  /// // Can use response as SearchResponse or SerperResponse
+  /// // print(response.credits); // Accessing credits would now depend on ResponseUtilityMixin
   /// ```
-  Future<T> callApiWithMixin<T extends SerperResponse>(
+  Future<T> callApi<T extends SerperResponse<dynamic>>(
     String endpoint,
     List<Map<String, dynamic>> queryData,
     T Function(Map<String, dynamic>) fromJson, {
@@ -191,7 +190,7 @@ class Serper {
       'You must provide 1-100 queries.',
     );
     final response = await _post(endpoint, queryData, isScrape: isScrape);
-    return getResponseWithMixin(response, fromJson);
+    return _deserializeResponse(response, fromJson);
   }
 
   /// Calls the Serper Search API.
@@ -204,13 +203,13 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/search', data);
-    print('DEBUG: Raw Search API response from _post:');
-    print(response);
+    // The API might return a list with a single response map, or just the map.
+    // This was a source of previous bugs, ensure robust handling.
     final Map<String, dynamic> result =
         (response is List && response.isNotEmpty && response.first is Map)
             ? response.first as Map<String, dynamic>
             : response as Map<String, dynamic>;
-    return getResponseWithMixin(result, SearchResponse.fromJson);
+    return _deserializeResponse(result, SearchResponse.fromJson);
   }
 
   /// Calls the Serper Images API.
@@ -223,13 +222,11 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/images', data);
-    print('DEBUG: Raw Images API response from _post:');
-    print(response);
     final Map<String, dynamic> result =
         (response is List && response.isNotEmpty && response.first is Map)
             ? response.first as Map<String, dynamic>
             : response as Map<String, dynamic>;
-    return getResponseWithMixin(result, ImagesResponse.fromJson);
+    return _deserializeResponse(result, ImagesResponse.fromJson);
   }
 
   /// Calls the Serper Videos API.
@@ -242,7 +239,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/videos', data);
-    return getResponseWithMixin(response, VideosResponse.fromJson);
+    return _deserializeResponse(response, VideosResponse.fromJson);
   }
 
   /// Calls the Serper Places API.
@@ -255,7 +252,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/places', data);
-    return getResponseWithMixin(response, PlacesResponse.fromJson);
+    return _deserializeResponse(response, PlacesResponse.fromJson);
   }
 
   /// Calls the Serper Maps API.
@@ -268,7 +265,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/maps', data);
-    return getResponseWithMixin(response, MapsResponse.fromJson);
+    return _deserializeResponse(response, MapsResponse.fromJson);
   }
 
   /// Calls the Serper Reviews API.
@@ -281,7 +278,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/reviews', data);
-    return getResponseWithMixin(response, ReviewsResponse.fromJson);
+    return _deserializeResponse(response, ReviewsResponse.fromJson);
   }
 
   /// Calls the Serper News API.
@@ -294,7 +291,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/news', data);
-    return getResponseWithMixin(response, NewsResponse.fromJson);
+    return _deserializeResponse(response, NewsResponse.fromJson);
   }
 
   /// Calls the Serper Shopping API.
@@ -307,7 +304,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/shopping', data);
-    return getResponseWithMixin(response, ShoppingResponse.fromJson);
+    return _deserializeResponse(response, ShoppingResponse.fromJson);
   }
 
   /// Calls the Serper Lens (Image Search) API.
@@ -320,7 +317,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/lens', data);
-    return getResponseWithMixin(response, LensResponse.fromJson);
+    return _deserializeResponse(response, LensResponse.fromJson);
   }
 
   /// Calls the Serper Scholar API.
@@ -333,7 +330,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/scholar', data);
-    return getResponseWithMixin(response, ScholarResponse.fromJson);
+    return _deserializeResponse(response, ScholarResponse.fromJson);
   }
 
   /// Calls the Serper Patents API.
@@ -346,7 +343,7 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/patents', data);
-    return getResponseWithMixin(response, PatentsResponse.fromJson);
+    return _deserializeResponse(response, PatentsResponse.fromJson);
   }
 
   /// Calls the Serper Autocomplete API.
@@ -361,25 +358,26 @@ class Serper {
     );
     final data = queries.map((q) => q.toJson()).toList();
     final response = await _post('/autocomplete', data);
-    print('DEBUG: Raw Autocomplete API response from _post:');
-    print(response);
+    // The API might return a list with a single response map, or just the map.
     final Map<String, dynamic> result =
         (response is List && response.isNotEmpty && response.first is Map)
             ? response.first as Map<String, dynamic>
             : response as Map<String, dynamic>;
-    return getResponseWithMixin(result, AutocompleteResponse.fromJson);
+    return _deserializeResponse(result, AutocompleteResponse.fromJson);
   }
 
   /// Calls the Serper Webpage API (scraping).
   ///
   /// Accepts a list of [WebpageQuery] objects (up to 100).
+  /// Note: The Webpage API is a scraping endpoint and has a different base URL.
   Future<WebpageResponse> webpage(List<WebpageQuery> queries) async {
     assert(
       queries.isNotEmpty && queries.length <= 100,
       'You must provide 1-100 queries.',
     );
     final data = queries.map((q) => q.toJson()).toList();
+    // Pass isScrape: true to use the scrapeBaseUrl
     final response = await _post('/webpage', data, isScrape: true);
-    return WebpageResponse.fromJson(response);
+    return _deserializeResponse(response, WebpageResponse.fromJson);
   }
 }

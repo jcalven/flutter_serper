@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class SearchResponse extends SerperResponse<SearchQuery>
     with _$SearchResponse, ResponseUtilityMixin<SearchQuery> {
-  const SearchResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const SearchResponse._();
 
   const factory SearchResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class PatentsResponse extends SerperResponse<PatentsQuery>
     with _$PatentsResponse, ResponseUtilityMixin<PatentsQuery> {
-  const PatentsResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const PatentsResponse._();
 
   const factory PatentsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

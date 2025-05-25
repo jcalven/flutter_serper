@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class VideosResponse extends SerperResponse<VideosQuery>
     with _$VideosResponse, ResponseUtilityMixin<VideosQuery> {
-  const VideosResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const VideosResponse._();
 
   const factory VideosResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

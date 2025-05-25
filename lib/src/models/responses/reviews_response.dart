@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
     with _$ReviewsResponse, ResponseUtilityMixin<ReviewsQuery> {
-  const ReviewsResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const ReviewsResponse._();
 
   const factory ReviewsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class AutocompleteResponse extends SerperResponse<AutocompleteQuery>
     with _$AutocompleteResponse, ResponseUtilityMixin<AutocompleteQuery> {
-  const AutocompleteResponse._(
-    // {
-    // required super.searchParameters,
-    // required super.credits,
-    // }
-  );
+  const AutocompleteResponse._();
 
   const factory AutocompleteResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class MapsResponse extends SerperResponse<MapsQuery>
     with _$MapsResponse, ResponseUtilityMixin<MapsQuery> {
-  const MapsResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const MapsResponse._();
 
   const factory MapsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

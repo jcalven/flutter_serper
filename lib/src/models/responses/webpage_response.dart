@@ -1,9 +1,6 @@
 part of 'responses.dart';
 
 /// Response for the Serper Webpage API.
-///
-/// Unlike other Serper APIs, the Webpage API has a different structure and
-/// doesn't follow the standard SerperResponse base class pattern.
 @freezed
 abstract class WebpageResponse extends SerperResponse<WebpageQuery>
     with _$WebpageResponse {

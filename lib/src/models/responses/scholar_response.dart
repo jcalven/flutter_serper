@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class ScholarResponse extends SerperResponse<ScholarQuery>
     with _$ScholarResponse, ResponseUtilityMixin<ScholarQuery> {
-  const ScholarResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const ScholarResponse._();
 
   const factory ScholarResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

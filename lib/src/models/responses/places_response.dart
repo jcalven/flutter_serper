@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class PlacesResponse extends SerperResponse<PlacesQuery>
     with _$PlacesResponse, ResponseUtilityMixin<PlacesQuery> {
-  const PlacesResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const PlacesResponse._();
 
   const factory PlacesResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

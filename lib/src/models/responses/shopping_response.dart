@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
     with _$ShoppingResponse, ResponseUtilityMixin<ShoppingQuery> {
-  const ShoppingResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const ShoppingResponse._();
 
   const factory ShoppingResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

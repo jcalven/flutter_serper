@@ -4,12 +4,7 @@ part of 'responses.dart';
 @freezed
 abstract class NewsResponse extends SerperResponse<NewsQuery>
     with _$NewsResponse, ResponseUtilityMixin<NewsQuery> {
-  const NewsResponse._(
-    //   {
-    //   required super.searchParameters,
-    //   required super.credits,
-    // }
-  );
+  const NewsResponse._();
 
   const factory NewsResponse({
     /// {@macro ResponseDocTemplates.searchParametersDoc}

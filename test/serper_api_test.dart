@@ -769,64 +769,137 @@ void main() {
       });
     });
 
-    group('callApiWithMixin method', () {
-      test('works correctly with custom endpoints', () async {
-        // Arrange
-        final expectedResponseData = {
-          'searchParameters': {'q': 'test'},
-          'organic': [
-            {
-              'title': 'Test Result', // From additional_test
-              'link':
-                  'http://example.com/custom-result', // From additional_test
-              'snippet': 'Custom snippet.', // From additional_test
-              'position': 1,
-            },
-          ],
-          'credits': 1,
-        };
-        // For callApiWithMixin, queries is List<Map<String, dynamic>>
-        final queryList = [
-          {'q': 'test'},
-        ];
-        final requestData = json.encode(queryList);
+    group('callApi method', () {
+      // Renamed from callApiWithMixin
+      test(
+        'correctly calls _post and _deserializeResponse, then returns the response', // Updated method name in test description
+        () async {
+          final query = SearchQuery(q: 'generic query');
+          final List<Map<String, dynamic>> queryData = [query.toJson()];
+          final String endpoint = '/search';
+
+          when(
+            mockDio.request(
+              // Changed from mockDio.post
+              'https://google.serper.dev$endpoint',
+              data: json.encode(queryData),
+              options: anyNamed('options'),
+            ),
+          ).thenAnswer(
+            (_) async => Response(
+              requestOptions: RequestOptions(
+                path: 'https://google.serper.dev$endpoint',
+              ),
+              data: mockSuccessSearchResponseJson,
+              statusCode: 200,
+            ),
+          );
+
+          final result = await serper.callApi<SearchResponse>(
+            // Renamed method call
+            endpoint,
+            queryData,
+            SearchResponse.fromJson,
+          );
+
+          expect(result, isA<SearchResponse>());
+          expect(result.searchParameters.q, 'test query');
+          expect(result.organic.first.title, "Test Result 1");
+          expect(result.credits, 5);
+        },
+      );
+
+      test(
+        'throws SerperApiException on API error (e.g., 401, 403, 429)',
+        () async {
+          final query = SearchQuery(q: 'test query');
+          final List<Map<String, dynamic>> queryData = [query.toJson()];
+          final String endpoint = '/search';
+
+          when(
+            mockDio.request(
+              // Changed from mockDio.post
+              'https://google.serper.dev$endpoint',
+              data: json.encode(queryData),
+              options: anyNamed('options'),
+            ),
+          ).thenThrow(
+            DioException(
+              requestOptions: RequestOptions(
+                path: 'https://google.serper.dev$endpoint',
+              ),
+              response: Response(
+                requestOptions: RequestOptions(
+                  path: 'https://google.serper.dev$endpoint',
+                ),
+                data: mockSerperErrorJson,
+                statusCode: 401,
+              ),
+            ),
+          );
+
+          expect(
+            () => serper.callApi<SearchResponse>(
+              // Renamed method call
+              endpoint,
+              queryData,
+              SearchResponse.fromJson,
+            ),
+            throwsA(
+              isA<SerperApiException>()
+                  .having(
+                    (e) => e.message,
+                    'message',
+                    contains('Invalid API key.'),
+                  )
+                  .having((e) => e.statusCode, 'statusCode', 401),
+            ),
+          );
+        },
+      );
+
+      test('throws SerperApiException on Dio network error', () async {
+        final query = SearchQuery(q: 'test query');
+        final List<Map<String, dynamic>> queryData = [query.toJson()];
+        final String endpoint = '/search';
 
         when(
           mockDio.request(
-            'https://google.serper.dev/custom-endpoint',
-            data: requestData,
+            // Changed from mockDio.post
+            'https://google.serper.dev$endpoint',
+            data: json.encode(queryData),
             options: anyNamed('options'),
           ),
-        ).thenAnswer(
-          (_) async => Response(
-            data: expectedResponseData,
-            statusCode: 200,
+        ).thenThrow(
+          DioException(
             requestOptions: RequestOptions(
-              path: '',
-            ), // Path is part of the first arg to request
+              path: 'https://google.serper.dev$endpoint',
+            ),
+            // Simulating e.message being null for this specific test case
+            // error: null, // This would make e.message null
+            error: 'Connection failed', // Keep an error message for the test
+            type: DioExceptionType.connectionError,
           ),
         );
 
-        // Act
-        final result = await serper.callApiWithMixin<SearchResponse>(
-          '/custom-endpoint', // Endpoint path, base URL is prepended by dio/serper client
-          queryList,
-          SearchResponse.fromJson,
-        );
-
-        // Assert
-        verify(
-          mockDio.request(
-            'https://google.serper.dev/custom-endpoint',
-            data: requestData,
-            options: anyNamed('options'),
+        expect(
+          () => serper.callApi<SearchResponse>(
+            // Renamed method call
+            endpoint,
+            queryData,
+            SearchResponse.fromJson,
           ),
-        ).called(1);
-
-        expect(result, isA<SearchResponse>());
-        expect(result.organic.length, equals(1));
-        expect(result.organic.first.title, equals('Test Result'));
-        expect(result.credits, equals(1));
+          throwsA(
+            isA<SerperApiException>()
+                .having(
+                  (e) => e.message,
+                  'message',
+                  // Adjusted to match the actual message format from flutter_serper_base.dart
+                  equals('Network error: Connection failed'),
+                )
+                .having((e) => e.statusCode, 'statusCode', null),
+          ),
+        );
       });
     });
     // End of tests from serper_api_additional_test.dart
