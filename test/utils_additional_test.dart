@@ -2,7 +2,7 @@ import 'package:flutter_serper/flutter_serper.dart';
 import 'package:test/test.dart';
 import 'package:dio/dio.dart'; // Added from fixed_test
 // Import the base file to access Serper class for its static constants
-import 'package:flutter_serper/src/flutter_serper_base.dart'; // Added from fixed_test
+// Added from fixed_test
 
 void main() {
   group('SerperResponseProcessor - Additional Tests', () {

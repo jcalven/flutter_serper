@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/flutter_serper.dart';
-import 'package:flutter_serper/src/models/queries/queries.dart';
-import 'package:flutter_serper/src/models/responses/responses.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

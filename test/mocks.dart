@@ -1,5 +1,5 @@
 // Mock classes for testing
-library serper_mocks;
+library;
 
 import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
