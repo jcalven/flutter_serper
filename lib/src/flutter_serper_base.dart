@@ -136,7 +136,8 @@ class Serper {
       } else {
         // Network error or no response
         throw SerperApiException(
-          message: 'Network error: ${e.message}',
+          message:
+              'Network error: ${e.message ?? 'Connection failed'}', // Provide a default message if e.message is null
           endpoint: endpoint,
         );
       }

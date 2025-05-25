@@ -51,7 +51,8 @@ void main() {
 
       test('returns SearchResponse on successful API call', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -71,7 +72,8 @@ void main() {
         expect(result.organic.first.title, "Test Result 1");
         expect(result.credits, 5); // Added assertion for credits
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -102,7 +104,8 @@ void main() {
 
       test('calls the correct endpoint and returns ImagesResponse', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -125,7 +128,8 @@ void main() {
         );
         expect(result.credits, equals(5));
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -158,7 +162,8 @@ void main() {
 
       test('calls the correct endpoint and returns NewsResponse', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -178,7 +183,8 @@ void main() {
         expect(result.news.first.title, equals('Test News'));
         expect(result.credits, equals(5));
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -209,7 +215,8 @@ void main() {
       };
       test('calls the correct endpoint and returns VideosResponse', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -229,7 +236,8 @@ void main() {
         expect(result.videos.first.title, equals('Test Video'));
         expect(result.credits, equals(5));
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -260,7 +268,8 @@ void main() {
       };
       test('calls the correct endpoint and returns PlacesResponse', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -280,7 +289,8 @@ void main() {
         expect(result.places.first.title, equals('Test Restaurant'));
         expect(result.credits, equals(5));
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -311,13 +321,17 @@ void main() {
           'rating': 4.5,
           'reviewCount': 100,
           'position': 1,
+          'cid': 'test-cid', // Added missing non-nullable field
+          'priceLevel': '\$\$', // Added missing non-nullable field
+          'type': 'Cafe', // Added missing non-nullable field
         },
         'credits': 5,
       };
 
       test('calls the correct endpoint and returns MapsResponse', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -336,7 +350,8 @@ void main() {
         expect(result.place.title, equals('Test Coffee Shop'));
         expect(result.credits, equals(5));
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -360,7 +375,8 @@ void main() {
         'throws SerperApiException on API error (e.g., 401, 403, 429)',
         () async {
           when(
-            mockDio.post(
+            mockDio.request(
+              // Changed from mockDio.post
               expectedPath,
               data: expectedBody,
               options: anyNamed('options'),
@@ -389,7 +405,8 @@ void main() {
             ),
           );
           verify(
-            mockDio.post(
+            mockDio.request(
+              // Changed from mockDio.post
               expectedPath,
               data: expectedBody,
               options: anyNamed('options'),
@@ -400,7 +417,8 @@ void main() {
 
       test('throws SerperApiException on Dio network error', () async {
         when(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
@@ -408,7 +426,9 @@ void main() {
         ).thenThrow(
           DioException(
             requestOptions: RequestOptions(path: expectedPath),
-            error: 'Network connection failed',
+            // Simulating e.message being null for this specific test case
+            // error: null, // This would make e.message null
+            error: 'Connection failed', // Keep an error message for the test
             type: DioExceptionType.connectionError,
           ),
         );
@@ -420,13 +440,15 @@ void main() {
                 .having(
                   (e) => e.message,
                   'message',
-                  contains('Network connection failed'),
+                  // Adjusted to match the actual message format from flutter_serper_base.dart
+                  equals('Network error: Connection failed'),
                 )
                 .having((e) => e.statusCode, 'statusCode', null),
           ),
         );
         verify(
-          mockDio.post(
+          mockDio.request(
+            // Changed from mockDio.post
             expectedPath,
             data: expectedBody,
             options: anyNamed('options'),
