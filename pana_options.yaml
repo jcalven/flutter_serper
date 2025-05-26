@@ -1,3 +1,9 @@
+# Exclude generated files from coverage (for pana and other tools)
+exclude:
+  - "**/*.g.dart"
+  - "**/*.freezed.dart"
+  - "**/mocks.dart"
+  - "**/mocks.mocks.dart"
 analyzer:
   # Exclude generated files from analysis
   exclude:

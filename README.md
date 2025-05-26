@@ -1,3 +1,15 @@
+## Test Coverage: Excluding Generated Files
+
+To exclude generated files (such as `*.g.dart`, `*.freezed.dart`, and mocks) from your test coverage reports, this project is configured as follows:
+
+- The `pubspec.yaml` and `pana_options.yaml` include an `exclude` section for coverage tools.
+- When generating the final lcov report, you can also filter out generated files using `lcov`:
+
+```zsh
+lcov --remove coverage/lcov.info '**/*.g.dart' '**/*.freezed.dart' '**/mocks.dart' '**/mocks.mocks.dart' -o coverage/lcov.info
+```
+
+This ensures your coverage metrics reflect only your hand-written code.
 # flutter_serper
 
 [![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)

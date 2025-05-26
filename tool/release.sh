@@ -1,3 +1,8 @@
+# Remove generated files from coverage report
+if [ -f coverage/lcov.info ]; then
+  echo "Removing generated files from lcov.info..."
+  lcov --remove coverage/lcov.info '**/*.g.dart' '**/*.freezed.dart' '**/mocks.dart' '**/mocks.mocks.dart' -o coverage/lcov.info
+fi
 #!/bin/bash
 
 # Check if tag parameter is provided
