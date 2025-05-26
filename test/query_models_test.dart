@@ -70,7 +70,9 @@ void main() {
       final query = NewsQuery(
         q: 'technology news',
         location: 'London',
-        countryCode: CountryCode.unitedKingdomGB, // Assuming 'uk' maps to unitedKingdomGB
+        countryCode:
+            CountryCode
+                .unitedKingdomGB, // Assuming 'uk' maps to unitedKingdomGB
         languageCode: LanguageCode.english,
         num: 10,
       );

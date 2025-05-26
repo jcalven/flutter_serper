@@ -81,7 +81,7 @@ void main() {
           'q': 'test',
           'gl': 'us',
           'hl': 'en', // Added for completeness based on model
-          'tbs': 'qdr:d' // Added for completeness
+          'tbs': 'qdr:d', // Added for completeness
         },
         'organic': [
           {
@@ -104,8 +104,14 @@ void main() {
       expect(response, isA<SearchResponse>());
       expect(response.searchParameters, isA<SearchQuery>());
       expect(response.searchParameters.q, equals('test'));
-      expect(response.searchParameters.countryCode, equals(CountryCode.unitedStates));
-      expect(response.searchParameters.languageCode, equals(LanguageCode.english));
+      expect(
+        response.searchParameters.countryCode,
+        equals(CountryCode.unitedStates),
+      );
+      expect(
+        response.searchParameters.languageCode,
+        equals(LanguageCode.english),
+      );
       expect(response.searchParameters.tbs, equals(TbsValue.pastDay));
       expect(response.organic, hasLength(1));
       expect(response.organic.first.title, equals('Test Result'));
@@ -123,7 +129,7 @@ void main() {
         'searchParameters': {
           'q': 'test image',
           'gl': 'us',
-          'hl': 'en' // Added for completeness
+          'hl': 'en', // Added for completeness
         },
         'images': [
           {
@@ -145,8 +151,14 @@ void main() {
       expect(response, isA<ImagesResponse>());
       expect(response.searchParameters, isA<ImagesQuery>());
       expect(response.searchParameters.q, equals('test image'));
-      expect(response.searchParameters.countryCode, equals(CountryCode.unitedStates));
-      expect(response.searchParameters.languageCode, equals(LanguageCode.english));
+      expect(
+        response.searchParameters.countryCode,
+        equals(CountryCode.unitedStates),
+      );
+      expect(
+        response.searchParameters.languageCode,
+        equals(LanguageCode.english),
+      );
       expect(response.images, hasLength(1));
       expect(response.images.first.title, equals('Test Image'));
       expect(
@@ -239,11 +251,23 @@ void main() {
 
       // Verify both types implement the mixin correctly
       expect(searchResponse.searchParameters.q, equals('test'));
-      expect(searchResponse.searchParameters.countryCode, CountryCode.unitedStates);
-      expect(searchResponse.searchParameters.languageCode, LanguageCode.english);
+      expect(
+        searchResponse.searchParameters.countryCode,
+        CountryCode.unitedStates,
+      );
+      expect(
+        searchResponse.searchParameters.languageCode,
+        LanguageCode.english,
+      );
       expect(imagesResponse.searchParameters.q, equals('test image'));
-      expect(imagesResponse.searchParameters.countryCode, CountryCode.unitedStates);
-      expect(imagesResponse.searchParameters.languageCode, LanguageCode.english);
+      expect(
+        imagesResponse.searchParameters.countryCode,
+        CountryCode.unitedStates,
+      );
+      expect(
+        imagesResponse.searchParameters.languageCode,
+        LanguageCode.english,
+      );
     });
   });
 }

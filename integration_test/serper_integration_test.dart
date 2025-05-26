@@ -61,7 +61,9 @@ void main() {
 
       // Act & Assert
       try {
-        final autocompleteResults = await serper.autocomplete(autocompleteQuery);
+        final autocompleteResults = await serper.autocomplete(
+          autocompleteQuery,
+        );
         print('Raw Autocomplete API response:');
         print(autocompleteResults);
         expect(autocompleteResults.suggestions, isNotEmpty);
