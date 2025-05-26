@@ -7,15 +7,37 @@ sealed class ReviewsQuery with _$ReviewsQuery {
     /// {@macro QueryDocTemplates.cidDoc}
     required String cid,
 
+    /// {@macro QueryDocTemplates.countryCodeDoc}
+    @JsonKey(name: 'gl') CountryCode? countryCode,
+
+    /// {@macro QueryDocTemplates.languageCodeDoc}
+    @JsonKey(name: 'hl') LanguageCode? languageCode,
+
+    /// {@macro QueryDocTemplates.sortByDocEnum}
+    SortByValue? sortBy,
+
+    /// Optional topic ID to filter reviews by topic
+    String? topicId,
+
+    /// Optional token for pagination
+    String? nextPageToken,
+
+    /// {@macro QueryDocTemplates.queryStringDoc}
+    String? q,
+  }) = ReviewsQueryCid;
+
+  /// Factory to create a ReviewsQuery (for CID) with string-based inputs.
+  factory ReviewsQuery.withCidFromStrings({
+    /// {@macro QueryDocTemplates.cidDoc}
+    required String cid,
+
     /// {@macro QueryDocTemplates.glDoc}
-    String? gl,
+    String? countryCode,
 
     /// {@macro QueryDocTemplates.hlDoc}
-    String? hl,
+    String? languageCode,
 
-    /// Optional parameter to sort reviews
-    ///
-    /// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+    /// {@macro QueryDocTemplates.sortByDocString}
     String? sortBy,
 
     /// Optional topic ID to filter reviews by topic
@@ -24,23 +46,55 @@ sealed class ReviewsQuery with _$ReviewsQuery {
     /// Optional token for pagination
     String? nextPageToken,
 
-    /// Optional query string to filter reviews
+    /// {@macro QueryDocTemplates.queryStringDoc}
     String? q,
-  }) = ReviewsQueryCid;
+  }) {
+    return ReviewsQuery.withCid(
+      cid: cid,
+      countryCode: CountryCode.tryParse(countryCode),
+      languageCode: LanguageCode.tryParse(languageCode),
+      sortBy: SortByValue.tryParse(sortBy),
+      topicId: topicId,
+      nextPageToken: nextPageToken,
+      q: q,
+    );
+  }
 
   const factory ReviewsQuery.withFid({
     /// {@macro QueryDocTemplates.fidDoc}
     required String fid,
 
+    /// {@macro QueryDocTemplates.countryCodeDoc}
+    @JsonKey(name: 'gl') CountryCode? countryCode,
+
+    /// {@macro QueryDocTemplates.languageCodeDoc}
+    @JsonKey(name: 'hl') LanguageCode? languageCode,
+
+    /// {@macro QueryDocTemplates.sortByDocEnum}
+    SortByValue? sortBy,
+
+    /// Optional topic ID to filter reviews by topic
+    String? topicId,
+
+    /// Optional token for pagination
+    String? nextPageToken,
+
+    /// {@macro QueryDocTemplates.queryStringDoc}
+    String? q,
+  }) = ReviewsQueryFid;
+
+  /// Factory to create a ReviewsQuery (for FID) with string-based inputs.
+  factory ReviewsQuery.withFidFromStrings({
+    /// {@macro QueryDocTemplates.fidDoc}
+    required String fid,
+
     /// {@macro QueryDocTemplates.glDoc}
-    String? gl,
+    String? countryCode,
 
     /// {@macro QueryDocTemplates.hlDoc}
-    String? hl,
+    String? languageCode,
 
-    /// Optional parameter to sort reviews
-    ///
-    /// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+    /// {@macro QueryDocTemplates.sortByDocString}
     String? sortBy,
 
     /// Optional topic ID to filter reviews by topic
@@ -49,23 +103,55 @@ sealed class ReviewsQuery with _$ReviewsQuery {
     /// Optional token for pagination
     String? nextPageToken,
 
-    /// Optional query string to filter reviews
+    /// {@macro QueryDocTemplates.queryStringDoc}
     String? q,
-  }) = ReviewsQueryFid;
+  }) {
+    return ReviewsQuery.withFid(
+      fid: fid,
+      countryCode: CountryCode.tryParse(countryCode),
+      languageCode: LanguageCode.tryParse(languageCode),
+      sortBy: SortByValue.tryParse(sortBy),
+      topicId: topicId,
+      nextPageToken: nextPageToken,
+      q: q,
+    );
+  }
 
   const factory ReviewsQuery.withPlaceId({
     /// {@macro QueryDocTemplates.placeIdDoc}
     required String placeId,
 
+    /// {@macro QueryDocTemplates.countryCodeDoc}
+    @JsonKey(name: 'gl') CountryCode? countryCode,
+
+    /// {@macro QueryDocTemplates.languageCodeDoc}
+    @JsonKey(name: 'hl') LanguageCode? languageCode,
+
+    /// {@macro QueryDocTemplates.sortByDocEnum}
+    SortByValue? sortBy,
+
+    /// Optional topic ID to filter reviews by topic
+    String? topicId,
+
+    /// Optional token for pagination
+    String? nextPageToken,
+
+    /// {@macro QueryDocTemplates.queryStringDoc}
+    String? q,
+  }) = ReviewsQueryPlaceId;
+
+  /// Factory to create a ReviewsQuery (for Place ID) with string-based inputs.
+  factory ReviewsQuery.withPlaceIdFromStrings({
+    /// {@macro QueryDocTemplates.placeIdDoc}
+    required String placeId,
+
     /// {@macro QueryDocTemplates.glDoc}
-    String? gl,
+    String? countryCode,
 
     /// {@macro QueryDocTemplates.hlDoc}
-    String? hl,
+    String? languageCode,
 
-    /// Optional parameter to sort reviews
-    ///
-    /// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
+    /// {@macro QueryDocTemplates.sortByDocString}
     String? sortBy,
 
     /// Optional topic ID to filter reviews by topic
@@ -74,41 +160,19 @@ sealed class ReviewsQuery with _$ReviewsQuery {
     /// Optional token for pagination
     String? nextPageToken,
 
-    /// Optional query string to filter reviews
+    /// {@macro QueryDocTemplates.queryStringDoc}
     String? q,
-  }) = ReviewsQueryPlaceId;
-
-  // @deprecated
-  // const factory ReviewsQuery({
-  //   /// {@macro QueryDocTemplates.cidDoc}
-  //   required String cid,
-
-  //   /// {@macro QueryDocTemplates.fidDoc}
-  //   required String fid,
-
-  //   /// {@macro QueryDocTemplates.placeIdDoc}
-  //   required String placeId,
-
-  //   /// {@macro QueryDocTemplates.glDoc}
-  //   String? gl,
-
-  //   /// {@macro QueryDocTemplates.hlDoc}
-  //   String? hl,
-
-  //   /// Optional parameter to sort reviews
-  //   ///
-  //   /// Possible values: 'newest', 'highest_rating', 'lowest_rating', 'relevant'
-  //   String? sortBy,
-
-  //   /// Optional topic ID to filter reviews by topic
-  //   String? topicId,
-
-  //   /// Optional token for pagination
-  //   String? nextPageToken,
-
-  //   /// Optional query string to filter reviews
-  //   String? q,
-  // }) = _ReviewsQuery;
+  }) {
+    return ReviewsQuery.withPlaceId(
+      placeId: placeId,
+      countryCode: CountryCode.tryParse(countryCode),
+      languageCode: LanguageCode.tryParse(languageCode),
+      sortBy: SortByValue.tryParse(sortBy),
+      topicId: topicId,
+      nextPageToken: nextPageToken,
+      q: q,
+    );
+  }
 
   factory ReviewsQuery.fromJson(Map<String, dynamic> json) =>
       _$ReviewsQueryFromJson(json);

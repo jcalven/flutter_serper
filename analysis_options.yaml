@@ -20,6 +20,8 @@ include: package:lints/recommended.yaml
 #     - camel_case_types
 
 analyzer:
+  errors:
+    invalid_annotation_target: ignore
   plugins:
     - custom_lint
   # exclude:

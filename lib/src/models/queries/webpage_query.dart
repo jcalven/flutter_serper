@@ -12,9 +12,7 @@ abstract class WebpageQuery with _$WebpageQuery {
     /// When true, the API will return a markdown version of the webpage content.
     bool? includeMarkdown,
 
-    /// Optional query string to search within the webpage
-    ///
-    /// When provided, the API will return content relevant to this query.
+    /// {@macro QueryDocTemplates.queryStringDoc}
     String? q,
   }) = _WebpageQuery;
 

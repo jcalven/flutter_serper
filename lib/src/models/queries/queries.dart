@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../shared_types.dart'; // Import shared types including new enums
 
 part 'autocomplete_query.dart';
 part 'images_query.dart';
@@ -36,16 +37,28 @@ This can be a city, state, or country.''';
 
   /// Template for the Google location parameter
   static const String glDoc = '''
-Optional Google location parameter.
+Optional Google location parameter (country code as a string e.g., 'US', 'GB').
 
-This can be used to specify a location bias.''';
+This can be used to specify a location bias. Parsed to [CountryCode].''';
 
   /// Template for the language parameter
   static const String hlDoc = '''
-Optional language parameter.
+Optional language parameter (language code as a string e.g., 'en', 'es').
 
 This can be used to specify the language of the results.
-For example, 'en' for English, 'es' for Spanish, etc.''';
+Parsed to [LanguageCode].''';
+
+  /// Template for the country code parameter
+  static const String countryCodeDoc = '''
+The country for the search, as a [CountryCode] enum.
+
+Serialized to the 'gl' parameter for the API.''';
+
+  /// Template for the language code parameter
+  static const String languageCodeDoc = '''
+The language for the search, as a [LanguageCode] enum.
+
+Serialized to the 'hl' parameter for the API.''';
 
   /// Template for the num parameter
   static const String numDoc = '''
@@ -59,44 +72,75 @@ Optional parameter to enable or disable autocorrection.
 
 When true, the API will attempt to correct spelling errors in the query.''';
 
-  /// Template for the time-based search parameter
-  static const String tbsDoc = '''
-Optional time-based search parameter.
+  /// Template for the time-based search parameter (string version)
+  static const String tbsDocString = '''
+Optional time-based search parameter as a string.
 
 Common values include:
 - 'qdr:h' (past hour)
 - 'qdr:d' (past day)
 - 'qdr:w' (past week)
 - 'qdr:m' (past month)
-- 'qdr:y' (past year)''';
+- 'qdr:y' (past year)
+Parsed to [TbsValue].''';
+
+  /// Template for the time-based search parameter (enum version)
+  static const String tbsDocEnum = '''
+Optional time-based search parameter, as a [TbsValue] enum.
+
+Serialized to the 'tbs' parameter for the API.''';
 
   /// Template for the page parameter
   static const String pageDoc = '''
-Optional page number for paginated results.
+Optional page number for pagination.
 
-Starts at 1 for the first page.''';
-
-  /// Template for the URL parameter in Lens and Webpage queries
-  static const String urlDoc = '''
-The URL to analyze.
-
-This is a required parameter and should be a valid URL.''';
+Default is 1.''';
 
   /// Template for the Google Maps Place ID parameter
   static const String placeIdDoc = '''
-Google Maps Place ID parameter.
+Optional Google Place ID.
 
-This is a unique identifier for a specific place in Google Maps.''';
+This can be used to specify a particular place for the search.''';
 
   /// Template for the Google Maps CID parameter
   static const String cidDoc = '''
-Google Maps CID (Customer ID) parameter.
+Optional Google CID (Customer ID).
 
-This is a unique identifier used for places in Google Maps.''';
+This can be used to identify a specific business or entity.''';
 
   /// Template for the Google Maps FID parameter
   static const String fidDoc = '''
-Google Maps FID (Feature ID) parameter.
+Optional Google Feature ID.
 
-This is a unique identifier used for places in Google Maps.''';
+This can be used to identify a specific feature for the search.''';
+
+  /// Template for the URL parameter in Lens and Webpage queries
+  static const String urlDoc = '''
+The URL of the page to process.
+
+This is a required parameter.''';
+
+  /// Template for the sortBy parameter (string version)
+  static const String sortByDocString = '''
+Optional parameter to sort results, as a string.
+
+Parsed to [SortByValue].''';
+
+  /// Template for the sortBy parameter (enum version)
+  static const String sortByDocEnum = '''
+Optional parameter to sort results, as a [SortByValue] enum.
+
+Serialized to the 'sortBy' parameter for the API.''';
+
+  /// Template for the LatLng parameter (class version)
+  static const String latLngDocClass = '''
+Optional latitude and longitude, as a [LatLng] object.
+
+Serialized as "latitude,longitude" for the 'll' parameter.''';
+
+  /// Template for the LatLng parameter (string version)
+  static const String latLngDocString = '''
+Optional latitude and longitude, as a string in "latitude,longitude" format.
+
+Parsed to a [LatLng] object.''';
 }

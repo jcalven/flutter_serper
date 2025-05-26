@@ -10,12 +10,37 @@ abstract class AutocompleteQuery with _$AutocompleteQuery {
     /// {@macro QueryDocTemplates.locationDoc}
     String? location,
 
-    /// {@macro QueryDocTemplates.glDoc}
-    String? gl,
+    /// {@macro QueryDocTemplates.countryCodeDoc}
+    @JsonKey(name: 'gl') CountryCode? countryCode,
+
+    /// {@macro QueryDocTemplates.languageCodeDoc}
+    @JsonKey(name: 'hl') LanguageCode? languageCode,
+  }) = _AutocompleteQuery;
+
+  /// Factory to create an AutocompleteQuery with string-based inputs for language and country codes.
+  ///
+  /// This allows for easy creation using string values, for example, from Dart's `Locale` object.
+  /// Invalid or unknown codes will result in the respective parameter being null.
+  factory AutocompleteQuery.fromStrings({
+    /// {@macro QueryDocTemplates.queryStringDoc}
+    required String q,
+
+    /// {@macro QueryDocTemplates.locationDoc}
+    String? location,
 
     /// {@macro QueryDocTemplates.hlDoc}
-    String? hl,
-  }) = _AutocompleteQuery;
+    String? languageCode,
+
+    /// {@macro QueryDocTemplates.glDoc}
+    String? countryCode,
+  }) {
+    return AutocompleteQuery(
+      q: q,
+      location: location,
+      languageCode: LanguageCode.tryParse(languageCode),
+      countryCode: CountryCode.tryParse(countryCode),
+    );
+  }
 
   factory AutocompleteQuery.fromJson(Map<String, dynamic> json) =>
       _$AutocompleteQueryFromJson(json);
