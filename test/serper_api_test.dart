@@ -18,6 +18,171 @@ void main() {
   });
 
   group('Serper', () {
+    test('imagesBatch returns List<ImagesResponse>', () async {
+      final query = ImagesQuery(q: 'cat');
+      final mockResponse = {
+        'searchParameters': query.toJson(),
+        'images': [
+          {
+            'title': 'Cat Image',
+            'imageUrl': 'https://example.com/cat.jpg',
+            'source': 'Example Source',
+            'sourceUrl': 'https://example.com',
+            'position': 1,
+          },
+        ],
+        'credits': 2,
+      };
+      when(
+        mockDio.request(
+          any,
+          options: anyNamed('options'),
+          data: anyNamed('data'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          data: [mockResponse, mockResponse],
+          statusCode: 200,
+        ),
+      );
+      final result = await serper.imagesBatch([query, query]);
+      expect(result, isA<List<ImagesResponse>>());
+      expect(result.length, 2);
+      expect(result.first.images.first.title, 'Cat Image');
+    });
+
+    test('placesBatch returns List<PlacesResponse>', () async {
+      final query = PlacesQuery(q: 'pizza');
+      final mockResponse = {
+        'searchParameters': query.toJson(),
+        'places': [
+          {'title': 'Best Pizza', 'address': '123 Pizza St', 'position': 1},
+        ],
+        'credits': 3,
+      };
+      when(
+        mockDio.request(
+          any,
+          options: anyNamed('options'),
+          data: anyNamed('data'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          data: [mockResponse, mockResponse],
+          statusCode: 200,
+        ),
+      );
+      final result = await serper.placesBatch([query, query]);
+      expect(result, isA<List<PlacesResponse>>());
+      expect(result.length, 2);
+      expect(result.first.places.first.title, 'Best Pizza');
+    });
+
+    test('videosBatch returns List<VideosResponse>', () async {
+      final query = VideosQuery(q: 'music');
+      final mockResponse = {
+        'searchParameters': query.toJson(),
+        'videos': [
+          {
+            'title': 'Music Video',
+            'link': 'https://example.com/video',
+            'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+            'position': 1,
+          },
+        ],
+        'credits': 4,
+      };
+      when(
+        mockDio.request(
+          any,
+          options: anyNamed('options'),
+          data: anyNamed('data'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          data: [mockResponse, mockResponse],
+          statusCode: 200,
+        ),
+      );
+      final result = await serper.videosBatch([query, query]);
+      expect(result, isA<List<VideosResponse>>());
+      expect(result.length, 2);
+      expect(result.first.videos.first.title, 'Music Video');
+    });
+
+    test('newsBatch returns List<NewsResponse>', () async {
+      final query = NewsQuery(q: 'world news');
+      final mockResponse = {
+        'searchParameters': query.toJson(),
+        'news': [
+          {
+            'title': 'World News',
+            'link': 'https://example.com/news',
+            'snippet': 'Latest world news.',
+            'date': '2024-01-01',
+            'source': 'News Source',
+            'position': 1,
+          },
+        ],
+        'credits': 5,
+      };
+      when(
+        mockDio.request(
+          any,
+          options: anyNamed('options'),
+          data: anyNamed('data'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          data: [mockResponse, mockResponse],
+          statusCode: 200,
+        ),
+      );
+      final result = await serper.newsBatch([query, query]);
+      expect(result, isA<List<NewsResponse>>());
+      expect(result.length, 2);
+      expect(result.first.news.first.title, 'World News');
+    });
+
+    test('shoppingBatch returns List<ShoppingResponse>', () async {
+      final query = ShoppingQuery(q: 'shoes');
+      final mockResponse = {
+        'searchParameters': query.toJson(),
+        'shopping': [
+          {
+            'title': 'Top Shoe',
+            'link': 'https://example.com/shoe',
+            'position': 1,
+            'source': 'Shoe Store',
+            'price': '\u001289.99',
+            'delivery': 'Free shipping',
+            'imageUrl': 'https://example.com/shoe.jpg',
+          },
+        ],
+        'credits': 6,
+      };
+      when(
+        mockDio.request(
+          any,
+          options: anyNamed('options'),
+          data: anyNamed('data'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          data: [mockResponse, mockResponse],
+          statusCode: 200,
+        ),
+      );
+      final result = await serper.shoppingBatch([query, query]);
+      expect(result, isA<List<ShoppingResponse>>());
+      expect(result.length, 2);
+      expect(result.first.shopping.first.title, 'Top Shoe');
+    });
     test('search returns SearchResponse', () async {
       final query = SearchQuery(q: 'coffee');
       final mockResponse = {
