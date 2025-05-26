@@ -7,6 +7,7 @@
 pubspec.lock
 
 # Exclude .idea/ directory
+assets/
 docs/
 coverage/
 .test_coverage.dart
