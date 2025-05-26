@@ -9,7 +9,6 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
 
 - Strongly-typed query and response models using Freezed
 - Type-safe responses for all API endpoints that match the Serper API schema
-- Common response inheritance through `SerperResponseMixin` for polymorphic handling of response types
 - Support for all Serper API endpoints:
   - Google Search
   - Images
@@ -26,7 +25,7 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
   - Webpage Scraping
 - Support for batch requests (up to 100 queries per call)
 - Full control over all available query parameters
-- Comprehensive documentation with parameter and response field descriptions
+- Comprehensive documentation
 
 ## Installation
 
@@ -59,7 +58,7 @@ final query = SearchQuery(
 );
 
 final result = await serper.search(query);
-print('Found [1m${result.organic.length}[0m organic results');
+print('Found ${result.organic.length} organic results');
 print('First result: ${result.organic.first.title}');
 print('Link: ${result.organic.first.link}');
 
