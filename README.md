@@ -1,15 +1,3 @@
-## Test Coverage: Excluding Generated Files
-
-To exclude generated files (such as `*.g.dart`, `*.freezed.dart`, and mocks) from your test coverage reports, this project is configured as follows:
-
-- The `pubspec.yaml` and `pana_options.yaml` include an `exclude` section for coverage tools.
-- When generating the final lcov report, you can also filter out generated files using `lcov`:
-
-```zsh
-lcov --remove coverage/lcov.info '**/*.g.dart' '**/*.freezed.dart' '**/mocks.dart' '**/mocks.mocks.dart' -o coverage/lcov.info
-```
-
-This ensures your coverage metrics reflect only your hand-written code.
 # flutter_serper
 
 [![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)
@@ -58,48 +46,47 @@ import 'package:flutter_serper/flutter_serper.dart';
 final serper = Serper(apiKey: 'YOUR_API_KEY');
 ```
 
+
 ### Basic Google Search
 
 ```dart
-// Create a search query
 final query = SearchQuery(
   q: 'coffee shops',
   location: 'New York',
-  gl: 'us',
-  hl: 'en',
+  countryCode: CountryCode.unitedStates, // Optional, use enum
+  languageCode: LanguageCode.english,    // Optional, use enum
   num: 10,
 );
 
-// Execute the search
-final results = await serper.search([query]);
+final result = await serper.search(query);
+print('Found [1m${result.organic.length}[0m organic results');
+print('First result: ${result.organic.first.title}');
+print('Link: ${result.organic.first.link}');
 
-// Access typed response data
-print('Found ${results.organic.length} organic results');
-print('First result: ${results.organic.first.title}');
-print('Link: ${results.organic.first.link}');
-
-// Access optional result sections
-if (results.peopleAlsoAsk != null) {
-  print('People also ask: ${results.peopleAlsoAsk!.first.question}');
+if (result.peopleAlsoAsk != null) {
+  print('People also ask: ${result.peopleAlsoAsk!.first.question}');
 }
-
-if (results.relatedSearches != null) {
-  print('Related search: ${results.relatedSearches!.first.query}');
+if (result.relatedSearches != null) {
+  print('Related search: ${result.relatedSearches!.first.query}');
 }
 ```
+
 
 ### Batch Search
 
 ```dart
-// Create multiple queries
 final queries = [
   SearchQuery(q: 'best cafes', location: 'Seattle'),
   SearchQuery(q: 'best coffee', location: 'Portland'),
 ];
 
-// Execute batch search
-final results = await serper.search(queries);
+final results = await serper.searchBatch(queries);
+print('Batch search returned ${results.length} responses');
+for (final res in results) {
+  print('First organic result: ${res.organic.first.title}');
+}
 ```
+
 
 ### Image Search
 
@@ -110,14 +97,13 @@ final query = ImagesQuery(
   num: 5,
 );
 
-final results = await serper.images([query]);
-
-// Access typed image results
-print('Found ${results.images.length} image results');
-print('First image: ${results.images.first.title}');
-print('Image URL: ${results.images.first.imageUrl}');
-print('Thumbnail: ${results.images.first.thumbnailUrl}');
+final result = await serper.images(query);
+print('Found ${result.images.length} image results');
+print('First image: ${result.images.first.title}');
+print('Image URL: ${result.images.first.imageUrl}');
+print('Thumbnail: ${result.images.first.thumbnailUrl}');
 ```
+
 
 ### Webpage Scraping
 
@@ -127,31 +113,31 @@ final query = WebpageQuery(
   includeMarkdown: true,
 );
 
-final results = await serper.webpage([query]);
-
-// Access webpage scraping results
-print('Extracted text length: ${results.results.first.text.length} characters');
-if (results.results.first.markdown != null) {
+final result = await serper.webpage(query);
+print('Extracted text length: ${result.results.first.text.length} characters');
+if (result.results.first.markdown != null) {
   print('Markdown available');
 }
 ```
 
+
 ## Available Query Parameters
 
-Each query class supports all the parameters available in the Serper API. Here's an example of the parameters available for `SearchQuery`:
+Each query class supports all the parameters available in the Serper API. Example for `SearchQuery`:
 
 ```dart
 SearchQuery(
   q: 'search term',           // Required - search query
   location: 'New York',       // Optional - location to search from
-  gl: 'us',                   // Optional - country code
-  hl: 'en',                   // Optional - language code
+  countryCode: CountryCode.unitedStates, // Optional - use enum
+  languageCode: LanguageCode.english,    // Optional - use enum
   num: 10,                    // Optional - number of results
   autocorrect: true,          // Optional - enable autocorrection
-  tbs: 'qdr:d',               // Optional - time-based search (e.g., past day)
+  tbs: TbsValue.pastDay,      // Optional - time-based search (enum)
   page: 1,                    // Optional - page number
 );
 ```
+
 
 ## Response Models
 
@@ -160,41 +146,33 @@ The package includes strongly-typed response models for all Serper API endpoints
 ### Search Response
 
 ```dart
-// Search API response model
-final searchResults = await serper.search([query]);
-
-// Basic fields
-print('Search parameters: ${searchResults.searchParameters}');
-print('Credits used: ${searchResults.credits}');
-
-// Organic results (always available)
-for (final result in searchResults.organic) {
+final searchResult = await serper.search(query);
+print('Search parameters: ${searchResult.searchParameters}');
+print('Credits used: ${searchResult.credits}');
+for (final result in searchResult.organic) {
   print('Title: ${result.title}');
   print('Link: ${result.link}');
   print('Snippet: ${result.snippet}');
   print('Position: ${result.position}');
 }
-
-// Optional sections (may be null)
-if (searchResults.relatedSearches != null) {
-  for (final related in searchResults.relatedSearches!) {
+if (searchResult.relatedSearches != null) {
+  for (final related in searchResult.relatedSearches!) {
     print('Related search: ${related.query}');
   }
 }
-
-if (searchResults.peopleAlsoAsk != null) {
-  for (final question in searchResults.peopleAlsoAsk!) {
+if (searchResult.peopleAlsoAsk != null) {
+  for (final question in searchResult.peopleAlsoAsk!) {
     print('Question: ${question.question}');
   }
 }
 ```
 
+
 ### Images Response
 
 ```dart
-final imageResults = await serper.images([query]);
-
-for (final image in imageResults.images) {
+final imageResult = await serper.images(query);
+for (final image in imageResult.images) {
   print('Title: ${image.title}');
   print('Image URL: ${image.imageUrl}');
   print('Thumbnail: ${image.thumbnailUrl}');
@@ -203,12 +181,12 @@ for (final image in imageResults.images) {
 }
 ```
 
+
 ### Places Response
 
 ```dart
-final placesResults = await serper.places([query]);
-
-for (final place in placesResults.places) {
+final placesResult = await serper.places(query);
+for (final place in placesResult.places) {
   print('Title: ${place.title}');
   print('Address: ${place.address}');
   print('Rating: ${place.rating}');
