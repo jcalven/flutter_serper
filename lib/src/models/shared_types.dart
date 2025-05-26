@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
+export 'country_code.dart';
+export 'language_code.dart';
+
 /// Enum for time-based search parameter (tbs).
 enum TbsValue {
   /// Past hour
@@ -138,71 +141,5 @@ class LatLngConverter implements JsonConverter<LatLng, String> {
   @override
   String toJson(LatLng object) {
     return '${object.latitude},${object.longitude}';
-  }
-}
-
-/// Represents a country code recognized by Google.
-///
-/// This enum would ideally be generated from google-countries.json
-enum CountryCode {
-  @JsonValue('af')
-  afghanistan(displayName: 'Afghanistan'),
-  @JsonValue('al')
-  albania(displayName: 'Albania'),
-  @JsonValue('dz')
-  algeria(displayName: 'Algeria');
-
-  final String displayName;
-  const CountryCode({required this.displayName});
-
-  /// Attempts to parse a string [code] into a [CountryCode] enum member.
-  ///
-  /// Returns the corresponding [CountryCode] if found, otherwise `null`.
-  /// This would be more robust if generated from your JSON file.
-  static CountryCode? tryParse(String? code) {
-    if (code == null) return null;
-    switch (code.toLowerCase()) {
-      case 'af':
-        return CountryCode.afghanistan;
-      case 'al':
-        return CountryCode.albania;
-      case 'dz':
-        return CountryCode.algeria;
-      default:
-        return null;
-    }
-  }
-}
-
-/// Represents a language code recognized by Google.
-///
-/// This enum would ideally be generated from google-languages.json
-enum LanguageCode {
-  @JsonValue('af')
-  afrikaans(displayName: 'Afrikaans'),
-  @JsonValue('sq')
-  albanian(displayName: 'Albanian'),
-  @JsonValue('am')
-  amharic(displayName: 'Amharic');
-
-  final String displayName;
-  const LanguageCode({required this.displayName});
-
-  /// Attempts to parse a string [code] into a [LanguageCode] enum member.
-  ///
-  /// Returns the corresponding [LanguageCode] if found, otherwise `null`.
-  /// This would be more robust if generated from your JSON file.
-  static LanguageCode? tryParse(String? code) {
-    if (code == null) return null;
-    switch (code.toLowerCase()) {
-      case 'af':
-        return LanguageCode.afrikaans;
-      case 'sq':
-        return LanguageCode.albanian;
-      case 'am':
-        return LanguageCode.amharic;
-      default:
-        return null;
-    }
   }
 }
