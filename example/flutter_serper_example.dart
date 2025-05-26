@@ -15,8 +15,9 @@ Future<void> main() async {
   final searchQuery = SearchQuery(
     q: 'coffee shops', // Search query string
     location: 'New York', // Geographic location for search context
-    gl: 'us', // Google country code
-    hl: 'en', // Language code for results
+    // countryCode and languageCode require importing the enums if you want to use them
+    // countryCode: CountryCode.unitedStates,
+    // languageCode: LanguageCode.english,
     num: 10, // Number of results to return
   );
 
