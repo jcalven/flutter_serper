@@ -1,4 +1,5 @@
 import 'package:flutter_serper/flutter_serper.dart';
+import 'package:flutter_serper/src/models/shared_types.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -7,11 +8,11 @@ void main() {
       // Arrange
       final query = MapsQuery(
         q: 'coffee shops',
-        hl: 'en',
-        ll: '37.7749,-122.4194',
-        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4', // Updated placeId
-        cid: '1234567890', // Added cid
-        page: 2, // Added page
+        languageCode: LanguageCode.english,
+        latLng: const LatLng(37.7749, -122.4194),
+        placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
+        cid: '1234567890',
+        page: 2,
       );
 
       // Act
@@ -67,11 +68,11 @@ void main() {
     test('NewsQuery serializes to JSON correctly', () {
       // Arrange
       final query = NewsQuery(
-        q: 'technology news', // from fixed
-        location: 'London', // from _test
-        gl: 'uk', // from _test
-        hl: 'en', // from _test
-        num: 10, // from _test
+        q: 'technology news',
+        location: 'London',
+        countryCode: CountryCode.unitedKingdomGB, // Assuming 'uk' maps to unitedKingdomGB
+        languageCode: LanguageCode.english,
+        num: 10,
       );
 
       // Act
@@ -81,7 +82,7 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('technology news'));
       expect(json['location'], equals('London'));
-      expect(json['gl'], equals('uk'));
+      expect(json['gl'], equals('gb')); // Changed from 'uk' to 'gb'
       expect(json['hl'], equals('en'));
       expect(json['num'], equals(10));
     });
@@ -102,8 +103,8 @@ void main() {
       // Arrange
       final query = LensQuery(
         url: 'https://example.com/image.jpg',
-        gl: 'us', // Added
-        hl: 'en', // Added
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
       );
 
       // Act
@@ -120,7 +121,7 @@ void main() {
       // Arrange
       final query = ScholarQuery(
         q: 'machine learning',
-        hl: 'en', // Added
+        languageCode: LanguageCode.english,
       );
 
       // Act
@@ -135,8 +136,8 @@ void main() {
     test('PatentsQuery serializes to JSON correctly', () {
       // Arrange
       final query = PatentsQuery(
-        q: 'solar energy patents', // from fixed
-        hl: 'en', // from _test
+        q: 'solar energy patents',
+        languageCode: LanguageCode.english,
       );
 
       // Act
@@ -152,9 +153,9 @@ void main() {
       // Arrange/Act/Assert for withCid
       final queryCid = ReviewsQuery.withCid(
         cid: '12345',
-        gl: 'us',
-        hl: 'en',
-        sortBy: 'newest',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
+        sortBy: SortByValue.newest,
         topicId: 'topic1',
         nextPageToken: 'token1',
         q: 'filter',
@@ -172,9 +173,9 @@ void main() {
       // Arrange/Act/Assert for withFid
       final queryFid = ReviewsQuery.withFid(
         fid: '67890',
-        gl: 'us',
-        hl: 'en',
-        sortBy: 'highest_rating',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
+        sortBy: SortByValue.highestRating,
         topicId: 'topic2',
         nextPageToken: 'token2',
         q: 'filter2',
@@ -192,9 +193,9 @@ void main() {
       // Arrange/Act/Assert for withPlaceId
       final queryPlaceId = ReviewsQuery.withPlaceId(
         placeId: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
-        gl: 'us',
-        hl: 'en',
-        sortBy: 'relevant',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
+        sortBy: SortByValue.relevant,
         topicId: 'topic3',
         nextPageToken: 'token3',
         q: 'filter3',
@@ -213,9 +214,9 @@ void main() {
     test('AutocompleteQuery serializes to JSON correctly', () {
       // Arrange
       final query = AutocompleteQuery(
-        q: 'flo', // from fixed
-        gl: 'us', // from _test
-        hl: 'en', // from _test
+        q: 'flo',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
       );
 
       // Act
@@ -233,8 +234,8 @@ void main() {
       final query = ShoppingQuery(
         q: 'smartphones',
         location: 'Boston',
-        gl: 'us',
-        hl: 'en',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
       );
       final json = query.toJson();
       expect(json, isA<Map<String, dynamic>>());

@@ -1,4 +1,5 @@
 import 'package:flutter_serper/flutter_serper.dart';
+import 'package:flutter_serper/src/models/shared_types.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -8,11 +9,11 @@ void main() {
       final searchQuery = SearchQuery(
         q: 'test query',
         location: 'New York',
-        gl: 'us',
-        hl: 'en',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
         num: 10,
         autocorrect: true,
-        tbs: 'qdr:d',
+        tbs: TbsValue.pastDay,
         page: 1,
       );
 
@@ -36,6 +37,8 @@ void main() {
       final query = ImagesQuery(
         q: 'test image',
         location: 'San Francisco',
+        countryCode: CountryCode.unitedStates,
+        languageCode: LanguageCode.english,
         num: 5,
       );
 
@@ -46,6 +49,8 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('test image'));
       expect(json['location'], equals('San Francisco'));
+      expect(json['gl'], equals('us'));
+      expect(json['hl'], equals('en'));
       expect(json['num'], equals(5));
     });
 
@@ -72,7 +77,12 @@ void main() {
     test('SearchResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'test', 'gl': 'us'},
+        'searchParameters': {
+          'q': 'test',
+          'gl': 'us',
+          'hl': 'en', // Added for completeness based on model
+          'tbs': 'qdr:d' // Added for completeness
+        },
         'organic': [
           {
             'title': 'Test Result',
@@ -94,6 +104,9 @@ void main() {
       expect(response, isA<SearchResponse>());
       expect(response.searchParameters, isA<SearchQuery>());
       expect(response.searchParameters.q, equals('test'));
+      expect(response.searchParameters.countryCode, equals(CountryCode.unitedStates));
+      expect(response.searchParameters.languageCode, equals(LanguageCode.english));
+      expect(response.searchParameters.tbs, equals(TbsValue.pastDay));
       expect(response.organic, hasLength(1));
       expect(response.organic.first.title, equals('Test Result'));
       expect(response.organic.first.link, equals('https://example.com'));
@@ -107,7 +120,11 @@ void main() {
     test('ImagesResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'q': 'test image', 'gl': 'us'},
+        'searchParameters': {
+          'q': 'test image',
+          'gl': 'us',
+          'hl': 'en' // Added for completeness
+        },
         'images': [
           {
             'title': 'Test Image',
@@ -128,6 +145,8 @@ void main() {
       expect(response, isA<ImagesResponse>());
       expect(response.searchParameters, isA<ImagesQuery>());
       expect(response.searchParameters.q, equals('test image'));
+      expect(response.searchParameters.countryCode, equals(CountryCode.unitedStates));
+      expect(response.searchParameters.languageCode, equals(LanguageCode.english));
       expect(response.images, hasLength(1));
       expect(response.images.first.title, equals('Test Image'));
       expect(
@@ -178,7 +197,7 @@ void main() {
     test('Can handle responses polymorphically', () {
       // Arrange
       final searchJson = {
-        'searchParameters': {'q': 'test', 'gl': 'us'},
+        'searchParameters': {'q': 'test', 'gl': 'us', 'hl': 'en'},
         'organic': [
           {
             'title': 'Test Result',
@@ -191,7 +210,7 @@ void main() {
       };
 
       final imagesJson = {
-        'searchParameters': {'q': 'test image', 'gl': 'us'},
+        'searchParameters': {'q': 'test image', 'gl': 'us', 'hl': 'en'},
         'images': [
           {
             'title': 'Test Image',
@@ -220,7 +239,11 @@ void main() {
 
       // Verify both types implement the mixin correctly
       expect(searchResponse.searchParameters.q, equals('test'));
+      expect(searchResponse.searchParameters.countryCode, CountryCode.unitedStates);
+      expect(searchResponse.searchParameters.languageCode, LanguageCode.english);
       expect(imagesResponse.searchParameters.q, equals('test image'));
+      expect(imagesResponse.searchParameters.countryCode, CountryCode.unitedStates);
+      expect(imagesResponse.searchParameters.languageCode, LanguageCode.english);
     });
   });
 }
