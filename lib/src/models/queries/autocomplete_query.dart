@@ -4,7 +4,7 @@ part of 'queries.dart';
 @freezed
 abstract class AutocompleteQuery with _$AutocompleteQuery {
   const factory AutocompleteQuery({
-    /// {@macro queries.queryString}
+    /// {@macro flutter_serper.queries.queryString}
     required String q,
 
     /// {@macro QueryDocTemplates.locationDoc}

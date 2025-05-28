@@ -21,7 +21,7 @@ part 'queries.freezed.dart';
 // Generated part files for code generation
 part 'queries.g.dart';
 
-/// {@template queries.queryString}
+/// {@template flutter_serper.queries.queryString}
 /// The search query string.
 ///
 /// This is a required parameter and can be empty.
