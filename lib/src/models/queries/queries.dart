@@ -21,6 +21,12 @@ part 'queries.freezed.dart';
 // Generated part files for code generation
 part 'queries.g.dart';
 
+/// {@template queries.queryString}
+/// The search query string.
+///
+/// This is a required parameter and can be empty.
+/// {@endtemplate}
+
 /// Documentation templates for common query parameters
 class QueryDocTemplates {
   /// Template for the query string parameter
