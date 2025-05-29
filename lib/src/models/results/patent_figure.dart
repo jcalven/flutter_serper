@@ -5,10 +5,10 @@ part of 'results.dart';
 abstract class PatentFigure with _$PatentFigure {
   /// Creates a [PatentFigure].
   const factory PatentFigure({
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     required String imageUrl,
 
-    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
+    /// {@macro flutter_serper.results.thumbnailUrl}
     required String thumbnailUrl,
   }) = _PatentFigure;
 

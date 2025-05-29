@@ -5,29 +5,29 @@ part of 'results.dart';
 abstract class NewsResult with _$NewsResult {
   /// Creates a [NewsResult].
   const factory NewsResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     required String link,
 
-    /// {@macro ResultDocTemplates.snippetDoc}
+    /// {@macro flutter_serper.results.snippet}
     required String snippet,
 
-    /// {@macro ResultDocTemplates.dateDoc}
+    /// {@macro flutter_serper.results.date}
     ///
     /// For news results, this is typically the publication date.
     required String date,
 
-    /// {@macro ResultDocTemplates.sourceDoc}
+    /// {@macro flutter_serper.results.source}
     ///
     /// For news results, this is the name of the news outlet.
     required String source,
 
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     String? imageUrl,
 
-    /// {@macro ResultDocTemplates.positionDoc}
+    /// {@macro flutter_serper.results.position}
     required int position,
   }) = _NewsResult;
 

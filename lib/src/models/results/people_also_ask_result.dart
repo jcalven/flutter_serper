@@ -10,17 +10,17 @@ abstract class PeopleAlsoAskResult with _$PeopleAlsoAskResult {
     /// The question that people also ask about the search topic.
     required String question,
 
-    /// {@macro ResultDocTemplates.snippetDoc}
+    /// {@macro flutter_serper.results.snippet}
     ///
     /// This is a brief answer to the question.
     String? snippet,
 
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     ///
     /// The title of the source that provides the answer.
     String? title,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     ///
     /// Link to the source that provides more detailed information about the question.
     String? link,

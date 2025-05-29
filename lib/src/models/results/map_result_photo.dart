@@ -5,10 +5,10 @@ part of 'results.dart';
 abstract class MapResultPhoto with _$MapResultPhoto {
   /// Creates a [MapResultPhoto].
   const factory MapResultPhoto({
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     required String imageUrl,
 
-    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
+    /// {@macro flutter_serper.results.thumbnailUrl}
     required String thumbnailUrl,
   }) = _MapResultPhoto;
 

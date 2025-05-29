@@ -5,18 +5,18 @@ part of 'results.dart';
 abstract class ShoppingResult with _$ShoppingResult {
   /// Creates a [ShoppingResult].
   const factory ShoppingResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
-    /// {@macro ResultDocTemplates.sourceDoc}
+    /// {@macro flutter_serper.results.source}
     ///
     /// For shopping results, this is typically the retailer or merchant name.
     String? source,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     required String link,
 
-    /// {@macro ResultDocTemplates.priceDoc}
+    /// {@macro flutter_serper.results.price}
     String? price,
 
     /// Shipping or delivery information for the product.
@@ -24,10 +24,10 @@ abstract class ShoppingResult with _$ShoppingResult {
     /// May include cost, timeframe, or other delivery details.
     String? delivery,
 
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     String? imageUrl,
 
-    /// {@macro ResultDocTemplates.positionDoc}
+    /// {@macro flutter_serper.results.position}
     required int position,
   }) = _ShoppingResult;
 

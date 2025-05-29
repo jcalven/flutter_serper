@@ -5,7 +5,7 @@ part of 'results.dart';
 abstract class MapResult with _$MapResult {
   /// Creates a [MapResult].
   const factory MapResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
     /// The unique Customer ID (CID) of the place in Google Maps.
@@ -18,10 +18,10 @@ abstract class MapResult with _$MapResult {
     /// Typically includes street, city, state/province, and postal code.
     required String address,
 
-    /// {@macro ResultDocTemplates.ratingDoc}
+    /// {@macro flutter_serper.results.rating}
     required double rating,
 
-    /// {@macro ResultDocTemplates.reviewCountDoc}
+    /// {@macro flutter_serper.results.reviewCount}
     required int reviewCount,
 
     /// The price level of the place.
@@ -32,42 +32,6 @@ abstract class MapResult with _$MapResult {
     /// The type or category of the place.
     ///
     /// Examples include "Restaurant", "Hotel", "Attraction", etc.
-    required String type,
-
-    /// The phone number of the place.
-    String? phone,
-
-    /// The URL of the place's website.
-    String? website,
-
-    /// The categories that the place belongs to.
-    ///
-    /// A list of descriptive tags associated with the place.
-    List<String>? categories,
-
-    /// The business hours of operation.
-    ///
-    /// A list of strings representing the opening hours for each day.
-    List<String>? openingHours,
-
-    /// User reviews of the place.
-    ///
-    /// A list of review objects containing detailed user feedback.
-    List<MapResultReview>? reviews,
-
-    /// Photos of the place.
-    ///
-    /// A list of photo objects with URLs to images of the place.
-    List<MapResultPhoto>? photos,
-
-    /// Additional information about the place.
-    ///
-    /// A map of key-value pairs containing various facts and details.
-    Map<String, dynamic>? additionalInfo,
-
-    /// A description of the place.
-    ///
-    /// Provides additional context or explanation about the place.
     String? description,
   }) = _MapResult;
 

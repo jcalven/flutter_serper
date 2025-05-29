@@ -5,7 +5,7 @@ part of 'results.dart';
 abstract class PlaceResult with _$PlaceResult {
   /// Creates a [PlaceResult].
   const factory PlaceResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
     /// The full address of the place.
@@ -16,10 +16,10 @@ abstract class PlaceResult with _$PlaceResult {
     /// The phone number of the place.
     String? phone,
 
-    /// {@macro ResultDocTemplates.ratingDoc}
+    /// {@macro flutter_serper.results.rating}
     double? rating,
 
-    /// {@macro ResultDocTemplates.reviewCountDoc}
+    /// {@macro flutter_serper.results.reviewCount}
     int? reviewCount,
 
     /// The URL of the place's website.
@@ -36,16 +36,6 @@ abstract class PlaceResult with _$PlaceResult {
     String? priceLevel,
 
     /// The business hours of operation.
-    ///
-    /// A list of strings representing the opening hours for each day.
-    List<String>? openingHours,
-
-    /// The unique Customer ID (CID) of the place in Google Maps.
-    ///
-    /// This identifier can be used to look up the place in Google Maps.
-    String? cid,
-
-    /// {@macro ResultDocTemplates.positionDoc}
     required int position,
   }) = _PlaceResult;
 

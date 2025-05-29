@@ -5,7 +5,7 @@ part of 'results.dart';
 abstract class LocalResultsResult with _$LocalResultsResult {
   /// Creates a [LocalResultsResult].
   const factory LocalResultsResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
     /// The full address of the local business.
@@ -19,10 +19,10 @@ abstract class LocalResultsResult with _$LocalResultsResult {
     /// The URL of the local business's website.
     String? website,
 
-    /// {@macro ResultDocTemplates.ratingDoc}
+    /// {@macro flutter_serper.results.rating}
     double? rating,
 
-    /// {@macro ResultDocTemplates.reviewCountDoc}
+    /// {@macro flutter_serper.results.reviewCount}
     int? reviewCount,
 
     /// The price level of the local business.
@@ -40,7 +40,7 @@ abstract class LocalResultsResult with _$LocalResultsResult {
     /// May include holiday hours, special hours, etc.
     List<dynamic>? moreHours,
 
-    /// {@macro ResultDocTemplates.positionDoc}
+    /// {@macro flutter_serper.results.position}
     required int position,
   }) = _LocalResultsResult;
 

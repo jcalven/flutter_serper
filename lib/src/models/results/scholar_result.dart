@@ -5,10 +5,10 @@ part of 'results.dart';
 abstract class ScholarResult with _$ScholarResult {
   /// Creates a [ScholarResult].
   const factory ScholarResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     required String link,
 
     /// Information about the publication.
@@ -16,7 +16,7 @@ abstract class ScholarResult with _$ScholarResult {
     /// Typically includes the journal name, conference, or publisher details.
     required String publicationInfo,
 
-    /// {@macro ResultDocTemplates.snippetDoc}
+    /// {@macro flutter_serper.results.snippet}
     required String snippet,
 
     /// The year the academic paper was published.

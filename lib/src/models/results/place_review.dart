@@ -16,10 +16,10 @@ abstract class PlaceReview with _$PlaceReview {
     /// Contains the user's feedback about the place.
     required String text,
 
-    /// {@macro ResultDocTemplates.ratingDoc}
+    /// {@macro flutter_serper.results.rating}
     required double rating,
 
-    /// {@macro ResultDocTemplates.dateDoc}
+    /// {@macro flutter_serper.results.date}
     required String date,
 
     /// The unique identifier for this review.
@@ -30,7 +30,7 @@ abstract class PlaceReview with _$PlaceReview {
     /// Local Guides are trusted reviewers in the Google Maps community.
     bool? isLocalGuide,
 
-    /// {@macro ResultDocTemplates.positionDoc}
+    /// {@macro flutter_serper.results.position}
     required int position,
   }) = _PlaceReview;
 

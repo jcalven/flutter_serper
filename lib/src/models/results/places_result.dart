@@ -5,7 +5,7 @@ part of 'results.dart';
 abstract class PlacesResult with _$PlacesResult {
   /// Creates a [PlacesResult].
   const factory PlacesResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
     /// The full address of the place.
@@ -16,10 +16,14 @@ abstract class PlacesResult with _$PlacesResult {
     /// The phone number of the place.
     String? phone,
 
-    /// {@macro ResultDocTemplates.ratingDoc}
+    /// {@macro flutter_serper.results.rating}
     double? rating,
 
-    /// {@macro ResultDocTemplates.reviewCountDoc}
+    /// {@template flutter_serper.results.reviewCount}
+    /// The number of reviews associated with the result.
+    ///
+    /// Indicates how many user reviews have been submitted for this item.
+    /// {@endtemplate}
     int? reviewCount,
 
     /// The URL of the place's website.
@@ -35,12 +39,6 @@ abstract class PlacesResult with _$PlacesResult {
     /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
     String? priceLevel,
 
-    /// The business hours of operation.
-    ///
-    /// A list of strings representing the opening hours for each day.
-    List<String>? openingHours,
-
-    /// {@macro ResultDocTemplates.positionDoc}
     int? position,
   }) = _PlacesResult;
 

@@ -5,19 +5,19 @@ part of 'results.dart';
 abstract class LensResult with _$LensResult {
   /// Creates a [LensResult].
   const factory LensResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
-    /// {@macro ResultDocTemplates.sourceDoc}
+    /// {@macro flutter_serper.results.source}
     required String source,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     required String link,
 
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     required String imageUrl,
 
-    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
+    /// {@macro flutter_serper.results.thumbnailUrl}
     required String thumbnailUrl,
   }) = _LensResult;
 

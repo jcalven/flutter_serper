@@ -5,41 +5,31 @@ part of 'results.dart';
 abstract class VideoResult with _$VideoResult {
   /// Creates a [VideoResult].
   const factory VideoResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     required String title,
 
-    /// {@macro ResultDocTemplates.linkDoc}
+    /// {@macro flutter_serper.results.link}
     required String link,
 
-    /// {@macro ResultDocTemplates.snippetDoc}
-    String? snippet,
+    /// {@macro flutter_serper.results.snippet}
+    required String snippet,
 
-    /// {@macro ResultDocTemplates.sourceDoc}
-    ///
-    /// For video results, this is typically the video platform or publisher.
-    String? source,
+    /// {@macro flutter_serper.results.date}
+    required String date,
 
-    /// The URL to the channel that published the video.
-    String? channelLink,
+    /// {@macro flutter_serper.results.source}
+    required String source,
 
-    /// {@macro ResultDocTemplates.dateDoc}
-    ///
-    /// For video results, this is typically the publication date.
-    String? date,
+    /// {@macro flutter_serper.results.imageUrl}
+    String? imageUrl,
 
-    /// The duration or length of the video.
-    ///
-    /// Typically formatted as a time string (e.g., "10:30").
-    String? duration,
-
-    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
-    required String thumbnailUrl,
-
-    /// The number of times the video has been viewed.
-    int? viewCount,
-
-    /// {@macro ResultDocTemplates.positionDoc}
+    /// {@macro flutter_serper.results.position}
     required int position,
+
+    /// The duration of the video.
+    ///
+    /// Typically formatted as "MM:SS" or "HH:MM:SS".
+    String? duration,
   }) = _VideoResult;
 
   /// Creates a [VideoResult] from a JSON map.

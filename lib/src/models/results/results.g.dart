@@ -74,10 +74,6 @@ _PlacesResult _$PlacesResultFromJson(Map<String, dynamic> json) =>
       website: json['website'] as String?,
       type: json['type'] as String?,
       priceLevel: json['priceLevel'] as String?,
-      openingHours:
-          (json['openingHours'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
       position: (json['position'] as num?)?.toInt(),
     );
 
@@ -91,7 +87,6 @@ Map<String, dynamic> _$PlacesResultToJson(_PlacesResult instance) =>
       'website': instance.website,
       'type': instance.type,
       'priceLevel': instance.priceLevel,
-      'openingHours': instance.openingHours,
       'position': instance.position,
     };
 
@@ -99,27 +94,26 @@ _TopStoriesResult _$TopStoriesResultFromJson(Map<String, dynamic> json) =>
     _TopStoriesResult(
       title: json['title'] as String,
       link: json['link'] as String,
-      date: json['date'] as String?,
-      source: json['source'] as String?,
+      source: json['source'] as String,
+      date: json['date'] as String,
       imageUrl: json['imageUrl'] as String?,
-      snippet: json['snippet'] as String?,
     );
 
 Map<String, dynamic> _$TopStoriesResultToJson(_TopStoriesResult instance) =>
     <String, dynamic>{
       'title': instance.title,
       'link': instance.link,
-      'date': instance.date,
       'source': instance.source,
+      'date': instance.date,
       'imageUrl': instance.imageUrl,
-      'snippet': instance.snippet,
     };
 
 _TwitterResult _$TwitterResultFromJson(Map<String, dynamic> json) =>
     _TwitterResult(
-      title: json['title'] as String?,
+      title: json['title'] as String,
       link: json['link'] as String,
-      snippet: json['snippet'] as String?,
+      snippet: json['snippet'] as String,
+      date: json['date'] as String,
     );
 
 Map<String, dynamic> _$TwitterResultToJson(_TwitterResult instance) =>
@@ -127,6 +121,7 @@ Map<String, dynamic> _$TwitterResultToJson(_TwitterResult instance) =>
       'title': instance.title,
       'link': instance.link,
       'snippet': instance.snippet,
+      'date': instance.date,
     };
 
 _ImagesResult _$ImagesResultFromJson(Map<String, dynamic> json) =>
@@ -152,8 +147,6 @@ _KnowledgeGraphResult _$KnowledgeGraphResultFromJson(
   type: json['type'] as String?,
   imageUrl: json['imageUrl'] as String?,
   attributes: json['attributes'] as Map<String, dynamic>?,
-  description: json['description'] as String?,
-  descriptionLink: json['descriptionLink'] as String?,
   descriptionSource: json['descriptionSource'] as String?,
 );
 
@@ -164,8 +157,6 @@ Map<String, dynamic> _$KnowledgeGraphResultToJson(
   'type': instance.type,
   'imageUrl': instance.imageUrl,
   'attributes': instance.attributes,
-  'description': instance.description,
-  'descriptionLink': instance.descriptionLink,
   'descriptionSource': instance.descriptionSource,
 };
 
@@ -232,11 +223,6 @@ _PlaceResult _$PlaceResultFromJson(Map<String, dynamic> json) => _PlaceResult(
   website: json['website'] as String?,
   type: json['type'] as String?,
   priceLevel: json['priceLevel'] as String?,
-  openingHours:
-      (json['openingHours'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-  cid: json['cid'] as String?,
   position: (json['position'] as num).toInt(),
 );
 
@@ -250,22 +236,18 @@ Map<String, dynamic> _$PlaceResultToJson(_PlaceResult instance) =>
       'website': instance.website,
       'type': instance.type,
       'priceLevel': instance.priceLevel,
-      'openingHours': instance.openingHours,
-      'cid': instance.cid,
       'position': instance.position,
     };
 
 _VideoResult _$VideoResultFromJson(Map<String, dynamic> json) => _VideoResult(
   title: json['title'] as String,
   link: json['link'] as String,
-  snippet: json['snippet'] as String?,
-  source: json['source'] as String?,
-  channelLink: json['channelLink'] as String?,
-  date: json['date'] as String?,
-  duration: json['duration'] as String?,
-  thumbnailUrl: json['thumbnailUrl'] as String,
-  viewCount: (json['viewCount'] as num?)?.toInt(),
+  snippet: json['snippet'] as String,
+  date: json['date'] as String,
+  source: json['source'] as String,
+  imageUrl: json['imageUrl'] as String?,
   position: (json['position'] as num).toInt(),
+  duration: json['duration'] as String?,
 );
 
 Map<String, dynamic> _$VideoResultToJson(_VideoResult instance) =>
@@ -273,13 +255,11 @@ Map<String, dynamic> _$VideoResultToJson(_VideoResult instance) =>
       'title': instance.title,
       'link': instance.link,
       'snippet': instance.snippet,
-      'source': instance.source,
-      'channelLink': instance.channelLink,
       'date': instance.date,
-      'duration': instance.duration,
-      'thumbnailUrl': instance.thumbnailUrl,
-      'viewCount': instance.viewCount,
+      'source': instance.source,
+      'imageUrl': instance.imageUrl,
       'position': instance.position,
+      'duration': instance.duration,
     };
 
 _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
@@ -289,24 +269,6 @@ _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
   rating: (json['rating'] as num).toDouble(),
   reviewCount: (json['reviewCount'] as num).toInt(),
   priceLevel: json['priceLevel'] as String,
-  type: json['type'] as String,
-  phone: json['phone'] as String?,
-  website: json['website'] as String?,
-  categories:
-      (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  openingHours:
-      (json['openingHours'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-  reviews:
-      (json['reviews'] as List<dynamic>?)
-          ?.map((e) => MapResultReview.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  photos:
-      (json['photos'] as List<dynamic>?)
-          ?.map((e) => MapResultPhoto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  additionalInfo: json['additionalInfo'] as Map<String, dynamic>?,
   description: json['description'] as String?,
 );
 
@@ -318,14 +280,6 @@ Map<String, dynamic> _$MapResultToJson(_MapResult instance) =>
       'rating': instance.rating,
       'reviewCount': instance.reviewCount,
       'priceLevel': instance.priceLevel,
-      'type': instance.type,
-      'phone': instance.phone,
-      'website': instance.website,
-      'categories': instance.categories,
-      'openingHours': instance.openingHours,
-      'reviews': instance.reviews,
-      'photos': instance.photos,
-      'additionalInfo': instance.additionalInfo,
       'description': instance.description,
     };
 
@@ -477,14 +431,6 @@ _PatentResult _$PatentResultFromJson(Map<String, dynamic> json) =>
       publicationDate: json['publicationDate'] as String,
       inventor: json['inventor'] as String,
       assignee: json['assignee'] as String,
-      publicationNumber: json['publicationNumber'] as String,
-      language: json['language'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-      pdfUrl: json['pdfUrl'] as String?,
-      figures:
-          (json['figures'] as List<dynamic>?)
-              ?.map((e) => PatentFigure.fromJson(e as Map<String, dynamic>))
-              .toList(),
       position: (json['position'] as num).toInt(),
     );
 
@@ -499,11 +445,6 @@ Map<String, dynamic> _$PatentResultToJson(_PatentResult instance) =>
       'publicationDate': instance.publicationDate,
       'inventor': instance.inventor,
       'assignee': instance.assignee,
-      'publicationNumber': instance.publicationNumber,
-      'language': instance.language,
-      'thumbnailUrl': instance.thumbnailUrl,
-      'pdfUrl': instance.pdfUrl,
-      'figures': instance.figures,
       'position': instance.position,
     };
 
@@ -521,16 +462,14 @@ Map<String, dynamic> _$PatentFigureToJson(_PatentFigure instance) =>
 
 _WebpageResult _$WebpageResultFromJson(Map<String, dynamic> json) =>
     _WebpageResult(
-      text: json['text'] as String,
-      markdown: json['markdown'] as String?,
-      metadata: json['metadata'] as Map<String, dynamic>?,
-      credits: (json['credits'] as num).toInt(),
+      title: json['title'] as String,
+      link: json['link'] as String,
+      snippet: json['snippet'] as String,
     );
 
 Map<String, dynamic> _$WebpageResultToJson(_WebpageResult instance) =>
     <String, dynamic>{
-      'text': instance.text,
-      'markdown': instance.markdown,
-      'metadata': instance.metadata,
-      'credits': instance.credits,
+      'title': instance.title,
+      'link': instance.link,
+      'snippet': instance.snippet,
     };

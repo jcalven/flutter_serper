@@ -5,16 +5,16 @@ part of 'results.dart';
 abstract class ImagesResult with _$ImagesResult {
   /// Creates an [ImagesResult].
   const factory ImagesResult({
-    /// {@macro ResultDocTemplates.titleDoc}
+    /// {@macro flutter_serper.results.title}
     String? title,
 
-    /// {@macro ResultDocTemplates.imageUrlDoc}
+    /// {@macro flutter_serper.results.imageUrl}
     String? imageUrl,
 
-    /// {@macro ResultDocTemplates.sourceDoc}
+    /// {@macro flutter_serper.results.source}
     String? source,
 
-    /// {@macro ResultDocTemplates.sourceUrlDoc}
+    /// {@macro flutter_serper.results.sourceUrl}
     String? sourceUrl,
   }) = _ImagesResult;
 
