@@ -23,5 +23,3 @@ part 'responses.freezed.dart';
 
 // Generated part files for code generation
 part 'responses.g.dart';
-
-// Removed all templates as they have been moved to their respective response model files.
