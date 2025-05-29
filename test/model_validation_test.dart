@@ -7,33 +7,33 @@ void main() {
     group('Query Models', () {
       test('Query models should accept required parameters', () {
         // Test that query models accept empty strings (no built-in validation)
-        expect(SearchQuery(q: ''), isA<SearchQuery>());
-        expect(ImagesQuery(q: ''), isA<ImagesQuery>());
-        expect(VideosQuery(q: ''), isA<VideosQuery>());
-        expect(NewsQuery(q: ''), isA<NewsQuery>());
+        expect(SearchQuery(query: ''), isA<SearchQuery>());
+        expect(ImagesQuery(query: ''), isA<ImagesQuery>());
+        expect(VideosQuery(query: ''), isA<VideosQuery>());
+        expect(NewsQuery(query: ''), isA<NewsQuery>());
         expect(WebpageQuery(url: ''), isA<WebpageQuery>());
 
         // Test valid query objects with content
-        expect(SearchQuery(q: 'test'), isA<SearchQuery>());
-        expect(ImagesQuery(q: 'test'), isA<ImagesQuery>());
-        expect(VideosQuery(q: 'test'), isA<VideosQuery>());
-        expect(NewsQuery(q: 'test'), isA<NewsQuery>());
+        expect(SearchQuery(query: 'test'), isA<SearchQuery>());
+        expect(ImagesQuery(query: 'test'), isA<ImagesQuery>());
+        expect(VideosQuery(query: 'test'), isA<VideosQuery>());
+        expect(NewsQuery(query: 'test'), isA<NewsQuery>());
         expect(WebpageQuery(url: 'https://example.com'), isA<WebpageQuery>());
       });
 
       test('Query models should serialize and deserialize correctly', () {
-        final searchQuery = SearchQuery(q: 'test query', location: 'US');
+        final searchQuery = SearchQuery(query: 'test query', location: 'US');
         final json = searchQuery.toJson();
         final recreated = SearchQuery.fromJson(json);
 
-        expect(recreated.q, equals('test query'));
+        expect(recreated.query, equals('test query'));
         expect(recreated.location, equals('US'));
 
-        final imagesQuery = ImagesQuery(q: 'image search', num: 10);
+        final imagesQuery = ImagesQuery(query: 'image search', num: 10);
         final imageJson = imagesQuery.toJson();
         final recreatedImage = ImagesQuery.fromJson(imageJson);
 
-        expect(recreatedImage.q, equals('image search'));
+        expect(recreatedImage.query, equals('image search'));
         expect(recreatedImage.num, equals(10));
       });
     });

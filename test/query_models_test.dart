@@ -7,7 +7,7 @@ void main() {
     test('MapsQuery serializes to JSON correctly', () {
       // Arrange
       final query = MapsQuery(
-        q: 'coffee shops',
+        query: 'coffee shops',
         languageCode: LanguageCode.english,
         latLng: const LatLng(37.7749, -122.4194),
         placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
@@ -30,7 +30,10 @@ void main() {
 
     test('PlacesQuery serializes to JSON correctly', () {
       // Arrange
-      final query = PlacesQuery(q: 'restaurants', location: 'San Francisco');
+      final query = PlacesQuery(
+        query: 'restaurants',
+        location: 'San Francisco',
+      );
 
       // Act
       final json = query.toJson();
@@ -43,7 +46,7 @@ void main() {
 
     test('SearchQuery serializes to JSON correctly', () {
       // Arrange
-      final query = SearchQuery(q: 'flutter');
+      final query = SearchQuery(query: 'flutter');
 
       // Act
       final json = query.toJson();
@@ -55,7 +58,7 @@ void main() {
 
     test('ImagesQuery serializes to JSON correctly', () {
       // Arrange
-      final query = ImagesQuery(q: 'mountains');
+      final query = ImagesQuery(query: 'mountains');
 
       // Act
       final json = query.toJson();
@@ -68,7 +71,7 @@ void main() {
     test('NewsQuery serializes to JSON correctly', () {
       // Arrange
       final query = NewsQuery(
-        q: 'technology news',
+        query: 'technology news',
         location: 'London',
         countryCode:
             CountryCode
@@ -91,7 +94,7 @@ void main() {
 
     test('VideosQuery serializes to JSON correctly', () {
       // Arrange
-      final query = VideosQuery(q: 'flutter tutorials');
+      final query = VideosQuery(query: 'flutter tutorials');
 
       // Act
       final json = query.toJson();
@@ -122,7 +125,7 @@ void main() {
     test('ScholarQuery serializes to JSON correctly', () {
       // Arrange
       final query = ScholarQuery(
-        q: 'machine learning',
+        query: 'machine learning',
         languageCode: LanguageCode.english,
       );
 
@@ -138,7 +141,7 @@ void main() {
     test('PatentsQuery serializes to JSON correctly', () {
       // Arrange
       final query = PatentsQuery(
-        q: 'solar energy patents',
+        query: 'solar energy patents',
         languageCode: LanguageCode.english,
       );
 
@@ -160,7 +163,7 @@ void main() {
         sortBy: SortByValue.newest,
         topicId: 'topic1',
         nextPageToken: 'token1',
-        q: 'filter',
+        query: 'filter',
       );
       final jsonCid = queryCid.toJson();
       expect(jsonCid, isA<Map<String, dynamic>>());
@@ -180,7 +183,7 @@ void main() {
         sortBy: SortByValue.highestRating,
         topicId: 'topic2',
         nextPageToken: 'token2',
-        q: 'filter2',
+        query: 'filter2',
       );
       final jsonFid = queryFid.toJson();
       expect(jsonFid, isA<Map<String, dynamic>>());
@@ -200,7 +203,7 @@ void main() {
         sortBy: SortByValue.relevant,
         topicId: 'topic3',
         nextPageToken: 'token3',
-        q: 'filter3',
+        query: 'filter3',
       );
       final jsonPlaceId = queryPlaceId.toJson();
       expect(jsonPlaceId, isA<Map<String, dynamic>>());
@@ -216,7 +219,7 @@ void main() {
     test('AutocompleteQuery serializes to JSON correctly', () {
       // Arrange
       final query = AutocompleteQuery(
-        q: 'flo',
+        query: 'flo',
         countryCode: CountryCode.unitedStates,
         languageCode: LanguageCode.english,
       );
@@ -234,7 +237,7 @@ void main() {
     // Added from query_models_test.dart
     test('ShoppingQuery serializes to JSON correctly', () {
       final query = ShoppingQuery(
-        q: 'smartphones',
+        query: 'smartphones',
         location: 'Boston',
         countryCode: CountryCode.unitedStates,
         languageCode: LanguageCode.english,
@@ -252,7 +255,7 @@ void main() {
       final query = WebpageQuery(
         url: 'https://example.com',
         includeMarkdown: true,
-        q: 'search',
+        query: 'search',
       );
 
       // Act

@@ -19,7 +19,7 @@ void main() {
 
   group('Serper', () {
     test('imagesBatch returns List<ImagesResponse>', () async {
-      final query = ImagesQuery(q: 'cat');
+      final query = ImagesQuery(query: 'cat');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'images': [
@@ -53,7 +53,7 @@ void main() {
     });
 
     test('placesBatch returns List<PlacesResponse>', () async {
-      final query = PlacesQuery(q: 'pizza');
+      final query = PlacesQuery(query: 'pizza');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'places': [
@@ -81,7 +81,7 @@ void main() {
     });
 
     test('videosBatch returns List<VideosResponse>', () async {
-      final query = VideosQuery(q: 'music');
+      final query = VideosQuery(query: 'music');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'videos': [
@@ -114,7 +114,7 @@ void main() {
     });
 
     test('newsBatch returns List<NewsResponse>', () async {
-      final query = NewsQuery(q: 'world news');
+      final query = NewsQuery(query: 'world news');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'news': [
@@ -149,7 +149,7 @@ void main() {
     });
 
     test('shoppingBatch returns List<ShoppingResponse>', () async {
-      final query = ShoppingQuery(q: 'shoes');
+      final query = ShoppingQuery(query: 'shoes');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'shopping': [
@@ -184,7 +184,7 @@ void main() {
       expect(result.first.shopping.first.title, 'Top Shoe');
     });
     test('search returns SearchResponse', () async {
-      final query = SearchQuery(q: 'coffee');
+      final query = SearchQuery(query: 'coffee');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'organic': [
@@ -212,14 +212,14 @@ void main() {
       );
       final result = await serper.search(query);
       expect(result, isA<SearchResponse>());
-      expect(result.searchParameters.q, 'coffee');
+      expect(result.searchParameters.query, 'coffee');
       expect(result.credits, 1);
       expect(result.organic.first.title, 'Coffee Shop');
     });
 
     test('images returns ImagesResponse', () async {
       final query = ImagesQuery(
-        q: 'cat',
+        query: 'cat',
         countryCode: CountryCode.unitedStates,
         languageCode: LanguageCode.english,
         page: 1,
@@ -252,7 +252,7 @@ void main() {
       );
       final result = await serper.images(query);
       expect(result, isA<ImagesResponse>());
-      expect(result.searchParameters.q, 'cat');
+      expect(result.searchParameters.query, 'cat');
       expect(result.searchParameters.countryCode, CountryCode.unitedStates);
       expect(result.searchParameters.languageCode, LanguageCode.english);
       expect(result.credits, 2);
@@ -261,7 +261,7 @@ void main() {
 
     test('places returns PlacesResponse', () async {
       final query = PlacesQuery(
-        q: 'pizza',
+        query: 'pizza',
         countryCode: CountryCode.italy,
         languageCode: LanguageCode.italian,
         page: 1,
@@ -288,7 +288,7 @@ void main() {
       );
       final result = await serper.places(query);
       expect(result, isA<PlacesResponse>());
-      expect(result.searchParameters.q, 'pizza');
+      expect(result.searchParameters.query, 'pizza');
       expect(result.searchParameters.countryCode, CountryCode.italy);
       expect(result.searchParameters.languageCode, LanguageCode.italian);
       expect(result.credits, 3);
@@ -297,7 +297,7 @@ void main() {
 
     test('videos returns VideosResponse', () async {
       final query = VideosQuery(
-        q: 'music',
+        query: 'music',
         countryCode: CountryCode.unitedKingdomGB,
         languageCode: LanguageCode.english,
         page: 1,
@@ -329,7 +329,7 @@ void main() {
       );
       final result = await serper.videos(query);
       expect(result, isA<VideosResponse>());
-      expect(result.searchParameters.q, 'music');
+      expect(result.searchParameters.query, 'music');
       expect(result.searchParameters.countryCode, CountryCode.unitedKingdomGB);
       expect(result.searchParameters.languageCode, LanguageCode.english);
       expect(result.credits, 4);
@@ -338,7 +338,7 @@ void main() {
 
     test('news returns NewsResponse', () async {
       final query = NewsQuery(
-        q: 'world news',
+        query: 'world news',
         countryCode: CountryCode.france,
         languageCode: LanguageCode.french,
         page: 1,
@@ -372,7 +372,7 @@ void main() {
       );
       final result = await serper.news(query);
       expect(result, isA<NewsResponse>());
-      expect(result.searchParameters.q, 'world news');
+      expect(result.searchParameters.query, 'world news');
       expect(result.searchParameters.countryCode, CountryCode.france);
       expect(result.searchParameters.languageCode, LanguageCode.french);
       expect(result.credits, 5);
@@ -381,7 +381,7 @@ void main() {
 
     test('shopping returns ShoppingResponse', () async {
       final query = ShoppingQuery(
-        q: 'shoes',
+        query: 'shoes',
         countryCode: CountryCode.germany,
         languageCode: LanguageCode.german,
         page: 1,
@@ -394,7 +394,7 @@ void main() {
             'link': 'https://example.com/shoe',
             'position': 1,
             'source': 'Shoe Store',
-            'price': '89.99',
+            'price': '89.99',
             'delivery': 'Free shipping',
             'imageUrl': 'https://example.com/shoe.jpg',
           },
@@ -416,7 +416,7 @@ void main() {
       );
       final result = await serper.shopping(query);
       expect(result, isA<ShoppingResponse>());
-      expect(result.searchParameters.q, 'shoes');
+      expect(result.searchParameters.query, 'shoes');
       expect(result.searchParameters.countryCode, CountryCode.germany);
       expect(result.searchParameters.languageCode, LanguageCode.german);
       expect(result.credits, 6);
@@ -425,7 +425,7 @@ void main() {
     });
 
     test('autocomplete returns AutocompleteResponse', () async {
-      final query = AutocompleteQuery(q: 'cof');
+      final query = AutocompleteQuery(query: 'cof');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'suggestions': [
@@ -490,7 +490,7 @@ void main() {
     });
 
     test('maps returns MapsResponse', () async {
-      final query = MapsQuery(q: 'Central Park');
+      final query = MapsQuery(query: 'Central Park');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'place': {
@@ -499,7 +499,7 @@ void main() {
           'address': 'NYC',
           'rating': 4.8,
           'reviewCount': 1000,
-          'priceLevel': ' 2',
+          'priceLevel': '2',
           'type': 'Park',
           'position': 1,
         },
@@ -528,7 +528,7 @@ void main() {
     });
 
     test('patents returns PatentsResponse', () async {
-      final query = PatentsQuery(q: 'battery');
+      final query = PatentsQuery(query: 'battery');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'organic': [
@@ -578,7 +578,7 @@ void main() {
     });
 
     test('scholar returns ScholarResponse', () async {
-      final query = ScholarQuery(q: 'machine learning');
+      final query = ScholarQuery(query: 'machine learning');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'organic': [
@@ -650,7 +650,7 @@ void main() {
 
     test('reviews returns ReviewsResponse', () async {
       // Use a valid named constructor for ReviewsQuery (e.g., withCid)
-      final query = ReviewsQuery.withCid(cid: '123', q: 'restaurant');
+      final query = ReviewsQuery.withCid(cid: '123', query: 'restaurant');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'reviews': [
@@ -691,7 +691,7 @@ void main() {
     });
 
     test('searchBatch returns List<SearchResponse>', () async {
-      final query = SearchQuery(q: 'coffee');
+      final query = SearchQuery(query: 'coffee');
       final mockResponse = {
         'searchParameters': query.toJson(),
         'organic': [

@@ -7,7 +7,7 @@ void main() {
     test('SearchQuery serializes to JSON correctly', () {
       // Arrange
       final searchQuery = SearchQuery(
-        q: 'test query',
+        query: 'test query',
         location: 'New York',
         countryCode: CountryCode.unitedStates,
         languageCode: LanguageCode.english,
@@ -35,7 +35,7 @@ void main() {
     test('ImagesQuery serializes to JSON correctly', () {
       // Arrange
       final query = ImagesQuery(
-        q: 'test image',
+        query: 'test image',
         location: 'San Francisco',
         countryCode: CountryCode.unitedStates,
         languageCode: LanguageCode.english,
@@ -59,7 +59,7 @@ void main() {
       final query = WebpageQuery(
         url: 'https://example.com',
         includeMarkdown: true,
-        q: 'test query',
+        query: 'test query',
       );
 
       // Act
@@ -103,7 +103,7 @@ void main() {
       // Assert
       expect(response, isA<SearchResponse>());
       expect(response.searchParameters, isA<SearchQuery>());
-      expect(response.searchParameters.q, equals('test'));
+      expect(response.searchParameters.query, equals('test'));
       expect(
         response.searchParameters.countryCode,
         equals(CountryCode.unitedStates),
@@ -150,7 +150,7 @@ void main() {
       // Assert
       expect(response, isA<ImagesResponse>());
       expect(response.searchParameters, isA<ImagesQuery>());
-      expect(response.searchParameters.q, equals('test image'));
+      expect(response.searchParameters.query, equals('test image'));
       expect(
         response.searchParameters.countryCode,
         equals(CountryCode.unitedStates),
@@ -250,7 +250,7 @@ void main() {
       expect(getCreditsUsed(imagesResponse), equals(5));
 
       // Verify both types implement the mixin correctly
-      expect(searchResponse.searchParameters.q, equals('test'));
+      expect(searchResponse.searchParameters.query, equals('test'));
       expect(
         searchResponse.searchParameters.countryCode,
         CountryCode.unitedStates,
@@ -259,7 +259,7 @@ void main() {
         searchResponse.searchParameters.languageCode,
         LanguageCode.english,
       );
-      expect(imagesResponse.searchParameters.q, equals('test image'));
+      expect(imagesResponse.searchParameters.query, equals('test image'));
       expect(
         imagesResponse.searchParameters.countryCode,
         CountryCode.unitedStates,

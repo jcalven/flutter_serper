@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i8;
+import 'dart:typed_data' as _i10;
 
 import 'package:dio/src/adapter.dart' as _i3;
 import 'package:dio/src/cancel_token.dart' as _i9;
@@ -56,6 +57,11 @@ class _FakeResponse_4<T1> extends _i1.SmartFake implements _i6.Response<T1> {
 
 class _FakeDio_5 extends _i1.SmartFake implements _i7.Dio {
   _FakeDio_5(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeResponseBody_6 extends _i1.SmartFake implements _i3.ResponseBody {
+  _FakeResponseBody_6(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -1080,4 +1086,46 @@ class MockDio extends _i1.Mock implements _i7.Dio {
             ),
           )
           as _i7.Dio);
+}
+
+/// A class which mocks [HttpClientAdapter].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHttpClientAdapter extends _i1.Mock implements _i3.HttpClientAdapter {
+  @override
+  _i8.Future<_i3.ResponseBody> fetch(
+    _i2.RequestOptions? options,
+    _i8.Stream<_i10.Uint8List>? requestStream,
+    _i8.Future<void>? cancelFuture,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#fetch, [options, requestStream, cancelFuture]),
+            returnValue: _i8.Future<_i3.ResponseBody>.value(
+              _FakeResponseBody_6(
+                this,
+                Invocation.method(#fetch, [
+                  options,
+                  requestStream,
+                  cancelFuture,
+                ]),
+              ),
+            ),
+            returnValueForMissingStub: _i8.Future<_i3.ResponseBody>.value(
+              _FakeResponseBody_6(
+                this,
+                Invocation.method(#fetch, [
+                  options,
+                  requestStream,
+                  cancelFuture,
+                ]),
+              ),
+            ),
+          )
+          as _i8.Future<_i3.ResponseBody>);
+
+  @override
+  void close({bool? force = false}) => super.noSuchMethod(
+    Invocation.method(#close, [], {#force: force}),
+    returnValueForMissingStub: null,
+  );
 }

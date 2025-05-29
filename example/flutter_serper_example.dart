@@ -13,7 +13,7 @@ Future<void> main() async {
   // Example 1: Perform a Google search
   // Note: All query parameters are well-documented with standardized templates
   final searchQuery = SearchQuery(
-    q: 'coffee shops', // Search query string
+    query: 'coffee shops', // Search query string
     location: 'New York', // Geographic location for search context
     // countryCode and languageCode require importing the enums if you want to use them
     // countryCode: CountryCode.unitedStates,
@@ -62,7 +62,7 @@ Future<void> main() async {
     // Example 2: Search for images
     // Using documented query parameters with consistent behavior
     final imagesQuery = ImagesQuery(
-      q: 'coffee beans', // Search query string
+      query: 'coffee beans', // Search query string
       location: 'New York', // Geographic location for search context
       num: 5, // Number of results to return
     );
@@ -81,7 +81,7 @@ Future<void> main() async {
     // Example 3: Places search for local businesses
     // All parameters have consistent documentation across different query types
     final placesQuery = PlacesQuery(
-      q: 'coffee shops', // Search query string
+      query: 'coffee shops', // Search query string
       location: 'San Francisco', // Geographic location for search context
     );
 
@@ -109,7 +109,7 @@ Future<void> main() async {
     // Example 4: Get news articles
     // Similar parameters have consistent documentation across query types
     final newsQuery = NewsQuery(
-      q: 'coffee industry', // Search query string
+      query: 'coffee industry', // Search query string
       location: 'United States', // Geographic location for search context
     );
 
@@ -143,7 +143,7 @@ Future<void> main() async {
     // Example 6: Get autocomplete suggestions
     // The documentation is consistent across all query types
     final autocompleteQuery = AutocompleteQuery(
-      q: 'coffee', // Partial search query string to autocomplete
+      query: 'coffee', // Partial search query string to autocomplete
       location: 'San Francisco', // Geographic location for search context
     );
 
@@ -179,7 +179,7 @@ Future<void> main() async {
     // Example 8: Using the callApiWithMixin method
     print('\nUsing callApiWithMixin with SearchResponse:');
     final polymorphicQuery =
-        SearchQuery(q: 'specialty coffee', num: 3).toJson();
+        SearchQuery(query: 'specialty coffee', num: 3).toJson();
 
     try {
       final polymorphicResults = await serper.callApi<SearchResponse>(

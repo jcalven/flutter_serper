@@ -4,7 +4,11 @@ part of 'queries.dart';
 @freezed
 abstract class WebpageQuery with _$WebpageQuery {
   const factory WebpageQuery({
-    /// {@macro QueryDocTemplates.urlDoc}
+    /// {@template flutter_serper.queries.url}
+    /// The URL of the page to process.
+    ///
+    /// This is a required parameter.
+    /// {@endtemplate}
     required String url,
 
     /// Whether to include markdown in the response
@@ -12,8 +16,8 @@ abstract class WebpageQuery with _$WebpageQuery {
     /// When true, the API will return a markdown version of the webpage content.
     bool? includeMarkdown,
 
-    /// {@macro QueryDocTemplates.queryStringDoc}
-    String? q,
+    /// {@macro flutter_serper.queries.queryString}
+    @JsonKey(name: 'q') String? query,
   }) = _WebpageQuery;
 
   factory WebpageQuery.fromJson(Map<String, dynamic> json) =>

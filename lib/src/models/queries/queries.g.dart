@@ -8,7 +8,7 @@ part of 'queries.dart';
 
 _AutocompleteQuery _$AutocompleteQueryFromJson(Map<String, dynamic> json) =>
     _AutocompleteQuery(
-      q: json['q'] as String,
+      query: json['q'] as String,
       location: json['location'] as String?,
       countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
       languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -16,7 +16,7 @@ _AutocompleteQuery _$AutocompleteQueryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AutocompleteQueryToJson(_AutocompleteQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -430,7 +430,7 @@ const _$LanguageCodeEnumMap = {
 };
 
 _ImagesQuery _$ImagesQueryFromJson(Map<String, dynamic> json) => _ImagesQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   location: json['location'] as String?,
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -442,7 +442,7 @@ _ImagesQuery _$ImagesQueryFromJson(Map<String, dynamic> json) => _ImagesQuery(
 
 Map<String, dynamic> _$ImagesQueryToJson(_ImagesQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -461,7 +461,7 @@ const _$TbsValueEnumMap = {
 };
 
 _PlacesQuery _$PlacesQueryFromJson(Map<String, dynamic> json) => _PlacesQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   location: json['location'] as String?,
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -472,7 +472,7 @@ _PlacesQuery _$PlacesQueryFromJson(Map<String, dynamic> json) => _PlacesQuery(
 
 Map<String, dynamic> _$PlacesQueryToJson(_PlacesQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -482,7 +482,7 @@ Map<String, dynamic> _$PlacesQueryToJson(_PlacesQuery instance) =>
     };
 
 _VideosQuery _$VideosQueryFromJson(Map<String, dynamic> json) => _VideosQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   location: json['location'] as String?,
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -494,7 +494,7 @@ _VideosQuery _$VideosQueryFromJson(Map<String, dynamic> json) => _VideosQuery(
 
 Map<String, dynamic> _$VideosQueryToJson(_VideosQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -505,7 +505,7 @@ Map<String, dynamic> _$VideosQueryToJson(_VideosQuery instance) =>
     };
 
 _MapsQuery _$MapsQueryFromJson(Map<String, dynamic> json) => _MapsQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
   latLng: _$JsonConverterFromJson<String, LatLng>(
     json['ll'],
@@ -518,7 +518,7 @@ _MapsQuery _$MapsQueryFromJson(Map<String, dynamic> json) => _MapsQuery(
 
 Map<String, dynamic> _$MapsQueryToJson(_MapsQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
       'll': _$JsonConverterToJson<String, LatLng>(
         instance.latLng,
@@ -547,7 +547,7 @@ ReviewsQueryCid _$ReviewsQueryCidFromJson(Map<String, dynamic> json) =>
       sortBy: $enumDecodeNullable(_$SortByValueEnumMap, json['sortBy']),
       topicId: json['topicId'] as String?,
       nextPageToken: json['nextPageToken'] as String?,
-      q: json['q'] as String?,
+      query: json['q'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -559,7 +559,7 @@ Map<String, dynamic> _$ReviewsQueryCidToJson(ReviewsQueryCid instance) =>
       'sortBy': _$SortByValueEnumMap[instance.sortBy],
       'topicId': instance.topicId,
       'nextPageToken': instance.nextPageToken,
-      'q': instance.q,
+      'q': instance.query,
       'runtimeType': instance.$type,
     };
 
@@ -578,7 +578,7 @@ ReviewsQueryFid _$ReviewsQueryFidFromJson(Map<String, dynamic> json) =>
       sortBy: $enumDecodeNullable(_$SortByValueEnumMap, json['sortBy']),
       topicId: json['topicId'] as String?,
       nextPageToken: json['nextPageToken'] as String?,
-      q: json['q'] as String?,
+      query: json['q'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -590,7 +590,7 @@ Map<String, dynamic> _$ReviewsQueryFidToJson(ReviewsQueryFid instance) =>
       'sortBy': _$SortByValueEnumMap[instance.sortBy],
       'topicId': instance.topicId,
       'nextPageToken': instance.nextPageToken,
-      'q': instance.q,
+      'q': instance.query,
       'runtimeType': instance.$type,
     };
 
@@ -602,7 +602,7 @@ ReviewsQueryPlaceId _$ReviewsQueryPlaceIdFromJson(Map<String, dynamic> json) =>
       sortBy: $enumDecodeNullable(_$SortByValueEnumMap, json['sortBy']),
       topicId: json['topicId'] as String?,
       nextPageToken: json['nextPageToken'] as String?,
-      q: json['q'] as String?,
+      query: json['q'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -615,12 +615,12 @@ Map<String, dynamic> _$ReviewsQueryPlaceIdToJson(
   'sortBy': _$SortByValueEnumMap[instance.sortBy],
   'topicId': instance.topicId,
   'nextPageToken': instance.nextPageToken,
-  'q': instance.q,
+  'q': instance.query,
   'runtimeType': instance.$type,
 };
 
 _NewsQuery _$NewsQueryFromJson(Map<String, dynamic> json) => _NewsQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   location: json['location'] as String?,
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -632,7 +632,7 @@ _NewsQuery _$NewsQueryFromJson(Map<String, dynamic> json) => _NewsQuery(
 
 Map<String, dynamic> _$NewsQueryToJson(_NewsQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -644,7 +644,7 @@ Map<String, dynamic> _$NewsQueryToJson(_NewsQuery instance) =>
 
 _ShoppingQuery _$ShoppingQueryFromJson(Map<String, dynamic> json) =>
     _ShoppingQuery(
-      q: json['q'] as String,
+      query: json['q'] as String,
       location: json['location'] as String?,
       countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
       languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -655,7 +655,7 @@ _ShoppingQuery _$ShoppingQueryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ShoppingQueryToJson(_ShoppingQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -670,7 +670,7 @@ _LensQuery _$LensQueryFromJson(Map<String, dynamic> json) => _LensQuery(
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
   tbs: $enumDecodeNullable(_$TbsValueEnumMap, json['tbs']),
-  q: json['q'] as String?,
+  query: json['q'] as String?,
 );
 
 Map<String, dynamic> _$LensQueryToJson(_LensQuery instance) =>
@@ -680,12 +680,12 @@ Map<String, dynamic> _$LensQueryToJson(_LensQuery instance) =>
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
       'tbs': _$TbsValueEnumMap[instance.tbs],
-      'q': instance.q,
+      'q': instance.query,
     };
 
 _ScholarQuery _$ScholarQueryFromJson(Map<String, dynamic> json) =>
     _ScholarQuery(
-      q: json['q'] as String,
+      query: json['q'] as String,
       location: json['location'] as String?,
       countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
       languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -696,7 +696,7 @@ _ScholarQuery _$ScholarQueryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ScholarQueryToJson(_ScholarQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -707,7 +707,7 @@ Map<String, dynamic> _$ScholarQueryToJson(_ScholarQuery instance) =>
 
 _PatentsQuery _$PatentsQueryFromJson(Map<String, dynamic> json) =>
     _PatentsQuery(
-      q: json['q'] as String,
+      query: json['q'] as String,
       location: json['location'] as String?,
       countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
       languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -719,7 +719,7 @@ _PatentsQuery _$PatentsQueryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PatentsQueryToJson(_PatentsQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -730,7 +730,7 @@ Map<String, dynamic> _$PatentsQueryToJson(_PatentsQuery instance) =>
     };
 
 _SearchQuery _$SearchQueryFromJson(Map<String, dynamic> json) => _SearchQuery(
-  q: json['q'] as String,
+  query: json['q'] as String,
   location: json['location'] as String?,
   countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
   languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
@@ -742,7 +742,7 @@ _SearchQuery _$SearchQueryFromJson(Map<String, dynamic> json) => _SearchQuery(
 
 Map<String, dynamic> _$SearchQueryToJson(_SearchQuery instance) =>
     <String, dynamic>{
-      'q': instance.q,
+      'q': instance.query,
       'location': instance.location,
       'gl': _$CountryCodeEnumMap[instance.countryCode],
       'hl': _$LanguageCodeEnumMap[instance.languageCode],
@@ -756,12 +756,12 @@ _WebpageQuery _$WebpageQueryFromJson(Map<String, dynamic> json) =>
     _WebpageQuery(
       url: json['url'] as String,
       includeMarkdown: json['includeMarkdown'] as bool?,
-      q: json['q'] as String?,
+      query: json['q'] as String?,
     );
 
 Map<String, dynamic> _$WebpageQueryToJson(_WebpageQuery instance) =>
     <String, dynamic>{
       'url': instance.url,
       'includeMarkdown': instance.includeMarkdown,
-      'q': instance.q,
+      'q': instance.query,
     };

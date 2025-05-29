@@ -4,53 +4,53 @@ part of 'queries.dart';
 @freezed
 abstract class ShoppingQuery with _$ShoppingQuery {
   const factory ShoppingQuery({
-    /// {@macro QueryDocTemplates.queryStringDoc}
-    required String q,
+    /// {@macro flutter_serper.queries.queryString}
+    @JsonKey(name: 'q') required String query,
 
-    /// {@macro QueryDocTemplates.locationDoc}
+    /// {@macro flutter_serper.queries.location}
     String? location,
 
-    /// {@macro QueryDocTemplates.countryCodeDoc}
+    /// {@macro flutter_serper.queries.countryCodeEnum}
     @JsonKey(name: 'gl') CountryCode? countryCode,
 
-    /// {@macro QueryDocTemplates.languageCodeDoc}
+    /// {@macro flutter_serper.queries.languageCodeEnum}
     @JsonKey(name: 'hl') LanguageCode? languageCode,
 
-    /// {@macro QueryDocTemplates.autocorrectDoc}
+    /// {@macro flutter_serper.queries.autocorrect}
     bool? autocorrect,
 
-    /// {@macro QueryDocTemplates.tbsDocEnum}
+    /// {@macro flutter_serper.queries.tbsEnum}
     TbsValue? tbs,
 
-    /// {@macro QueryDocTemplates.pageDoc}
+    /// {@macro flutter_serper.queries.page}
     int? page,
   }) = _ShoppingQuery;
 
   /// Factory to create a ShoppingQuery with string-based inputs.
   factory ShoppingQuery.fromStrings({
-    /// {@macro QueryDocTemplates.queryStringDoc}
-    required String q,
+    /// {@macro flutter_serper.queries.queryString}
+    @JsonKey(name: 'q') required String query,
 
-    /// {@macro QueryDocTemplates.locationDoc}
+    /// {@macro flutter_serper.queries.location}
     String? location,
 
-    /// {@macro QueryDocTemplates.glDoc}
+    /// {@macro flutter_serper.queries.countryCodeString}
     String? countryCode,
 
-    /// {@macro QueryDocTemplates.hlDoc}
+    /// {@macro flutter_serper.queries.languageCodeString}
     String? languageCode,
 
-    /// {@macro QueryDocTemplates.autocorrectDoc}
+    /// {@macro flutter_serper.queries.autocorrect}
     bool? autocorrect,
 
-    /// {@macro QueryDocTemplates.tbsDocString}
+    /// {@macro flutter_serper.queries.tbsString}
     String? tbs,
 
-    /// {@macro QueryDocTemplates.pageDoc}
+    /// {@macro flutter_serper.queries.page}
     int? page,
   }) {
     return ShoppingQuery(
-      q: q,
+      query: query,
       location: location,
       countryCode: CountryCode.tryParse(countryCode),
       languageCode: LanguageCode.tryParse(languageCode),

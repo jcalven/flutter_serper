@@ -23,7 +23,10 @@ void main() {
 
     test('Search API returns valid results', () async {
       // Arrange
-      final searchQuery = SearchQuery(q: 'coffee shops', location: 'New York');
+      final searchQuery = SearchQuery(
+        query: 'coffee shops',
+        location: 'New York',
+      );
 
       // Act & Assert
       try {
@@ -40,7 +43,10 @@ void main() {
 
     test('Images API returns valid results', () async {
       // Arrange
-      final imagesQuery = ImagesQuery(q: 'coffee beans', location: 'New York');
+      final imagesQuery = ImagesQuery(
+        query: 'coffee beans',
+        location: 'New York',
+      );
 
       // Act & Assert
       try {
@@ -57,7 +63,7 @@ void main() {
 
     test('Autocomplete API returns valid suggestions', () async {
       // Arrange
-      final autocompleteQuery = AutocompleteQuery(q: 'coffee');
+      final autocompleteQuery = AutocompleteQuery(query: 'coffee');
 
       // Act & Assert
       try {

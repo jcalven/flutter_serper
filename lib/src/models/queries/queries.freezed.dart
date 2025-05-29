@@ -16,10 +16,26 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AutocompleteQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@template flutter_serper.queries.queryString}
+/// The search query string.
+///
+/// This is a required parameter and can be empty.
+/// {@endtemplate}
+@JsonKey(name: 'q') String get query;/// {@template flutter_serper.queries.location}
+/// Optional location to filter results.
+///
+/// This can be a city, state, or country.
+/// {@endtemplate}
+ String? get location;/// {@template flutter_serper.queries.countryCodeEnum}
+/// The country for the search, as a [CountryCode] enum.
+///
+/// This can be used to specify a location bias. Parsed to [CountryCode].
+/// {@endtemplate}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@template flutter_serper.queries.languageCodeEnum}
+/// The language for the search, as a [LanguageCode] enum.
+///
+/// This can be used to specify the language of the results.
+/// {@endtemplate}
 @JsonKey(name: 'hl') LanguageCode? get languageCode;
 /// Create a copy of AutocompleteQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -33,16 +49,16 @@ $AutocompleteQueryCopyWith<AutocompleteQuery> get copyWith => _$AutocompleteQuer
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AutocompleteQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AutocompleteQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode);
 
 @override
 String toString() {
-  return 'AutocompleteQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode)';
+  return 'AutocompleteQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode)';
 }
 
 
@@ -53,7 +69,7 @@ abstract mixin class $AutocompleteQueryCopyWith<$Res>  {
   factory $AutocompleteQueryCopyWith(AutocompleteQuery value, $Res Function(AutocompleteQuery) _then) = _$AutocompleteQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode
 });
 
 
@@ -70,9 +86,9 @@ class _$AutocompleteQueryCopyWithImpl<$Res>
 
 /// Create a copy of AutocompleteQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -87,16 +103,32 @@ as LanguageCode?,
 @JsonSerializable()
 
 class _AutocompleteQuery implements AutocompleteQuery {
-  const _AutocompleteQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode});
+  const _AutocompleteQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode});
   factory _AutocompleteQuery.fromJson(Map<String, dynamic> json) => _$AutocompleteQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@template flutter_serper.queries.queryString}
+/// The search query string.
+///
+/// This is a required parameter and can be empty.
+/// {@endtemplate}
+@override@JsonKey(name: 'q') final  String query;
+/// {@template flutter_serper.queries.location}
+/// Optional location to filter results.
+///
+/// This can be a city, state, or country.
+/// {@endtemplate}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@template flutter_serper.queries.countryCodeEnum}
+/// The country for the search, as a [CountryCode] enum.
+///
+/// This can be used to specify a location bias. Parsed to [CountryCode].
+/// {@endtemplate}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@template flutter_serper.queries.languageCodeEnum}
+/// The language for the search, as a [LanguageCode] enum.
+///
+/// This can be used to specify the language of the results.
+/// {@endtemplate}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
 
 /// Create a copy of AutocompleteQuery
@@ -112,16 +144,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AutocompleteQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AutocompleteQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode);
 
 @override
 String toString() {
-  return 'AutocompleteQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode)';
+  return 'AutocompleteQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode)';
 }
 
 
@@ -132,7 +164,7 @@ abstract mixin class _$AutocompleteQueryCopyWith<$Res> implements $AutocompleteQ
   factory _$AutocompleteQueryCopyWith(_AutocompleteQuery value, $Res Function(_AutocompleteQuery) _then) = __$AutocompleteQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode
 });
 
 
@@ -149,9 +181,9 @@ class __$AutocompleteQueryCopyWithImpl<$Res>
 
 /// Create a copy of AutocompleteQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,}) {
   return _then(_AutocompleteQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -166,14 +198,30 @@ as LanguageCode?,
 /// @nodoc
 mixin _$ImagesQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.numDoc}
- int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@template flutter_serper.queries.num}
+/// Optional number of results to return.
+///
+/// Default varies by API endpoint.
+/// {@endtemplate}
+ int? get num;/// {@template flutter_serper.queries.autocorrect}
+/// Optional parameter to enable or disable autocorrection.
+///
+/// When true, the API will attempt to correct spelling errors in the query.
+/// {@endtemplate}
+ bool? get autocorrect;/// {@template flutter_serper.queries.tbsEnum}
+/// Optional time-based search parameter, as a [TbsValue] enum.
+///
+/// Serialized to the 'tbs' parameter for the API.
+/// {@endtemplate}
+ TbsValue? get tbs;/// {@template flutter_serper.queries.page}
+/// Optional page number for pagination.
+///
+/// Default is 1.
+/// {@endtemplate}
  int? get page;
 /// Create a copy of ImagesQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -187,16 +235,16 @@ $ImagesQueryCopyWith<ImagesQuery> get copyWith => _$ImagesQueryCopyWithImpl<Imag
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImagesQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImagesQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ImagesQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ImagesQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -207,7 +255,7 @@ abstract mixin class $ImagesQueryCopyWith<$Res>  {
   factory $ImagesQueryCopyWith(ImagesQuery value, $Res Function(ImagesQuery) _then) = _$ImagesQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -224,9 +272,9 @@ class _$ImagesQueryCopyWithImpl<$Res>
 
 /// Create a copy of ImagesQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -245,24 +293,40 @@ as int?,
 @JsonSerializable()
 
 class _ImagesQuery implements ImagesQuery {
-  const _ImagesQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _ImagesQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
   factory _ImagesQuery.fromJson(Map<String, dynamic> json) => _$ImagesQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.numDoc}
+/// {@template flutter_serper.queries.num}
+/// Optional number of results to return.
+///
+/// Default varies by API endpoint.
+/// {@endtemplate}
 @override final  int? num;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@template flutter_serper.queries.autocorrect}
+/// Optional parameter to enable or disable autocorrection.
+///
+/// When true, the API will attempt to correct spelling errors in the query.
+/// {@endtemplate}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@template flutter_serper.queries.tbsEnum}
+/// Optional time-based search parameter, as a [TbsValue] enum.
+///
+/// Serialized to the 'tbs' parameter for the API.
+/// {@endtemplate}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@template flutter_serper.queries.page}
+/// Optional page number for pagination.
+///
+/// Default is 1.
+/// {@endtemplate}
 @override final  int? page;
 
 /// Create a copy of ImagesQuery
@@ -278,16 +342,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImagesQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImagesQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ImagesQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ImagesQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -298,7 +362,7 @@ abstract mixin class _$ImagesQueryCopyWith<$Res> implements $ImagesQueryCopyWith
   factory _$ImagesQueryCopyWith(_ImagesQuery value, $Res Function(_ImagesQuery) _then) = __$ImagesQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -315,9 +379,9 @@ class __$ImagesQueryCopyWithImpl<$Res>
 
 /// Create a copy of ImagesQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_ImagesQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -336,13 +400,13 @@ as int?,
 /// @nodoc
 mixin _$PlacesQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of PlacesQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -356,16 +420,16 @@ $PlacesQueryCopyWith<PlacesQuery> get copyWith => _$PlacesQueryCopyWithImpl<Plac
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'PlacesQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PlacesQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -376,7 +440,7 @@ abstract mixin class $PlacesQueryCopyWith<$Res>  {
   factory $PlacesQueryCopyWith(PlacesQuery value, $Res Function(PlacesQuery) _then) = _$PlacesQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -393,9 +457,9 @@ class _$PlacesQueryCopyWithImpl<$Res>
 
 /// Create a copy of PlacesQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -413,22 +477,22 @@ as int?,
 @JsonSerializable()
 
 class _PlacesQuery implements PlacesQuery {
-  const _PlacesQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
+  const _PlacesQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
   factory _PlacesQuery.fromJson(Map<String, dynamic> json) => _$PlacesQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of PlacesQuery
@@ -444,16 +508,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'PlacesQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PlacesQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -464,7 +528,7 @@ abstract mixin class _$PlacesQueryCopyWith<$Res> implements $PlacesQueryCopyWith
   factory _$PlacesQueryCopyWith(_PlacesQuery value, $Res Function(_PlacesQuery) _then) = __$PlacesQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -481,9 +545,9 @@ class __$PlacesQueryCopyWithImpl<$Res>
 
 /// Create a copy of PlacesQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_PlacesQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -501,14 +565,14 @@ as int?,
 /// @nodoc
 mixin _$VideosQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.numDoc}
- int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.num}
+ int? get num;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of VideosQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -522,16 +586,16 @@ $VideosQueryCopyWith<VideosQuery> get copyWith => _$VideosQueryCopyWithImpl<Vide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideosQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideosQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'VideosQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'VideosQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -542,7 +606,7 @@ abstract mixin class $VideosQueryCopyWith<$Res>  {
   factory $VideosQueryCopyWith(VideosQuery value, $Res Function(VideosQuery) _then) = _$VideosQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -559,9 +623,9 @@ class _$VideosQueryCopyWithImpl<$Res>
 
 /// Create a copy of VideosQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -580,24 +644,24 @@ as int?,
 @JsonSerializable()
 
 class _VideosQuery implements VideosQuery {
-  const _VideosQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _VideosQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
   factory _VideosQuery.fromJson(Map<String, dynamic> json) => _$VideosQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.numDoc}
+/// {@macro flutter_serper.queries.num}
 @override final  int? num;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of VideosQuery
@@ -613,16 +677,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideosQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideosQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'VideosQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'VideosQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -633,7 +697,7 @@ abstract mixin class _$VideosQueryCopyWith<$Res> implements $VideosQueryCopyWith
   factory _$VideosQueryCopyWith(_VideosQuery value, $Res Function(_VideosQuery) _then) = __$VideosQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -650,9 +714,9 @@ class __$VideosQueryCopyWithImpl<$Res>
 
 /// Create a copy of VideosQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_VideosQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -671,12 +735,24 @@ as int?,
 /// @nodoc
 mixin _$MapsQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.latLngDocClass}
-@JsonKey(name: 'll')@LatLngConverter() LatLng? get latLng;/// {@macro QueryDocTemplates.placeIdDoc}
- String? get placeId;/// {@macro QueryDocTemplates.cidDoc}
- String? get cid;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@template flutter_serper.queries.latLngClass}
+/// Optional latitude and longitude, as a [LatLng] object.
+///
+/// Serialized as "latitude,longitude" for the 'll' parameter.
+/// {@endtemplate}
+@JsonKey(name: 'll')@LatLngConverter() LatLng? get latLng;/// {@template flutter_serper.queries.placeId}
+/// Optional Google Place ID.
+///
+/// This can be used to specify a particular place for the search.
+/// {@endtemplate}
+ String? get placeId;/// {@template flutter_serper.queries.cid}
+/// Optional Google CID (Customer ID).
+///
+/// This can be used to identify a specific business or entity.
+/// {@endtemplate}
+ String? get cid;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of MapsQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -690,16 +766,16 @@ $MapsQueryCopyWith<MapsQuery> get copyWith => _$MapsQueryCopyWithImpl<MapsQuery>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,languageCode,latLng,placeId,cid,page);
+int get hashCode => Object.hash(runtimeType,query,languageCode,latLng,placeId,cid,page);
 
 @override
 String toString() {
-  return 'MapsQuery(q: $q, languageCode: $languageCode, latLng: $latLng, placeId: $placeId, cid: $cid, page: $page)';
+  return 'MapsQuery(query: $query, languageCode: $languageCode, latLng: $latLng, placeId: $placeId, cid: $cid, page: $page)';
 }
 
 
@@ -710,7 +786,7 @@ abstract mixin class $MapsQueryCopyWith<$Res>  {
   factory $MapsQueryCopyWith(MapsQuery value, $Res Function(MapsQuery) _then) = _$MapsQueryCopyWithImpl;
 @useResult
 $Res call({
- String q,@JsonKey(name: 'hl') LanguageCode? languageCode,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, String? placeId, String? cid, int? page
+@JsonKey(name: 'q') String query,@JsonKey(name: 'hl') LanguageCode? languageCode,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, String? placeId, String? cid, int? page
 });
 
 
@@ -727,9 +803,9 @@ class _$MapsQueryCopyWithImpl<$Res>
 
 /// Create a copy of MapsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? languageCode = freezed,Object? latLng = freezed,Object? placeId = freezed,Object? cid = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? languageCode = freezed,Object? latLng = freezed,Object? placeId = freezed,Object? cid = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
 as LanguageCode?,latLng: freezed == latLng ? _self.latLng : latLng // ignore: cast_nullable_to_non_nullable
 as LatLng?,placeId: freezed == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
@@ -746,20 +822,32 @@ as int?,
 @JsonSerializable()
 
 class _MapsQuery implements MapsQuery {
-  const _MapsQuery({required this.q, @JsonKey(name: 'hl') this.languageCode, @JsonKey(name: 'll')@LatLngConverter() this.latLng, this.placeId, this.cid, this.page});
+  const _MapsQuery({@JsonKey(name: 'q') required this.query, @JsonKey(name: 'hl') this.languageCode, @JsonKey(name: 'll')@LatLngConverter() this.latLng, this.placeId, this.cid, this.page});
   factory _MapsQuery.fromJson(Map<String, dynamic> json) => _$MapsQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.latLngDocClass}
+/// {@template flutter_serper.queries.latLngClass}
+/// Optional latitude and longitude, as a [LatLng] object.
+///
+/// Serialized as "latitude,longitude" for the 'll' parameter.
+/// {@endtemplate}
 @override@JsonKey(name: 'll')@LatLngConverter() final  LatLng? latLng;
-/// {@macro QueryDocTemplates.placeIdDoc}
+/// {@template flutter_serper.queries.placeId}
+/// Optional Google Place ID.
+///
+/// This can be used to specify a particular place for the search.
+/// {@endtemplate}
 @override final  String? placeId;
-/// {@macro QueryDocTemplates.cidDoc}
+/// {@template flutter_serper.queries.cid}
+/// Optional Google CID (Customer ID).
+///
+/// This can be used to identify a specific business or entity.
+/// {@endtemplate}
 @override final  String? cid;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of MapsQuery
@@ -775,16 +863,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,languageCode,latLng,placeId,cid,page);
+int get hashCode => Object.hash(runtimeType,query,languageCode,latLng,placeId,cid,page);
 
 @override
 String toString() {
-  return 'MapsQuery(q: $q, languageCode: $languageCode, latLng: $latLng, placeId: $placeId, cid: $cid, page: $page)';
+  return 'MapsQuery(query: $query, languageCode: $languageCode, latLng: $latLng, placeId: $placeId, cid: $cid, page: $page)';
 }
 
 
@@ -795,7 +883,7 @@ abstract mixin class _$MapsQueryCopyWith<$Res> implements $MapsQueryCopyWith<$Re
   factory _$MapsQueryCopyWith(_MapsQuery value, $Res Function(_MapsQuery) _then) = __$MapsQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q,@JsonKey(name: 'hl') LanguageCode? languageCode,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, String? placeId, String? cid, int? page
+@JsonKey(name: 'q') String query,@JsonKey(name: 'hl') LanguageCode? languageCode,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, String? placeId, String? cid, int? page
 });
 
 
@@ -812,9 +900,9 @@ class __$MapsQueryCopyWithImpl<$Res>
 
 /// Create a copy of MapsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? languageCode = freezed,Object? latLng = freezed,Object? placeId = freezed,Object? cid = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? languageCode = freezed,Object? latLng = freezed,Object? placeId = freezed,Object? cid = freezed,Object? page = freezed,}) {
   return _then(_MapsQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
 as LanguageCode?,latLng: freezed == latLng ? _self.latLng : latLng // ignore: cast_nullable_to_non_nullable
 as LatLng?,placeId: freezed == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
@@ -858,13 +946,17 @@ ReviewsQuery _$ReviewsQueryFromJson(
 /// @nodoc
 mixin _$ReviewsQuery {
 
-/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.sortByDocEnum}
+/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@template flutter_serper.queries.sortByEnum}
+/// Optional parameter to sort results, as a [SortByValue] enum.
+///
+/// Serialized to the 'sortBy' parameter for the API.
+/// {@endtemplate}
  SortByValue? get sortBy;/// Optional topic ID to filter reviews by topic
  String? get topicId;/// Optional token for pagination
- String? get nextPageToken;/// {@macro QueryDocTemplates.queryStringDoc}
- String? get q;
+ String? get nextPageToken;/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String? get query;
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -877,16 +969,16 @@ $ReviewsQueryCopyWith<ReviewsQuery> get copyWith => _$ReviewsQueryCopyWithImpl<R
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQuery&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQuery&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,countryCode,languageCode,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,countryCode,languageCode,sortBy,topicId,nextPageToken,query);
 
 @override
 String toString() {
-  return 'ReviewsQuery(countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery(countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, query: $query)';
 }
 
 
@@ -897,7 +989,7 @@ abstract mixin class $ReviewsQueryCopyWith<$Res>  {
   factory $ReviewsQueryCopyWith(ReviewsQuery value, $Res Function(ReviewsQuery) _then) = _$ReviewsQueryCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken, String? q
+@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken,@JsonKey(name: 'q') String? query
 });
 
 
@@ -914,14 +1006,14 @@ class _$ReviewsQueryCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? query = freezed,}) {
   return _then(_self.copyWith(
 countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
 as LanguageCode?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
 as SortByValue?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
 as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
-as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -933,23 +1025,27 @@ as String?,
 @JsonSerializable()
 
 class ReviewsQueryCid implements ReviewsQuery {
-  const ReviewsQueryCid({required this.cid, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withCid';
+  const ReviewsQueryCid({required this.cid, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, @JsonKey(name: 'q') this.query, final  String? $type}): $type = $type ?? 'withCid';
   factory ReviewsQueryCid.fromJson(Map<String, dynamic> json) => _$ReviewsQueryCidFromJson(json);
 
-/// {@macro QueryDocTemplates.cidDoc}
+/// {@macro flutter_serper.queries.cid}
  final  String cid;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.sortByDocEnum}
+/// {@template flutter_serper.queries.sortByEnum}
+/// Optional parameter to sort results, as a [SortByValue] enum.
+///
+/// Serialized to the 'sortBy' parameter for the API.
+/// {@endtemplate}
 @override final  SortByValue? sortBy;
 /// Optional topic ID to filter reviews by topic
 @override final  String? topicId;
 /// Optional token for pagination
 @override final  String? nextPageToken;
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String? q;
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String? query;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -968,16 +1064,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryCid&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryCid&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,cid,countryCode,languageCode,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,cid,countryCode,languageCode,sortBy,topicId,nextPageToken,query);
 
 @override
 String toString() {
-  return 'ReviewsQuery.withCid(cid: $cid, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery.withCid(cid: $cid, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, query: $query)';
 }
 
 
@@ -988,7 +1084,7 @@ abstract mixin class $ReviewsQueryCidCopyWith<$Res> implements $ReviewsQueryCopy
   factory $ReviewsQueryCidCopyWith(ReviewsQueryCid value, $Res Function(ReviewsQueryCid) _then) = _$ReviewsQueryCidCopyWithImpl;
 @override @useResult
 $Res call({
- String cid,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken, String? q
+ String cid,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken,@JsonKey(name: 'q') String? query
 });
 
 
@@ -1005,7 +1101,7 @@ class _$ReviewsQueryCidCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cid = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cid = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? query = freezed,}) {
   return _then(ReviewsQueryCid(
 cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
 as String,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
@@ -1013,7 +1109,7 @@ as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : lan
 as LanguageCode?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
 as SortByValue?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
 as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
-as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1025,23 +1121,27 @@ as String?,
 @JsonSerializable()
 
 class ReviewsQueryFid implements ReviewsQuery {
-  const ReviewsQueryFid({required this.fid, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withFid';
+  const ReviewsQueryFid({required this.fid, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, @JsonKey(name: 'q') this.query, final  String? $type}): $type = $type ?? 'withFid';
   factory ReviewsQueryFid.fromJson(Map<String, dynamic> json) => _$ReviewsQueryFidFromJson(json);
 
-/// {@macro QueryDocTemplates.fidDoc}
+/// {@template flutter_serper.queries.fid}
+/// Optional Google Feature ID.
+///
+/// This can be used to identify a specific feature for the search.
+/// {@endtemplate}
  final  String fid;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.sortByDocEnum}
+/// {@macro flutter_serper.queries.sortByEnum}
 @override final  SortByValue? sortBy;
 /// Optional topic ID to filter reviews by topic
 @override final  String? topicId;
 /// Optional token for pagination
 @override final  String? nextPageToken;
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String? q;
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String? query;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -1060,16 +1160,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryFid&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryFid&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fid,countryCode,languageCode,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,fid,countryCode,languageCode,sortBy,topicId,nextPageToken,query);
 
 @override
 String toString() {
-  return 'ReviewsQuery.withFid(fid: $fid, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery.withFid(fid: $fid, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, query: $query)';
 }
 
 
@@ -1080,7 +1180,7 @@ abstract mixin class $ReviewsQueryFidCopyWith<$Res> implements $ReviewsQueryCopy
   factory $ReviewsQueryFidCopyWith(ReviewsQueryFid value, $Res Function(ReviewsQueryFid) _then) = _$ReviewsQueryFidCopyWithImpl;
 @override @useResult
 $Res call({
- String fid,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken, String? q
+ String fid,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken,@JsonKey(name: 'q') String? query
 });
 
 
@@ -1097,7 +1197,7 @@ class _$ReviewsQueryFidCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fid = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? fid = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? query = freezed,}) {
   return _then(ReviewsQueryFid(
 fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
 as String,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
@@ -1105,7 +1205,7 @@ as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : lan
 as LanguageCode?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
 as SortByValue?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
 as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
-as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1117,23 +1217,23 @@ as String?,
 @JsonSerializable()
 
 class ReviewsQueryPlaceId implements ReviewsQuery {
-  const ReviewsQueryPlaceId({required this.placeId, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, this.q, final  String? $type}): $type = $type ?? 'withPlaceId';
+  const ReviewsQueryPlaceId({required this.placeId, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.sortBy, this.topicId, this.nextPageToken, @JsonKey(name: 'q') this.query, final  String? $type}): $type = $type ?? 'withPlaceId';
   factory ReviewsQueryPlaceId.fromJson(Map<String, dynamic> json) => _$ReviewsQueryPlaceIdFromJson(json);
 
-/// {@macro QueryDocTemplates.placeIdDoc}
+/// {@macro flutter_serper.queries.placeId}
  final  String placeId;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.sortByDocEnum}
+/// {@macro flutter_serper.queries.sortByEnum}
 @override final  SortByValue? sortBy;
 /// Optional topic ID to filter reviews by topic
 @override final  String? topicId;
 /// Optional token for pagination
 @override final  String? nextPageToken;
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String? q;
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String? query;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -1152,16 +1252,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryPlaceId&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsQueryPlaceId&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.sortBy, sortBy) || other.sortBy == sortBy)&&(identical(other.topicId, topicId) || other.topicId == topicId)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,placeId,countryCode,languageCode,sortBy,topicId,nextPageToken,q);
+int get hashCode => Object.hash(runtimeType,placeId,countryCode,languageCode,sortBy,topicId,nextPageToken,query);
 
 @override
 String toString() {
-  return 'ReviewsQuery.withPlaceId(placeId: $placeId, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, q: $q)';
+  return 'ReviewsQuery.withPlaceId(placeId: $placeId, countryCode: $countryCode, languageCode: $languageCode, sortBy: $sortBy, topicId: $topicId, nextPageToken: $nextPageToken, query: $query)';
 }
 
 
@@ -1172,7 +1272,7 @@ abstract mixin class $ReviewsQueryPlaceIdCopyWith<$Res> implements $ReviewsQuery
   factory $ReviewsQueryPlaceIdCopyWith(ReviewsQueryPlaceId value, $Res Function(ReviewsQueryPlaceId) _then) = _$ReviewsQueryPlaceIdCopyWithImpl;
 @override @useResult
 $Res call({
- String placeId,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken, String? q
+ String placeId,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, SortByValue? sortBy, String? topicId, String? nextPageToken,@JsonKey(name: 'q') String? query
 });
 
 
@@ -1189,7 +1289,7 @@ class _$ReviewsQueryPlaceIdCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? placeId = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? q = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? placeId = null,Object? countryCode = freezed,Object? languageCode = freezed,Object? sortBy = freezed,Object? topicId = freezed,Object? nextPageToken = freezed,Object? query = freezed,}) {
   return _then(ReviewsQueryPlaceId(
 placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
 as String,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
@@ -1197,7 +1297,7 @@ as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : lan
 as LanguageCode?,sortBy: freezed == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
 as SortByValue?,topicId: freezed == topicId ? _self.topicId : topicId // ignore: cast_nullable_to_non_nullable
 as String?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
-as String?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as String?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1209,14 +1309,14 @@ as String?,
 /// @nodoc
 mixin _$NewsQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.numDoc}
- int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.num}
+ int? get num;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of NewsQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1230,16 +1330,16 @@ $NewsQueryCopyWith<NewsQuery> get copyWith => _$NewsQueryCopyWithImpl<NewsQuery>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'NewsQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'NewsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1250,7 +1350,7 @@ abstract mixin class $NewsQueryCopyWith<$Res>  {
   factory $NewsQueryCopyWith(NewsQuery value, $Res Function(NewsQuery) _then) = _$NewsQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1267,9 +1367,9 @@ class _$NewsQueryCopyWithImpl<$Res>
 
 /// Create a copy of NewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1288,24 +1388,24 @@ as int?,
 @JsonSerializable()
 
 class _NewsQuery implements NewsQuery {
-  const _NewsQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _NewsQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
   factory _NewsQuery.fromJson(Map<String, dynamic> json) => _$NewsQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.numDoc}
+/// {@macro flutter_serper.queries.num}
 @override final  int? num;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of NewsQuery
@@ -1321,16 +1421,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'NewsQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'NewsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1341,7 +1441,7 @@ abstract mixin class _$NewsQueryCopyWith<$Res> implements $NewsQueryCopyWith<$Re
   factory _$NewsQueryCopyWith(_NewsQuery value, $Res Function(_NewsQuery) _then) = __$NewsQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1358,9 +1458,9 @@ class __$NewsQueryCopyWithImpl<$Res>
 
 /// Create a copy of NewsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_NewsQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1379,13 +1479,13 @@ as int?,
 /// @nodoc
 mixin _$ShoppingQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of ShoppingQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1399,16 +1499,16 @@ $ShoppingQueryCopyWith<ShoppingQuery> get copyWith => _$ShoppingQueryCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ShoppingQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ShoppingQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1419,7 +1519,7 @@ abstract mixin class $ShoppingQueryCopyWith<$Res>  {
   factory $ShoppingQueryCopyWith(ShoppingQuery value, $Res Function(ShoppingQuery) _then) = _$ShoppingQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1436,9 +1536,9 @@ class _$ShoppingQueryCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1456,22 +1556,22 @@ as int?,
 @JsonSerializable()
 
 class _ShoppingQuery implements ShoppingQuery {
-  const _ShoppingQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
+  const _ShoppingQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
   factory _ShoppingQuery.fromJson(Map<String, dynamic> json) => _$ShoppingQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of ShoppingQuery
@@ -1487,16 +1587,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ShoppingQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ShoppingQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1507,7 +1607,7 @@ abstract mixin class _$ShoppingQueryCopyWith<$Res> implements $ShoppingQueryCopy
   factory _$ShoppingQueryCopyWith(_ShoppingQuery value, $Res Function(_ShoppingQuery) _then) = __$ShoppingQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1524,9 +1624,9 @@ class __$ShoppingQueryCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_ShoppingQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1544,13 +1644,13 @@ as int?,
 /// @nodoc
 mixin _$LensQuery {
 
-/// {@macro QueryDocTemplates.urlDoc}
- String get url;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.url}
+ String get url;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.tbsEnum}
  TbsValue? get tbs;/// Optional query string to refine the image search
- String? get q;
+@JsonKey(name: 'q') String? get query;
 /// Create a copy of LensQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1563,16 +1663,16 @@ $LensQueryCopyWith<LensQuery> get copyWith => _$LensQueryCopyWithImpl<LensQuery>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LensQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LensQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,location,countryCode,languageCode,tbs,q);
+int get hashCode => Object.hash(runtimeType,url,location,countryCode,languageCode,tbs,query);
 
 @override
 String toString() {
-  return 'LensQuery(url: $url, location: $location, countryCode: $countryCode, languageCode: $languageCode, tbs: $tbs, q: $q)';
+  return 'LensQuery(url: $url, location: $location, countryCode: $countryCode, languageCode: $languageCode, tbs: $tbs, query: $query)';
 }
 
 
@@ -1583,7 +1683,7 @@ abstract mixin class $LensQueryCopyWith<$Res>  {
   factory $LensQueryCopyWith(LensQuery value, $Res Function(LensQuery) _then) = _$LensQueryCopyWithImpl;
 @useResult
 $Res call({
- String url, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, TbsValue? tbs, String? q
+ String url, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, TbsValue? tbs,@JsonKey(name: 'q') String? query
 });
 
 
@@ -1600,14 +1700,14 @@ class _$LensQueryCopyWithImpl<$Res>
 
 /// Create a copy of LensQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? tbs = freezed,Object? q = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? tbs = freezed,Object? query = freezed,}) {
   return _then(_self.copyWith(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
 as LanguageCode?,tbs: freezed == tbs ? _self.tbs : tbs // ignore: cast_nullable_to_non_nullable
-as TbsValue?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as TbsValue?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1619,21 +1719,21 @@ as String?,
 @JsonSerializable()
 
 class _LensQuery implements LensQuery {
-  const _LensQuery({required this.url, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.tbs, this.q});
+  const _LensQuery({required this.url, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.tbs, @JsonKey(name: 'q') this.query});
   factory _LensQuery.fromJson(Map<String, dynamic> json) => _$LensQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.urlDoc}
+/// {@macro flutter_serper.queries.url}
 @override final  String url;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
 /// Optional query string to refine the image search
-@override final  String? q;
+@override@JsonKey(name: 'q') final  String? query;
 
 /// Create a copy of LensQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1648,16 +1748,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LensQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LensQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,location,countryCode,languageCode,tbs,q);
+int get hashCode => Object.hash(runtimeType,url,location,countryCode,languageCode,tbs,query);
 
 @override
 String toString() {
-  return 'LensQuery(url: $url, location: $location, countryCode: $countryCode, languageCode: $languageCode, tbs: $tbs, q: $q)';
+  return 'LensQuery(url: $url, location: $location, countryCode: $countryCode, languageCode: $languageCode, tbs: $tbs, query: $query)';
 }
 
 
@@ -1668,7 +1768,7 @@ abstract mixin class _$LensQueryCopyWith<$Res> implements $LensQueryCopyWith<$Re
   factory _$LensQueryCopyWith(_LensQuery value, $Res Function(_LensQuery) _then) = __$LensQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String url, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, TbsValue? tbs, String? q
+ String url, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, TbsValue? tbs,@JsonKey(name: 'q') String? query
 });
 
 
@@ -1685,14 +1785,14 @@ class __$LensQueryCopyWithImpl<$Res>
 
 /// Create a copy of LensQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? tbs = freezed,Object? q = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? tbs = freezed,Object? query = freezed,}) {
   return _then(_LensQuery(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
 as LanguageCode?,tbs: freezed == tbs ? _self.tbs : tbs // ignore: cast_nullable_to_non_nullable
-as TbsValue?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as TbsValue?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1704,13 +1804,13 @@ as String?,
 /// @nodoc
 mixin _$ScholarQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCode}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of ScholarQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1724,16 +1824,16 @@ $ScholarQueryCopyWith<ScholarQuery> get copyWith => _$ScholarQueryCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ScholarQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ScholarQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ScholarQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ScholarQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1744,7 +1844,7 @@ abstract mixin class $ScholarQueryCopyWith<$Res>  {
   factory $ScholarQueryCopyWith(ScholarQuery value, $Res Function(ScholarQuery) _then) = _$ScholarQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1761,9 +1861,9 @@ class _$ScholarQueryCopyWithImpl<$Res>
 
 /// Create a copy of ScholarQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1781,22 +1881,22 @@ as int?,
 @JsonSerializable()
 
 class _ScholarQuery implements ScholarQuery {
-  const _ScholarQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
+  const _ScholarQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.autocorrect, this.tbs, this.page});
   factory _ScholarQuery.fromJson(Map<String, dynamic> json) => _$ScholarQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCode}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of ScholarQuery
@@ -1812,16 +1912,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ScholarQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ScholarQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'ScholarQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'ScholarQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1832,7 +1932,7 @@ abstract mixin class _$ScholarQueryCopyWith<$Res> implements $ScholarQueryCopyWi
   factory _$ScholarQueryCopyWith(_ScholarQuery value, $Res Function(_ScholarQuery) _then) = __$ScholarQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1849,9 +1949,9 @@ class __$ScholarQueryCopyWithImpl<$Res>
 
 /// Create a copy of ScholarQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_ScholarQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1869,14 +1969,14 @@ as int?,
 /// @nodoc
 mixin _$PatentsQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.numDoc}
- int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.num}
+ int? get num;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1890,16 +1990,16 @@ $PatentsQueryCopyWith<PatentsQuery> get copyWith => _$PatentsQueryCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'PatentsQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PatentsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -1910,7 +2010,7 @@ abstract mixin class $PatentsQueryCopyWith<$Res>  {
   factory $PatentsQueryCopyWith(PatentsQuery value, $Res Function(PatentsQuery) _then) = _$PatentsQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -1927,9 +2027,9 @@ class _$PatentsQueryCopyWithImpl<$Res>
 
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -1948,24 +2048,24 @@ as int?,
 @JsonSerializable()
 
 class _PatentsQuery implements PatentsQuery {
-  const _PatentsQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _PatentsQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
   factory _PatentsQuery.fromJson(Map<String, dynamic> json) => _$PatentsQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.numDoc}
+/// {@macro flutter_serper.queries.num}
 @override final  int? num;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of PatentsQuery
@@ -1981,16 +2081,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentsQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'PatentsQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PatentsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -2001,7 +2101,7 @@ abstract mixin class _$PatentsQueryCopyWith<$Res> implements $PatentsQueryCopyWi
   factory _$PatentsQueryCopyWith(_PatentsQuery value, $Res Function(_PatentsQuery) _then) = __$PatentsQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -2018,9 +2118,9 @@ class __$PatentsQueryCopyWithImpl<$Res>
 
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_PatentsQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -2039,14 +2139,14 @@ as int?,
 /// @nodoc
 mixin _$SearchQuery {
 
-/// {@macro QueryDocTemplates.queryStringDoc}
- String get q;/// {@macro QueryDocTemplates.locationDoc}
- String? get location;/// {@macro QueryDocTemplates.countryCodeDoc}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro QueryDocTemplates.languageCodeDoc}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro QueryDocTemplates.numDoc}
- int? get num;/// {@macro QueryDocTemplates.autocorrectDoc}
- bool? get autocorrect;/// {@macro QueryDocTemplates.tbsDocEnum}
- TbsValue? get tbs;/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
+ String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
+@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.num}
+ int? get num;/// {@macro flutter_serper.queries.autocorrect}
+ bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
+ TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of SearchQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -2060,16 +2160,16 @@ $SearchQueryCopyWith<SearchQuery> get copyWith => _$SearchQueryCopyWithImpl<Sear
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'SearchQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'SearchQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -2080,7 +2180,7 @@ abstract mixin class $SearchQueryCopyWith<$Res>  {
   factory $SearchQueryCopyWith(SearchQuery value, $Res Function(SearchQuery) _then) = _$SearchQueryCopyWithImpl;
 @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -2097,9 +2197,9 @@ class _$SearchQueryCopyWithImpl<$Res>
 
 /// Create a copy of SearchQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_self.copyWith(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -2118,24 +2218,24 @@ as int?,
 @JsonSerializable()
 
 class _SearchQuery implements SearchQuery {
-  const _SearchQuery({required this.q, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _SearchQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
   factory _SearchQuery.fromJson(Map<String, dynamic> json) => _$SearchQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String q;
-/// {@macro QueryDocTemplates.locationDoc}
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String query;
+/// {@macro flutter_serper.queries.location}
 @override final  String? location;
-/// {@macro QueryDocTemplates.countryCodeDoc}
+/// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro QueryDocTemplates.languageCodeDoc}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
-/// {@macro QueryDocTemplates.numDoc}
+/// {@macro flutter_serper.queries.num}
 @override final  int? num;
-/// {@macro QueryDocTemplates.autocorrectDoc}
+/// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;
-/// {@macro QueryDocTemplates.tbsDocEnum}
+/// {@macro flutter_serper.queries.tbsEnum}
 @override final  TbsValue? tbs;
-/// {@macro QueryDocTemplates.pageDoc}
+/// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
 /// Create a copy of SearchQuery
@@ -2151,16 +2251,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchQuery&&(identical(other.q, q) || other.q == q)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,q,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
 
 @override
 String toString() {
-  return 'SearchQuery(q: $q, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'SearchQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
 }
 
 
@@ -2171,7 +2271,7 @@ abstract mixin class _$SearchQueryCopyWith<$Res> implements $SearchQueryCopyWith
   factory _$SearchQueryCopyWith(_SearchQuery value, $Res Function(_SearchQuery) _then) = __$SearchQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String q, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
 });
 
 
@@ -2188,9 +2288,9 @@ class __$SearchQueryCopyWithImpl<$Res>
 
 /// Create a copy of SearchQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? q = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
   return _then(_SearchQuery(
-q: null == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
 as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
@@ -2209,12 +2309,16 @@ as int?,
 /// @nodoc
 mixin _$WebpageQuery {
 
-/// {@macro QueryDocTemplates.urlDoc}
+/// {@template flutter_serper.queries.url}
+/// The URL of the page to process.
+///
+/// This is a required parameter.
+/// {@endtemplate}
  String get url;/// Whether to include markdown in the response
 ///
 /// When true, the API will return a markdown version of the webpage content.
- bool? get includeMarkdown;/// {@macro QueryDocTemplates.queryStringDoc}
- String? get q;
+ bool? get includeMarkdown;/// {@macro flutter_serper.queries.queryString}
+@JsonKey(name: 'q') String? get query;
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2227,16 +2331,16 @@ $WebpageQueryCopyWith<WebpageQuery> get copyWith => _$WebpageQueryCopyWithImpl<W
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,includeMarkdown,q);
+int get hashCode => Object.hash(runtimeType,url,includeMarkdown,query);
 
 @override
 String toString() {
-  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, q: $q)';
+  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, query: $query)';
 }
 
 
@@ -2247,7 +2351,7 @@ abstract mixin class $WebpageQueryCopyWith<$Res>  {
   factory $WebpageQueryCopyWith(WebpageQuery value, $Res Function(WebpageQuery) _then) = _$WebpageQueryCopyWithImpl;
 @useResult
 $Res call({
- String url, bool? includeMarkdown, String? q
+ String url, bool? includeMarkdown,@JsonKey(name: 'q') String? query
 });
 
 
@@ -2264,11 +2368,11 @@ class _$WebpageQueryCopyWithImpl<$Res>
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? q = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? query = freezed,}) {
   return _then(_self.copyWith(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,includeMarkdown: freezed == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
-as bool?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as bool?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -2280,17 +2384,21 @@ as String?,
 @JsonSerializable()
 
 class _WebpageQuery implements WebpageQuery {
-  const _WebpageQuery({required this.url, this.includeMarkdown, this.q});
+  const _WebpageQuery({required this.url, this.includeMarkdown, @JsonKey(name: 'q') this.query});
   factory _WebpageQuery.fromJson(Map<String, dynamic> json) => _$WebpageQueryFromJson(json);
 
-/// {@macro QueryDocTemplates.urlDoc}
+/// {@template flutter_serper.queries.url}
+/// The URL of the page to process.
+///
+/// This is a required parameter.
+/// {@endtemplate}
 @override final  String url;
 /// Whether to include markdown in the response
 ///
 /// When true, the API will return a markdown version of the webpage content.
 @override final  bool? includeMarkdown;
-/// {@macro QueryDocTemplates.queryStringDoc}
-@override final  String? q;
+/// {@macro flutter_serper.queries.queryString}
+@override@JsonKey(name: 'q') final  String? query;
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -2305,16 +2413,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.q, q) || other.q == q));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.query, query) || other.query == query));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,includeMarkdown,q);
+int get hashCode => Object.hash(runtimeType,url,includeMarkdown,query);
 
 @override
 String toString() {
-  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, q: $q)';
+  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, query: $query)';
 }
 
 
@@ -2325,7 +2433,7 @@ abstract mixin class _$WebpageQueryCopyWith<$Res> implements $WebpageQueryCopyWi
   factory _$WebpageQueryCopyWith(_WebpageQuery value, $Res Function(_WebpageQuery) _then) = __$WebpageQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String url, bool? includeMarkdown, String? q
+ String url, bool? includeMarkdown,@JsonKey(name: 'q') String? query
 });
 
 
@@ -2342,11 +2450,11 @@ class __$WebpageQueryCopyWithImpl<$Res>
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? q = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? query = freezed,}) {
   return _then(_WebpageQuery(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,includeMarkdown: freezed == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
-as bool?,q: freezed == q ? _self.q : q // ignore: cast_nullable_to_non_nullable
+as bool?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

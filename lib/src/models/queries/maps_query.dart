@@ -4,43 +4,59 @@ part of 'queries.dart';
 @freezed
 abstract class MapsQuery with _$MapsQuery {
   const factory MapsQuery({
-    /// {@macro QueryDocTemplates.queryStringDoc}
-    required String q,
+    /// {@macro flutter_serper.queries.queryString}
+    @JsonKey(name: 'q') required String query,
 
-    /// {@macro QueryDocTemplates.languageCodeDoc}
+    /// {@macro flutter_serper.queries.languageCodeEnum}
     @JsonKey(name: 'hl') LanguageCode? languageCode,
 
-    /// {@macro QueryDocTemplates.latLngDocClass}
+    /// {@template flutter_serper.queries.latLngClass}
+    /// Optional latitude and longitude, as a [LatLng] object.
+    ///
+    /// Serialized as "latitude,longitude" for the 'll' parameter.
+    /// {@endtemplate}
     @JsonKey(name: 'll') @LatLngConverter() LatLng? latLng,
 
-    /// {@macro QueryDocTemplates.placeIdDoc}
+    /// {@template flutter_serper.queries.placeId}
+    /// Optional Google Place ID.
+    ///
+    /// This can be used to specify a particular place for the search.
+    /// {@endtemplate}
     String? placeId,
 
-    /// {@macro QueryDocTemplates.cidDoc}
+    /// {@template flutter_serper.queries.cid}
+    /// Optional Google CID (Customer ID).
+    ///
+    /// This can be used to identify a specific business or entity.
+    /// {@endtemplate}
     String? cid,
 
-    /// {@macro QueryDocTemplates.pageDoc}
+    /// {@macro flutter_serper.queries.page}
     int? page,
   }) = _MapsQuery;
 
   /// Factory to create a MapsQuery with string-based inputs.
   factory MapsQuery.fromStrings({
-    /// {@macro QueryDocTemplates.queryStringDoc}
-    required String q,
+    /// {@macro flutter_serper.queries.queryString}
+    @JsonKey(name: 'q') required String query,
 
-    /// {@macro QueryDocTemplates.hlDoc}
+    /// {@macro flutter_serper.queries.languageCodeString}
     String? languageCode,
 
-    /// {@macro QueryDocTemplates.latLngDocString}
+    /// {@template flutter_serper.queries.latLngString}
+    /// Optional latitude and longitude, as a string in "latitude,longitude" format.
+    ///
+    /// Parsed to a [LatLng] object.
+    /// {@endtemplate}
     String? latLngString,
 
-    /// {@macro QueryDocTemplates.placeIdDoc}
+    /// {@macro flutter_serper.queries.placeId}
     String? placeId,
 
-    /// {@macro QueryDocTemplates.cidDoc}
+    /// {@macro flutter_serper.queries.cid}
     String? cid,
 
-    /// {@macro QueryDocTemplates.pageDoc}
+    /// {@macro flutter_serper.queries.page}
     int? page,
   }) {
     LatLng? parsedLatLng;
@@ -55,7 +71,7 @@ abstract class MapsQuery with _$MapsQuery {
       }
     }
     return MapsQuery(
-      q: q,
+      query: query,
       languageCode: LanguageCode.tryParse(languageCode),
       latLng: parsedLatLng,
       placeId: placeId,
