@@ -12,16 +12,21 @@ abstract class VideoResult with _$VideoResult {
     required String link,
 
     /// {@macro flutter_serper.results.snippet}
-    required String snippet,
+    String? snippet,
 
     /// {@macro flutter_serper.results.date}
-    required String date,
+    String? date,
 
     /// {@macro flutter_serper.results.source}
-    required String source,
+    ///
+    /// For video results, this is typically the video platform or publisher.
+    String? source,
 
-    /// {@macro flutter_serper.results.imageUrl}
-    String? imageUrl,
+    /// The URL to the channel that published the video.
+    String? channelLink,
+
+    // /// {@macro flutter_serper.results.imageUrl}
+    // String? imageUrl,
 
     /// {@macro flutter_serper.results.position}
     required int position,
@@ -30,6 +35,12 @@ abstract class VideoResult with _$VideoResult {
     ///
     /// Typically formatted as "MM:SS" or "HH:MM:SS".
     String? duration,
+
+    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
+    required String thumbnailUrl,
+
+    /// The number of times the video has been viewed.
+    int? viewCount,
   }) = _VideoResult;
 
   /// Creates a [VideoResult] from a JSON map.

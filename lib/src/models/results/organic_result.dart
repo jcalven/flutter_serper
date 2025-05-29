@@ -62,6 +62,10 @@ abstract class OrganicResult with _$OrganicResult {
     /// {@endtemplate}
     required int position,
 
+    /// Additional links to specific sections within the result website.
+    ///
+    /// These are subcategory links that provide direct access to different
+    /// sections of the website.
     dynamic sitelinks,
   }) = _OrganicResult;
 

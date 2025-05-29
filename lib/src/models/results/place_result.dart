@@ -36,6 +36,16 @@ abstract class PlaceResult with _$PlaceResult {
     String? priceLevel,
 
     /// The business hours of operation.
+    ///
+    /// A list of strings representing the opening hours for each day.
+    List<String>? openingHours,
+
+    /// The unique Customer ID (CID) of the place in Google Maps.
+    ///
+    /// This identifier can be used to look up the place in Google Maps.
+    String? cid,
+
+    /// {@macro ResultDocTemplates.positionDoc}
     required int position,
   }) = _PlaceResult;
 

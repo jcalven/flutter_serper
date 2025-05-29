@@ -193,7 +193,11 @@ mixin _$OrganicResult {
 ///
 /// Position is zero-based, with 0 being the first result.
 /// {@endtemplate}
- int get position; dynamic get sitelinks;
+ int get position;/// Additional links to specific sections within the result website.
+///
+/// These are subcategory links that provide direct access to different
+/// sections of the website.
+ dynamic get sitelinks;
 /// Create a copy of OrganicResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -314,6 +318,10 @@ class _OrganicResult implements OrganicResult {
 /// Position is zero-based, with 0 being the first result.
 /// {@endtemplate}
 @override final  int position;
+/// Additional links to specific sections within the result website.
+///
+/// These are subcategory links that provide direct access to different
+/// sections of the website.
 @override final  dynamic sitelinks;
 
 /// Create a copy of OrganicResult
@@ -707,7 +715,11 @@ mixin _$PlacesResult {
  String? get type;/// The price level of the place.
 ///
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
- String? get priceLevel; int? get position;
+ String? get priceLevel;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// {@macro ResultDocTemplates.positionDoc}
+ int? get position;
 /// Create a copy of PlacesResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -720,16 +732,16 @@ $PlacesResultCopyWith<PlacesResult> get copyWith => _$PlacesResultCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,position);
+int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(openingHours),position);
 
 @override
 String toString() {
-  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, position: $position)';
+  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, position: $position)';
 }
 
 
@@ -740,7 +752,7 @@ abstract mixin class $PlacesResultCopyWith<$Res>  {
   factory $PlacesResultCopyWith(PlacesResult value, $Res Function(PlacesResult) _then) = _$PlacesResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, int? position
+ String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, int? position
 });
 
 
@@ -757,7 +769,7 @@ class _$PlacesResultCopyWithImpl<$Res>
 
 /// Create a copy of PlacesResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? position = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? position = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -767,7 +779,8 @@ as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -779,7 +792,7 @@ as int?,
 @JsonSerializable()
 
 class _PlacesResult implements PlacesResult {
-  const _PlacesResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, this.position});
+  const _PlacesResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, final  List<String>? openingHours, this.position}): _openingHours = openingHours;
   factory _PlacesResult.fromJson(Map<String, dynamic> json) => _$PlacesResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -808,6 +821,22 @@ class _PlacesResult implements PlacesResult {
 ///
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String? priceLevel;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+@override List<String>? get openingHours {
+  final value = _openingHours;
+  if (value == null) return null;
+  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int? position;
 
 /// Create a copy of PlacesResult
@@ -823,16 +852,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,position);
+int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(_openingHours),position);
 
 @override
 String toString() {
-  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, position: $position)';
+  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, position: $position)';
 }
 
 
@@ -843,7 +872,7 @@ abstract mixin class _$PlacesResultCopyWith<$Res> implements $PlacesResultCopyWi
   factory _$PlacesResultCopyWith(_PlacesResult value, $Res Function(_PlacesResult) _then) = __$PlacesResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, int? position
+ String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, int? position
 });
 
 
@@ -860,7 +889,7 @@ class __$PlacesResultCopyWithImpl<$Res>
 
 /// Create a copy of PlacesResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? position = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? position = freezed,}) {
   return _then(_PlacesResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -870,7 +899,8 @@ as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -884,9 +914,12 @@ mixin _$TopStoriesResult {
 
 /// {@macro flutter_serper.results.title}
  String get title;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.source}
- String get source;/// {@macro flutter_serper.results.date}
- String get date;/// {@macro flutter_serper.results.imageUrl}
+ String get link;/// {@macro flutter_serper.results.date}
+ String? get date;/// {@macro flutter_serper.results.source}
+///
+/// For top stories, this is the name of the news outlet.
+ String? get source;/// {@macro ResultDocTemplates.snippetDoc}
+ String? get snippet;/// {@macro flutter_serper.results.imageUrl}
  String? get imageUrl;
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
@@ -900,16 +933,16 @@ $TopStoriesResultCopyWith<TopStoriesResult> get copyWith => _$TopStoriesResultCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TopStoriesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.source, source) || other.source == source)&&(identical(other.date, date) || other.date == date)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TopStoriesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,source,date,imageUrl);
+int get hashCode => Object.hash(runtimeType,title,link,date,source,snippet,imageUrl);
 
 @override
 String toString() {
-  return 'TopStoriesResult(title: $title, link: $link, source: $source, date: $date, imageUrl: $imageUrl)';
+  return 'TopStoriesResult(title: $title, link: $link, date: $date, source: $source, snippet: $snippet, imageUrl: $imageUrl)';
 }
 
 
@@ -920,7 +953,7 @@ abstract mixin class $TopStoriesResultCopyWith<$Res>  {
   factory $TopStoriesResultCopyWith(TopStoriesResult value, $Res Function(TopStoriesResult) _then) = _$TopStoriesResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String source, String date, String? imageUrl
+ String title, String link, String? date, String? source, String? snippet, String? imageUrl
 });
 
 
@@ -937,13 +970,14 @@ class _$TopStoriesResultCopyWithImpl<$Res>
 
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? source = null,Object? date = null,Object? imageUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -955,17 +989,21 @@ as String?,
 @JsonSerializable()
 
 class _TopStoriesResult implements TopStoriesResult {
-  const _TopStoriesResult({required this.title, required this.link, required this.source, required this.date, this.imageUrl});
+  const _TopStoriesResult({required this.title, required this.link, this.date, this.source, this.snippet, this.imageUrl});
   factory _TopStoriesResult.fromJson(Map<String, dynamic> json) => _$TopStoriesResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
 @override final  String title;
 /// {@macro flutter_serper.results.link}
 @override final  String link;
-/// {@macro flutter_serper.results.source}
-@override final  String source;
 /// {@macro flutter_serper.results.date}
-@override final  String date;
+@override final  String? date;
+/// {@macro flutter_serper.results.source}
+///
+/// For top stories, this is the name of the news outlet.
+@override final  String? source;
+/// {@macro ResultDocTemplates.snippetDoc}
+@override final  String? snippet;
 /// {@macro flutter_serper.results.imageUrl}
 @override final  String? imageUrl;
 
@@ -982,16 +1020,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TopStoriesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.source, source) || other.source == source)&&(identical(other.date, date) || other.date == date)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TopStoriesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,source,date,imageUrl);
+int get hashCode => Object.hash(runtimeType,title,link,date,source,snippet,imageUrl);
 
 @override
 String toString() {
-  return 'TopStoriesResult(title: $title, link: $link, source: $source, date: $date, imageUrl: $imageUrl)';
+  return 'TopStoriesResult(title: $title, link: $link, date: $date, source: $source, snippet: $snippet, imageUrl: $imageUrl)';
 }
 
 
@@ -1002,7 +1040,7 @@ abstract mixin class _$TopStoriesResultCopyWith<$Res> implements $TopStoriesResu
   factory _$TopStoriesResultCopyWith(_TopStoriesResult value, $Res Function(_TopStoriesResult) _then) = __$TopStoriesResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String source, String date, String? imageUrl
+ String title, String link, String? date, String? source, String? snippet, String? imageUrl
 });
 
 
@@ -1019,13 +1057,14 @@ class __$TopStoriesResultCopyWithImpl<$Res>
 
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? source = null,Object? date = null,Object? imageUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
   return _then(_TopStoriesResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1038,10 +1077,15 @@ as String?,
 mixin _$TwitterResult {
 
 /// {@macro flutter_serper.results.title}
+///
+/// For Twitter results, this is typically the username or post title.
  String get title;/// {@macro flutter_serper.results.link}
+///
+/// For Twitter results, this is the URL to the specific tweet.
  String get link;/// {@macro flutter_serper.results.snippet}
- String get snippet;/// {@macro flutter_serper.results.date}
- String get date;
+///
+/// For Twitter results, this is typically the text content of the tweet.
+ String get snippet;
 /// Create a copy of TwitterResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1054,16 +1098,16 @@ $TwitterResultCopyWith<TwitterResult> get copyWith => _$TwitterResultCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet,date);
+int get hashCode => Object.hash(runtimeType,title,link,snippet);
 
 @override
 String toString() {
-  return 'TwitterResult(title: $title, link: $link, snippet: $snippet, date: $date)';
+  return 'TwitterResult(title: $title, link: $link, snippet: $snippet)';
 }
 
 
@@ -1074,7 +1118,7 @@ abstract mixin class $TwitterResultCopyWith<$Res>  {
   factory $TwitterResultCopyWith(TwitterResult value, $Res Function(TwitterResult) _then) = _$TwitterResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String snippet, String date
+ String title, String link, String snippet
 });
 
 
@@ -1091,12 +1135,11 @@ class _$TwitterResultCopyWithImpl<$Res>
 
 /// Create a copy of TwitterResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -1108,17 +1151,21 @@ as String,
 @JsonSerializable()
 
 class _TwitterResult implements TwitterResult {
-  const _TwitterResult({required this.title, required this.link, required this.snippet, required this.date});
+  const _TwitterResult({required this.title, required this.link, required this.snippet});
   factory _TwitterResult.fromJson(Map<String, dynamic> json) => _$TwitterResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
+///
+/// For Twitter results, this is typically the username or post title.
 @override final  String title;
 /// {@macro flutter_serper.results.link}
+///
+/// For Twitter results, this is the URL to the specific tweet.
 @override final  String link;
 /// {@macro flutter_serper.results.snippet}
+///
+/// For Twitter results, this is typically the text content of the tweet.
 @override final  String snippet;
-/// {@macro flutter_serper.results.date}
-@override final  String date;
 
 /// Create a copy of TwitterResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1133,16 +1180,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet,date);
+int get hashCode => Object.hash(runtimeType,title,link,snippet);
 
 @override
 String toString() {
-  return 'TwitterResult(title: $title, link: $link, snippet: $snippet, date: $date)';
+  return 'TwitterResult(title: $title, link: $link, snippet: $snippet)';
 }
 
 
@@ -1153,7 +1200,7 @@ abstract mixin class _$TwitterResultCopyWith<$Res> implements $TwitterResultCopy
   factory _$TwitterResultCopyWith(_TwitterResult value, $Res Function(_TwitterResult) _then) = __$TwitterResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String snippet, String date
+ String title, String link, String snippet
 });
 
 
@@ -1170,12 +1217,11 @@ class __$TwitterResultCopyWithImpl<$Res>
 
 /// Create a copy of TwitterResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
   return _then(_TwitterResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -1347,6 +1393,13 @@ mixin _$KnowledgeGraphResult {
 /// This is a map of key-value pairs containing various facts about the entity.
  Map<String, dynamic>? get attributes;/// A description of the entity.
 ///
+/// This provides additional context or explanation about the entity.
+ String? get description;/// A link to the source of the description.
+///
+/// This URL can be used to find more information about the entity.
+ String? get descriptionLink;/// The source of the description.
+///
+/// Indicates where the description text originated from.
  String? get descriptionSource;
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1360,16 +1413,16 @@ $KnowledgeGraphResultCopyWith<KnowledgeGraphResult> get copyWith => _$KnowledgeG
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is KnowledgeGraphResult&&(identical(other.title, title) || other.title == title)&&(identical(other.type, type) || other.type == type)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.attributes, attributes)&&(identical(other.descriptionSource, descriptionSource) || other.descriptionSource == descriptionSource));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is KnowledgeGraphResult&&(identical(other.title, title) || other.title == title)&&(identical(other.type, type) || other.type == type)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.attributes, attributes)&&(identical(other.description, description) || other.description == description)&&(identical(other.descriptionLink, descriptionLink) || other.descriptionLink == descriptionLink)&&(identical(other.descriptionSource, descriptionSource) || other.descriptionSource == descriptionSource));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,type,imageUrl,const DeepCollectionEquality().hash(attributes),descriptionSource);
+int get hashCode => Object.hash(runtimeType,title,type,imageUrl,const DeepCollectionEquality().hash(attributes),description,descriptionLink,descriptionSource);
 
 @override
 String toString() {
-  return 'KnowledgeGraphResult(title: $title, type: $type, imageUrl: $imageUrl, attributes: $attributes, descriptionSource: $descriptionSource)';
+  return 'KnowledgeGraphResult(title: $title, type: $type, imageUrl: $imageUrl, attributes: $attributes, description: $description, descriptionLink: $descriptionLink, descriptionSource: $descriptionSource)';
 }
 
 
@@ -1380,7 +1433,7 @@ abstract mixin class $KnowledgeGraphResultCopyWith<$Res>  {
   factory $KnowledgeGraphResultCopyWith(KnowledgeGraphResult value, $Res Function(KnowledgeGraphResult) _then) = _$KnowledgeGraphResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String? type, String? imageUrl, Map<String, dynamic>? attributes, String? descriptionSource
+ String title, String? type, String? imageUrl, Map<String, dynamic>? attributes, String? description, String? descriptionLink, String? descriptionSource
 });
 
 
@@ -1397,13 +1450,15 @@ class _$KnowledgeGraphResultCopyWithImpl<$Res>
 
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? descriptionSource = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,attributes: freezed == attributes ? _self.attributes : attributes // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,descriptionSource: freezed == descriptionSource ? _self.descriptionSource : descriptionSource // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,descriptionLink: freezed == descriptionLink ? _self.descriptionLink : descriptionLink // ignore: cast_nullable_to_non_nullable
+as String?,descriptionSource: freezed == descriptionSource ? _self.descriptionSource : descriptionSource // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1415,7 +1470,7 @@ as String?,
 @JsonSerializable()
 
 class _KnowledgeGraphResult implements KnowledgeGraphResult {
-  const _KnowledgeGraphResult({required this.title, this.type, this.imageUrl, final  Map<String, dynamic>? attributes, this.descriptionSource}): _attributes = attributes;
+  const _KnowledgeGraphResult({required this.title, this.type, this.imageUrl, final  Map<String, dynamic>? attributes, this.description, this.descriptionLink, this.descriptionSource}): _attributes = attributes;
   factory _KnowledgeGraphResult.fromJson(Map<String, dynamic> json) => _$KnowledgeGraphResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -1443,6 +1498,15 @@ class _KnowledgeGraphResult implements KnowledgeGraphResult {
 
 /// A description of the entity.
 ///
+/// This provides additional context or explanation about the entity.
+@override final  String? description;
+/// A link to the source of the description.
+///
+/// This URL can be used to find more information about the entity.
+@override final  String? descriptionLink;
+/// The source of the description.
+///
+/// Indicates where the description text originated from.
 @override final  String? descriptionSource;
 
 /// Create a copy of KnowledgeGraphResult
@@ -1458,16 +1522,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _KnowledgeGraphResult&&(identical(other.title, title) || other.title == title)&&(identical(other.type, type) || other.type == type)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._attributes, _attributes)&&(identical(other.descriptionSource, descriptionSource) || other.descriptionSource == descriptionSource));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _KnowledgeGraphResult&&(identical(other.title, title) || other.title == title)&&(identical(other.type, type) || other.type == type)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._attributes, _attributes)&&(identical(other.description, description) || other.description == description)&&(identical(other.descriptionLink, descriptionLink) || other.descriptionLink == descriptionLink)&&(identical(other.descriptionSource, descriptionSource) || other.descriptionSource == descriptionSource));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,type,imageUrl,const DeepCollectionEquality().hash(_attributes),descriptionSource);
+int get hashCode => Object.hash(runtimeType,title,type,imageUrl,const DeepCollectionEquality().hash(_attributes),description,descriptionLink,descriptionSource);
 
 @override
 String toString() {
-  return 'KnowledgeGraphResult(title: $title, type: $type, imageUrl: $imageUrl, attributes: $attributes, descriptionSource: $descriptionSource)';
+  return 'KnowledgeGraphResult(title: $title, type: $type, imageUrl: $imageUrl, attributes: $attributes, description: $description, descriptionLink: $descriptionLink, descriptionSource: $descriptionSource)';
 }
 
 
@@ -1478,7 +1542,7 @@ abstract mixin class _$KnowledgeGraphResultCopyWith<$Res> implements $KnowledgeG
   factory _$KnowledgeGraphResultCopyWith(_KnowledgeGraphResult value, $Res Function(_KnowledgeGraphResult) _then) = __$KnowledgeGraphResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String? type, String? imageUrl, Map<String, dynamic>? attributes, String? descriptionSource
+ String title, String? type, String? imageUrl, Map<String, dynamic>? attributes, String? description, String? descriptionLink, String? descriptionSource
 });
 
 
@@ -1495,13 +1559,15 @@ class __$KnowledgeGraphResultCopyWithImpl<$Res>
 
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? descriptionSource = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
   return _then(_KnowledgeGraphResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,attributes: freezed == attributes ? _self._attributes : attributes // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,descriptionSource: freezed == descriptionSource ? _self.descriptionSource : descriptionSource // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,descriptionLink: freezed == descriptionLink ? _self.descriptionLink : descriptionLink // ignore: cast_nullable_to_non_nullable
+as String?,descriptionSource: freezed == descriptionSource ? _self.descriptionSource : descriptionSource // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1960,6 +2026,12 @@ mixin _$PlaceResult {
 ///
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
  String? get priceLevel;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
+ String? get cid;/// {@macro ResultDocTemplates.positionDoc}
  int get position;
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1973,16 +2045,16 @@ $PlaceResultCopyWith<PlaceResult> get copyWith => _$PlaceResultCopyWithImpl<Plac
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlaceResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlaceResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,position);
+int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(openingHours),cid,position);
 
 @override
 String toString() {
-  return 'PlaceResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, position: $position)';
+  return 'PlaceResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, cid: $cid, position: $position)';
 }
 
 
@@ -1993,7 +2065,7 @@ abstract mixin class $PlaceResultCopyWith<$Res>  {
   factory $PlaceResultCopyWith(PlaceResult value, $Res Function(PlaceResult) _then) = _$PlaceResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, int position
+ String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, String? cid, int position
 });
 
 
@@ -2010,7 +2082,7 @@ class _$PlaceResultCopyWithImpl<$Res>
 
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -2020,6 +2092,8 @@ as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
+as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
 as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -2032,7 +2106,7 @@ as int,
 @JsonSerializable()
 
 class _PlaceResult implements PlaceResult {
-  const _PlaceResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, required this.position});
+  const _PlaceResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, final  List<String>? openingHours, this.cid, required this.position}): _openingHours = openingHours;
   factory _PlaceResult.fromJson(Map<String, dynamic> json) => _$PlaceResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2058,6 +2132,25 @@ class _PlaceResult implements PlaceResult {
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
 @override final  String? priceLevel;
 /// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+@override List<String>? get openingHours {
+  final value = _openingHours;
+  if (value == null) return null;
+  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// The unique Customer ID (CID) of the place in Google Maps.
+///
+/// This identifier can be used to look up the place in Google Maps.
+@override final  String? cid;
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of PlaceResult
@@ -2073,16 +2166,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlaceResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlaceResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,position);
+int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(_openingHours),cid,position);
 
 @override
 String toString() {
-  return 'PlaceResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, position: $position)';
+  return 'PlaceResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, cid: $cid, position: $position)';
 }
 
 
@@ -2093,7 +2186,7 @@ abstract mixin class _$PlaceResultCopyWith<$Res> implements $PlaceResultCopyWith
   factory _$PlaceResultCopyWith(_PlaceResult value, $Res Function(_PlaceResult) _then) = __$PlaceResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, int position
+ String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, String? cid, int position
 });
 
 
@@ -2110,7 +2203,7 @@ class __$PlaceResultCopyWithImpl<$Res>
 
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = null,}) {
   return _then(_PlaceResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -2120,6 +2213,8 @@ as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
+as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
 as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -2135,14 +2230,20 @@ mixin _$VideoResult {
 /// {@macro flutter_serper.results.title}
  String get title;/// {@macro flutter_serper.results.link}
  String get link;/// {@macro flutter_serper.results.snippet}
- String get snippet;/// {@macro flutter_serper.results.date}
- String get date;/// {@macro flutter_serper.results.source}
- String get source;/// {@macro flutter_serper.results.imageUrl}
- String? get imageUrl;/// {@macro flutter_serper.results.position}
+ String? get snippet;/// {@macro flutter_serper.results.date}
+ String? get date;/// {@macro flutter_serper.results.source}
+///
+/// For video results, this is typically the video platform or publisher.
+ String? get source;/// The URL to the channel that published the video.
+ String? get channelLink;// /// {@macro flutter_serper.results.imageUrl}
+// String? imageUrl,
+/// {@macro flutter_serper.results.position}
  int get position;/// The duration of the video.
 ///
 /// Typically formatted as "MM:SS" or "HH:MM:SS".
- String? get duration;
+ String? get duration;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;/// The number of times the video has been viewed.
+ int? get viewCount;
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2155,16 +2256,16 @@ $VideoResultCopyWith<VideoResult> get copyWith => _$VideoResultCopyWithImpl<Vide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.duration, duration) || other.duration == duration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.channelLink, channelLink) || other.channelLink == channelLink)&&(identical(other.position, position) || other.position == position)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet,date,source,imageUrl,position,duration);
+int get hashCode => Object.hash(runtimeType,title,link,snippet,date,source,channelLink,position,duration,thumbnailUrl,viewCount);
 
 @override
 String toString() {
-  return 'VideoResult(title: $title, link: $link, snippet: $snippet, date: $date, source: $source, imageUrl: $imageUrl, position: $position, duration: $duration)';
+  return 'VideoResult(title: $title, link: $link, snippet: $snippet, date: $date, source: $source, channelLink: $channelLink, position: $position, duration: $duration, thumbnailUrl: $thumbnailUrl, viewCount: $viewCount)';
 }
 
 
@@ -2175,7 +2276,7 @@ abstract mixin class $VideoResultCopyWith<$Res>  {
   factory $VideoResultCopyWith(VideoResult value, $Res Function(VideoResult) _then) = _$VideoResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String snippet, String date, String source, String? imageUrl, int position, String? duration
+ String title, String link, String? snippet, String? date, String? source, String? channelLink, int position, String? duration, String thumbnailUrl, int? viewCount
 });
 
 
@@ -2192,17 +2293,19 @@ class _$VideoResultCopyWithImpl<$Res>
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,Object? source = null,Object? imageUrl = freezed,Object? position = null,Object? duration = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = freezed,Object? date = freezed,Object? source = freezed,Object? channelLink = freezed,Object? position = null,Object? duration = freezed,Object? thumbnailUrl = null,Object? viewCount = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,channelLink: freezed == channelLink ? _self.channelLink : channelLink // ignore: cast_nullable_to_non_nullable
 as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,duration: freezed == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,viewCount: freezed == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -2213,7 +2316,7 @@ as String?,
 @JsonSerializable()
 
 class _VideoResult implements VideoResult {
-  const _VideoResult({required this.title, required this.link, required this.snippet, required this.date, required this.source, this.imageUrl, required this.position, this.duration});
+  const _VideoResult({required this.title, required this.link, this.snippet, this.date, this.source, this.channelLink, required this.position, this.duration, required this.thumbnailUrl, this.viewCount});
   factory _VideoResult.fromJson(Map<String, dynamic> json) => _$VideoResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2221,19 +2324,27 @@ class _VideoResult implements VideoResult {
 /// {@macro flutter_serper.results.link}
 @override final  String link;
 /// {@macro flutter_serper.results.snippet}
-@override final  String snippet;
+@override final  String? snippet;
 /// {@macro flutter_serper.results.date}
-@override final  String date;
+@override final  String? date;
 /// {@macro flutter_serper.results.source}
-@override final  String source;
-/// {@macro flutter_serper.results.imageUrl}
-@override final  String? imageUrl;
+///
+/// For video results, this is typically the video platform or publisher.
+@override final  String? source;
+/// The URL to the channel that published the video.
+@override final  String? channelLink;
+// /// {@macro flutter_serper.results.imageUrl}
+// String? imageUrl,
 /// {@macro flutter_serper.results.position}
 @override final  int position;
 /// The duration of the video.
 ///
 /// Typically formatted as "MM:SS" or "HH:MM:SS".
 @override final  String? duration;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+@override final  String thumbnailUrl;
+/// The number of times the video has been viewed.
+@override final  int? viewCount;
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
@@ -2248,16 +2359,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideoResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.duration, duration) || other.duration == duration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideoResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.date, date) || other.date == date)&&(identical(other.source, source) || other.source == source)&&(identical(other.channelLink, channelLink) || other.channelLink == channelLink)&&(identical(other.position, position) || other.position == position)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet,date,source,imageUrl,position,duration);
+int get hashCode => Object.hash(runtimeType,title,link,snippet,date,source,channelLink,position,duration,thumbnailUrl,viewCount);
 
 @override
 String toString() {
-  return 'VideoResult(title: $title, link: $link, snippet: $snippet, date: $date, source: $source, imageUrl: $imageUrl, position: $position, duration: $duration)';
+  return 'VideoResult(title: $title, link: $link, snippet: $snippet, date: $date, source: $source, channelLink: $channelLink, position: $position, duration: $duration, thumbnailUrl: $thumbnailUrl, viewCount: $viewCount)';
 }
 
 
@@ -2268,7 +2379,7 @@ abstract mixin class _$VideoResultCopyWith<$Res> implements $VideoResultCopyWith
   factory _$VideoResultCopyWith(_VideoResult value, $Res Function(_VideoResult) _then) = __$VideoResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String snippet, String date, String source, String? imageUrl, int position, String? duration
+ String title, String link, String? snippet, String? date, String? source, String? channelLink, int position, String? duration, String thumbnailUrl, int? viewCount
 });
 
 
@@ -2285,17 +2396,19 @@ class __$VideoResultCopyWithImpl<$Res>
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,Object? source = null,Object? imageUrl = freezed,Object? position = null,Object? duration = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = freezed,Object? date = freezed,Object? source = freezed,Object? channelLink = freezed,Object? position = null,Object? duration = freezed,Object? thumbnailUrl = null,Object? viewCount = freezed,}) {
   return _then(_VideoResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,channelLink: freezed == channelLink ? _self.channelLink : channelLink // ignore: cast_nullable_to_non_nullable
 as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,duration: freezed == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,viewCount: freezed == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -2321,6 +2434,26 @@ mixin _$MapResult {
  String get priceLevel;/// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
+ String get type;/// The phone number of the place.
+ String? get phone;/// The URL of the place's website.
+ String? get website;/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
+ List<String>? get categories;/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ List<String>? get openingHours;/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
+ List<MapResultReview>? get reviews;/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
+ List<MapResultPhoto>? get photos;/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
+ Map<String, dynamic>? get additionalInfo;/// A description of the place.
+///
+/// Provides additional context or explanation about the place.
  String? get description;
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
@@ -2334,16 +2467,16 @@ $MapResultCopyWith<MapResult> get copyWith => _$MapResultCopyWithImpl<MapResult>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&const DeepCollectionEquality().equals(other.photos, photos)&&const DeepCollectionEquality().equals(other.additionalInfo, additionalInfo)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,description);
+int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,type,phone,website,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(openingHours),const DeepCollectionEquality().hash(reviews),const DeepCollectionEquality().hash(photos),const DeepCollectionEquality().hash(additionalInfo),description);
 
 @override
 String toString() {
-  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, description: $description)';
+  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, type: $type, phone: $phone, website: $website, categories: $categories, openingHours: $openingHours, reviews: $reviews, photos: $photos, additionalInfo: $additionalInfo, description: $description)';
 }
 
 
@@ -2354,7 +2487,7 @@ abstract mixin class $MapResultCopyWith<$Res>  {
   factory $MapResultCopyWith(MapResult value, $Res Function(MapResult) _then) = _$MapResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String cid, String address, double rating, int reviewCount, String priceLevel, String? description
+ String title, String cid, String address, double rating, int reviewCount, String priceLevel, String type, String? phone, String? website, List<String>? categories, List<String>? openingHours, List<MapResultReview>? reviews, List<MapResultPhoto>? photos, Map<String, dynamic>? additionalInfo, String? description
 });
 
 
@@ -2371,7 +2504,7 @@ class _$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? description = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? type = null,Object? phone = freezed,Object? website = freezed,Object? categories = freezed,Object? openingHours = freezed,Object? reviews = freezed,Object? photos = freezed,Object? additionalInfo = freezed,Object? description = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
@@ -2379,7 +2512,15 @@ as String,address: null == address ? _self.address : address // ignore: cast_nul
 as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
 as int,priceLevel: null == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
+as String?,categories: freezed == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
+as List<String>?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
+as List<MapResultReview>?,photos: freezed == photos ? _self.photos : photos // ignore: cast_nullable_to_non_nullable
+as List<MapResultPhoto>?,additionalInfo: freezed == additionalInfo ? _self.additionalInfo : additionalInfo // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -2391,7 +2532,7 @@ as String?,
 @JsonSerializable()
 
 class _MapResult implements MapResult {
-  const _MapResult({required this.title, required this.cid, required this.address, required this.rating, required this.reviewCount, required this.priceLevel, this.description});
+  const _MapResult({required this.title, required this.cid, required this.address, required this.rating, required this.reviewCount, required this.priceLevel, required this.type, this.phone, this.website, final  List<String>? categories, final  List<String>? openingHours, final  List<MapResultReview>? reviews, final  List<MapResultPhoto>? photos, final  Map<String, dynamic>? additionalInfo, this.description}): _categories = categories,_openingHours = openingHours,_reviews = reviews,_photos = photos,_additionalInfo = additionalInfo;
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2415,6 +2556,89 @@ class _MapResult implements MapResult {
 /// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
+@override final  String type;
+/// The phone number of the place.
+@override final  String? phone;
+/// The URL of the place's website.
+@override final  String? website;
+/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
+ final  List<String>? _categories;
+/// The categories that the place belongs to.
+///
+/// A list of descriptive tags associated with the place.
+@override List<String>? get categories {
+  final value = _categories;
+  if (value == null) return null;
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+ final  List<String>? _openingHours;
+/// The business hours of operation.
+///
+/// A list of strings representing the opening hours for each day.
+@override List<String>? get openingHours {
+  final value = _openingHours;
+  if (value == null) return null;
+  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
+ final  List<MapResultReview>? _reviews;
+/// User reviews of the place.
+///
+/// A list of review objects containing detailed user feedback.
+@override List<MapResultReview>? get reviews {
+  final value = _reviews;
+  if (value == null) return null;
+  if (_reviews is EqualUnmodifiableListView) return _reviews;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
+ final  List<MapResultPhoto>? _photos;
+/// Photos of the place.
+///
+/// A list of photo objects with URLs to images of the place.
+@override List<MapResultPhoto>? get photos {
+  final value = _photos;
+  if (value == null) return null;
+  if (_photos is EqualUnmodifiableListView) return _photos;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
+ final  Map<String, dynamic>? _additionalInfo;
+/// Additional information about the place.
+///
+/// A map of key-value pairs containing various facts and details.
+@override Map<String, dynamic>? get additionalInfo {
+  final value = _additionalInfo;
+  if (value == null) return null;
+  if (_additionalInfo is EqualUnmodifiableMapView) return _additionalInfo;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(value);
+}
+
+/// A description of the place.
+///
+/// Provides additional context or explanation about the place.
 @override final  String? description;
 
 /// Create a copy of MapResult
@@ -2430,16 +2654,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&const DeepCollectionEquality().equals(other._photos, _photos)&&const DeepCollectionEquality().equals(other._additionalInfo, _additionalInfo)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,description);
+int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,type,phone,website,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_openingHours),const DeepCollectionEquality().hash(_reviews),const DeepCollectionEquality().hash(_photos),const DeepCollectionEquality().hash(_additionalInfo),description);
 
 @override
 String toString() {
-  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, description: $description)';
+  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, type: $type, phone: $phone, website: $website, categories: $categories, openingHours: $openingHours, reviews: $reviews, photos: $photos, additionalInfo: $additionalInfo, description: $description)';
 }
 
 
@@ -2450,7 +2674,7 @@ abstract mixin class _$MapResultCopyWith<$Res> implements $MapResultCopyWith<$Re
   factory _$MapResultCopyWith(_MapResult value, $Res Function(_MapResult) _then) = __$MapResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String cid, String address, double rating, int reviewCount, String priceLevel, String? description
+ String title, String cid, String address, double rating, int reviewCount, String priceLevel, String type, String? phone, String? website, List<String>? categories, List<String>? openingHours, List<MapResultReview>? reviews, List<MapResultPhoto>? photos, Map<String, dynamic>? additionalInfo, String? description
 });
 
 
@@ -2467,7 +2691,7 @@ class __$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? description = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? type = null,Object? phone = freezed,Object? website = freezed,Object? categories = freezed,Object? openingHours = freezed,Object? reviews = freezed,Object? photos = freezed,Object? additionalInfo = freezed,Object? description = freezed,}) {
   return _then(_MapResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
@@ -2475,7 +2699,15 @@ as String,address: null == address ? _self.address : address // ignore: cast_nul
 as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
 as int,priceLevel: null == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
+as String?,categories: freezed == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<String>?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as List<String>?,reviews: freezed == reviews ? _self._reviews : reviews // ignore: cast_nullable_to_non_nullable
+as List<MapResultReview>?,photos: freezed == photos ? _self._photos : photos // ignore: cast_nullable_to_non_nullable
+as List<MapResultPhoto>?,additionalInfo: freezed == additionalInfo ? _self._additionalInfo : additionalInfo // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -3654,7 +3886,15 @@ mixin _$PatentResult {
  String? get grantDate;/// The date when the patent was published.
  String get publicationDate;/// The name(s) of the inventor(s) of the patent.
  String get inventor;/// The name of the entity to whom the patent is assigned.
- String get assignee; int get position;
+ String get assignee;/// The official publication number of the patent.
+ String get publicationNumber;/// The language in which the patent is written.
+ String get language;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String get thumbnailUrl;/// URL to the PDF version of the patent document.
+ String? get pdfUrl;/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
+ List<PatentFigure>? get figures;/// {@macro ResultDocTemplates.positionDoc}
+ int get position;
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3667,16 +3907,16 @@ $PatentResultCopyWith<PatentResult> get copyWith => _$PatentResultCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentResult&&(identical(other.title, title) || other.title == title)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.link, link) || other.link == link)&&(identical(other.priorityDate, priorityDate) || other.priorityDate == priorityDate)&&(identical(other.filingDate, filingDate) || other.filingDate == filingDate)&&(identical(other.grantDate, grantDate) || other.grantDate == grantDate)&&(identical(other.publicationDate, publicationDate) || other.publicationDate == publicationDate)&&(identical(other.inventor, inventor) || other.inventor == inventor)&&(identical(other.assignee, assignee) || other.assignee == assignee)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentResult&&(identical(other.title, title) || other.title == title)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.link, link) || other.link == link)&&(identical(other.priorityDate, priorityDate) || other.priorityDate == priorityDate)&&(identical(other.filingDate, filingDate) || other.filingDate == filingDate)&&(identical(other.grantDate, grantDate) || other.grantDate == grantDate)&&(identical(other.publicationDate, publicationDate) || other.publicationDate == publicationDate)&&(identical(other.inventor, inventor) || other.inventor == inventor)&&(identical(other.assignee, assignee) || other.assignee == assignee)&&(identical(other.publicationNumber, publicationNumber) || other.publicationNumber == publicationNumber)&&(identical(other.language, language) || other.language == language)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&(identical(other.pdfUrl, pdfUrl) || other.pdfUrl == pdfUrl)&&const DeepCollectionEquality().equals(other.figures, figures)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,snippet,link,priorityDate,filingDate,grantDate,publicationDate,inventor,assignee,position);
+int get hashCode => Object.hash(runtimeType,title,snippet,link,priorityDate,filingDate,grantDate,publicationDate,inventor,assignee,publicationNumber,language,thumbnailUrl,pdfUrl,const DeepCollectionEquality().hash(figures),position);
 
 @override
 String toString() {
-  return 'PatentResult(title: $title, snippet: $snippet, link: $link, priorityDate: $priorityDate, filingDate: $filingDate, grantDate: $grantDate, publicationDate: $publicationDate, inventor: $inventor, assignee: $assignee, position: $position)';
+  return 'PatentResult(title: $title, snippet: $snippet, link: $link, priorityDate: $priorityDate, filingDate: $filingDate, grantDate: $grantDate, publicationDate: $publicationDate, inventor: $inventor, assignee: $assignee, publicationNumber: $publicationNumber, language: $language, thumbnailUrl: $thumbnailUrl, pdfUrl: $pdfUrl, figures: $figures, position: $position)';
 }
 
 
@@ -3687,7 +3927,7 @@ abstract mixin class $PatentResultCopyWith<$Res>  {
   factory $PatentResultCopyWith(PatentResult value, $Res Function(PatentResult) _then) = _$PatentResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, int position
+ String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, String publicationNumber, String language, String thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int position
 });
 
 
@@ -3704,7 +3944,7 @@ class _$PatentResultCopyWithImpl<$Res>
 
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? publicationNumber = null,Object? language = null,Object? thumbnailUrl = null,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
@@ -3715,7 +3955,12 @@ as String,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignor
 as String?,publicationDate: null == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
 as String,inventor: null == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
 as String,assignee: null == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String,publicationNumber: null == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
+as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,figures: freezed == figures ? _self.figures : figures // ignore: cast_nullable_to_non_nullable
+as List<PatentFigure>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -3727,7 +3972,7 @@ as int,
 @JsonSerializable()
 
 class _PatentResult implements PatentResult {
-  const _PatentResult({required this.title, required this.snippet, required this.link, required this.priorityDate, required this.filingDate, this.grantDate, required this.publicationDate, required this.inventor, required this.assignee, required this.position});
+  const _PatentResult({required this.title, required this.snippet, required this.link, required this.priorityDate, required this.filingDate, this.grantDate, required this.publicationDate, required this.inventor, required this.assignee, required this.publicationNumber, required this.language, required this.thumbnailUrl, this.pdfUrl, final  List<PatentFigure>? figures, required this.position}): _figures = figures;
   factory _PatentResult.fromJson(Map<String, dynamic> json) => _$PatentResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -3750,6 +3995,30 @@ class _PatentResult implements PatentResult {
 @override final  String inventor;
 /// The name of the entity to whom the patent is assigned.
 @override final  String assignee;
+/// The official publication number of the patent.
+@override final  String publicationNumber;
+/// The language in which the patent is written.
+@override final  String language;
+/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+@override final  String thumbnailUrl;
+/// URL to the PDF version of the patent document.
+@override final  String? pdfUrl;
+/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
+ final  List<PatentFigure>? _figures;
+/// List of figures included in the patent.
+///
+/// These are technical drawings or illustrations that are part of the patent.
+@override List<PatentFigure>? get figures {
+  final value = _figures;
+  if (value == null) return null;
+  if (_figures is EqualUnmodifiableListView) return _figures;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// {@macro ResultDocTemplates.positionDoc}
 @override final  int position;
 
 /// Create a copy of PatentResult
@@ -3765,16 +4034,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentResult&&(identical(other.title, title) || other.title == title)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.link, link) || other.link == link)&&(identical(other.priorityDate, priorityDate) || other.priorityDate == priorityDate)&&(identical(other.filingDate, filingDate) || other.filingDate == filingDate)&&(identical(other.grantDate, grantDate) || other.grantDate == grantDate)&&(identical(other.publicationDate, publicationDate) || other.publicationDate == publicationDate)&&(identical(other.inventor, inventor) || other.inventor == inventor)&&(identical(other.assignee, assignee) || other.assignee == assignee)&&(identical(other.position, position) || other.position == position));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentResult&&(identical(other.title, title) || other.title == title)&&(identical(other.snippet, snippet) || other.snippet == snippet)&&(identical(other.link, link) || other.link == link)&&(identical(other.priorityDate, priorityDate) || other.priorityDate == priorityDate)&&(identical(other.filingDate, filingDate) || other.filingDate == filingDate)&&(identical(other.grantDate, grantDate) || other.grantDate == grantDate)&&(identical(other.publicationDate, publicationDate) || other.publicationDate == publicationDate)&&(identical(other.inventor, inventor) || other.inventor == inventor)&&(identical(other.assignee, assignee) || other.assignee == assignee)&&(identical(other.publicationNumber, publicationNumber) || other.publicationNumber == publicationNumber)&&(identical(other.language, language) || other.language == language)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&(identical(other.pdfUrl, pdfUrl) || other.pdfUrl == pdfUrl)&&const DeepCollectionEquality().equals(other._figures, _figures)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,snippet,link,priorityDate,filingDate,grantDate,publicationDate,inventor,assignee,position);
+int get hashCode => Object.hash(runtimeType,title,snippet,link,priorityDate,filingDate,grantDate,publicationDate,inventor,assignee,publicationNumber,language,thumbnailUrl,pdfUrl,const DeepCollectionEquality().hash(_figures),position);
 
 @override
 String toString() {
-  return 'PatentResult(title: $title, snippet: $snippet, link: $link, priorityDate: $priorityDate, filingDate: $filingDate, grantDate: $grantDate, publicationDate: $publicationDate, inventor: $inventor, assignee: $assignee, position: $position)';
+  return 'PatentResult(title: $title, snippet: $snippet, link: $link, priorityDate: $priorityDate, filingDate: $filingDate, grantDate: $grantDate, publicationDate: $publicationDate, inventor: $inventor, assignee: $assignee, publicationNumber: $publicationNumber, language: $language, thumbnailUrl: $thumbnailUrl, pdfUrl: $pdfUrl, figures: $figures, position: $position)';
 }
 
 
@@ -3785,7 +4054,7 @@ abstract mixin class _$PatentResultCopyWith<$Res> implements $PatentResultCopyWi
   factory _$PatentResultCopyWith(_PatentResult value, $Res Function(_PatentResult) _then) = __$PatentResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, int position
+ String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, String publicationNumber, String language, String thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int position
 });
 
 
@@ -3802,7 +4071,7 @@ class __$PatentResultCopyWithImpl<$Res>
 
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? publicationNumber = null,Object? language = null,Object? thumbnailUrl = null,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = null,}) {
   return _then(_PatentResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
@@ -3813,7 +4082,12 @@ as String,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignor
 as String?,publicationDate: null == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
 as String,inventor: null == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
 as String,assignee: null == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String,publicationNumber: null == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
+as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+as String?,figures: freezed == figures ? _self._figures : figures // ignore: cast_nullable_to_non_nullable
+as List<PatentFigure>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -3965,10 +4239,23 @@ as String,
 /// @nodoc
 mixin _$WebpageResult {
 
-/// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.snippet}
- String get snippet;
+/// The extracted text content from the webpage.
+///
+/// This is the main content that has been parsed from the webpage.
+ String get text;// /// {@macro flutter_serper.results.title}
+// required String title,
+/// The content formatted as markdown, if available.
+///
+/// This provides a structured representation of the content with formatting.
+ String? get markdown;// /// {@macro flutter_serper.results.link}
+// required String link,
+/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
+ Map<String, dynamic>? get metadata;/// The number of credits used for extracting this webpage.
+///
+/// Serper API uses a credit-based system for billing.
+ int get credits;
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3981,16 +4268,16 @@ $WebpageResultCopyWith<WebpageResult> get copyWith => _$WebpageResultCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet);
+int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(metadata),credits);
 
 @override
 String toString() {
-  return 'WebpageResult(title: $title, link: $link, snippet: $snippet)';
+  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, credits: $credits)';
 }
 
 
@@ -4001,7 +4288,7 @@ abstract mixin class $WebpageResultCopyWith<$Res>  {
   factory $WebpageResultCopyWith(WebpageResult value, $Res Function(WebpageResult) _then) = _$WebpageResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String snippet
+ String text, String? markdown, Map<String, dynamic>? metadata, int credits
 });
 
 
@@ -4018,12 +4305,13 @@ class _$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
+as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -4034,15 +4322,42 @@ as String,
 @JsonSerializable()
 
 class _WebpageResult implements WebpageResult {
-  const _WebpageResult({required this.title, required this.link, required this.snippet});
+  const _WebpageResult({required this.text, this.markdown, final  Map<String, dynamic>? metadata, required this.credits}): _metadata = metadata;
   factory _WebpageResult.fromJson(Map<String, dynamic> json) => _$WebpageResultFromJson(json);
 
-/// {@macro flutter_serper.results.title}
-@override final  String title;
-/// {@macro flutter_serper.results.link}
-@override final  String link;
-/// {@macro flutter_serper.results.snippet}
-@override final  String snippet;
+/// The extracted text content from the webpage.
+///
+/// This is the main content that has been parsed from the webpage.
+@override final  String text;
+// /// {@macro flutter_serper.results.title}
+// required String title,
+/// The content formatted as markdown, if available.
+///
+/// This provides a structured representation of the content with formatting.
+@override final  String? markdown;
+// /// {@macro flutter_serper.results.link}
+// required String link,
+/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
+ final  Map<String, dynamic>? _metadata;
+// /// {@macro flutter_serper.results.link}
+// required String link,
+/// Additional metadata about the webpage.
+///
+/// May include information like title, description, author, etc.
+@override Map<String, dynamic>? get metadata {
+  final value = _metadata;
+  if (value == null) return null;
+  if (_metadata is EqualUnmodifiableMapView) return _metadata;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(value);
+}
+
+/// The number of credits used for extracting this webpage.
+///
+/// Serper API uses a credit-based system for billing.
+@override final  int credits;
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
@@ -4057,16 +4372,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other._metadata, _metadata)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,link,snippet);
+int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(_metadata),credits);
 
 @override
 String toString() {
-  return 'WebpageResult(title: $title, link: $link, snippet: $snippet)';
+  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, credits: $credits)';
 }
 
 
@@ -4077,7 +4392,7 @@ abstract mixin class _$WebpageResultCopyWith<$Res> implements $WebpageResultCopy
   factory _$WebpageResultCopyWith(_WebpageResult value, $Res Function(_WebpageResult) _then) = __$WebpageResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String snippet
+ String text, String? markdown, Map<String, dynamic>? metadata, int credits
 });
 
 
@@ -4094,12 +4409,13 @@ class __$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? credits = null,}) {
   return _then(_WebpageResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,
+text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
+as String?,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

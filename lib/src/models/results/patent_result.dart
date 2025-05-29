@@ -34,6 +34,24 @@ abstract class PatentResult with _$PatentResult {
     /// The name of the entity to whom the patent is assigned.
     required String assignee,
 
+    /// The official publication number of the patent.
+    required String publicationNumber,
+
+    /// The language in which the patent is written.
+    required String language,
+
+    /// {@macro ResultDocTemplates.thumbnailUrlDoc}
+    required String thumbnailUrl,
+
+    /// URL to the PDF version of the patent document.
+    String? pdfUrl,
+
+    /// List of figures included in the patent.
+    ///
+    /// These are technical drawings or illustrations that are part of the patent.
+    List<PatentFigure>? figures,
+
+    /// {@macro ResultDocTemplates.positionDoc}
     required int position,
   }) = _PatentResult;
 

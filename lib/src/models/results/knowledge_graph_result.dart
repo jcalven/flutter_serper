@@ -26,6 +26,17 @@ abstract class KnowledgeGraphResult with _$KnowledgeGraphResult {
 
     /// A description of the entity.
     ///
+    /// This provides additional context or explanation about the entity.
+    String? description,
+
+    /// A link to the source of the description.
+    ///
+    /// This URL can be used to find more information about the entity.
+    String? descriptionLink,
+
+    /// The source of the description.
+    ///
+    /// Indicates where the description text originated from.
     String? descriptionSource,
   }) = _KnowledgeGraphResult;
 

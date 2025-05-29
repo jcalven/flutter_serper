@@ -39,6 +39,12 @@ abstract class PlacesResult with _$PlacesResult {
     /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
     String? priceLevel,
 
+    /// The business hours of operation.
+    ///
+    /// A list of strings representing the opening hours for each day.
+    List<String>? openingHours,
+
+    /// {@macro ResultDocTemplates.positionDoc}
     int? position,
   }) = _PlacesResult;
 
