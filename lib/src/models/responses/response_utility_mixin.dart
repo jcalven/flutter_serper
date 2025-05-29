@@ -1,9 +1,9 @@
 part of 'responses.dart';
 
 mixin ResponseUtilityMixin<T> on SerperResponse<T> {
-  /// The search parameters used for the autocomplete query.
+  /// {@macro flutter_serper.responses.searchParameters}
   T get searchParameters;
 
-  /// The number of credits used for this response.
+  /// {@macro flutter_serper.responses.credits}
   int get credits;
 }

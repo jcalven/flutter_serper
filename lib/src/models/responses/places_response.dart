@@ -15,7 +15,7 @@ abstract class PlacesResponse extends SerperResponse<PlacesQuery>
     /// Contains places that match the search query.
     required List<PlaceResult> places,
 
-    /// {@macro flutter_serper.responses.knowledgeGrap}
+    /// {@macro flutter_serper.responses.knowledgeGraph}
     KnowledgeGraphResult? knowledgeGraph,
 
     /// {@macro flutter_serper.responses.credits}

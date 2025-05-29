@@ -589,7 +589,7 @@ mixin _$PlacesResponse {
  PlacesQuery get searchParameters;/// List of place results returned by the API
 ///
 /// Contains places that match the search query.
- List<PlaceResult> get places;/// {@macro flutter_serper.responses.knowledgeGrap}
+ List<PlaceResult> get places;/// {@macro flutter_serper.responses.knowledgeGraph}
  KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of PlacesResponse
@@ -697,7 +697,7 @@ class _PlacesResponse extends PlacesResponse {
   return EqualUnmodifiableListView(_places);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGrap}
+/// {@macro flutter_serper.responses.knowledgeGraph}
 @override final  KnowledgeGraphResult? knowledgeGraph;
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
