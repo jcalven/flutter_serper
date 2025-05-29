@@ -16,9 +16,20 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SearchResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
- SearchQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
- List<OrganicResult> get organic;/// List of related search suggestions
+/// {@macro flutter_serper.responses.searchParameters}
+ SearchQuery get searchParameters;/// {@template flutter_serper.responses.organic}
+/// List of organic search results returned by the API.
+///
+/// Organic results are the main search results that match the query criteria,
+/// similar to the standard results you would see in a search engine.
+/// {@endtemplate}
+ List<OrganicResult> get organic;/// {@template flutter_serper.responses.knowledgeGraph}
+/// Knowledge Graph information related to the search query, if available.
+///
+/// The Knowledge Graph provides structured information about the entity
+/// being searched for, such as a person, place, organization, or concept.
+/// {@endtemplate}
+ KnowledgeGraphResult? get knowledgeGraph;/// List of related search suggestions
 ///
 /// Contains search terms related to the original query.
  List<RelatedSearchResult>? get relatedSearches;/// List of "People Also Ask" questions
@@ -36,11 +47,10 @@ mixin _$SearchResponse {
  List<TwitterResult>? get twitter;/// List of image results, if any
 ///
 /// Shown when the search query is related to images.
- List<ImagesResult>? get images;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// List of local business results, if any
+ List<ImagesResult>? get images;/// List of local business results, if any
 ///
 /// Shown when the search query is related to local businesses.
- List<LocalResultsResult>? get localResults;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<LocalResultsResult>? get localResults;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -54,16 +64,16 @@ $SearchResponseCopyWith<SearchResponse> get copyWith => _$SearchResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.organic, organic)&&const DeepCollectionEquality().equals(other.relatedSearches, relatedSearches)&&const DeepCollectionEquality().equals(other.peopleAlsoAsk, peopleAlsoAsk)&&const DeepCollectionEquality().equals(other.places, places)&&const DeepCollectionEquality().equals(other.topStories, topStories)&&const DeepCollectionEquality().equals(other.twitter, twitter)&&const DeepCollectionEquality().equals(other.images, images)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other.localResults, localResults)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.organic, organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other.relatedSearches, relatedSearches)&&const DeepCollectionEquality().equals(other.peopleAlsoAsk, peopleAlsoAsk)&&const DeepCollectionEquality().equals(other.places, places)&&const DeepCollectionEquality().equals(other.topStories, topStories)&&const DeepCollectionEquality().equals(other.twitter, twitter)&&const DeepCollectionEquality().equals(other.images, images)&&const DeepCollectionEquality().equals(other.localResults, localResults)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(organic),const DeepCollectionEquality().hash(relatedSearches),const DeepCollectionEquality().hash(peopleAlsoAsk),const DeepCollectionEquality().hash(places),const DeepCollectionEquality().hash(topStories),const DeepCollectionEquality().hash(twitter),const DeepCollectionEquality().hash(images),knowledgeGraph,const DeepCollectionEquality().hash(localResults),credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(organic),knowledgeGraph,const DeepCollectionEquality().hash(relatedSearches),const DeepCollectionEquality().hash(peopleAlsoAsk),const DeepCollectionEquality().hash(places),const DeepCollectionEquality().hash(topStories),const DeepCollectionEquality().hash(twitter),const DeepCollectionEquality().hash(images),const DeepCollectionEquality().hash(localResults),credits);
 
 @override
 String toString() {
-  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, knowledgeGraph: $knowledgeGraph, localResults: $localResults, credits: $credits)';
+  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, localResults: $localResults, credits: $credits)';
 }
 
 
@@ -74,7 +84,7 @@ abstract mixin class $SearchResponseCopyWith<$Res>  {
   factory $SearchResponseCopyWith(SearchResponse value, $Res Function(SearchResponse) _then) = _$SearchResponseCopyWithImpl;
 @useResult
 $Res call({
- SearchQuery searchParameters, List<OrganicResult> organic, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, KnowledgeGraphResult? knowledgeGraph, List<LocalResultsResult>? localResults, int credits
+ SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, List<LocalResultsResult>? localResults, int credits
 });
 
 
@@ -91,18 +101,18 @@ class _$SearchResponseCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? organic = null,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? knowledgeGraph = freezed,Object? localResults = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? localResults = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as SearchQuery,organic: null == organic ? _self.organic : organic // ignore: cast_nullable_to_non_nullable
-as List<OrganicResult>,relatedSearches: freezed == relatedSearches ? _self.relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
+as List<OrganicResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+as KnowledgeGraphResult?,relatedSearches: freezed == relatedSearches ? _self.relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
 as List<RelatedSearchResult>?,peopleAlsoAsk: freezed == peopleAlsoAsk ? _self.peopleAlsoAsk : peopleAlsoAsk // ignore: cast_nullable_to_non_nullable
 as List<PeopleAlsoAskResult>?,places: freezed == places ? _self.places : places // ignore: cast_nullable_to_non_nullable
 as List<PlacesResult>?,topStories: freezed == topStories ? _self.topStories : topStories // ignore: cast_nullable_to_non_nullable
 as List<TopStoriesResult>?,twitter: freezed == twitter ? _self.twitter : twitter // ignore: cast_nullable_to_non_nullable
 as List<TwitterResult>?,images: freezed == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
-as List<ImagesResult>?,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,localResults: freezed == localResults ? _self.localResults : localResults // ignore: cast_nullable_to_non_nullable
+as List<ImagesResult>?,localResults: freezed == localResults ? _self.localResults : localResults // ignore: cast_nullable_to_non_nullable
 as List<LocalResultsResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -136,20 +146,37 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _SearchResponse extends SearchResponse {
-  const _SearchResponse({required this.searchParameters, required final  List<OrganicResult> organic, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, this.knowledgeGraph, final  List<LocalResultsResult>? localResults, required this.credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._();
+  const _SearchResponse({required this.searchParameters, required final  List<OrganicResult> organic, this.knowledgeGraph, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, final  List<LocalResultsResult>? localResults, required this.credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._();
   factory _SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  SearchQuery searchParameters;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@template flutter_serper.responses.organic}
+/// List of organic search results returned by the API.
+///
+/// Organic results are the main search results that match the query criteria,
+/// similar to the standard results you would see in a search engine.
+/// {@endtemplate}
  final  List<OrganicResult> _organic;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@template flutter_serper.responses.organic}
+/// List of organic search results returned by the API.
+///
+/// Organic results are the main search results that match the query criteria,
+/// similar to the standard results you would see in a search engine.
+/// {@endtemplate}
 @override List<OrganicResult> get organic {
   if (_organic is EqualUnmodifiableListView) return _organic;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_organic);
 }
 
+/// {@template flutter_serper.responses.knowledgeGraph}
+/// Knowledge Graph information related to the search query, if available.
+///
+/// The Knowledge Graph provides structured information about the entity
+/// being searched for, such as a person, place, organization, or concept.
+/// {@endtemplate}
+@override final  KnowledgeGraphResult? knowledgeGraph;
 /// List of related search suggestions
 ///
 /// Contains search terms related to the original query.
@@ -240,8 +267,6 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
-@override final  KnowledgeGraphResult? knowledgeGraph;
 /// List of local business results, if any
 ///
 /// Shown when the search query is related to local businesses.
@@ -257,7 +282,7 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of SearchResponse
@@ -273,16 +298,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._organic, _organic)&&const DeepCollectionEquality().equals(other._relatedSearches, _relatedSearches)&&const DeepCollectionEquality().equals(other._peopleAlsoAsk, _peopleAlsoAsk)&&const DeepCollectionEquality().equals(other._places, _places)&&const DeepCollectionEquality().equals(other._topStories, _topStories)&&const DeepCollectionEquality().equals(other._twitter, _twitter)&&const DeepCollectionEquality().equals(other._images, _images)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other._localResults, _localResults)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._organic, _organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other._relatedSearches, _relatedSearches)&&const DeepCollectionEquality().equals(other._peopleAlsoAsk, _peopleAlsoAsk)&&const DeepCollectionEquality().equals(other._places, _places)&&const DeepCollectionEquality().equals(other._topStories, _topStories)&&const DeepCollectionEquality().equals(other._twitter, _twitter)&&const DeepCollectionEquality().equals(other._images, _images)&&const DeepCollectionEquality().equals(other._localResults, _localResults)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_organic),const DeepCollectionEquality().hash(_relatedSearches),const DeepCollectionEquality().hash(_peopleAlsoAsk),const DeepCollectionEquality().hash(_places),const DeepCollectionEquality().hash(_topStories),const DeepCollectionEquality().hash(_twitter),const DeepCollectionEquality().hash(_images),knowledgeGraph,const DeepCollectionEquality().hash(_localResults),credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_organic),knowledgeGraph,const DeepCollectionEquality().hash(_relatedSearches),const DeepCollectionEquality().hash(_peopleAlsoAsk),const DeepCollectionEquality().hash(_places),const DeepCollectionEquality().hash(_topStories),const DeepCollectionEquality().hash(_twitter),const DeepCollectionEquality().hash(_images),const DeepCollectionEquality().hash(_localResults),credits);
 
 @override
 String toString() {
-  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, knowledgeGraph: $knowledgeGraph, localResults: $localResults, credits: $credits)';
+  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, localResults: $localResults, credits: $credits)';
 }
 
 
@@ -293,7 +318,7 @@ abstract mixin class _$SearchResponseCopyWith<$Res> implements $SearchResponseCo
   factory _$SearchResponseCopyWith(_SearchResponse value, $Res Function(_SearchResponse) _then) = __$SearchResponseCopyWithImpl;
 @override @useResult
 $Res call({
- SearchQuery searchParameters, List<OrganicResult> organic, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, KnowledgeGraphResult? knowledgeGraph, List<LocalResultsResult>? localResults, int credits
+ SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, List<LocalResultsResult>? localResults, int credits
 });
 
 
@@ -310,18 +335,18 @@ class __$SearchResponseCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? organic = null,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? knowledgeGraph = freezed,Object? localResults = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? localResults = freezed,Object? credits = null,}) {
   return _then(_SearchResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as SearchQuery,organic: null == organic ? _self._organic : organic // ignore: cast_nullable_to_non_nullable
-as List<OrganicResult>,relatedSearches: freezed == relatedSearches ? _self._relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
+as List<OrganicResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
+as KnowledgeGraphResult?,relatedSearches: freezed == relatedSearches ? _self._relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
 as List<RelatedSearchResult>?,peopleAlsoAsk: freezed == peopleAlsoAsk ? _self._peopleAlsoAsk : peopleAlsoAsk // ignore: cast_nullable_to_non_nullable
 as List<PeopleAlsoAskResult>?,places: freezed == places ? _self._places : places // ignore: cast_nullable_to_non_nullable
 as List<PlacesResult>?,topStories: freezed == topStories ? _self._topStories : topStories // ignore: cast_nullable_to_non_nullable
 as List<TopStoriesResult>?,twitter: freezed == twitter ? _self._twitter : twitter // ignore: cast_nullable_to_non_nullable
 as List<TwitterResult>?,images: freezed == images ? _self._images : images // ignore: cast_nullable_to_non_nullable
-as List<ImagesResult>?,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,localResults: freezed == localResults ? _self._localResults : localResults // ignore: cast_nullable_to_non_nullable
+as List<ImagesResult>?,localResults: freezed == localResults ? _self._localResults : localResults // ignore: cast_nullable_to_non_nullable
 as List<LocalResultsResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -355,12 +380,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$ImagesResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  ImagesQuery get searchParameters;/// List of image results returned by the API
 ///
 /// Contains all the image results that match the search query.
- List<ImageResult> get images;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<ImageResult> get images;/// {@macro flutter_serper.responses.knowledgeGraph}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -452,7 +477,7 @@ class _ImagesResponse extends ImagesResponse {
   const _ImagesResponse({required this.searchParameters, required final  List<ImageResult> images, this.knowledgeGraph, required this.credits}): _images = images,super._();
   factory _ImagesResponse.fromJson(Map<String, dynamic> json) => _$ImagesResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  ImagesQuery searchParameters;
 /// List of image results returned by the API
 ///
@@ -467,9 +492,9 @@ class _ImagesResponse extends ImagesResponse {
   return EqualUnmodifiableListView(_images);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+/// {@macro flutter_serper.responses.knowledgeGraph}
 @override final  KnowledgeGraphResult? knowledgeGraph;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of ImagesResponse
@@ -560,12 +585,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$PlacesResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  PlacesQuery get searchParameters;/// List of place results returned by the API
 ///
 /// Contains places that match the search query.
- List<PlaceResult> get places;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<PlaceResult> get places;/// {@macro flutter_serper.responses.knowledgeGrap}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -657,7 +682,7 @@ class _PlacesResponse extends PlacesResponse {
   const _PlacesResponse({required this.searchParameters, required final  List<PlaceResult> places, this.knowledgeGraph, required this.credits}): _places = places,super._();
   factory _PlacesResponse.fromJson(Map<String, dynamic> json) => _$PlacesResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  PlacesQuery searchParameters;
 /// List of place results returned by the API
 ///
@@ -672,9 +697,9 @@ class _PlacesResponse extends PlacesResponse {
   return EqualUnmodifiableListView(_places);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+/// {@macro flutter_serper.responses.knowledgeGrap}
 @override final  KnowledgeGraphResult? knowledgeGraph;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of PlacesResponse
@@ -765,12 +790,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$VideosResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  VideosQuery get searchParameters;/// List of video results returned by the API
 ///
 /// Contains videos that match the search query.
- List<VideoResult> get videos;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<VideoResult> get videos;/// {@macro flutter_serper.responses.knowledgeGraph}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -862,7 +887,7 @@ class _VideosResponse extends VideosResponse {
   const _VideosResponse({required this.searchParameters, required final  List<VideoResult> videos, this.knowledgeGraph, required this.credits}): _videos = videos,super._();
   factory _VideosResponse.fromJson(Map<String, dynamic> json) => _$VideosResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  VideosQuery searchParameters;
 /// List of video results returned by the API
 ///
@@ -877,9 +902,9 @@ class _VideosResponse extends VideosResponse {
   return EqualUnmodifiableListView(_videos);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+/// {@macro flutter_serper.responses.knowledgeGraph}
 @override final  KnowledgeGraphResult? knowledgeGraph;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of VideosResponse
@@ -970,11 +995,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$MapsResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  MapsQuery get searchParameters;/// The place details returned by the Maps API
 ///
 /// Contains detailed information about a specific place.
- MapResult get place;/// {@macro ResponseDocTemplates.creditsDoc}
+ MapResult get place;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1062,13 +1087,13 @@ class _MapsResponse extends MapsResponse {
   const _MapsResponse({required this.searchParameters, required this.place, required this.credits}): super._();
   factory _MapsResponse.fromJson(Map<String, dynamic> json) => _$MapsResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  MapsQuery searchParameters;
 /// The place details returned by the Maps API
 ///
 /// Contains detailed information about a specific place.
 @override final  MapResult place;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of MapsResponse
@@ -1155,14 +1180,14 @@ $MapResultCopyWith<$Res> get place {
 /// @nodoc
 mixin _$ReviewsResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  ReviewsQuery get searchParameters;/// List of place reviews returned by the API
 ///
 /// Contains reviews for the specified place.
  List<PlaceReview> get reviews;/// Token for fetching the next page of reviews
 ///
 /// If more reviews are available, this token can be used to fetch the next batch.
- String? get nextPageToken;/// {@macro ResponseDocTemplates.creditsDoc}
+ String? get nextPageToken;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1242,7 +1267,7 @@ class _ReviewsResponse extends ReviewsResponse {
   const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, this.nextPageToken, required this.credits}): _reviews = reviews,super._();
   factory _ReviewsResponse.fromJson(Map<String, dynamic> json) => _$ReviewsResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  ReviewsQuery searchParameters;
 /// List of place reviews returned by the API
 ///
@@ -1261,7 +1286,7 @@ class _ReviewsResponse extends ReviewsResponse {
 ///
 /// If more reviews are available, this token can be used to fetch the next batch.
 @override final  String? nextPageToken;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of ReviewsResponse
@@ -1340,12 +1365,12 @@ $ReviewsQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$NewsResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  NewsQuery get searchParameters;/// List of news results returned by the API
 ///
 /// Contains news articles that match the search query.
- List<NewsResult> get news;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<NewsResult> get news;/// {@macro flutter_serper.responses.knowledgeGraph}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1437,7 +1462,7 @@ class _NewsResponse extends NewsResponse {
   const _NewsResponse({required this.searchParameters, required final  List<NewsResult> news, this.knowledgeGraph, required this.credits}): _news = news,super._();
   factory _NewsResponse.fromJson(Map<String, dynamic> json) => _$NewsResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  NewsQuery searchParameters;
 /// List of news results returned by the API
 ///
@@ -1452,9 +1477,9 @@ class _NewsResponse extends NewsResponse {
   return EqualUnmodifiableListView(_news);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+/// {@macro flutter_serper.responses.knowledgeGraph}
 @override final  KnowledgeGraphResult? knowledgeGraph;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of NewsResponse
@@ -1545,12 +1570,12 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$ShoppingResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
  ShoppingQuery get searchParameters;/// List of shopping results returned by the API
 ///
 /// Contains products that match the search query.
- List<ShoppingResult> get shopping;/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<ShoppingResult> get shopping;/// {@macro flutter_serper.responses.knowledgeGraph}
+ KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1642,7 +1667,7 @@ class _ShoppingResponse extends ShoppingResponse {
   const _ShoppingResponse({required this.searchParameters, required final  List<ShoppingResult> shopping, this.knowledgeGraph, required this.credits}): _shopping = shopping,super._();
   factory _ShoppingResponse.fromJson(Map<String, dynamic> json) => _$ShoppingResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  ShoppingQuery searchParameters;
 /// List of shopping results returned by the API
 ///
@@ -1657,9 +1682,9 @@ class _ShoppingResponse extends ShoppingResponse {
   return EqualUnmodifiableListView(_shopping);
 }
 
-/// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+/// {@macro flutter_serper.responses.knowledgeGraph}
 @override final  KnowledgeGraphResult? knowledgeGraph;
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of ShoppingResponse
@@ -1750,11 +1775,11 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 /// @nodoc
 mixin _$LensResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
- LensQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.searchParameters}
+ LensQuery get searchParameters;/// {@macro flutter_serper.responses.organic}
 ///
 /// For Lens API, these are results related to the image that was searched.
- List<LensResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<LensResult> get organic;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of LensResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1833,13 +1858,13 @@ class _LensResponse extends LensResponse {
   const _LensResponse({required this.searchParameters, required final  List<LensResult> organic, required this.credits}): _organic = organic,super._();
   factory _LensResponse.fromJson(Map<String, dynamic> json) => _$LensResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  LensQuery searchParameters;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Lens API, these are results related to the image that was searched.
  final  List<LensResult> _organic;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Lens API, these are results related to the image that was searched.
 @override List<LensResult> get organic {
@@ -1848,7 +1873,7 @@ class _LensResponse extends LensResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of LensResponse
@@ -1926,11 +1951,11 @@ $LensQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$ScholarResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
- ScholarQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.searchParameters}
+ ScholarQuery get searchParameters;/// {@macro flutter_serper.responses.organic}
 ///
 /// For Scholar API, these are the academic results that match the search query.
- List<ScholarResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<ScholarResult> get organic;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ScholarResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2009,13 +2034,13 @@ class _ScholarResponse extends ScholarResponse {
   const _ScholarResponse({required this.searchParameters, required final  List<ScholarResult> organic, required this.credits}): _organic = organic,super._();
   factory _ScholarResponse.fromJson(Map<String, dynamic> json) => _$ScholarResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  ScholarQuery searchParameters;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Scholar API, these are the academic results that match the search query.
  final  List<ScholarResult> _organic;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Scholar API, these are the academic results that match the search query.
 @override List<ScholarResult> get organic {
@@ -2024,7 +2049,7 @@ class _ScholarResponse extends ScholarResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of ScholarResponse
@@ -2102,11 +2127,11 @@ $ScholarQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$PatentsResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
- PatentsQuery get searchParameters;/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.searchParameters}
+ PatentsQuery get searchParameters;/// {@macro flutter_serper.responses.organic}
 ///
 /// For Patents API, these are the patent results that match the search query.
- List<PatentResult> get organic;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<PatentResult> get organic;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of PatentsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2185,13 +2210,13 @@ class _PatentsResponse extends PatentsResponse {
   const _PatentsResponse({required this.searchParameters, required final  List<PatentResult> organic, required this.credits}): _organic = organic,super._();
   factory _PatentsResponse.fromJson(Map<String, dynamic> json) => _$PatentsResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@macro flutter_serper.responses.searchParameters}
 @override final  PatentsQuery searchParameters;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Patents API, these are the patent results that match the search query.
  final  List<PatentResult> _organic;
-/// {@macro ResponseDocTemplates.organicDoc}
+/// {@macro flutter_serper.responses.organic}
 ///
 /// For Patents API, these are the patent results that match the search query.
 @override List<PatentResult> get organic {
@@ -2200,7 +2225,7 @@ class _PatentsResponse extends PatentsResponse {
   return EqualUnmodifiableListView(_organic);
 }
 
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
 /// Create a copy of PatentsResponse
@@ -2278,11 +2303,20 @@ $PatentsQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$AutocompleteResponse {
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@template flutter_serper.responses.searchParameters}
+/// The query parameters used for this search request.
+///
+/// Contains all the parameters that were sent with the original API request.
+/// {@endtemplate}
  AutocompleteQuery get searchParameters;/// List of autocomplete suggestions returned by the API
 ///
 /// Each suggestion is a possible completion of the user's query.
- List<AutocompleteSuggestion> get suggestions;/// {@macro ResponseDocTemplates.creditsDoc}
+ List<AutocompleteSuggestion> get suggestions;/// {@template flutter_serper.responses.credits}
+/// The number of credits used for this API request.
+///
+/// Serper API uses a credit-based system for billing, and this field indicates
+/// how many credits were consumed by this particular API call.
+/// {@endtemplate}
  int get credits;
 /// Create a copy of AutocompleteResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2361,7 +2395,11 @@ class _AutocompleteResponse extends AutocompleteResponse {
   const _AutocompleteResponse({required this.searchParameters, required final  List<AutocompleteSuggestion> suggestions, required this.credits}): _suggestions = suggestions,super._();
   factory _AutocompleteResponse.fromJson(Map<String, dynamic> json) => _$AutocompleteResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.searchParametersDoc}
+/// {@template flutter_serper.responses.searchParameters}
+/// The query parameters used for this search request.
+///
+/// Contains all the parameters that were sent with the original API request.
+/// {@endtemplate}
 @override final  AutocompleteQuery searchParameters;
 /// List of autocomplete suggestions returned by the API
 ///
@@ -2376,7 +2414,12 @@ class _AutocompleteResponse extends AutocompleteResponse {
   return EqualUnmodifiableListView(_suggestions);
 }
 
-/// {@macro ResponseDocTemplates.creditsDoc}
+/// {@template flutter_serper.responses.credits}
+/// The number of credits used for this API request.
+///
+/// Serper API uses a credit-based system for billing, and this field indicates
+/// how many credits were consumed by this particular API call.
+/// {@endtemplate}
 @override final  int credits;
 
 /// Create a copy of AutocompleteResponse
@@ -2454,9 +2497,9 @@ $AutocompleteQueryCopyWith<$Res> get searchParameters {
 /// @nodoc
 mixin _$WebpageResponse {
 
-/// {@macro ResponseDocTemplates.resultsDoc}
+/// List of webpage content results returned by the API
 ///
-/// For Webpage API, these are the extracted webpage content results.
+/// Contains webpages that match the search query.
  List<WebpageResult> get results;
 /// Create a copy of WebpageResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2524,13 +2567,13 @@ class _WebpageResponse extends WebpageResponse {
   const _WebpageResponse({required final  List<WebpageResult> results}): _results = results,super._();
   factory _WebpageResponse.fromJson(Map<String, dynamic> json) => _$WebpageResponseFromJson(json);
 
-/// {@macro ResponseDocTemplates.resultsDoc}
+/// List of webpage content results returned by the API
 ///
-/// For Webpage API, these are the extracted webpage content results.
+/// Contains webpages that match the search query.
  final  List<WebpageResult> _results;
-/// {@macro ResponseDocTemplates.resultsDoc}
+/// List of webpage content results returned by the API
 ///
-/// For Webpage API, these are the extracted webpage content results.
+/// Contains webpages that match the search query.
 @override List<WebpageResult> get results {
   if (_results is EqualUnmodifiableListView) return _results;
   // ignore: implicit_dynamic_type

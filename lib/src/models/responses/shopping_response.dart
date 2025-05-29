@@ -7,7 +7,7 @@ abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
   const ShoppingResponse._();
 
   const factory ShoppingResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required ShoppingQuery searchParameters,
 
     /// List of shopping results returned by the API
@@ -15,10 +15,10 @@ abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
     /// Contains products that match the search query.
     required List<ShoppingResult> shopping,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+    /// {@macro flutter_serper.responses.knowledgeGraph}
     KnowledgeGraphResult? knowledgeGraph,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _ShoppingResponse;
 

@@ -7,15 +7,15 @@ abstract class ScholarResponse extends SerperResponse<ScholarQuery>
   const ScholarResponse._();
 
   const factory ScholarResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required ScholarQuery searchParameters,
 
-    /// {@macro ResponseDocTemplates.organicDoc}
+    /// {@macro flutter_serper.responses.organic}
     ///
     /// For Scholar API, these are the academic results that match the search query.
     required List<ScholarResult> organic,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _ScholarResponse;
 

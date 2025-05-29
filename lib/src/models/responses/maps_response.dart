@@ -7,7 +7,7 @@ abstract class MapsResponse extends SerperResponse<MapsQuery>
   const MapsResponse._();
 
   const factory MapsResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required MapsQuery searchParameters,
 
     /// The place details returned by the Maps API
@@ -15,7 +15,7 @@ abstract class MapsResponse extends SerperResponse<MapsQuery>
     /// Contains detailed information about a specific place.
     required MapResult place,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _MapsResponse;
 

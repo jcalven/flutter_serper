@@ -7,6 +7,7 @@
 pubspec.lock
 
 # Exclude .idea/ directory
+doc/api/
 assets/
 docs/
 coverage/

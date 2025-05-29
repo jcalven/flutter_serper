@@ -7,7 +7,7 @@ abstract class NewsResponse extends SerperResponse<NewsQuery>
   const NewsResponse._();
 
   const factory NewsResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required NewsQuery searchParameters,
 
     /// List of news results returned by the API
@@ -15,10 +15,10 @@ abstract class NewsResponse extends SerperResponse<NewsQuery>
     /// Contains news articles that match the search query.
     required List<NewsResult> news,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+    /// {@macro flutter_serper.responses.knowledgeGraph}
     KnowledgeGraphResult? knowledgeGraph,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _NewsResponse;
 

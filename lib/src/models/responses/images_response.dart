@@ -7,7 +7,7 @@ abstract class ImagesResponse extends SerperResponse<ImagesQuery>
   const ImagesResponse._();
 
   const factory ImagesResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required ImagesQuery searchParameters,
 
     /// List of image results returned by the API
@@ -15,10 +15,10 @@ abstract class ImagesResponse extends SerperResponse<ImagesQuery>
     /// Contains all the image results that match the search query.
     required List<ImageResult> images,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+    /// {@macro flutter_serper.responses.knowledgeGraph}
     KnowledgeGraphResult? knowledgeGraph,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _ImagesResponse;
 

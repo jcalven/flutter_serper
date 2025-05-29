@@ -7,15 +7,15 @@ abstract class PatentsResponse extends SerperResponse<PatentsQuery>
   const PatentsResponse._();
 
   const factory PatentsResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required PatentsQuery searchParameters,
 
-    /// {@macro ResponseDocTemplates.organicDoc}
+    /// {@macro flutter_serper.responses.organic}
     ///
     /// For Patents API, these are the patent results that match the search query.
     required List<PatentResult> organic,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _PatentsResponse;
 

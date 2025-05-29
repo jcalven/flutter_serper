@@ -3,15 +3,14 @@ part of 'responses.dart';
 /// Response for the Serper Webpage API.
 @freezed
 abstract class WebpageResponse extends SerperResponse<WebpageQuery>
-    with _$WebpageResponse {
+    with _$WebpageResponse, ResponseUtilityMixin<WebpageQuery> {
   const WebpageResponse._();
 
   const factory WebpageResponse({
-    /// {@macro ResponseDocTemplates.resultsDoc}
+    /// List of webpage content results returned by the API
     ///
-    /// For Webpage API, these are the extracted webpage content results.
+    /// Contains webpages that match the search query.
     required List<WebpageResult> results,
-    // Note: Webpage API has a different structure from other APIs
   }) = _WebpageResponse;
 
   factory WebpageResponse.fromJson(Map<String, dynamic> json) =>

@@ -7,7 +7,7 @@ abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
   const ReviewsResponse._();
 
   const factory ReviewsResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required ReviewsQuery searchParameters,
 
     /// List of place reviews returned by the API
@@ -20,7 +20,7 @@ abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
     /// If more reviews are available, this token can be used to fetch the next batch.
     String? nextPageToken,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _ReviewsResponse;
 

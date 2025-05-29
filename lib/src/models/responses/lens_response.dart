@@ -7,15 +7,15 @@ abstract class LensResponse extends SerperResponse<LensQuery>
   const LensResponse._();
 
   const factory LensResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required LensQuery searchParameters,
 
-    /// {@macro ResponseDocTemplates.organicDoc}
+    /// {@macro flutter_serper.responses.organic}
     ///
     /// For Lens API, these are results related to the image that was searched.
     required List<LensResult> organic,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _LensResponse;
 

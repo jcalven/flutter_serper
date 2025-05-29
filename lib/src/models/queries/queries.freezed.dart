@@ -1807,7 +1807,7 @@ mixin _$ScholarQuery {
 /// {@macro flutter_serper.queries.queryString}
 @JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
  String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCode}
+@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
 @JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.autocorrect}
  bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
  TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
@@ -1890,7 +1890,7 @@ class _ScholarQuery implements ScholarQuery {
 @override final  String? location;
 /// {@macro flutter_serper.queries.countryCodeEnum}
 @override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro flutter_serper.queries.languageCode}
+/// {@macro flutter_serper.queries.languageCodeEnum}
 @override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
 /// {@macro flutter_serper.queries.autocorrect}
 @override final  bool? autocorrect;

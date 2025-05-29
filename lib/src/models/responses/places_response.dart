@@ -7,7 +7,7 @@ abstract class PlacesResponse extends SerperResponse<PlacesQuery>
   const PlacesResponse._();
 
   const factory PlacesResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required PlacesQuery searchParameters,
 
     /// List of place results returned by the API
@@ -15,10 +15,10 @@ abstract class PlacesResponse extends SerperResponse<PlacesQuery>
     /// Contains places that match the search query.
     required List<PlaceResult> places,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+    /// {@macro flutter_serper.responses.knowledgeGrap}
     KnowledgeGraphResult? knowledgeGraph,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _PlacesResponse;
 

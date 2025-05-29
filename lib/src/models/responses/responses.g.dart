@@ -16,6 +16,12 @@ _SearchResponse _$SearchResponseFromJson(
       (json['organic'] as List<dynamic>)
           .map((e) => OrganicResult.fromJson(e as Map<String, dynamic>))
           .toList(),
+  knowledgeGraph:
+      json['knowledgeGraph'] == null
+          ? null
+          : KnowledgeGraphResult.fromJson(
+            json['knowledgeGraph'] as Map<String, dynamic>,
+          ),
   relatedSearches:
       (json['relatedSearches'] as List<dynamic>?)
           ?.map((e) => RelatedSearchResult.fromJson(e as Map<String, dynamic>))
@@ -40,12 +46,6 @@ _SearchResponse _$SearchResponseFromJson(
       (json['images'] as List<dynamic>?)
           ?.map((e) => ImagesResult.fromJson(e as Map<String, dynamic>))
           .toList(),
-  knowledgeGraph:
-      json['knowledgeGraph'] == null
-          ? null
-          : KnowledgeGraphResult.fromJson(
-            json['knowledgeGraph'] as Map<String, dynamic>,
-          ),
   localResults:
       (json['localResults'] as List<dynamic>?)
           ?.map((e) => LocalResultsResult.fromJson(e as Map<String, dynamic>))
@@ -57,13 +57,13 @@ Map<String, dynamic> _$SearchResponseToJson(_SearchResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'organic': instance.organic,
+      'knowledgeGraph': instance.knowledgeGraph,
       'relatedSearches': instance.relatedSearches,
       'peopleAlsoAsk': instance.peopleAlsoAsk,
       'places': instance.places,
       'topStories': instance.topStories,
       'twitter': instance.twitter,
       'images': instance.images,
-      'knowledgeGraph': instance.knowledgeGraph,
       'localResults': instance.localResults,
       'credits': instance.credits,
     };

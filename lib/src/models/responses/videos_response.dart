@@ -7,7 +7,7 @@ abstract class VideosResponse extends SerperResponse<VideosQuery>
   const VideosResponse._();
 
   const factory VideosResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required VideosQuery searchParameters,
 
     /// List of video results returned by the API
@@ -15,10 +15,10 @@ abstract class VideosResponse extends SerperResponse<VideosQuery>
     /// Contains videos that match the search query.
     required List<VideoResult> videos,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
+    /// {@macro flutter_serper.responses.knowledgeGraph}
     KnowledgeGraphResult? knowledgeGraph,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _VideosResponse;
 

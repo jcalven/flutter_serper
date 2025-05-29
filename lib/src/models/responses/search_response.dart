@@ -7,11 +7,24 @@ abstract class SearchResponse extends SerperResponse<SearchQuery>
   const SearchResponse._();
 
   const factory SearchResponse({
-    /// {@macro ResponseDocTemplates.searchParametersDoc}
+    /// {@macro flutter_serper.responses.searchParameters}
     required SearchQuery searchParameters,
 
-    /// {@macro ResponseDocTemplates.organicDoc}
+    /// {@template flutter_serper.responses.organic}
+    /// List of organic search results returned by the API.
+    ///
+    /// Organic results are the main search results that match the query criteria,
+    /// similar to the standard results you would see in a search engine.
+    /// {@endtemplate}
     required List<OrganicResult> organic,
+
+    /// {@template flutter_serper.responses.knowledgeGraph}
+    /// Knowledge Graph information related to the search query, if available.
+    ///
+    /// The Knowledge Graph provides structured information about the entity
+    /// being searched for, such as a person, place, organization, or concept.
+    /// {@endtemplate}
+    KnowledgeGraphResult? knowledgeGraph,
 
     /// List of related search suggestions
     ///
@@ -43,15 +56,12 @@ abstract class SearchResponse extends SerperResponse<SearchQuery>
     /// Shown when the search query is related to images.
     List<ImagesResult>? images,
 
-    /// {@macro ResponseDocTemplates.knowledgeGraphDoc}
-    KnowledgeGraphResult? knowledgeGraph,
-
     /// List of local business results, if any
     ///
     /// Shown when the search query is related to local businesses.
     List<LocalResultsResult>? localResults,
 
-    /// {@macro ResponseDocTemplates.creditsDoc}
+    /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _SearchResponse;
 
