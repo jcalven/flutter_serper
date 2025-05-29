@@ -3,7 +3,7 @@ part of 'responses.dart';
 /// Response for the Serper Webpage API.
 @freezed
 abstract class WebpageResponse extends SerperResponse<WebpageQuery>
-    with _$WebpageResponse, ResponseUtilityMixin<WebpageQuery> {
+    with _$WebpageResponse {
   const WebpageResponse._();
 
   const factory WebpageResponse({
