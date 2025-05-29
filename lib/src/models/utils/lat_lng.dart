@@ -1,3 +1,4 @@
+/// A simple class to represent a latitude and longitude pair.
 class LatLng {
   final double latitude;
   final double longitude;
