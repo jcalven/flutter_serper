@@ -1,3 +1,4 @@
+import 'package:flutter_serper/src/models/utils/lat_lng.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../shared_types.dart'; // Import shared types including new enums
 

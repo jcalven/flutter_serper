@@ -2427,34 +2427,48 @@ mixin _$MapResult {
 ///
 /// Typically includes street, city, state/province, and postal code.
  String get address;/// {@macro flutter_serper.results.rating}
- double get rating;/// {@macro flutter_serper.results.reviewCount}
- int get reviewCount;/// The price level of the place.
+ double? get rating;// /// {@macro flutter_serper.results.reviewCount}
+// required int reviewCount, // Remove, field is not used
+/// The number of ratings for this place.
+ int? get ratingCount;/// The price level of the place.
 ///
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
- String get priceLevel;/// The type or category of the place.
+ String? get priceLevel;/// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
- String get type;/// The phone number of the place.
- String? get phone;/// The URL of the place's website.
- String? get website;/// The categories that the place belongs to.
-///
-/// A list of descriptive tags associated with the place.
- List<String>? get categories;/// The business hours of operation.
+ String get type;/// The types/categories of the place (multiple).
+ List<String> get types;/// The phone number of the place.
+ String? get phoneNumber;/// The URL of the place's website.
+ String? get website;// /// The categories that the place belongs to.
+// ///
+// /// A list of descriptive tags associated with the place.
+// List<String>? categories, // Remove, field is not used
+/// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
- List<String>? get openingHours;/// User reviews of the place.
-///
-/// A list of review objects containing detailed user feedback.
- List<MapResultReview>? get reviews;/// Photos of the place.
-///
-/// A list of photo objects with URLs to images of the place.
- List<MapResultPhoto>? get photos;/// Additional information about the place.
-///
-/// A map of key-value pairs containing various facts and details.
- Map<String, dynamic>? get additionalInfo;/// A description of the place.
+ Map<String, String>? get openingHours;// /// User reviews of the place.
+// ///
+// /// A list of review objects containing detailed user feedback.
+// List<MapResultReview>? reviews, // Remove, field is not used
+// /// Photos of the place.
+// ///
+// /// A list of photo objects with URLs to images of the place.
+// List<MapResultPhoto>? photos, // Remove, field is not used
+// /// Additional information about the place.
+// ///
+// /// A map of key-value pairs containing various facts and details.
+// Map<String, dynamic>? additionalInfo, // Remove, field is not used
+/// A description of the place.
 ///
 /// Provides additional context or explanation about the place.
- String? get description;
+ String? get description;/// The thumbnail image URL for the place.
+ String get thumbnailUrl;/// The booking links for the place.
+ List<String>? get bookingLinks;/// The FID (feature id) for the place.
+ String get fid;/// The latitude of the place.
+ double get latitude;/// The longitude of the place.
+ double get longitude;/// The Google Place ID for this place.
+ String get placeId;/// The position of the place in the results.
+ int get position;
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2467,16 +2481,16 @@ $MapResultCopyWith<MapResult> get copyWith => _$MapResultCopyWithImpl<MapResult>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&const DeepCollectionEquality().equals(other.photos, photos)&&const DeepCollectionEquality().equals(other.additionalInfo, additionalInfo)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.types, types)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&(identical(other.description, description) || other.description == description)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&const DeepCollectionEquality().equals(other.bookingLinks, bookingLinks)&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,type,phone,website,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(openingHours),const DeepCollectionEquality().hash(reviews),const DeepCollectionEquality().hash(photos),const DeepCollectionEquality().hash(additionalInfo),description);
+int get hashCode => Object.hashAll([runtimeType,title,cid,address,rating,ratingCount,priceLevel,type,const DeepCollectionEquality().hash(types),phoneNumber,website,const DeepCollectionEquality().hash(openingHours),description,thumbnailUrl,const DeepCollectionEquality().hash(bookingLinks),fid,latitude,longitude,placeId,position]);
 
 @override
 String toString() {
-  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, type: $type, phone: $phone, website: $website, categories: $categories, openingHours: $openingHours, reviews: $reviews, photos: $photos, additionalInfo: $additionalInfo, description: $description)';
+  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, ratingCount: $ratingCount, priceLevel: $priceLevel, type: $type, types: $types, phoneNumber: $phoneNumber, website: $website, openingHours: $openingHours, description: $description, thumbnailUrl: $thumbnailUrl, bookingLinks: $bookingLinks, fid: $fid, latitude: $latitude, longitude: $longitude, placeId: $placeId, position: $position)';
 }
 
 
@@ -2487,7 +2501,7 @@ abstract mixin class $MapResultCopyWith<$Res>  {
   factory $MapResultCopyWith(MapResult value, $Res Function(MapResult) _then) = _$MapResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String cid, String address, double rating, int reviewCount, String priceLevel, String type, String? phone, String? website, List<String>? categories, List<String>? openingHours, List<MapResultReview>? reviews, List<MapResultPhoto>? photos, Map<String, dynamic>? additionalInfo, String? description
+ String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String type, List<String> types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
 });
 
 
@@ -2504,24 +2518,28 @@ class _$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? type = null,Object? phone = freezed,Object? website = freezed,Object? categories = freezed,Object? openingHours = freezed,Object? reviews = freezed,Object? photos = freezed,Object? additionalInfo = freezed,Object? description = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = null,Object? types = null,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int,priceLevel: null == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
+as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,types: null == types ? _self.types : types // ignore: cast_nullable_to_non_nullable
+as List<String>,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,categories: freezed == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
-as List<String>?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<MapResultReview>?,photos: freezed == photos ? _self.photos : photos // ignore: cast_nullable_to_non_nullable
-as List<MapResultPhoto>?,additionalInfo: freezed == additionalInfo ? _self.additionalInfo : additionalInfo // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,bookingLinks: freezed == bookingLinks ? _self.bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
+as List<String>?,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
+as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
+as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -2532,7 +2550,7 @@ as String?,
 @JsonSerializable()
 
 class _MapResult implements MapResult {
-  const _MapResult({required this.title, required this.cid, required this.address, required this.rating, required this.reviewCount, required this.priceLevel, required this.type, this.phone, this.website, final  List<String>? categories, final  List<String>? openingHours, final  List<MapResultReview>? reviews, final  List<MapResultPhoto>? photos, final  Map<String, dynamic>? additionalInfo, this.description}): _categories = categories,_openingHours = openingHours,_reviews = reviews,_photos = photos,_additionalInfo = additionalInfo;
+  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, required this.type, required final  List<String> types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks;
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2546,100 +2564,94 @@ class _MapResult implements MapResult {
 /// Typically includes street, city, state/province, and postal code.
 @override final  String address;
 /// {@macro flutter_serper.results.rating}
-@override final  double rating;
-/// {@macro flutter_serper.results.reviewCount}
-@override final  int reviewCount;
+@override final  double? rating;
+// /// {@macro flutter_serper.results.reviewCount}
+// required int reviewCount, // Remove, field is not used
+/// The number of ratings for this place.
+@override final  int? ratingCount;
 /// The price level of the place.
 ///
 /// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
-@override final  String priceLevel;
+@override final  String? priceLevel;
 /// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
 @override final  String type;
+/// The types/categories of the place (multiple).
+ final  List<String> _types;
+/// The types/categories of the place (multiple).
+@override List<String> get types {
+  if (_types is EqualUnmodifiableListView) return _types;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_types);
+}
+
 /// The phone number of the place.
-@override final  String? phone;
+@override final  String? phoneNumber;
 /// The URL of the place's website.
 @override final  String? website;
-/// The categories that the place belongs to.
-///
-/// A list of descriptive tags associated with the place.
- final  List<String>? _categories;
-/// The categories that the place belongs to.
-///
-/// A list of descriptive tags associated with the place.
-@override List<String>? get categories {
-  final value = _categories;
-  if (value == null) return null;
-  if (_categories is EqualUnmodifiableListView) return _categories;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+// /// The categories that the place belongs to.
+// ///
+// /// A list of descriptive tags associated with the place.
+// List<String>? categories, // Remove, field is not used
 /// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
- final  List<String>? _openingHours;
+ final  Map<String, String>? _openingHours;
+// /// The categories that the place belongs to.
+// ///
+// /// A list of descriptive tags associated with the place.
+// List<String>? categories, // Remove, field is not used
 /// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
-@override List<String>? get openingHours {
+@override Map<String, String>? get openingHours {
   final value = _openingHours;
   if (value == null) return null;
-  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// User reviews of the place.
-///
-/// A list of review objects containing detailed user feedback.
- final  List<MapResultReview>? _reviews;
-/// User reviews of the place.
-///
-/// A list of review objects containing detailed user feedback.
-@override List<MapResultReview>? get reviews {
-  final value = _reviews;
-  if (value == null) return null;
-  if (_reviews is EqualUnmodifiableListView) return _reviews;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// Photos of the place.
-///
-/// A list of photo objects with URLs to images of the place.
- final  List<MapResultPhoto>? _photos;
-/// Photos of the place.
-///
-/// A list of photo objects with URLs to images of the place.
-@override List<MapResultPhoto>? get photos {
-  final value = _photos;
-  if (value == null) return null;
-  if (_photos is EqualUnmodifiableListView) return _photos;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// Additional information about the place.
-///
-/// A map of key-value pairs containing various facts and details.
- final  Map<String, dynamic>? _additionalInfo;
-/// Additional information about the place.
-///
-/// A map of key-value pairs containing various facts and details.
-@override Map<String, dynamic>? get additionalInfo {
-  final value = _additionalInfo;
-  if (value == null) return null;
-  if (_additionalInfo is EqualUnmodifiableMapView) return _additionalInfo;
+  if (_openingHours is EqualUnmodifiableMapView) return _openingHours;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableMapView(value);
 }
 
+// /// User reviews of the place.
+// ///
+// /// A list of review objects containing detailed user feedback.
+// List<MapResultReview>? reviews, // Remove, field is not used
+// /// Photos of the place.
+// ///
+// /// A list of photo objects with URLs to images of the place.
+// List<MapResultPhoto>? photos, // Remove, field is not used
+// /// Additional information about the place.
+// ///
+// /// A map of key-value pairs containing various facts and details.
+// Map<String, dynamic>? additionalInfo, // Remove, field is not used
 /// A description of the place.
 ///
 /// Provides additional context or explanation about the place.
 @override final  String? description;
+/// The thumbnail image URL for the place.
+@override final  String thumbnailUrl;
+/// The booking links for the place.
+ final  List<String>? _bookingLinks;
+/// The booking links for the place.
+@override List<String>? get bookingLinks {
+  final value = _bookingLinks;
+  if (value == null) return null;
+  if (_bookingLinks is EqualUnmodifiableListView) return _bookingLinks;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+/// The FID (feature id) for the place.
+@override final  String fid;
+/// The latitude of the place.
+@override final  double latitude;
+/// The longitude of the place.
+@override final  double longitude;
+/// The Google Place ID for this place.
+@override final  String placeId;
+/// The position of the place in the results.
+@override final  int position;
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
@@ -2654,16 +2666,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&const DeepCollectionEquality().equals(other._photos, _photos)&&const DeepCollectionEquality().equals(other._additionalInfo, _additionalInfo)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapResult&&(identical(other.title, title) || other.title == title)&&(identical(other.cid, cid) || other.cid == cid)&&(identical(other.address, address) || other.address == address)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._types, _types)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.website, website) || other.website == website)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&(identical(other.description, description) || other.description == description)&&(identical(other.thumbnailUrl, thumbnailUrl) || other.thumbnailUrl == thumbnailUrl)&&const DeepCollectionEquality().equals(other._bookingLinks, _bookingLinks)&&(identical(other.fid, fid) || other.fid == fid)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.placeId, placeId) || other.placeId == placeId)&&(identical(other.position, position) || other.position == position));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,cid,address,rating,reviewCount,priceLevel,type,phone,website,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_openingHours),const DeepCollectionEquality().hash(_reviews),const DeepCollectionEquality().hash(_photos),const DeepCollectionEquality().hash(_additionalInfo),description);
+int get hashCode => Object.hashAll([runtimeType,title,cid,address,rating,ratingCount,priceLevel,type,const DeepCollectionEquality().hash(_types),phoneNumber,website,const DeepCollectionEquality().hash(_openingHours),description,thumbnailUrl,const DeepCollectionEquality().hash(_bookingLinks),fid,latitude,longitude,placeId,position]);
 
 @override
 String toString() {
-  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, type: $type, phone: $phone, website: $website, categories: $categories, openingHours: $openingHours, reviews: $reviews, photos: $photos, additionalInfo: $additionalInfo, description: $description)';
+  return 'MapResult(title: $title, cid: $cid, address: $address, rating: $rating, ratingCount: $ratingCount, priceLevel: $priceLevel, type: $type, types: $types, phoneNumber: $phoneNumber, website: $website, openingHours: $openingHours, description: $description, thumbnailUrl: $thumbnailUrl, bookingLinks: $bookingLinks, fid: $fid, latitude: $latitude, longitude: $longitude, placeId: $placeId, position: $position)';
 }
 
 
@@ -2674,7 +2686,7 @@ abstract mixin class _$MapResultCopyWith<$Res> implements $MapResultCopyWith<$Re
   factory _$MapResultCopyWith(_MapResult value, $Res Function(_MapResult) _then) = __$MapResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String cid, String address, double rating, int reviewCount, String priceLevel, String type, String? phone, String? website, List<String>? categories, List<String>? openingHours, List<MapResultReview>? reviews, List<MapResultPhoto>? photos, Map<String, dynamic>? additionalInfo, String? description
+ String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String type, List<String> types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
 });
 
 
@@ -2691,24 +2703,28 @@ class __$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = null,Object? reviewCount = null,Object? priceLevel = null,Object? type = null,Object? phone = freezed,Object? website = freezed,Object? categories = freezed,Object? openingHours = freezed,Object? reviews = freezed,Object? photos = freezed,Object? additionalInfo = freezed,Object? description = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = null,Object? types = null,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
   return _then(_MapResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int,priceLevel: null == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
+as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,types: null == types ? _self._types : types // ignore: cast_nullable_to_non_nullable
+as List<String>,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,categories: freezed == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
-as List<String>?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,reviews: freezed == reviews ? _self._reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<MapResultReview>?,photos: freezed == photos ? _self._photos : photos // ignore: cast_nullable_to_non_nullable
-as List<MapResultPhoto>?,additionalInfo: freezed == additionalInfo ? _self._additionalInfo : additionalInfo // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
+as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String,bookingLinks: freezed == bookingLinks ? _self._bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
+as List<String>?,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
+as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
+as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

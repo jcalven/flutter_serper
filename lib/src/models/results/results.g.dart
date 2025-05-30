@@ -286,28 +286,27 @@ _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
   title: json['title'] as String,
   cid: json['cid'] as String,
   address: json['address'] as String,
-  rating: (json['rating'] as num).toDouble(),
-  reviewCount: (json['reviewCount'] as num).toInt(),
-  priceLevel: json['priceLevel'] as String,
+  rating: (json['rating'] as num?)?.toDouble(),
+  ratingCount: (json['ratingCount'] as num?)?.toInt(),
+  priceLevel: json['priceLevel'] as String?,
   type: json['type'] as String,
-  phone: json['phone'] as String?,
+  types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
+  phoneNumber: json['phoneNumber'] as String?,
   website: json['website'] as String?,
-  categories:
-      (json['categories'] as List<dynamic>?)?.map((e) => e as String).toList(),
-  openingHours:
-      (json['openingHours'] as List<dynamic>?)
+  openingHours: (json['openingHours'] as Map<String, dynamic>?)?.map(
+    (k, e) => MapEntry(k, e as String),
+  ),
+  description: json['description'] as String?,
+  thumbnailUrl: json['thumbnailUrl'] as String,
+  bookingLinks:
+      (json['bookingLinks'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-  reviews:
-      (json['reviews'] as List<dynamic>?)
-          ?.map((e) => MapResultReview.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  photos:
-      (json['photos'] as List<dynamic>?)
-          ?.map((e) => MapResultPhoto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  additionalInfo: json['additionalInfo'] as Map<String, dynamic>?,
-  description: json['description'] as String?,
+  fid: json['fid'] as String,
+  latitude: (json['latitude'] as num).toDouble(),
+  longitude: (json['longitude'] as num).toDouble(),
+  placeId: json['placeId'] as String,
+  position: (json['position'] as num).toInt(),
 );
 
 Map<String, dynamic> _$MapResultToJson(_MapResult instance) =>
@@ -316,17 +315,21 @@ Map<String, dynamic> _$MapResultToJson(_MapResult instance) =>
       'cid': instance.cid,
       'address': instance.address,
       'rating': instance.rating,
-      'reviewCount': instance.reviewCount,
+      'ratingCount': instance.ratingCount,
       'priceLevel': instance.priceLevel,
       'type': instance.type,
-      'phone': instance.phone,
+      'types': instance.types,
+      'phoneNumber': instance.phoneNumber,
       'website': instance.website,
-      'categories': instance.categories,
       'openingHours': instance.openingHours,
-      'reviews': instance.reviews,
-      'photos': instance.photos,
-      'additionalInfo': instance.additionalInfo,
       'description': instance.description,
+      'thumbnailUrl': instance.thumbnailUrl,
+      'bookingLinks': instance.bookingLinks,
+      'fid': instance.fid,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'placeId': instance.placeId,
+      'position': instance.position,
     };
 
 _MapResultReview _$MapResultReviewFromJson(Map<String, dynamic> json) =>

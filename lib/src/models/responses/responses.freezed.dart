@@ -996,10 +996,13 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 mixin _$MapsResponse {
 
 /// {@macro flutter_serper.responses.searchParameters}
- MapsQuery get searchParameters;/// The place details returned by the Maps API
+ MapsQuery get searchParameters;/// The latitude and longitude coordinates returned by the Maps API
 ///
-/// Contains detailed information about a specific place.
- MapResult get place;/// {@macro flutter_serper.responses.credits}
+/// Contains the location coordinates in the format "@lat,lng,zoom"
+@JsonKey(name: 'll')@LatLngConverter() LatLng? get latLng;/// List of places returned by the Maps API
+///
+/// Contains basic place information including position and place ID.
+ List<MapResult> get places;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1013,16 +1016,16 @@ $MapsResponseCopyWith<MapsResponse> get copyWith => _$MapsResponseCopyWithImpl<M
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&(identical(other.place, place) || other.place == place)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&const DeepCollectionEquality().equals(other.places, places)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,place,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,latLng,const DeepCollectionEquality().hash(places),credits);
 
 @override
 String toString() {
-  return 'MapsResponse(searchParameters: $searchParameters, place: $place, credits: $credits)';
+  return 'MapsResponse(searchParameters: $searchParameters, latLng: $latLng, places: $places, credits: $credits)';
 }
 
 
@@ -1033,11 +1036,11 @@ abstract mixin class $MapsResponseCopyWith<$Res>  {
   factory $MapsResponseCopyWith(MapsResponse value, $Res Function(MapsResponse) _then) = _$MapsResponseCopyWithImpl;
 @useResult
 $Res call({
- MapsQuery searchParameters, MapResult place, int credits
+ MapsQuery searchParameters,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, List<MapResult> places, int credits
 });
 
 
-$MapsQueryCopyWith<$Res> get searchParameters;$MapResultCopyWith<$Res> get place;
+$MapsQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1050,11 +1053,12 @@ class _$MapsResponseCopyWithImpl<$Res>
 
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? place = null,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? latLng = freezed,Object? places = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
-as MapsQuery,place: null == place ? _self.place : place // ignore: cast_nullable_to_non_nullable
-as MapResult,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as MapsQuery,latLng: freezed == latLng ? _self.latLng : latLng // ignore: cast_nullable_to_non_nullable
+as LatLng?,places: null == places ? _self.places : places // ignore: cast_nullable_to_non_nullable
+as List<MapResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1067,15 +1071,6 @@ $MapsQueryCopyWith<$Res> get searchParameters {
   return $MapsQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of MapsResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$MapResultCopyWith<$Res> get place {
-  
-  return $MapResultCopyWith<$Res>(_self.place, (value) {
-    return _then(_self.copyWith(place: value));
-  });
 }
 }
 
@@ -1084,15 +1079,28 @@ $MapResultCopyWith<$Res> get place {
 @JsonSerializable()
 
 class _MapsResponse extends MapsResponse {
-  const _MapsResponse({required this.searchParameters, required this.place, required this.credits}): super._();
+  const _MapsResponse({required this.searchParameters, @JsonKey(name: 'll')@LatLngConverter() this.latLng, required final  List<MapResult> places, required this.credits}): _places = places,super._();
   factory _MapsResponse.fromJson(Map<String, dynamic> json) => _$MapsResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
 @override final  MapsQuery searchParameters;
-/// The place details returned by the Maps API
+/// The latitude and longitude coordinates returned by the Maps API
 ///
-/// Contains detailed information about a specific place.
-@override final  MapResult place;
+/// Contains the location coordinates in the format "@lat,lng,zoom"
+@override@JsonKey(name: 'll')@LatLngConverter() final  LatLng? latLng;
+/// List of places returned by the Maps API
+///
+/// Contains basic place information including position and place ID.
+ final  List<MapResult> _places;
+/// List of places returned by the Maps API
+///
+/// Contains basic place information including position and place ID.
+@override List<MapResult> get places {
+  if (_places is EqualUnmodifiableListView) return _places;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_places);
+}
+
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -1109,16 +1117,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&(identical(other.place, place) || other.place == place)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&(identical(other.latLng, latLng) || other.latLng == latLng)&&const DeepCollectionEquality().equals(other._places, _places)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,place,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,latLng,const DeepCollectionEquality().hash(_places),credits);
 
 @override
 String toString() {
-  return 'MapsResponse(searchParameters: $searchParameters, place: $place, credits: $credits)';
+  return 'MapsResponse(searchParameters: $searchParameters, latLng: $latLng, places: $places, credits: $credits)';
 }
 
 
@@ -1129,11 +1137,11 @@ abstract mixin class _$MapsResponseCopyWith<$Res> implements $MapsResponseCopyWi
   factory _$MapsResponseCopyWith(_MapsResponse value, $Res Function(_MapsResponse) _then) = __$MapsResponseCopyWithImpl;
 @override @useResult
 $Res call({
- MapsQuery searchParameters, MapResult place, int credits
+ MapsQuery searchParameters,@JsonKey(name: 'll')@LatLngConverter() LatLng? latLng, List<MapResult> places, int credits
 });
 
 
-@override $MapsQueryCopyWith<$Res> get searchParameters;@override $MapResultCopyWith<$Res> get place;
+@override $MapsQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1146,11 +1154,12 @@ class __$MapsResponseCopyWithImpl<$Res>
 
 /// Create a copy of MapsResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? place = null,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? latLng = freezed,Object? places = null,Object? credits = null,}) {
   return _then(_MapsResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
-as MapsQuery,place: null == place ? _self.place : place // ignore: cast_nullable_to_non_nullable
-as MapResult,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as MapsQuery,latLng: freezed == latLng ? _self.latLng : latLng // ignore: cast_nullable_to_non_nullable
+as LatLng?,places: null == places ? _self._places : places // ignore: cast_nullable_to_non_nullable
+as List<MapResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1163,15 +1172,6 @@ $MapsQueryCopyWith<$Res> get searchParameters {
   
   return $MapsQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
-  });
-}/// Create a copy of MapsResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$MapResultCopyWith<$Res> get place {
-  
-  return $MapResultCopyWith<$Res>(_self.place, (value) {
-    return _then(_self.copyWith(place: value));
   });
 }
 }

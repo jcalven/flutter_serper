@@ -151,16 +151,37 @@ _MapsResponse _$MapsResponseFromJson(Map<String, dynamic> json) =>
       searchParameters: MapsQuery.fromJson(
         json['searchParameters'] as Map<String, dynamic>,
       ),
-      place: MapResult.fromJson(json['place'] as Map<String, dynamic>),
+      latLng: _$JsonConverterFromJson<String, LatLng>(
+        json['ll'],
+        const LatLngConverter().fromJson,
+      ),
+      places:
+          (json['places'] as List<dynamic>)
+              .map((e) => MapResult.fromJson(e as Map<String, dynamic>))
+              .toList(),
       credits: (json['credits'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MapsResponseToJson(_MapsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
-      'place': instance.place,
+      'll': _$JsonConverterToJson<String, LatLng>(
+        instance.latLng,
+        const LatLngConverter().toJson,
+      ),
+      'places': instance.places,
       'credits': instance.credits,
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) => json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) => value == null ? null : toJson(value);
 
 _ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
     _ReviewsResponse(

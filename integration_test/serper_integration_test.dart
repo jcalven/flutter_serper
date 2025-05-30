@@ -79,5 +79,25 @@ void main() {
         rethrow;
       }
     });
+
+    test('Maps API returns valid results', () async {
+      // Arrange
+      final mapsQuery = MapsQuery.fromStrings(
+        query: 'coffee shops',
+        // latLngString: '40.7128,-74.0060', // New York coordinates
+      );
+
+      // Act & Assert
+      try {
+        final mapsResults = await serper.maps(mapsQuery);
+        print('Raw Maps API response:');
+        print(mapsResults);
+        expect(mapsResults.places, isNotEmpty);
+        expect(mapsResults.credits, greaterThan(0));
+      } catch (e) {
+        print('Maps API error: $e');
+        rethrow;
+      }
+    });
   });
 }
