@@ -35,26 +35,10 @@ mixin _$SearchResponse {
  List<RelatedSearchResult>? get relatedSearches;/// List of "People Also Ask" questions
 ///
 /// Contains common questions related to the search query.
- List<PeopleAlsoAskResult>? get peopleAlsoAsk;// /// List of place results, if any
-// ///
-// /// Shown when the search query is related to places.
-// List<PlacesResult>? places,
-/// List of top stories, if any
+ List<PeopleAlsoAskResult>? get peopleAlsoAsk;/// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
- List<TopStoriesResult>? get topStories;// /// List of Twitter results, if any
-// ///
-// /// Shown when the search query is related to Twitter content.
-// List<TwitterResult>? twitter,
-// /// List of image results, if any
-// ///
-// /// Shown when the search query is related to images.
-// List<ImagesResult>? images,
-// /// List of local business results, if any
-// ///
-// /// Shown when the search query is related to local businesses.
-// List<LocalResultsResult>? localResults,
-/// {@macro flutter_serper.responses.credits}
+ List<TopStoriesResult>? get topStories;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -207,18 +191,10 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-// /// List of place results, if any
-// ///
-// /// Shown when the search query is related to places.
-// List<PlacesResult>? places,
 /// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
  final  List<TopStoriesResult>? _topStories;
-// /// List of place results, if any
-// ///
-// /// Shown when the search query is related to places.
-// List<PlacesResult>? places,
 /// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
@@ -230,18 +206,6 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-// /// List of Twitter results, if any
-// ///
-// /// Shown when the search query is related to Twitter content.
-// List<TwitterResult>? twitter,
-// /// List of image results, if any
-// ///
-// /// Shown when the search query is related to images.
-// List<ImagesResult>? images,
-// /// List of local business results, if any
-// ///
-// /// Shown when the search query is related to local businesses.
-// List<LocalResultsResult>? localResults,
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 

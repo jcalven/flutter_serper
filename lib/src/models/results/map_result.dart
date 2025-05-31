@@ -4,6 +4,8 @@ part of 'results.dart';
 @freezed
 abstract class MapResult with _$MapResult {
   /// Creates a [MapResult].
+  const MapResult._();
+
   const factory MapResult({
     /// {@macro flutter_serper.results.title}
     required String title,
@@ -45,30 +47,10 @@ abstract class MapResult with _$MapResult {
     /// The URL of the place's website.
     String? website,
 
-    // /// The categories that the place belongs to.
-    // ///
-    // /// A list of descriptive tags associated with the place.
-    // List<String>? categories, // Remove, field is not used
-
     /// The business hours of operation.
     ///
     /// A list of strings representing the opening hours for each day.
     Map<String, String>? openingHours,
-
-    // /// User reviews of the place.
-    // ///
-    // /// A list of review objects containing detailed user feedback.
-    // List<MapResultReview>? reviews, // Remove, field is not used
-
-    // /// Photos of the place.
-    // ///
-    // /// A list of photo objects with URLs to images of the place.
-    // List<MapResultPhoto>? photos, // Remove, field is not used
-
-    // /// Additional information about the place.
-    // ///
-    // /// A map of key-value pairs containing various facts and details.
-    // Map<String, dynamic>? additionalInfo, // Remove, field is not used
 
     /// A description of the place.
     ///
@@ -100,4 +82,10 @@ abstract class MapResult with _$MapResult {
   /// Creates a [MapResult] from a JSON map.
   factory MapResult.fromJson(Map<String, dynamic> json) =>
       _$MapResultFromJson(json);
+
+  /// {@template flutter_serper.results.latLng}
+  /// The [latLng] property is derived from the [latitude] and [longitude] with
+  /// a default zoom level.
+  /// {@endtemplate}
+  LatLng? get latLng => LatLng(latitude, longitude);
 }

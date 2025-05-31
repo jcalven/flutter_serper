@@ -4,6 +4,8 @@ part of 'results.dart';
 @freezed
 abstract class PlaceResult with _$PlaceResult {
   /// Creates a [PlaceResult].
+  const PlaceResult._();
+
   const factory PlaceResult({
     /// {@macro flutter_serper.results.title}
     required String title,
@@ -58,4 +60,7 @@ abstract class PlaceResult with _$PlaceResult {
   /// Creates a [PlaceResult] from a JSON map.
   factory PlaceResult.fromJson(Map<String, dynamic> json) =>
       _$PlaceResultFromJson(json);
+
+  /// {@macro flutter_serper.results.latLng}
+  LatLng? get latLng => LatLng(latitude, longitude);
 }

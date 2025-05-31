@@ -847,221 +847,6 @@ as String?,
 
 
 /// @nodoc
-mixin _$PlacesResult {
-
-/// {@macro flutter_serper.results.title}
- String get title;/// The full address of the place.
-///
-/// Typically includes street, city, state/province, and postal code.
- String get address;/// The phone number of the place.
- String? get phone;/// {@macro flutter_serper.results.rating}
- double? get rating;/// {@template flutter_serper.results.reviewCount}
-/// The number of reviews associated with the result.
-///
-/// Indicates how many user reviews have been submitted for this item.
-/// {@endtemplate}
- int? get reviewCount;/// The URL of the place's website.
- String? get website;/// The type or category of the place.
-///
-/// Examples include "Restaurant", "Hotel", "Attraction", etc.
- String? get type;/// The price level of the place.
-///
-/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
- String? get priceLevel;/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
- List<String>? get openingHours;/// {@macro ResultDocTemplates.positionDoc}
- int? get position;
-/// Create a copy of PlacesResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$PlacesResultCopyWith<PlacesResult> get copyWith => _$PlacesResultCopyWithImpl<PlacesResult>(this as PlacesResult, _$identity);
-
-  /// Serializes this PlacesResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&(identical(other.position, position) || other.position == position));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(openingHours),position);
-
-@override
-String toString() {
-  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, position: $position)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $PlacesResultCopyWith<$Res>  {
-  factory $PlacesResultCopyWith(PlacesResult value, $Res Function(PlacesResult) _then) = _$PlacesResultCopyWithImpl;
-@useResult
-$Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, int? position
-});
-
-
-
-
-}
-/// @nodoc
-class _$PlacesResultCopyWithImpl<$Res>
-    implements $PlacesResultCopyWith<$Res> {
-  _$PlacesResultCopyWithImpl(this._self, this._then);
-
-  final PlacesResult _self;
-  final $Res Function(PlacesResult) _then;
-
-/// Create a copy of PlacesResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? position = freezed,}) {
-  return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int?,
-  ));
-}
-
-}
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _PlacesResult implements PlacesResult {
-  const _PlacesResult({required this.title, required this.address, this.phone, this.rating, this.reviewCount, this.website, this.type, this.priceLevel, final  List<String>? openingHours, this.position}): _openingHours = openingHours;
-  factory _PlacesResult.fromJson(Map<String, dynamic> json) => _$PlacesResultFromJson(json);
-
-/// {@macro flutter_serper.results.title}
-@override final  String title;
-/// The full address of the place.
-///
-/// Typically includes street, city, state/province, and postal code.
-@override final  String address;
-/// The phone number of the place.
-@override final  String? phone;
-/// {@macro flutter_serper.results.rating}
-@override final  double? rating;
-/// {@template flutter_serper.results.reviewCount}
-/// The number of reviews associated with the result.
-///
-/// Indicates how many user reviews have been submitted for this item.
-/// {@endtemplate}
-@override final  int? reviewCount;
-/// The URL of the place's website.
-@override final  String? website;
-/// The type or category of the place.
-///
-/// Examples include "Restaurant", "Hotel", "Attraction", etc.
-@override final  String? type;
-/// The price level of the place.
-///
-/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
-@override final  String? priceLevel;
-/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
- final  List<String>? _openingHours;
-/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
-@override List<String>? get openingHours {
-  final value = _openingHours;
-  if (value == null) return null;
-  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// {@macro ResultDocTemplates.positionDoc}
-@override final  int? position;
-
-/// Create a copy of PlacesResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PlacesResultCopyWith<_PlacesResult> get copyWith => __$PlacesResultCopyWithImpl<_PlacesResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$PlacesResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.website, website) || other.website == website)&&(identical(other.type, type) || other.type == type)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&(identical(other.position, position) || other.position == position));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,address,phone,rating,reviewCount,website,type,priceLevel,const DeepCollectionEquality().hash(_openingHours),position);
-
-@override
-String toString() {
-  return 'PlacesResult(title: $title, address: $address, phone: $phone, rating: $rating, reviewCount: $reviewCount, website: $website, type: $type, priceLevel: $priceLevel, openingHours: $openingHours, position: $position)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$PlacesResultCopyWith<$Res> implements $PlacesResultCopyWith<$Res> {
-  factory _$PlacesResultCopyWith(_PlacesResult value, $Res Function(_PlacesResult) _then) = __$PlacesResultCopyWithImpl;
-@override @useResult
-$Res call({
- String title, String address, String? phone, double? rating, int? reviewCount, String? website, String? type, String? priceLevel, List<String>? openingHours, int? position
-});
-
-
-
-
-}
-/// @nodoc
-class __$PlacesResultCopyWithImpl<$Res>
-    implements _$PlacesResultCopyWith<$Res> {
-  __$PlacesResultCopyWithImpl(this._self, this._then);
-
-  final _PlacesResult _self;
-  final $Res Function(_PlacesResult) _then;
-
-/// Create a copy of PlacesResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? position = freezed,}) {
-  return _then(_PlacesResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
 mixin _$TopStoriesResult {
 
 /// {@macro flutter_serper.results.title}
@@ -1217,313 +1002,6 @@ as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$TwitterResult {
-
-/// {@macro flutter_serper.results.title}
-///
-/// For Twitter results, this is typically the username or post title.
- String get title;/// {@macro flutter_serper.results.link}
-///
-/// For Twitter results, this is the URL to the specific tweet.
- String get link;/// {@macro flutter_serper.results.snippet}
-///
-/// For Twitter results, this is typically the text content of the tweet.
- String get snippet;
-/// Create a copy of TwitterResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$TwitterResultCopyWith<TwitterResult> get copyWith => _$TwitterResultCopyWithImpl<TwitterResult>(this as TwitterResult, _$identity);
-
-  /// Serializes this TwitterResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,link,snippet);
-
-@override
-String toString() {
-  return 'TwitterResult(title: $title, link: $link, snippet: $snippet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $TwitterResultCopyWith<$Res>  {
-  factory $TwitterResultCopyWith(TwitterResult value, $Res Function(TwitterResult) _then) = _$TwitterResultCopyWithImpl;
-@useResult
-$Res call({
- String title, String link, String snippet
-});
-
-
-
-
-}
-/// @nodoc
-class _$TwitterResultCopyWithImpl<$Res>
-    implements $TwitterResultCopyWith<$Res> {
-  _$TwitterResultCopyWithImpl(this._self, this._then);
-
-  final TwitterResult _self;
-  final $Res Function(TwitterResult) _then;
-
-/// Create a copy of TwitterResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
-  return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _TwitterResult implements TwitterResult {
-  const _TwitterResult({required this.title, required this.link, required this.snippet});
-  factory _TwitterResult.fromJson(Map<String, dynamic> json) => _$TwitterResultFromJson(json);
-
-/// {@macro flutter_serper.results.title}
-///
-/// For Twitter results, this is typically the username or post title.
-@override final  String title;
-/// {@macro flutter_serper.results.link}
-///
-/// For Twitter results, this is the URL to the specific tweet.
-@override final  String link;
-/// {@macro flutter_serper.results.snippet}
-///
-/// For Twitter results, this is typically the text content of the tweet.
-@override final  String snippet;
-
-/// Create a copy of TwitterResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$TwitterResultCopyWith<_TwitterResult> get copyWith => __$TwitterResultCopyWithImpl<_TwitterResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$TwitterResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TwitterResult&&(identical(other.title, title) || other.title == title)&&(identical(other.link, link) || other.link == link)&&(identical(other.snippet, snippet) || other.snippet == snippet));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,link,snippet);
-
-@override
-String toString() {
-  return 'TwitterResult(title: $title, link: $link, snippet: $snippet)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$TwitterResultCopyWith<$Res> implements $TwitterResultCopyWith<$Res> {
-  factory _$TwitterResultCopyWith(_TwitterResult value, $Res Function(_TwitterResult) _then) = __$TwitterResultCopyWithImpl;
-@override @useResult
-$Res call({
- String title, String link, String snippet
-});
-
-
-
-
-}
-/// @nodoc
-class __$TwitterResultCopyWithImpl<$Res>
-    implements _$TwitterResultCopyWith<$Res> {
-  __$TwitterResultCopyWithImpl(this._self, this._then);
-
-  final _TwitterResult _self;
-  final $Res Function(_TwitterResult) _then;
-
-/// Create a copy of TwitterResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,}) {
-  return _then(_TwitterResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$ImagesResult {
-
-/// {@macro flutter_serper.results.title}
- String? get title;/// {@macro flutter_serper.results.imageUrl}
- String? get imageUrl;/// {@macro flutter_serper.results.source}
- String? get source;/// {@macro flutter_serper.results.sourceUrl}
- String? get sourceUrl;
-/// Create a copy of ImagesResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$ImagesResultCopyWith<ImagesResult> get copyWith => _$ImagesResultCopyWithImpl<ImagesResult>(this as ImagesResult, _$identity);
-
-  /// Serializes this ImagesResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImagesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.source, source) || other.source == source)&&(identical(other.sourceUrl, sourceUrl) || other.sourceUrl == sourceUrl));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,imageUrl,source,sourceUrl);
-
-@override
-String toString() {
-  return 'ImagesResult(title: $title, imageUrl: $imageUrl, source: $source, sourceUrl: $sourceUrl)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $ImagesResultCopyWith<$Res>  {
-  factory $ImagesResultCopyWith(ImagesResult value, $Res Function(ImagesResult) _then) = _$ImagesResultCopyWithImpl;
-@useResult
-$Res call({
- String? title, String? imageUrl, String? source, String? sourceUrl
-});
-
-
-
-
-}
-/// @nodoc
-class _$ImagesResultCopyWithImpl<$Res>
-    implements $ImagesResultCopyWith<$Res> {
-  _$ImagesResultCopyWithImpl(this._self, this._then);
-
-  final ImagesResult _self;
-  final $Res Function(ImagesResult) _then;
-
-/// Create a copy of ImagesResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? imageUrl = freezed,Object? source = freezed,Object? sourceUrl = freezed,}) {
-  return _then(_self.copyWith(
-title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,sourceUrl: freezed == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-}
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _ImagesResult implements ImagesResult {
-  const _ImagesResult({this.title, this.imageUrl, this.source, this.sourceUrl});
-  factory _ImagesResult.fromJson(Map<String, dynamic> json) => _$ImagesResultFromJson(json);
-
-/// {@macro flutter_serper.results.title}
-@override final  String? title;
-/// {@macro flutter_serper.results.imageUrl}
-@override final  String? imageUrl;
-/// {@macro flutter_serper.results.source}
-@override final  String? source;
-/// {@macro flutter_serper.results.sourceUrl}
-@override final  String? sourceUrl;
-
-/// Create a copy of ImagesResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ImagesResultCopyWith<_ImagesResult> get copyWith => __$ImagesResultCopyWithImpl<_ImagesResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$ImagesResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImagesResult&&(identical(other.title, title) || other.title == title)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.source, source) || other.source == source)&&(identical(other.sourceUrl, sourceUrl) || other.sourceUrl == sourceUrl));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,imageUrl,source,sourceUrl);
-
-@override
-String toString() {
-  return 'ImagesResult(title: $title, imageUrl: $imageUrl, source: $source, sourceUrl: $sourceUrl)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ImagesResultCopyWith<$Res> implements $ImagesResultCopyWith<$Res> {
-  factory _$ImagesResultCopyWith(_ImagesResult value, $Res Function(_ImagesResult) _then) = __$ImagesResultCopyWithImpl;
-@override @useResult
-$Res call({
- String? title, String? imageUrl, String? source, String? sourceUrl
-});
-
-
-
-
-}
-/// @nodoc
-class __$ImagesResultCopyWithImpl<$Res>
-    implements _$ImagesResultCopyWith<$Res> {
-  __$ImagesResultCopyWithImpl(this._self, this._then);
-
-  final _ImagesResult _self;
-  final $Res Function(_ImagesResult) _then;
-
-/// Create a copy of ImagesResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? imageUrl = freezed,Object? source = freezed,Object? sourceUrl = freezed,}) {
-  return _then(_ImagesResult(
-title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,sourceUrl: freezed == sourceUrl ? _self.sourceUrl : sourceUrl // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -1902,224 +1380,6 @@ as String?,
 
 
 /// @nodoc
-mixin _$LocalResultsResult {
-
-/// {@macro flutter_serper.results.title}
- String get title;/// The full address of the local business.
-///
-/// Typically includes street, city, state/province, and postal code.
- String get address;/// The phone number of the local business.
- String? get phone;/// The URL of the local business's website.
- String? get website;/// {@macro flutter_serper.results.rating}
- double? get rating;/// {@macro flutter_serper.results.reviewCount}
- int? get reviewCount;/// The price level of the local business.
-///
-/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
- String? get priceLevel;/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
- List<String>? get openingHours;/// Additional business hours information.
-///
-/// May include holiday hours, special hours, etc.
- List<dynamic>? get moreHours;/// {@macro flutter_serper.results.position}
- int get position;
-/// Create a copy of LocalResultsResult
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$LocalResultsResultCopyWith<LocalResultsResult> get copyWith => _$LocalResultsResultCopyWithImpl<LocalResultsResult>(this as LocalResultsResult, _$identity);
-
-  /// Serializes this LocalResultsResult to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocalResultsResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other.openingHours, openingHours)&&const DeepCollectionEquality().equals(other.moreHours, moreHours)&&(identical(other.position, position) || other.position == position));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,address,phone,website,rating,reviewCount,priceLevel,const DeepCollectionEquality().hash(openingHours),const DeepCollectionEquality().hash(moreHours),position);
-
-@override
-String toString() {
-  return 'LocalResultsResult(title: $title, address: $address, phone: $phone, website: $website, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, openingHours: $openingHours, moreHours: $moreHours, position: $position)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $LocalResultsResultCopyWith<$Res>  {
-  factory $LocalResultsResultCopyWith(LocalResultsResult value, $Res Function(LocalResultsResult) _then) = _$LocalResultsResultCopyWithImpl;
-@useResult
-$Res call({
- String title, String address, String? phone, String? website, double? rating, int? reviewCount, String? priceLevel, List<String>? openingHours, List<dynamic>? moreHours, int position
-});
-
-
-
-
-}
-/// @nodoc
-class _$LocalResultsResultCopyWithImpl<$Res>
-    implements $LocalResultsResultCopyWith<$Res> {
-  _$LocalResultsResultCopyWithImpl(this._self, this._then);
-
-  final LocalResultsResult _self;
-  final $Res Function(LocalResultsResult) _then;
-
-/// Create a copy of LocalResultsResult
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? website = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? moreHours = freezed,Object? position = null,}) {
-  return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,moreHours: freezed == moreHours ? _self.moreHours : moreHours // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-}
-
-
-/// @nodoc
-@JsonSerializable()
-
-class _LocalResultsResult implements LocalResultsResult {
-  const _LocalResultsResult({required this.title, required this.address, this.phone, this.website, this.rating, this.reviewCount, this.priceLevel, final  List<String>? openingHours, final  List<dynamic>? moreHours, required this.position}): _openingHours = openingHours,_moreHours = moreHours;
-  factory _LocalResultsResult.fromJson(Map<String, dynamic> json) => _$LocalResultsResultFromJson(json);
-
-/// {@macro flutter_serper.results.title}
-@override final  String title;
-/// The full address of the local business.
-///
-/// Typically includes street, city, state/province, and postal code.
-@override final  String address;
-/// The phone number of the local business.
-@override final  String? phone;
-/// The URL of the local business's website.
-@override final  String? website;
-/// {@macro flutter_serper.results.rating}
-@override final  double? rating;
-/// {@macro flutter_serper.results.reviewCount}
-@override final  int? reviewCount;
-/// The price level of the local business.
-///
-/// Typically represented as "$", "$$", "$$$", etc., indicating relative expense.
-@override final  String? priceLevel;
-/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
- final  List<String>? _openingHours;
-/// The business hours of operation.
-///
-/// A list of strings representing the opening hours for each day.
-@override List<String>? get openingHours {
-  final value = _openingHours;
-  if (value == null) return null;
-  if (_openingHours is EqualUnmodifiableListView) return _openingHours;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// Additional business hours information.
-///
-/// May include holiday hours, special hours, etc.
- final  List<dynamic>? _moreHours;
-/// Additional business hours information.
-///
-/// May include holiday hours, special hours, etc.
-@override List<dynamic>? get moreHours {
-  final value = _moreHours;
-  if (value == null) return null;
-  if (_moreHours is EqualUnmodifiableListView) return _moreHours;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// {@macro flutter_serper.results.position}
-@override final  int position;
-
-/// Create a copy of LocalResultsResult
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$LocalResultsResultCopyWith<_LocalResultsResult> get copyWith => __$LocalResultsResultCopyWithImpl<_LocalResultsResult>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$LocalResultsResultToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocalResultsResult&&(identical(other.title, title) || other.title == title)&&(identical(other.address, address) || other.address == address)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.website, website) || other.website == website)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.priceLevel, priceLevel) || other.priceLevel == priceLevel)&&const DeepCollectionEquality().equals(other._openingHours, _openingHours)&&const DeepCollectionEquality().equals(other._moreHours, _moreHours)&&(identical(other.position, position) || other.position == position));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,address,phone,website,rating,reviewCount,priceLevel,const DeepCollectionEquality().hash(_openingHours),const DeepCollectionEquality().hash(_moreHours),position);
-
-@override
-String toString() {
-  return 'LocalResultsResult(title: $title, address: $address, phone: $phone, website: $website, rating: $rating, reviewCount: $reviewCount, priceLevel: $priceLevel, openingHours: $openingHours, moreHours: $moreHours, position: $position)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$LocalResultsResultCopyWith<$Res> implements $LocalResultsResultCopyWith<$Res> {
-  factory _$LocalResultsResultCopyWith(_LocalResultsResult value, $Res Function(_LocalResultsResult) _then) = __$LocalResultsResultCopyWithImpl;
-@override @useResult
-$Res call({
- String title, String address, String? phone, String? website, double? rating, int? reviewCount, String? priceLevel, List<String>? openingHours, List<dynamic>? moreHours, int position
-});
-
-
-
-
-}
-/// @nodoc
-class __$LocalResultsResultCopyWithImpl<$Res>
-    implements _$LocalResultsResultCopyWith<$Res> {
-  __$LocalResultsResultCopyWithImpl(this._self, this._then);
-
-  final _LocalResultsResult _self;
-  final $Res Function(_LocalResultsResult) _then;
-
-/// Create a copy of LocalResultsResult
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? phone = freezed,Object? website = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? moreHours = freezed,Object? position = null,}) {
-  return _then(_LocalResultsResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
-as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
-as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
-as List<String>?,moreHours: freezed == moreHours ? _self._moreHours : moreHours // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
 mixin _$ImageResult {
 
 /// {@macro flutter_serper.results.title}
@@ -2451,8 +1711,8 @@ as int,
 /// @nodoc
 @JsonSerializable()
 
-class _PlaceResult implements PlaceResult {
-  const _PlaceResult({required this.title, required this.address, required this.latitude, required this.longitude, this.phoneNumber, this.rating, this.reviewCount, this.website, @JsonKey(name: 'category') this.type, this.priceLevel, final  List<String>? openingHours, this.cid, required this.position}): _openingHours = openingHours;
+class _PlaceResult extends PlaceResult {
+  const _PlaceResult({required this.title, required this.address, required this.latitude, required this.longitude, this.phoneNumber, this.rating, this.reviewCount, this.website, @JsonKey(name: 'category') this.type, this.priceLevel, final  List<String>? openingHours, this.cid, required this.position}): _openingHours = openingHours,super._();
   factory _PlaceResult.fromJson(Map<String, dynamic> json) => _$PlaceResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2783,26 +2043,10 @@ mixin _$MapResult {
 /// The phone number of the place.
 /// {@endtemplate}
  String? get phoneNumber;/// The URL of the place's website.
- String? get website;// /// The categories that the place belongs to.
-// ///
-// /// A list of descriptive tags associated with the place.
-// List<String>? categories, // Remove, field is not used
-/// The business hours of operation.
+ String? get website;/// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
- Map<String, String>? get openingHours;// /// User reviews of the place.
-// ///
-// /// A list of review objects containing detailed user feedback.
-// List<MapResultReview>? reviews, // Remove, field is not used
-// /// Photos of the place.
-// ///
-// /// A list of photo objects with URLs to images of the place.
-// List<MapResultPhoto>? photos, // Remove, field is not used
-// /// Additional information about the place.
-// ///
-// /// A map of key-value pairs containing various facts and details.
-// Map<String, dynamic>? additionalInfo, // Remove, field is not used
-/// A description of the place.
+ Map<String, String>? get openingHours;/// A description of the place.
 ///
 /// Provides additional context or explanation about the place.
  String? get description;/// The thumbnail image URL for the place.
@@ -2893,8 +2137,8 @@ as int,
 /// @nodoc
 @JsonSerializable()
 
-class _MapResult implements MapResult {
-  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, required this.type, required final  List<String> types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks;
+class _MapResult extends MapResult {
+  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, required this.type, required final  List<String> types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks,super._();
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2934,18 +2178,10 @@ class _MapResult implements MapResult {
 @override final  String? phoneNumber;
 /// The URL of the place's website.
 @override final  String? website;
-// /// The categories that the place belongs to.
-// ///
-// /// A list of descriptive tags associated with the place.
-// List<String>? categories, // Remove, field is not used
 /// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
  final  Map<String, String>? _openingHours;
-// /// The categories that the place belongs to.
-// ///
-// /// A list of descriptive tags associated with the place.
-// List<String>? categories, // Remove, field is not used
 /// The business hours of operation.
 ///
 /// A list of strings representing the opening hours for each day.
@@ -2957,18 +2193,6 @@ class _MapResult implements MapResult {
   return EqualUnmodifiableMapView(value);
 }
 
-// /// User reviews of the place.
-// ///
-// /// A list of review objects containing detailed user feedback.
-// List<MapResultReview>? reviews, // Remove, field is not used
-// /// Photos of the place.
-// ///
-// /// A list of photo objects with URLs to images of the place.
-// List<MapResultPhoto>? photos, // Remove, field is not used
-// /// Additional information about the place.
-// ///
-// /// A map of key-value pairs containing various facts and details.
-// Map<String, dynamic>? additionalInfo, // Remove, field is not used
 /// A description of the place.
 ///
 /// Provides additional context or explanation about the place.
@@ -4821,9 +4045,7 @@ mixin _$WebpageResult {
 /// The content formatted as markdown, if available.
 ///
 /// This provides a structured representation of the content with formatting.
- String? get markdown;// /// {@macro flutter_serper.results.link}
-// required String link,
-/// Additional metadata about the webpage.
+ String? get markdown;/// Additional metadata about the webpage.
 ///
 /// May include information like title, description, author, etc.
 ///
@@ -4913,8 +4135,6 @@ class _WebpageResult implements WebpageResult {
 ///
 /// This provides a structured representation of the content with formatting.
 @override final  String? markdown;
-// /// {@macro flutter_serper.results.link}
-// required String link,
 /// Additional metadata about the webpage.
 ///
 /// May include information like title, description, author, etc.
@@ -4923,8 +4143,6 @@ class _WebpageResult implements WebpageResult {
 /// can vary widely between different webpages and the meta tags are not
 /// standardized.
  final  Map<String, dynamic>? _metadata;
-// /// {@macro flutter_serper.results.link}
-// required String link,
 /// Additional metadata about the webpage.
 ///
 /// May include information like title, description, author, etc.

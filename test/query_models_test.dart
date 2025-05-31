@@ -22,7 +22,7 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('coffee shops'));
       expect(json['hl'], equals('en'));
-      expect(json['ll'], equals('37.7749,-122.4194'));
+      expect(json['ll'], equals('@37.7749,-122.4194,10.0z'));
       expect(json['placeId'], equals('ChIJN1t_tDeuEmsRUsoyG83frY4'));
       expect(json['cid'], equals('1234567890'));
       expect(json['page'], equals(2));

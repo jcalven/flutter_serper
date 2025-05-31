@@ -106,7 +106,7 @@ void main() {
         final minimalJson = {
           'title': 'Test Video',
           'link': 'https://example.com/video',
-          'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+          'imageUrl': 'https://example.com/thumbnail.jpg',
           'position': 1,
         };
 

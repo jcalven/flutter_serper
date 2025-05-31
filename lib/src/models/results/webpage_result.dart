@@ -20,9 +20,6 @@ abstract class WebpageResult with _$WebpageResult {
     /// This provides a structured representation of the content with formatting.
     String? markdown,
 
-    // /// {@macro flutter_serper.results.link}
-    // required String link,
-
     /// Additional metadata about the webpage.
     ///
     /// May include information like title, description, author, etc.
@@ -36,9 +33,6 @@ abstract class WebpageResult with _$WebpageResult {
     ///
     /// Serper API uses a credit-based system for billing.
     required int credits,
-
-    // /// {@macro flutter_serper.results.snippet}
-    // required String snippet,
   }) = _WebpageResult;
 
   /// Creates a [WebpageResult] from a JSON map.

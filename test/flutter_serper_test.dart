@@ -129,15 +129,22 @@ void main() {
         'searchParameters': {
           'q': 'test image',
           'gl': 'us',
-          'hl': 'en', // Added for completeness
+          'hl': 'en',
         },
         'images': [
           {
             'title': 'Test Image',
             'imageUrl': 'https://example.com/image.jpg',
+            'imageWidth': 800,
+            'imageHeight': 600,
             'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+            'thumbnailWidth': 200,
+            'thumbnailHeight': 150,
             'source': 'Example Source',
-            'sourceUrl': 'https://example.com',
+            'link': 'https://example.com/image',
+            'googleUrl': 'https://google.com/imgres?imgurl=https://example.com/image.jpg',
+            'price': '\$10',
+            'domain': 'example.com',
             'position': 1,
           },
         ],
@@ -160,18 +167,20 @@ void main() {
         equals(LanguageCode.english),
       );
       expect(response.images, hasLength(1));
-      expect(response.images.first.title, equals('Test Image'));
-      expect(
-        response.images.first.imageUrl,
-        equals('https://example.com/image.jpg'),
-      );
-      expect(
-        response.images.first.thumbnailUrl,
-        equals('https://example.com/thumbnail.jpg'),
-      );
-      expect(response.images.first.source, equals('Example Source'));
-      expect(response.images.first.link, equals('https://example.com'));
-      expect(response.images.first.position, equals(1));
+      final img = response.images.first;
+      expect(img.title, equals('Test Image'));
+      expect(img.imageUrl, equals('https://example.com/image.jpg'));
+      expect(img.imageWidth, equals(800));
+      expect(img.imageHeight, equals(600));
+      expect(img.thumbnailUrl, equals('https://example.com/thumbnail.jpg'));
+      expect(img.thumbnailWidth, equals(200));
+      expect(img.thumbnailHeight, equals(150));
+      expect(img.source, equals('Example Source'));
+      expect(img.link, equals('https://example.com/image'));
+      expect(img.googleUrl, equals('https://google.com/imgres?imgurl=https://example.com/image.jpg'));
+      expect(img.price, equals('\$10'));
+      expect(img.domain, equals('example.com'));
+      expect(img.position, equals(1));
       expect(response.credits, equals(1));
     });
 

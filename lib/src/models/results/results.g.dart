@@ -76,37 +76,6 @@ Map<String, dynamic> _$PeopleAlsoAskResultToJson(
   'link': instance.link,
 };
 
-_PlacesResult _$PlacesResultFromJson(Map<String, dynamic> json) =>
-    _PlacesResult(
-      title: json['title'] as String,
-      address: json['address'] as String,
-      phone: json['phone'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
-      reviewCount: (json['reviewCount'] as num?)?.toInt(),
-      website: json['website'] as String?,
-      type: json['type'] as String?,
-      priceLevel: json['priceLevel'] as String?,
-      openingHours:
-          (json['openingHours'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      position: (json['position'] as num?)?.toInt(),
-    );
-
-Map<String, dynamic> _$PlacesResultToJson(_PlacesResult instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'address': instance.address,
-      'phone': instance.phone,
-      'rating': instance.rating,
-      'reviewCount': instance.reviewCount,
-      'website': instance.website,
-      'type': instance.type,
-      'priceLevel': instance.priceLevel,
-      'openingHours': instance.openingHours,
-      'position': instance.position,
-    };
-
 _TopStoriesResult _$TopStoriesResultFromJson(Map<String, dynamic> json) =>
     _TopStoriesResult(
       title: json['title'] as String,
@@ -125,36 +94,6 @@ Map<String, dynamic> _$TopStoriesResultToJson(_TopStoriesResult instance) =>
       'source': instance.source,
       'snippet': instance.snippet,
       'imageUrl': instance.imageUrl,
-    };
-
-_TwitterResult _$TwitterResultFromJson(Map<String, dynamic> json) =>
-    _TwitterResult(
-      title: json['title'] as String,
-      link: json['link'] as String,
-      snippet: json['snippet'] as String,
-    );
-
-Map<String, dynamic> _$TwitterResultToJson(_TwitterResult instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'link': instance.link,
-      'snippet': instance.snippet,
-    };
-
-_ImagesResult _$ImagesResultFromJson(Map<String, dynamic> json) =>
-    _ImagesResult(
-      title: json['title'] as String?,
-      imageUrl: json['imageUrl'] as String?,
-      source: json['source'] as String?,
-      sourceUrl: json['sourceUrl'] as String?,
-    );
-
-Map<String, dynamic> _$ImagesResultToJson(_ImagesResult instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'imageUrl': instance.imageUrl,
-      'source': instance.source,
-      'sourceUrl': instance.sourceUrl,
     };
 
 _KnowledgeGraphResult _$KnowledgeGraphResultFromJson(
@@ -207,37 +146,6 @@ Map<String, dynamic> _$KnowledgeGraphAttributesToJson(
   'biologicalClass': instance.biologicalClass,
   'domain': instance.domain,
 };
-
-_LocalResultsResult _$LocalResultsResultFromJson(Map<String, dynamic> json) =>
-    _LocalResultsResult(
-      title: json['title'] as String,
-      address: json['address'] as String,
-      phone: json['phone'] as String?,
-      website: json['website'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
-      reviewCount: (json['reviewCount'] as num?)?.toInt(),
-      priceLevel: json['priceLevel'] as String?,
-      openingHours:
-          (json['openingHours'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
-      moreHours: json['moreHours'] as List<dynamic>?,
-      position: (json['position'] as num).toInt(),
-    );
-
-Map<String, dynamic> _$LocalResultsResultToJson(_LocalResultsResult instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'address': instance.address,
-      'phone': instance.phone,
-      'website': instance.website,
-      'rating': instance.rating,
-      'reviewCount': instance.reviewCount,
-      'priceLevel': instance.priceLevel,
-      'openingHours': instance.openingHours,
-      'moreHours': instance.moreHours,
-      'position': instance.position,
-    };
 
 _ImageResult _$ImageResultFromJson(Map<String, dynamic> json) => _ImageResult(
   title: json['title'] as String?,
