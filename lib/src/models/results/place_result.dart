@@ -13,8 +13,14 @@ abstract class PlaceResult with _$PlaceResult {
     /// Typically includes street, city, state/province, and postal code.
     required String address,
 
-    /// The phone number of the place.
-    String? phone,
+    /// The latitude of the place.
+    required double latitude,
+
+    /// The longitude of the place.
+    required double longitude,
+
+    // {@macro flutter_serper.results.phoneNumber}
+    String? phoneNumber,
 
     /// {@macro flutter_serper.results.rating}
     double? rating,
@@ -28,7 +34,7 @@ abstract class PlaceResult with _$PlaceResult {
     /// The type or category of the place.
     ///
     /// Examples include "Restaurant", "Hotel", "Attraction", etc.
-    String? type,
+    @JsonKey(name: 'category') String? type,
 
     /// The price level of the place.
     ///

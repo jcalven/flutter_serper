@@ -28,7 +28,10 @@ abstract class ScholarResult with _$ScholarResult {
     required int citedBy,
 
     /// URL to the PDF version of the academic paper.
-    required String pdfUrl,
+    String? pdfUrl,
+
+    /// URL to the HTML version of the academic paper.
+    String? htmlUrl,
 
     /// The unique identifier for this academic paper.
     required String id,

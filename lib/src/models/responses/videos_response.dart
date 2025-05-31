@@ -15,8 +15,8 @@ abstract class VideosResponse extends SerperResponse<VideosQuery>
     /// Contains videos that match the search query.
     required List<VideoResult> videos,
 
-    /// {@macro flutter_serper.responses.knowledgeGraph}
-    KnowledgeGraphResult? knowledgeGraph,
+    // /// {@macro flutter_serper.responses.knowledgeGraph}
+    // KnowledgeGraphResult? knowledgeGraph,
 
     /// {@macro flutter_serper.responses.credits}
     required int credits,

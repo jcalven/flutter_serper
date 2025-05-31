@@ -15,9 +15,6 @@ abstract class ImagesResponse extends SerperResponse<ImagesQuery>
     /// Contains all the image results that match the search query.
     required List<ImageResult> images,
 
-    /// {@macro flutter_serper.responses.knowledgeGraph}
-    KnowledgeGraphResult? knowledgeGraph,
-
     /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _ImagesResponse;

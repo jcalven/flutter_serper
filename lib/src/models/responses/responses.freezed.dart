@@ -35,22 +35,26 @@ mixin _$SearchResponse {
  List<RelatedSearchResult>? get relatedSearches;/// List of "People Also Ask" questions
 ///
 /// Contains common questions related to the search query.
- List<PeopleAlsoAskResult>? get peopleAlsoAsk;/// List of place results, if any
-///
-/// Shown when the search query is related to places.
- List<PlacesResult>? get places;/// List of top stories, if any
+ List<PeopleAlsoAskResult>? get peopleAlsoAsk;// /// List of place results, if any
+// ///
+// /// Shown when the search query is related to places.
+// List<PlacesResult>? places,
+/// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
- List<TopStoriesResult>? get topStories;/// List of Twitter results, if any
-///
-/// Shown when the search query is related to Twitter content.
- List<TwitterResult>? get twitter;/// List of image results, if any
-///
-/// Shown when the search query is related to images.
- List<ImagesResult>? get images;/// List of local business results, if any
-///
-/// Shown when the search query is related to local businesses.
- List<LocalResultsResult>? get localResults;/// {@macro flutter_serper.responses.credits}
+ List<TopStoriesResult>? get topStories;// /// List of Twitter results, if any
+// ///
+// /// Shown when the search query is related to Twitter content.
+// List<TwitterResult>? twitter,
+// /// List of image results, if any
+// ///
+// /// Shown when the search query is related to images.
+// List<ImagesResult>? images,
+// /// List of local business results, if any
+// ///
+// /// Shown when the search query is related to local businesses.
+// List<LocalResultsResult>? localResults,
+/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -64,16 +68,16 @@ $SearchResponseCopyWith<SearchResponse> get copyWith => _$SearchResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.organic, organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other.relatedSearches, relatedSearches)&&const DeepCollectionEquality().equals(other.peopleAlsoAsk, peopleAlsoAsk)&&const DeepCollectionEquality().equals(other.places, places)&&const DeepCollectionEquality().equals(other.topStories, topStories)&&const DeepCollectionEquality().equals(other.twitter, twitter)&&const DeepCollectionEquality().equals(other.images, images)&&const DeepCollectionEquality().equals(other.localResults, localResults)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.organic, organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other.relatedSearches, relatedSearches)&&const DeepCollectionEquality().equals(other.peopleAlsoAsk, peopleAlsoAsk)&&const DeepCollectionEquality().equals(other.topStories, topStories)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(organic),knowledgeGraph,const DeepCollectionEquality().hash(relatedSearches),const DeepCollectionEquality().hash(peopleAlsoAsk),const DeepCollectionEquality().hash(places),const DeepCollectionEquality().hash(topStories),const DeepCollectionEquality().hash(twitter),const DeepCollectionEquality().hash(images),const DeepCollectionEquality().hash(localResults),credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(organic),knowledgeGraph,const DeepCollectionEquality().hash(relatedSearches),const DeepCollectionEquality().hash(peopleAlsoAsk),const DeepCollectionEquality().hash(topStories),credits);
 
 @override
 String toString() {
-  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, localResults: $localResults, credits: $credits)';
+  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, topStories: $topStories, credits: $credits)';
 }
 
 
@@ -84,7 +88,7 @@ abstract mixin class $SearchResponseCopyWith<$Res>  {
   factory $SearchResponseCopyWith(SearchResponse value, $Res Function(SearchResponse) _then) = _$SearchResponseCopyWithImpl;
 @useResult
 $Res call({
- SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, List<LocalResultsResult>? localResults, int credits
+ SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<TopStoriesResult>? topStories, int credits
 });
 
 
@@ -101,19 +105,15 @@ class _$SearchResponseCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? localResults = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? topStories = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as SearchQuery,organic: null == organic ? _self.organic : organic // ignore: cast_nullable_to_non_nullable
 as List<OrganicResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
 as KnowledgeGraphResult?,relatedSearches: freezed == relatedSearches ? _self.relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
 as List<RelatedSearchResult>?,peopleAlsoAsk: freezed == peopleAlsoAsk ? _self.peopleAlsoAsk : peopleAlsoAsk // ignore: cast_nullable_to_non_nullable
-as List<PeopleAlsoAskResult>?,places: freezed == places ? _self.places : places // ignore: cast_nullable_to_non_nullable
-as List<PlacesResult>?,topStories: freezed == topStories ? _self.topStories : topStories // ignore: cast_nullable_to_non_nullable
-as List<TopStoriesResult>?,twitter: freezed == twitter ? _self.twitter : twitter // ignore: cast_nullable_to_non_nullable
-as List<TwitterResult>?,images: freezed == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
-as List<ImagesResult>?,localResults: freezed == localResults ? _self.localResults : localResults // ignore: cast_nullable_to_non_nullable
-as List<LocalResultsResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<PeopleAlsoAskResult>?,topStories: freezed == topStories ? _self.topStories : topStories // ignore: cast_nullable_to_non_nullable
+as List<TopStoriesResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -146,7 +146,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _SearchResponse extends SearchResponse {
-  const _SearchResponse({required this.searchParameters, required final  List<OrganicResult> organic, this.knowledgeGraph, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<PlacesResult>? places, final  List<TopStoriesResult>? topStories, final  List<TwitterResult>? twitter, final  List<ImagesResult>? images, final  List<LocalResultsResult>? localResults, required this.credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_places = places,_topStories = topStories,_twitter = twitter,_images = images,_localResults = localResults,super._();
+  const _SearchResponse({required this.searchParameters, required final  List<OrganicResult> organic, this.knowledgeGraph, final  List<RelatedSearchResult>? relatedSearches, final  List<PeopleAlsoAskResult>? peopleAlsoAsk, final  List<TopStoriesResult>? topStories, required this.credits}): _organic = organic,_relatedSearches = relatedSearches,_peopleAlsoAsk = peopleAlsoAsk,_topStories = topStories,super._();
   factory _SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -207,25 +207,18 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-/// List of place results, if any
-///
-/// Shown when the search query is related to places.
- final  List<PlacesResult>? _places;
-/// List of place results, if any
-///
-/// Shown when the search query is related to places.
-@override List<PlacesResult>? get places {
-  final value = _places;
-  if (value == null) return null;
-  if (_places is EqualUnmodifiableListView) return _places;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+// /// List of place results, if any
+// ///
+// /// Shown when the search query is related to places.
+// List<PlacesResult>? places,
 /// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
  final  List<TopStoriesResult>? _topStories;
+// /// List of place results, if any
+// ///
+// /// Shown when the search query is related to places.
+// List<PlacesResult>? places,
 /// List of top stories, if any
 ///
 /// Shown when the search query is related to news or current events.
@@ -237,51 +230,18 @@ class _SearchResponse extends SearchResponse {
   return EqualUnmodifiableListView(value);
 }
 
-/// List of Twitter results, if any
-///
-/// Shown when the search query is related to Twitter content.
- final  List<TwitterResult>? _twitter;
-/// List of Twitter results, if any
-///
-/// Shown when the search query is related to Twitter content.
-@override List<TwitterResult>? get twitter {
-  final value = _twitter;
-  if (value == null) return null;
-  if (_twitter is EqualUnmodifiableListView) return _twitter;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// List of image results, if any
-///
-/// Shown when the search query is related to images.
- final  List<ImagesResult>? _images;
-/// List of image results, if any
-///
-/// Shown when the search query is related to images.
-@override List<ImagesResult>? get images {
-  final value = _images;
-  if (value == null) return null;
-  if (_images is EqualUnmodifiableListView) return _images;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
-/// List of local business results, if any
-///
-/// Shown when the search query is related to local businesses.
- final  List<LocalResultsResult>? _localResults;
-/// List of local business results, if any
-///
-/// Shown when the search query is related to local businesses.
-@override List<LocalResultsResult>? get localResults {
-  final value = _localResults;
-  if (value == null) return null;
-  if (_localResults is EqualUnmodifiableListView) return _localResults;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+// /// List of Twitter results, if any
+// ///
+// /// Shown when the search query is related to Twitter content.
+// List<TwitterResult>? twitter,
+// /// List of image results, if any
+// ///
+// /// Shown when the search query is related to images.
+// List<ImagesResult>? images,
+// /// List of local business results, if any
+// ///
+// /// Shown when the search query is related to local businesses.
+// List<LocalResultsResult>? localResults,
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -298,16 +258,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._organic, _organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other._relatedSearches, _relatedSearches)&&const DeepCollectionEquality().equals(other._peopleAlsoAsk, _peopleAlsoAsk)&&const DeepCollectionEquality().equals(other._places, _places)&&const DeepCollectionEquality().equals(other._topStories, _topStories)&&const DeepCollectionEquality().equals(other._twitter, _twitter)&&const DeepCollectionEquality().equals(other._images, _images)&&const DeepCollectionEquality().equals(other._localResults, _localResults)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._organic, _organic)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&const DeepCollectionEquality().equals(other._relatedSearches, _relatedSearches)&&const DeepCollectionEquality().equals(other._peopleAlsoAsk, _peopleAlsoAsk)&&const DeepCollectionEquality().equals(other._topStories, _topStories)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_organic),knowledgeGraph,const DeepCollectionEquality().hash(_relatedSearches),const DeepCollectionEquality().hash(_peopleAlsoAsk),const DeepCollectionEquality().hash(_places),const DeepCollectionEquality().hash(_topStories),const DeepCollectionEquality().hash(_twitter),const DeepCollectionEquality().hash(_images),const DeepCollectionEquality().hash(_localResults),credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_organic),knowledgeGraph,const DeepCollectionEquality().hash(_relatedSearches),const DeepCollectionEquality().hash(_peopleAlsoAsk),const DeepCollectionEquality().hash(_topStories),credits);
 
 @override
 String toString() {
-  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, places: $places, topStories: $topStories, twitter: $twitter, images: $images, localResults: $localResults, credits: $credits)';
+  return 'SearchResponse(searchParameters: $searchParameters, organic: $organic, knowledgeGraph: $knowledgeGraph, relatedSearches: $relatedSearches, peopleAlsoAsk: $peopleAlsoAsk, topStories: $topStories, credits: $credits)';
 }
 
 
@@ -318,7 +278,7 @@ abstract mixin class _$SearchResponseCopyWith<$Res> implements $SearchResponseCo
   factory _$SearchResponseCopyWith(_SearchResponse value, $Res Function(_SearchResponse) _then) = __$SearchResponseCopyWithImpl;
 @override @useResult
 $Res call({
- SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<PlacesResult>? places, List<TopStoriesResult>? topStories, List<TwitterResult>? twitter, List<ImagesResult>? images, List<LocalResultsResult>? localResults, int credits
+ SearchQuery searchParameters, List<OrganicResult> organic, KnowledgeGraphResult? knowledgeGraph, List<RelatedSearchResult>? relatedSearches, List<PeopleAlsoAskResult>? peopleAlsoAsk, List<TopStoriesResult>? topStories, int credits
 });
 
 
@@ -335,19 +295,15 @@ class __$SearchResponseCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? places = freezed,Object? topStories = freezed,Object? twitter = freezed,Object? images = freezed,Object? localResults = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? organic = null,Object? knowledgeGraph = freezed,Object? relatedSearches = freezed,Object? peopleAlsoAsk = freezed,Object? topStories = freezed,Object? credits = null,}) {
   return _then(_SearchResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as SearchQuery,organic: null == organic ? _self._organic : organic // ignore: cast_nullable_to_non_nullable
 as List<OrganicResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
 as KnowledgeGraphResult?,relatedSearches: freezed == relatedSearches ? _self._relatedSearches : relatedSearches // ignore: cast_nullable_to_non_nullable
 as List<RelatedSearchResult>?,peopleAlsoAsk: freezed == peopleAlsoAsk ? _self._peopleAlsoAsk : peopleAlsoAsk // ignore: cast_nullable_to_non_nullable
-as List<PeopleAlsoAskResult>?,places: freezed == places ? _self._places : places // ignore: cast_nullable_to_non_nullable
-as List<PlacesResult>?,topStories: freezed == topStories ? _self._topStories : topStories // ignore: cast_nullable_to_non_nullable
-as List<TopStoriesResult>?,twitter: freezed == twitter ? _self._twitter : twitter // ignore: cast_nullable_to_non_nullable
-as List<TwitterResult>?,images: freezed == images ? _self._images : images // ignore: cast_nullable_to_non_nullable
-as List<ImagesResult>?,localResults: freezed == localResults ? _self._localResults : localResults // ignore: cast_nullable_to_non_nullable
-as List<LocalResultsResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<PeopleAlsoAskResult>?,topStories: freezed == topStories ? _self._topStories : topStories // ignore: cast_nullable_to_non_nullable
+as List<TopStoriesResult>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -384,8 +340,7 @@ mixin _$ImagesResponse {
  ImagesQuery get searchParameters;/// List of image results returned by the API
 ///
 /// Contains all the image results that match the search query.
- List<ImageResult> get images;/// {@macro flutter_serper.responses.knowledgeGraph}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
+ List<ImageResult> get images;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -399,16 +354,16 @@ $ImagesResponseCopyWith<ImagesResponse> get copyWith => _$ImagesResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImagesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.images, images)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImagesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.images, images)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(images),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(images),credits);
 
 @override
 String toString() {
-  return 'ImagesResponse(searchParameters: $searchParameters, images: $images, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'ImagesResponse(searchParameters: $searchParameters, images: $images, credits: $credits)';
 }
 
 
@@ -419,11 +374,11 @@ abstract mixin class $ImagesResponseCopyWith<$Res>  {
   factory $ImagesResponseCopyWith(ImagesResponse value, $Res Function(ImagesResponse) _then) = _$ImagesResponseCopyWithImpl;
 @useResult
 $Res call({
- ImagesQuery searchParameters, List<ImageResult> images, KnowledgeGraphResult? knowledgeGraph, int credits
+ ImagesQuery searchParameters, List<ImageResult> images, int credits
 });
 
 
-$ImagesQueryCopyWith<$Res> get searchParameters;$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+$ImagesQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -436,12 +391,11 @@ class _$ImagesResponseCopyWithImpl<$Res>
 
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? images = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? images = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ImagesQuery,images: null == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
-as List<ImageResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<ImageResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -454,18 +408,6 @@ $ImagesQueryCopyWith<$Res> get searchParameters {
   return $ImagesQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of ImagesResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -474,7 +416,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _ImagesResponse extends ImagesResponse {
-  const _ImagesResponse({required this.searchParameters, required final  List<ImageResult> images, this.knowledgeGraph, required this.credits}): _images = images,super._();
+  const _ImagesResponse({required this.searchParameters, required final  List<ImageResult> images, required this.credits}): _images = images,super._();
   factory _ImagesResponse.fromJson(Map<String, dynamic> json) => _$ImagesResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -492,8 +434,6 @@ class _ImagesResponse extends ImagesResponse {
   return EqualUnmodifiableListView(_images);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGraph}
-@override final  KnowledgeGraphResult? knowledgeGraph;
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -510,16 +450,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImagesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._images, _images)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImagesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._images, _images)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_images),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_images),credits);
 
 @override
 String toString() {
-  return 'ImagesResponse(searchParameters: $searchParameters, images: $images, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'ImagesResponse(searchParameters: $searchParameters, images: $images, credits: $credits)';
 }
 
 
@@ -530,11 +470,11 @@ abstract mixin class _$ImagesResponseCopyWith<$Res> implements $ImagesResponseCo
   factory _$ImagesResponseCopyWith(_ImagesResponse value, $Res Function(_ImagesResponse) _then) = __$ImagesResponseCopyWithImpl;
 @override @useResult
 $Res call({
- ImagesQuery searchParameters, List<ImageResult> images, KnowledgeGraphResult? knowledgeGraph, int credits
+ ImagesQuery searchParameters, List<ImageResult> images, int credits
 });
 
 
-@override $ImagesQueryCopyWith<$Res> get searchParameters;@override $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+@override $ImagesQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -547,12 +487,11 @@ class __$ImagesResponseCopyWithImpl<$Res>
 
 /// Create a copy of ImagesResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? images = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? images = null,Object? credits = null,}) {
   return _then(_ImagesResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ImagesQuery,images: null == images ? _self._images : images // ignore: cast_nullable_to_non_nullable
-as List<ImageResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<ImageResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -566,18 +505,6 @@ $ImagesQueryCopyWith<$Res> get searchParameters {
   return $ImagesQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of ImagesResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -589,8 +516,7 @@ mixin _$PlacesResponse {
  PlacesQuery get searchParameters;/// List of place results returned by the API
 ///
 /// Contains places that match the search query.
- List<PlaceResult> get places;/// {@macro flutter_serper.responses.knowledgeGraph}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
+ List<PlaceResult> get places;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -604,16 +530,16 @@ $PlacesResponseCopyWith<PlacesResponse> get copyWith => _$PlacesResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.places, places)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlacesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.places, places)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(places),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(places),credits);
 
 @override
 String toString() {
-  return 'PlacesResponse(searchParameters: $searchParameters, places: $places, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'PlacesResponse(searchParameters: $searchParameters, places: $places, credits: $credits)';
 }
 
 
@@ -624,11 +550,11 @@ abstract mixin class $PlacesResponseCopyWith<$Res>  {
   factory $PlacesResponseCopyWith(PlacesResponse value, $Res Function(PlacesResponse) _then) = _$PlacesResponseCopyWithImpl;
 @useResult
 $Res call({
- PlacesQuery searchParameters, List<PlaceResult> places, KnowledgeGraphResult? knowledgeGraph, int credits
+ PlacesQuery searchParameters, List<PlaceResult> places, int credits
 });
 
 
-$PlacesQueryCopyWith<$Res> get searchParameters;$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+$PlacesQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -641,12 +567,11 @@ class _$PlacesResponseCopyWithImpl<$Res>
 
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? places = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? places = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as PlacesQuery,places: null == places ? _self.places : places // ignore: cast_nullable_to_non_nullable
-as List<PlaceResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<PlaceResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -659,18 +584,6 @@ $PlacesQueryCopyWith<$Res> get searchParameters {
   return $PlacesQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of PlacesResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -679,7 +592,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _PlacesResponse extends PlacesResponse {
-  const _PlacesResponse({required this.searchParameters, required final  List<PlaceResult> places, this.knowledgeGraph, required this.credits}): _places = places,super._();
+  const _PlacesResponse({required this.searchParameters, required final  List<PlaceResult> places, required this.credits}): _places = places,super._();
   factory _PlacesResponse.fromJson(Map<String, dynamic> json) => _$PlacesResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -697,8 +610,6 @@ class _PlacesResponse extends PlacesResponse {
   return EqualUnmodifiableListView(_places);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGraph}
-@override final  KnowledgeGraphResult? knowledgeGraph;
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -715,16 +626,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._places, _places)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlacesResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._places, _places)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_places),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_places),credits);
 
 @override
 String toString() {
-  return 'PlacesResponse(searchParameters: $searchParameters, places: $places, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'PlacesResponse(searchParameters: $searchParameters, places: $places, credits: $credits)';
 }
 
 
@@ -735,11 +646,11 @@ abstract mixin class _$PlacesResponseCopyWith<$Res> implements $PlacesResponseCo
   factory _$PlacesResponseCopyWith(_PlacesResponse value, $Res Function(_PlacesResponse) _then) = __$PlacesResponseCopyWithImpl;
 @override @useResult
 $Res call({
- PlacesQuery searchParameters, List<PlaceResult> places, KnowledgeGraphResult? knowledgeGraph, int credits
+ PlacesQuery searchParameters, List<PlaceResult> places, int credits
 });
 
 
-@override $PlacesQueryCopyWith<$Res> get searchParameters;@override $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+@override $PlacesQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -752,12 +663,11 @@ class __$PlacesResponseCopyWithImpl<$Res>
 
 /// Create a copy of PlacesResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? places = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? places = null,Object? credits = null,}) {
   return _then(_PlacesResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as PlacesQuery,places: null == places ? _self._places : places // ignore: cast_nullable_to_non_nullable
-as List<PlaceResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<PlaceResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -771,18 +681,6 @@ $PlacesQueryCopyWith<$Res> get searchParameters {
   return $PlacesQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of PlacesResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -794,8 +692,9 @@ mixin _$VideosResponse {
  VideosQuery get searchParameters;/// List of video results returned by the API
 ///
 /// Contains videos that match the search query.
- List<VideoResult> get videos;/// {@macro flutter_serper.responses.knowledgeGraph}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
+ List<VideoResult> get videos;// /// {@macro flutter_serper.responses.knowledgeGraph}
+// KnowledgeGraphResult? knowledgeGraph,
+/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -809,16 +708,16 @@ $VideosResponseCopyWith<VideosResponse> get copyWith => _$VideosResponseCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideosResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.videos, videos)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideosResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.videos, videos)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(videos),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(videos),credits);
 
 @override
 String toString() {
-  return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, credits: $credits)';
 }
 
 
@@ -829,11 +728,11 @@ abstract mixin class $VideosResponseCopyWith<$Res>  {
   factory $VideosResponseCopyWith(VideosResponse value, $Res Function(VideosResponse) _then) = _$VideosResponseCopyWithImpl;
 @useResult
 $Res call({
- VideosQuery searchParameters, List<VideoResult> videos, KnowledgeGraphResult? knowledgeGraph, int credits
+ VideosQuery searchParameters, List<VideoResult> videos, int credits
 });
 
 
-$VideosQueryCopyWith<$Res> get searchParameters;$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+$VideosQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -846,12 +745,11 @@ class _$VideosResponseCopyWithImpl<$Res>
 
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? videos = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? videos = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as VideosQuery,videos: null == videos ? _self.videos : videos // ignore: cast_nullable_to_non_nullable
-as List<VideoResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<VideoResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -864,18 +762,6 @@ $VideosQueryCopyWith<$Res> get searchParameters {
   return $VideosQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of VideosResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -884,7 +770,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _VideosResponse extends VideosResponse {
-  const _VideosResponse({required this.searchParameters, required final  List<VideoResult> videos, this.knowledgeGraph, required this.credits}): _videos = videos,super._();
+  const _VideosResponse({required this.searchParameters, required final  List<VideoResult> videos, required this.credits}): _videos = videos,super._();
   factory _VideosResponse.fromJson(Map<String, dynamic> json) => _$VideosResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -902,8 +788,8 @@ class _VideosResponse extends VideosResponse {
   return EqualUnmodifiableListView(_videos);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGraph}
-@override final  KnowledgeGraphResult? knowledgeGraph;
+// /// {@macro flutter_serper.responses.knowledgeGraph}
+// KnowledgeGraphResult? knowledgeGraph,
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -920,16 +806,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideosResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._videos, _videos)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VideosResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._videos, _videos)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_videos),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_videos),credits);
 
 @override
 String toString() {
-  return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'VideosResponse(searchParameters: $searchParameters, videos: $videos, credits: $credits)';
 }
 
 
@@ -940,11 +826,11 @@ abstract mixin class _$VideosResponseCopyWith<$Res> implements $VideosResponseCo
   factory _$VideosResponseCopyWith(_VideosResponse value, $Res Function(_VideosResponse) _then) = __$VideosResponseCopyWithImpl;
 @override @useResult
 $Res call({
- VideosQuery searchParameters, List<VideoResult> videos, KnowledgeGraphResult? knowledgeGraph, int credits
+ VideosQuery searchParameters, List<VideoResult> videos, int credits
 });
 
 
-@override $VideosQueryCopyWith<$Res> get searchParameters;@override $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+@override $VideosQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -957,12 +843,11 @@ class __$VideosResponseCopyWithImpl<$Res>
 
 /// Create a copy of VideosResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? videos = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? videos = null,Object? credits = null,}) {
   return _then(_VideosResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as VideosQuery,videos: null == videos ? _self._videos : videos // ignore: cast_nullable_to_non_nullable
-as List<VideoResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<VideoResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -975,18 +860,6 @@ $VideosQueryCopyWith<$Res> get searchParameters {
   
   return $VideosQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
-  });
-}/// Create a copy of VideosResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
   });
 }
 }
@@ -1184,7 +1057,8 @@ mixin _$ReviewsResponse {
  ReviewsQuery get searchParameters;/// List of place reviews returned by the API
 ///
 /// Contains reviews for the specified place.
- List<PlaceReview> get reviews;/// Token for fetching the next page of reviews
+ List<PlaceReview> get reviews;/// List of topics related to the reviews
+ List<PlaceReviewTopic> get topics;/// Token for fetching the next page of reviews
 ///
 /// If more reviews are available, this token can be used to fetch the next batch.
  String? get nextPageToken;/// {@macro flutter_serper.responses.credits}
@@ -1201,16 +1075,16 @@ $ReviewsResponseCopyWith<ReviewsResponse> get copyWith => _$ReviewsResponseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReviewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&const DeepCollectionEquality().equals(other.topics, topics)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(reviews),nextPageToken,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(reviews),const DeepCollectionEquality().hash(topics),nextPageToken,credits);
 
 @override
 String toString() {
-  return 'ReviewsResponse(searchParameters: $searchParameters, reviews: $reviews, nextPageToken: $nextPageToken, credits: $credits)';
+  return 'ReviewsResponse(searchParameters: $searchParameters, reviews: $reviews, topics: $topics, nextPageToken: $nextPageToken, credits: $credits)';
 }
 
 
@@ -1221,7 +1095,7 @@ abstract mixin class $ReviewsResponseCopyWith<$Res>  {
   factory $ReviewsResponseCopyWith(ReviewsResponse value, $Res Function(ReviewsResponse) _then) = _$ReviewsResponseCopyWithImpl;
 @useResult
 $Res call({
- ReviewsQuery searchParameters, List<PlaceReview> reviews, String? nextPageToken, int credits
+ ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic> topics, String? nextPageToken, int credits
 });
 
 
@@ -1238,11 +1112,12 @@ class _$ReviewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? reviews = null,Object? nextPageToken = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = null,Object? nextPageToken = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ReviewsQuery,reviews: null == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<PlaceReview>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as List<PlaceReview>,topics: null == topics ? _self.topics : topics // ignore: cast_nullable_to_non_nullable
+as List<PlaceReviewTopic>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
 as String?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -1264,7 +1139,7 @@ $ReviewsQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _ReviewsResponse extends ReviewsResponse {
-  const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, this.nextPageToken, required this.credits}): _reviews = reviews,super._();
+  const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, required final  List<PlaceReviewTopic> topics, this.nextPageToken, required this.credits}): _reviews = reviews,_topics = topics,super._();
   factory _ReviewsResponse.fromJson(Map<String, dynamic> json) => _$ReviewsResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -1280,6 +1155,15 @@ class _ReviewsResponse extends ReviewsResponse {
   if (_reviews is EqualUnmodifiableListView) return _reviews;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_reviews);
+}
+
+/// List of topics related to the reviews
+ final  List<PlaceReviewTopic> _topics;
+/// List of topics related to the reviews
+@override List<PlaceReviewTopic> get topics {
+  if (_topics is EqualUnmodifiableListView) return _topics;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_topics);
 }
 
 /// Token for fetching the next page of reviews
@@ -1302,16 +1186,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReviewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReviewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&const DeepCollectionEquality().equals(other._topics, _topics)&&(identical(other.nextPageToken, nextPageToken) || other.nextPageToken == nextPageToken)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_reviews),nextPageToken,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_reviews),const DeepCollectionEquality().hash(_topics),nextPageToken,credits);
 
 @override
 String toString() {
-  return 'ReviewsResponse(searchParameters: $searchParameters, reviews: $reviews, nextPageToken: $nextPageToken, credits: $credits)';
+  return 'ReviewsResponse(searchParameters: $searchParameters, reviews: $reviews, topics: $topics, nextPageToken: $nextPageToken, credits: $credits)';
 }
 
 
@@ -1322,7 +1206,7 @@ abstract mixin class _$ReviewsResponseCopyWith<$Res> implements $ReviewsResponse
   factory _$ReviewsResponseCopyWith(_ReviewsResponse value, $Res Function(_ReviewsResponse) _then) = __$ReviewsResponseCopyWithImpl;
 @override @useResult
 $Res call({
- ReviewsQuery searchParameters, List<PlaceReview> reviews, String? nextPageToken, int credits
+ ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic> topics, String? nextPageToken, int credits
 });
 
 
@@ -1339,11 +1223,12 @@ class __$ReviewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? reviews = null,Object? nextPageToken = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = null,Object? nextPageToken = freezed,Object? credits = null,}) {
   return _then(_ReviewsResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ReviewsQuery,reviews: null == reviews ? _self._reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<PlaceReview>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as List<PlaceReview>,topics: null == topics ? _self._topics : topics // ignore: cast_nullable_to_non_nullable
+as List<PlaceReviewTopic>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
 as String?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -1369,8 +1254,7 @@ mixin _$NewsResponse {
  NewsQuery get searchParameters;/// List of news results returned by the API
 ///
 /// Contains news articles that match the search query.
- List<NewsResult> get news;/// {@macro flutter_serper.responses.knowledgeGraph}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
+ List<NewsResult> get news;/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1384,16 +1268,16 @@ $NewsResponseCopyWith<NewsResponse> get copyWith => _$NewsResponseCopyWithImpl<N
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.news, news)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.news, news)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(news),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(news),credits);
 
 @override
 String toString() {
-  return 'NewsResponse(searchParameters: $searchParameters, news: $news, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'NewsResponse(searchParameters: $searchParameters, news: $news, credits: $credits)';
 }
 
 
@@ -1404,11 +1288,11 @@ abstract mixin class $NewsResponseCopyWith<$Res>  {
   factory $NewsResponseCopyWith(NewsResponse value, $Res Function(NewsResponse) _then) = _$NewsResponseCopyWithImpl;
 @useResult
 $Res call({
- NewsQuery searchParameters, List<NewsResult> news, KnowledgeGraphResult? knowledgeGraph, int credits
+ NewsQuery searchParameters, List<NewsResult> news, int credits
 });
 
 
-$NewsQueryCopyWith<$Res> get searchParameters;$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+$NewsQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1421,12 +1305,11 @@ class _$NewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? news = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? news = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as NewsQuery,news: null == news ? _self.news : news // ignore: cast_nullable_to_non_nullable
-as List<NewsResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<NewsResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1439,18 +1322,6 @@ $NewsQueryCopyWith<$Res> get searchParameters {
   return $NewsQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of NewsResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -1459,7 +1330,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _NewsResponse extends NewsResponse {
-  const _NewsResponse({required this.searchParameters, required final  List<NewsResult> news, this.knowledgeGraph, required this.credits}): _news = news,super._();
+  const _NewsResponse({required this.searchParameters, required final  List<NewsResult> news, required this.credits}): _news = news,super._();
   factory _NewsResponse.fromJson(Map<String, dynamic> json) => _$NewsResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -1477,8 +1348,6 @@ class _NewsResponse extends NewsResponse {
   return EqualUnmodifiableListView(_news);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGraph}
-@override final  KnowledgeGraphResult? knowledgeGraph;
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -1495,16 +1364,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._news, _news)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewsResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._news, _news)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_news),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_news),credits);
 
 @override
 String toString() {
-  return 'NewsResponse(searchParameters: $searchParameters, news: $news, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'NewsResponse(searchParameters: $searchParameters, news: $news, credits: $credits)';
 }
 
 
@@ -1515,11 +1384,11 @@ abstract mixin class _$NewsResponseCopyWith<$Res> implements $NewsResponseCopyWi
   factory _$NewsResponseCopyWith(_NewsResponse value, $Res Function(_NewsResponse) _then) = __$NewsResponseCopyWithImpl;
 @override @useResult
 $Res call({
- NewsQuery searchParameters, List<NewsResult> news, KnowledgeGraphResult? knowledgeGraph, int credits
+ NewsQuery searchParameters, List<NewsResult> news, int credits
 });
 
 
-@override $NewsQueryCopyWith<$Res> get searchParameters;@override $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+@override $NewsQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1532,12 +1401,11 @@ class __$NewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of NewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? news = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? news = null,Object? credits = null,}) {
   return _then(_NewsResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as NewsQuery,news: null == news ? _self._news : news // ignore: cast_nullable_to_non_nullable
-as List<NewsResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<NewsResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1551,18 +1419,6 @@ $NewsQueryCopyWith<$Res> get searchParameters {
   return $NewsQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of NewsResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -1574,8 +1430,9 @@ mixin _$ShoppingResponse {
  ShoppingQuery get searchParameters;/// List of shopping results returned by the API
 ///
 /// Contains products that match the search query.
- List<ShoppingResult> get shopping;/// {@macro flutter_serper.responses.knowledgeGraph}
- KnowledgeGraphResult? get knowledgeGraph;/// {@macro flutter_serper.responses.credits}
+ List<ShoppingResult> get shopping;// /// {@macro flutter_serper.responses.knowledgeGraph}
+// KnowledgeGraphResult? knowledgeGraph,
+/// {@macro flutter_serper.responses.credits}
  int get credits;
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -1589,16 +1446,16 @@ $ShoppingResponseCopyWith<ShoppingResponse> get copyWith => _$ShoppingResponseCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.shopping, shopping)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other.shopping, shopping)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(shopping),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(shopping),credits);
 
 @override
 String toString() {
-  return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, credits: $credits)';
 }
 
 
@@ -1609,11 +1466,11 @@ abstract mixin class $ShoppingResponseCopyWith<$Res>  {
   factory $ShoppingResponseCopyWith(ShoppingResponse value, $Res Function(ShoppingResponse) _then) = _$ShoppingResponseCopyWithImpl;
 @useResult
 $Res call({
- ShoppingQuery searchParameters, List<ShoppingResult> shopping, KnowledgeGraphResult? knowledgeGraph, int credits
+ ShoppingQuery searchParameters, List<ShoppingResult> shopping, int credits
 });
 
 
-$ShoppingQueryCopyWith<$Res> get searchParameters;$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+$ShoppingQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1626,12 +1483,11 @@ class _$ShoppingResponseCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? shopping = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? shopping = null,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ShoppingQuery,shopping: null == shopping ? _self.shopping : shopping // ignore: cast_nullable_to_non_nullable
-as List<ShoppingResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<ShoppingResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1644,18 +1500,6 @@ $ShoppingQueryCopyWith<$Res> get searchParameters {
   return $ShoppingQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
   });
-}/// Create a copy of ShoppingResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
-  });
 }
 }
 
@@ -1664,7 +1508,7 @@ $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
 @JsonSerializable()
 
 class _ShoppingResponse extends ShoppingResponse {
-  const _ShoppingResponse({required this.searchParameters, required final  List<ShoppingResult> shopping, this.knowledgeGraph, required this.credits}): _shopping = shopping,super._();
+  const _ShoppingResponse({required this.searchParameters, required final  List<ShoppingResult> shopping, required this.credits}): _shopping = shopping,super._();
   factory _ShoppingResponse.fromJson(Map<String, dynamic> json) => _$ShoppingResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -1682,8 +1526,8 @@ class _ShoppingResponse extends ShoppingResponse {
   return EqualUnmodifiableListView(_shopping);
 }
 
-/// {@macro flutter_serper.responses.knowledgeGraph}
-@override final  KnowledgeGraphResult? knowledgeGraph;
+// /// {@macro flutter_serper.responses.knowledgeGraph}
+// KnowledgeGraphResult? knowledgeGraph,
 /// {@macro flutter_serper.responses.credits}
 @override final  int credits;
 
@@ -1700,16 +1544,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._shopping, _shopping)&&(identical(other.knowledgeGraph, knowledgeGraph) || other.knowledgeGraph == knowledgeGraph)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingResponse&&(identical(other.searchParameters, searchParameters) || other.searchParameters == searchParameters)&&const DeepCollectionEquality().equals(other._shopping, _shopping)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_shopping),knowledgeGraph,credits);
+int get hashCode => Object.hash(runtimeType,searchParameters,const DeepCollectionEquality().hash(_shopping),credits);
 
 @override
 String toString() {
-  return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, knowledgeGraph: $knowledgeGraph, credits: $credits)';
+  return 'ShoppingResponse(searchParameters: $searchParameters, shopping: $shopping, credits: $credits)';
 }
 
 
@@ -1720,11 +1564,11 @@ abstract mixin class _$ShoppingResponseCopyWith<$Res> implements $ShoppingRespon
   factory _$ShoppingResponseCopyWith(_ShoppingResponse value, $Res Function(_ShoppingResponse) _then) = __$ShoppingResponseCopyWithImpl;
 @override @useResult
 $Res call({
- ShoppingQuery searchParameters, List<ShoppingResult> shopping, KnowledgeGraphResult? knowledgeGraph, int credits
+ ShoppingQuery searchParameters, List<ShoppingResult> shopping, int credits
 });
 
 
-@override $ShoppingQueryCopyWith<$Res> get searchParameters;@override $KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph;
+@override $ShoppingQueryCopyWith<$Res> get searchParameters;
 
 }
 /// @nodoc
@@ -1737,12 +1581,11 @@ class __$ShoppingResponseCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? shopping = null,Object? knowledgeGraph = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? shopping = null,Object? credits = null,}) {
   return _then(_ShoppingResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ShoppingQuery,shopping: null == shopping ? _self._shopping : shopping // ignore: cast_nullable_to_non_nullable
-as List<ShoppingResult>,knowledgeGraph: freezed == knowledgeGraph ? _self.knowledgeGraph : knowledgeGraph // ignore: cast_nullable_to_non_nullable
-as KnowledgeGraphResult?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as List<ShoppingResult>,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1755,18 +1598,6 @@ $ShoppingQueryCopyWith<$Res> get searchParameters {
   
   return $ShoppingQueryCopyWith<$Res>(_self.searchParameters, (value) {
     return _then(_self.copyWith(searchParameters: value));
-  });
-}/// Create a copy of ShoppingResponse
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$KnowledgeGraphResultCopyWith<$Res>? get knowledgeGraph {
-    if (_self.knowledgeGraph == null) {
-    return null;
-  }
-
-  return $KnowledgeGraphResultCopyWith<$Res>(_self.knowledgeGraph!, (value) {
-    return _then(_self.copyWith(knowledgeGraph: value));
   });
 }
 }

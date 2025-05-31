@@ -15,9 +15,6 @@ abstract class NewsResponse extends SerperResponse<NewsQuery>
     /// Contains news articles that match the search query.
     required List<NewsResult> news,
 
-    /// {@macro flutter_serper.responses.knowledgeGraph}
-    KnowledgeGraphResult? knowledgeGraph,
-
     /// {@macro flutter_serper.responses.credits}
     required int credits,
   }) = _NewsResponse;

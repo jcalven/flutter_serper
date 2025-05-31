@@ -29,6 +29,18 @@ abstract class ShoppingResult with _$ShoppingResult {
 
     /// {@macro flutter_serper.results.position}
     required int position,
+
+    /// Product rating (e.g., 4.5).
+    double? rating,
+
+    /// Number of ratings or reviews.
+    int? ratingCount,
+
+    /// List of offers for the product.
+    List<dynamic>? offers,
+
+    /// Unique product identifier.
+    String? productId,
   }) = _ShoppingResult;
 
   /// Creates a [ShoppingResult] from a JSON map.

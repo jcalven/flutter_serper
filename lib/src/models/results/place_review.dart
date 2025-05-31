@@ -5,33 +5,29 @@ part of 'results.dart';
 abstract class PlaceReview with _$PlaceReview {
   /// Creates a [PlaceReview].
   const factory PlaceReview({
-    /// The name of the review author.
-    required String author,
-
-    /// The URL to the author's profile.
-    required String authorUrl,
-
-    /// The text content of the review.
-    ///
-    /// Contains the user's feedback about the place.
-    required String text,
-
-    /// {@macro flutter_serper.results.rating}
+    /// The rating given in the review.
     required double rating,
 
-    /// {@macro flutter_serper.results.date}
+    /// The relative date string (e.g., "a month ago").
     required String date,
+
+    /// The ISO 8601 date string.
+    String? isoDate,
+
+    /// The main snippet/content of the review.
+    String? snippet,
+
+    /// The number of likes/upvotes for the review.
+    int? likes,
+
+    /// The user who wrote the review.
+    required PlaceReviewUser user,
+
+    /// The business's response to the review, if any.
+    PlaceReviewResponse? response,
 
     /// The unique identifier for this review.
     String? id,
-
-    /// Whether the author is a Google Local Guide.
-    ///
-    /// Local Guides are trusted reviewers in the Google Maps community.
-    bool? isLocalGuide,
-
-    /// {@macro flutter_serper.results.position}
-    required int position,
   }) = _PlaceReview;
 
   /// Creates a [PlaceReview] from a JSON map.

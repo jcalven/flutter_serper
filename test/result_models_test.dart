@@ -9,15 +9,15 @@ void main() {
         'title': 'Test Result',
         'link': 'https://example.com',
         'snippet': 'This is a test result',
-        'position': 1,
         'date': '2 hours ago',
+        'rating': 4.5,
+        'ratingCount': 100,
         'imageUrl': 'https://example.com/image.jpg',
+        'position': 1,
         'sitelinks': [
           {'title': 'Sublink 1', 'link': 'https://example.com/sublink1'},
           {'title': 'Sublink 2', 'link': 'https://example.com/sublink2'},
         ],
-        'rating': 4.5, // Added based on model
-        'ratingCount': 100, // Added based on model
       };
 
       // Act
@@ -27,21 +27,18 @@ void main() {
       expect(result.title, equals('Test Result'));
       expect(result.link, equals('https://example.com'));
       expect(result.snippet, equals('This is a test result'));
-      expect(result.position, equals(1));
       expect(result.date, equals('2 hours ago'));
+      expect(result.rating, equals(4.5));
+      expect(result.ratingCount, equals(100));
       expect(result.imageUrl, equals('https://example.com/image.jpg'));
+      expect(result.position, equals(1));
+      expect(result.sitelinks, isNotNull);
       expect(result.sitelinks!.length, equals(2));
-      // Assuming sitelinks are List<Map<String, dynamic>> as per results.g.dart for OrganicResult
+      expect(result.sitelinks!.first.title, equals('Sublink 1'));
       expect(
-        (result.sitelinks!.first as Map<String, dynamic>)['title'],
-        equals('Sublink 1'),
-      );
-      expect(
-        (result.sitelinks!.first as Map<String, dynamic>)['link'],
+        result.sitelinks!.first.link,
         equals('https://example.com/sublink1'),
       );
-      expect(result.rating, equals(4.5)); // Added
-      expect(result.ratingCount, equals(100)); // Added
     });
 
     test('ImageResult deserializes from JSON correctly', () {
@@ -51,10 +48,16 @@ void main() {
         'imageUrl': 'https://example.com/image.jpg',
         'thumbnailUrl': 'https://example.com/thumbnail.jpg',
         'source': 'Example Source',
-        'sourceUrl': 'https://example.com',
+        'link': 'https://example.com/image',
+        'googleUrl':
+            'https://google.com/imgres?imgurl=https://example.com/image.jpg',
+        'price': '\$10',
+        'domain': 'example.com',
+        'imageWidth': 800,
+        'imageHeight': 600,
+        'thumbnailWidth': 200,
+        'thumbnailHeight': 150,
         'position': 1,
-        'price': '\$10', // Corrected escaping
-        'domain': 'example.com', // Added based on model
       };
 
       // Act
@@ -65,11 +68,20 @@ void main() {
       expect(result.imageUrl, equals('https://example.com/image.jpg'));
       expect(result.thumbnailUrl, equals('https://example.com/thumbnail.jpg'));
       expect(result.source, equals('Example Source'));
-      expect(result.sourceUrl, equals('https://example.com'));
+      expect(result.link, equals('https://example.com/image'));
+      expect(
+        result.googleUrl,
+        equals(
+          'https://google.com/imgres?imgurl=https://example.com/image.jpg',
+        ),
+      );
+      expect(result.price, equals('\$10'));
+      expect(result.domain, equals('example.com'));
+      expect(result.imageWidth, equals(800));
+      expect(result.imageHeight, equals(600));
+      expect(result.thumbnailWidth, equals(200));
+      expect(result.thumbnailHeight, equals(150));
       expect(result.position, equals(1));
-      expect(result.price, equals('\$10')); // Corrected escaping
-      expect(result.domain, equals('example.com')); // Added
-      // Removed imageWidth, imageHeight as they are not in the model
     });
 
     test('KnowledgeGraphResult deserializes from JSON correctly', () {
@@ -78,10 +90,17 @@ void main() {
         'title': 'Test Entity',
         'type': 'Person',
         'description': 'This is a test entity',
-        'attributes': {'Born': 'January 1, 1980', 'Occupation': 'Engineer'},
+        'attributes': {
+          'lifespan': '80 years',
+          'gestationPeriod': '9 months',
+          'collectiveNoun': 'group',
+          'dailySleep': '8 hours',
+          'biologicalClass': 'Mammal',
+          'domain': 'Eukaryote',
+        },
         'imageUrl': 'https://example.com/entity.jpg',
-        'descriptionLink': 'https://example.com/desc_link', // Added
-        'descriptionSource': 'TestSource', // Added
+        'descriptionLink': 'https://example.com/desc_link',
+        'descriptionSource': 'TestSource',
       };
 
       // Act
@@ -91,14 +110,16 @@ void main() {
       expect(result.title, equals('Test Entity'));
       expect(result.type, equals('Person'));
       expect(result.description, equals('This is a test entity'));
-      expect(result.attributes!['Born'], equals('January 1, 1980'));
-      expect(result.attributes!['Occupation'], equals('Engineer'));
+      expect(result.attributes, isNotNull);
+      expect(result.attributes!.lifespan, equals('80 years'));
+      expect(result.attributes!.gestationPeriod, equals('9 months'));
+      expect(result.attributes!.collectiveNoun, equals('group'));
+      expect(result.attributes!.dailySleep, equals('8 hours'));
+      expect(result.attributes!.biologicalClass, equals('Mammal'));
+      expect(result.attributes!.domain, equals('Eukaryote'));
       expect(result.imageUrl, equals('https://example.com/entity.jpg'));
-      expect(
-        result.descriptionLink,
-        equals('https://example.com/desc_link'),
-      ); // Added
-      expect(result.descriptionSource, equals('TestSource')); // Added
+      expect(result.descriptionLink, equals('https://example.com/desc_link'));
+      expect(result.descriptionSource, equals('TestSource'));
     });
 
     test('PeopleAlsoAskResult deserializes from JSON correctly', () {
@@ -146,14 +167,12 @@ void main() {
         'title': 'Test Video',
         'link': 'https://example.com/video',
         'source': 'Example Channel',
-        'thumbnailUrl':
-            'https://example.com/thumbnail.jpg', // Renamed from thumbnail
+        'imageUrl': 'https://example.com/thumbnail.jpg',
         'position': 1,
         'date': '2 days ago',
         'duration': '10:30',
-        'viewCount': 1000000, // Renamed from views and changed to int
-        'snippet': 'A test video snippet', // Added
-        'channelLink': 'https://example.com/channel', // Added
+        'snippet': 'A test video snippet',
+        'channel': 'Chef John',
       };
 
       // Act
@@ -163,19 +182,12 @@ void main() {
       expect(result.title, equals('Test Video'));
       expect(result.link, equals('https://example.com/video'));
       expect(result.source, equals('Example Channel'));
-      expect(
-        result.thumbnailUrl,
-        equals('https://example.com/thumbnail.jpg'),
-      ); // Renamed
+      expect(result.imageUrl, equals('https://example.com/thumbnail.jpg'));
       expect(result.position, equals(1));
       expect(result.date, equals('2 days ago'));
       expect(result.duration, equals('10:30'));
-      expect(result.viewCount, equals(1000000)); // Renamed
-      expect(result.snippet, equals('A test video snippet')); // Added
-      expect(
-        result.channelLink,
-        equals('https://example.com/channel'),
-      ); // Added
+      expect(result.snippet, equals('A test video snippet'));
+      expect(result.channel, equals('Chef John'));
     });
 
     test('NewsResult deserializes from JSON correctly', () {
@@ -296,12 +308,14 @@ void main() {
     final Map<String, dynamic> placeResultJson = {
       'title': 'Test Place',
       'address': '123 Test St',
-      'phone': '555-1234',
+      'latitude': 40.0,
+      'longitude': -75.0,
+      'phoneNumber': '555-1234',
       'website': 'http://example.com/place',
       'rating': 4.0,
       'reviewCount': 50,
-      'type': 'Restaurant',
-      'priceLevel': '\$\$', // Corrected escaping for priceLevel
+      'category': 'Restaurant',
+      'priceLevel': '\$\$',
       'openingHours': ['Mon: 9-5', 'Tue: 9-5'],
       'cid': 'test_cid',
       'position': 1,
@@ -311,12 +325,14 @@ void main() {
       final result = PlaceResult.fromJson(placeResultJson);
       expect(result.title, equals('Test Place'));
       expect(result.address, equals('123 Test St'));
-      expect(result.phone, equals('555-1234'));
+      expect(result.latitude, equals(40.0));
+      expect(result.longitude, equals(-75.0));
+      expect(result.phoneNumber, equals('555-1234'));
       expect(result.website, equals('http://example.com/place'));
       expect(result.rating, equals(4.0));
       expect(result.reviewCount, equals(50));
       expect(result.type, equals('Restaurant'));
-      expect(result.priceLevel, equals('\$\$')); // Corrected escaping
+      expect(result.priceLevel, equals('\$\$'));
       expect(result.openingHours, equals(['Mon: 9-5', 'Tue: 9-5']));
       expect(result.cid, equals('test_cid'));
       expect(result.position, equals(1));
@@ -327,12 +343,14 @@ void main() {
       final json = result.toJson();
       expect(json['title'], equals('Test Place'));
       expect(json['address'], equals('123 Test St'));
-      expect(json['phone'], equals('555-1234'));
+      expect(json['latitude'], equals(40.0));
+      expect(json['longitude'], equals(-75.0));
+      expect(json['phoneNumber'], equals('555-1234'));
       expect(json['website'], equals('http://example.com/place'));
       expect(json['rating'], equals(4.0));
       expect(json['reviewCount'], equals(50));
-      expect(json['type'], equals('Restaurant'));
-      expect(json['priceLevel'], equals('\$\$')); // Corrected escaping
+      expect(json['category'], equals('Restaurant'));
+      expect(json['priceLevel'], equals('\$\$'));
       expect(json['openingHours'], equals(['Mon: 9-5', 'Tue: 9-5']));
       expect(json['cid'], equals('test_cid'));
       expect(json['position'], equals(1));

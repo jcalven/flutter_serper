@@ -66,7 +66,7 @@ abstract class OrganicResult with _$OrganicResult {
     ///
     /// These are subcategory links that provide direct access to different
     /// sections of the website.
-    dynamic sitelinks,
+    List<OrganicSitelink>? sitelinks,
   }) = _OrganicResult;
 
   /// Creates an [OrganicResult] from a JSON map.

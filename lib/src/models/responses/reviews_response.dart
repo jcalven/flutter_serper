@@ -15,6 +15,9 @@ abstract class ReviewsResponse extends SerperResponse<ReviewsQuery>
     /// Contains reviews for the specified place.
     required List<PlaceReview> reviews,
 
+    /// List of topics related to the reviews
+    required List<PlaceReviewTopic> topics,
+
     /// Token for fetching the next page of reviews
     ///
     /// If more reviews are available, this token can be used to fetch the next batch.

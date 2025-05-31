@@ -114,13 +114,9 @@ void main() {
         expect(result, isA<VideoResult>());
         expect(result.title, equals('Test Video'));
         expect(result.link, equals('https://example.com/video'));
-        expect(
-          result.thumbnailUrl,
-          equals('https://example.com/thumbnail.jpg'),
-        );
+        expect(result.imageUrl, equals('https://example.com/thumbnail.jpg'));
         expect(result.position, equals(1));
         expect(result.duration, isNull);
-        expect(result.viewCount, isNull);
       });
 
       test('NewsResult handles minimal JSON data', () {

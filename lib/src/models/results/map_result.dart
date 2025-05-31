@@ -21,9 +21,6 @@ abstract class MapResult with _$MapResult {
     /// {@macro flutter_serper.results.rating}
     double? rating,
 
-    // /// {@macro flutter_serper.results.reviewCount}
-    // required int reviewCount, // Remove, field is not used
-
     /// The number of ratings for this place.
     int? ratingCount,
 
@@ -40,7 +37,9 @@ abstract class MapResult with _$MapResult {
     /// The types/categories of the place (multiple).
     required List<String> types,
 
+    /// {@template flutter_serper.results.phoneNumber}
     /// The phone number of the place.
+    /// {@endtemplate}
     String? phoneNumber,
 
     /// The URL of the place's website.

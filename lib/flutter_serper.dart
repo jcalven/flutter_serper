@@ -3,4 +3,5 @@
 export 'src/flutter_serper_base.dart';
 export 'src/models/queries/queries.dart';
 export 'src/models/responses/responses.dart';
+export 'src/models/utils/lat_lng.dart';
 export 'src/utils.dart';

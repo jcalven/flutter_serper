@@ -26,6 +26,10 @@ abstract class WebpageResult with _$WebpageResult {
     /// Additional metadata about the webpage.
     ///
     /// May include information like title, description, author, etc.
+    ///
+    /// Note: This field is not strongly typed since the metadata structure
+    /// can vary widely between different webpages and the meta tags are not
+    /// standardized.
     Map<String, dynamic>? metadata,
 
     /// The number of credits used for extracting this webpage.

@@ -15,12 +15,24 @@ abstract class ImageResult with _$ImageResult {
     /// {@endtemplate}
     String? imageUrl,
 
+    /// The width of the full-size image in pixels.
+    int? imageWidth,
+
+    /// The height of the full-size image in pixels.
+    int? imageHeight,
+
     /// {@template flutter_serper.results.thumbnailUrl}
     /// The URL to a thumbnail version of the image.
     ///
     /// This URL can be used to display a smaller, preview version of the image.
     /// {@endtemplate}
     String? thumbnailUrl,
+
+    /// The width of the thumbnail image in pixels.
+    int? thumbnailWidth,
+
+    /// The height of the thumbnail image in pixels.
+    int? thumbnailHeight,
 
     /// {@template flutter_serper.results.source}
     /// The source or provider of the result.
@@ -29,12 +41,11 @@ abstract class ImageResult with _$ImageResult {
     /// {@endtemplate}
     String? source,
 
-    /// {@template flutter_serper.results.sourceUrl}
-    /// The URL of the source where the result originated.
-    ///
-    /// Can be used to navigate to the original source of the content.
-    /// {@endtemplate}
-    String? sourceUrl,
+    /// {@macro flutter_serper.results.link}
+    String? link,
+
+    /// The Google Images result URL for this image.
+    String? googleUrl,
 
     /// {@template flutter_serper.results.price}
     /// The price associated with the result.

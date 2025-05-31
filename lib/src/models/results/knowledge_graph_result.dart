@@ -22,7 +22,7 @@ abstract class KnowledgeGraphResult with _$KnowledgeGraphResult {
     /// Additional attributes associated with this entity.
     ///
     /// This is a map of key-value pairs containing various facts about the entity.
-    Map<String, dynamic>? attributes,
+    KnowledgeGraphAttributes? attributes,
 
     /// A description of the entity.
     ///

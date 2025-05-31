@@ -170,7 +170,7 @@ void main() {
         equals('https://example.com/thumbnail.jpg'),
       );
       expect(response.images.first.source, equals('Example Source'));
-      expect(response.images.first.sourceUrl, equals('https://example.com'));
+      expect(response.images.first.link, equals('https://example.com'));
       expect(response.images.first.position, equals(1));
       expect(response.credits, equals(1));
     });

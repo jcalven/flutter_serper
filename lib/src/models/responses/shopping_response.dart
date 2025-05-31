@@ -15,8 +15,8 @@ abstract class ShoppingResponse extends SerperResponse<ShoppingQuery>
     /// Contains products that match the search query.
     required List<ShoppingResult> shopping,
 
-    /// {@macro flutter_serper.responses.knowledgeGraph}
-    KnowledgeGraphResult? knowledgeGraph,
+    // /// {@macro flutter_serper.responses.knowledgeGraph}
+    // KnowledgeGraphResult? knowledgeGraph,
 
     /// {@macro flutter_serper.responses.credits}
     required int credits,

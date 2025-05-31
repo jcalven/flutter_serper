@@ -36,30 +36,30 @@ abstract class SearchResponse extends SerperResponse<SearchQuery>
     /// Contains common questions related to the search query.
     List<PeopleAlsoAskResult>? peopleAlsoAsk,
 
-    /// List of place results, if any
-    ///
-    /// Shown when the search query is related to places.
-    List<PlacesResult>? places,
+    // /// List of place results, if any
+    // ///
+    // /// Shown when the search query is related to places.
+    // List<PlacesResult>? places,
 
     /// List of top stories, if any
     ///
     /// Shown when the search query is related to news or current events.
     List<TopStoriesResult>? topStories,
 
-    /// List of Twitter results, if any
-    ///
-    /// Shown when the search query is related to Twitter content.
-    List<TwitterResult>? twitter,
+    // /// List of Twitter results, if any
+    // ///
+    // /// Shown when the search query is related to Twitter content.
+    // List<TwitterResult>? twitter,
 
-    /// List of image results, if any
-    ///
-    /// Shown when the search query is related to images.
-    List<ImagesResult>? images,
+    // /// List of image results, if any
+    // ///
+    // /// Shown when the search query is related to images.
+    // List<ImagesResult>? images,
 
-    /// List of local business results, if any
-    ///
-    /// Shown when the search query is related to local businesses.
-    List<LocalResultsResult>? localResults,
+    // /// List of local business results, if any
+    // ///
+    // /// Shown when the search query is related to local businesses.
+    // List<LocalResultsResult>? localResults,
 
     /// {@macro flutter_serper.responses.credits}
     required int credits,

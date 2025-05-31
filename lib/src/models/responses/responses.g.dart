@@ -30,25 +30,9 @@ _SearchResponse _$SearchResponseFromJson(
       (json['peopleAlsoAsk'] as List<dynamic>?)
           ?.map((e) => PeopleAlsoAskResult.fromJson(e as Map<String, dynamic>))
           .toList(),
-  places:
-      (json['places'] as List<dynamic>?)
-          ?.map((e) => PlacesResult.fromJson(e as Map<String, dynamic>))
-          .toList(),
   topStories:
       (json['topStories'] as List<dynamic>?)
           ?.map((e) => TopStoriesResult.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  twitter:
-      (json['twitter'] as List<dynamic>?)
-          ?.map((e) => TwitterResult.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  images:
-      (json['images'] as List<dynamic>?)
-          ?.map((e) => ImagesResult.fromJson(e as Map<String, dynamic>))
-          .toList(),
-  localResults:
-      (json['localResults'] as List<dynamic>?)
-          ?.map((e) => LocalResultsResult.fromJson(e as Map<String, dynamic>))
           .toList(),
   credits: (json['credits'] as num).toInt(),
 );
@@ -60,11 +44,7 @@ Map<String, dynamic> _$SearchResponseToJson(_SearchResponse instance) =>
       'knowledgeGraph': instance.knowledgeGraph,
       'relatedSearches': instance.relatedSearches,
       'peopleAlsoAsk': instance.peopleAlsoAsk,
-      'places': instance.places,
       'topStories': instance.topStories,
-      'twitter': instance.twitter,
-      'images': instance.images,
-      'localResults': instance.localResults,
       'credits': instance.credits,
     };
 
@@ -77,12 +57,6 @@ _ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>
           (json['images'] as List<dynamic>)
               .map((e) => ImageResult.fromJson(e as Map<String, dynamic>))
               .toList(),
-      knowledgeGraph:
-          json['knowledgeGraph'] == null
-              ? null
-              : KnowledgeGraphResult.fromJson(
-                json['knowledgeGraph'] as Map<String, dynamic>,
-              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -90,7 +64,6 @@ Map<String, dynamic> _$ImagesResponseToJson(_ImagesResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'images': instance.images,
-      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 
@@ -103,12 +76,6 @@ _PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) =>
           (json['places'] as List<dynamic>)
               .map((e) => PlaceResult.fromJson(e as Map<String, dynamic>))
               .toList(),
-      knowledgeGraph:
-          json['knowledgeGraph'] == null
-              ? null
-              : KnowledgeGraphResult.fromJson(
-                json['knowledgeGraph'] as Map<String, dynamic>,
-              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -116,7 +83,6 @@ Map<String, dynamic> _$PlacesResponseToJson(_PlacesResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'places': instance.places,
-      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 
@@ -129,12 +95,6 @@ _VideosResponse _$VideosResponseFromJson(Map<String, dynamic> json) =>
           (json['videos'] as List<dynamic>)
               .map((e) => VideoResult.fromJson(e as Map<String, dynamic>))
               .toList(),
-      knowledgeGraph:
-          json['knowledgeGraph'] == null
-              ? null
-              : KnowledgeGraphResult.fromJson(
-                json['knowledgeGraph'] as Map<String, dynamic>,
-              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -142,7 +102,6 @@ Map<String, dynamic> _$VideosResponseToJson(_VideosResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'videos': instance.videos,
-      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 
@@ -192,6 +151,10 @@ _ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
           (json['reviews'] as List<dynamic>)
               .map((e) => PlaceReview.fromJson(e as Map<String, dynamic>))
               .toList(),
+      topics:
+          (json['topics'] as List<dynamic>)
+              .map((e) => PlaceReviewTopic.fromJson(e as Map<String, dynamic>))
+              .toList(),
       nextPageToken: json['nextPageToken'] as String?,
       credits: (json['credits'] as num).toInt(),
     );
@@ -200,6 +163,7 @@ Map<String, dynamic> _$ReviewsResponseToJson(_ReviewsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'reviews': instance.reviews,
+      'topics': instance.topics,
       'nextPageToken': instance.nextPageToken,
       'credits': instance.credits,
     };
@@ -213,12 +177,6 @@ _NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) =>
           (json['news'] as List<dynamic>)
               .map((e) => NewsResult.fromJson(e as Map<String, dynamic>))
               .toList(),
-      knowledgeGraph:
-          json['knowledgeGraph'] == null
-              ? null
-              : KnowledgeGraphResult.fromJson(
-                json['knowledgeGraph'] as Map<String, dynamic>,
-              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -226,7 +184,6 @@ Map<String, dynamic> _$NewsResponseToJson(_NewsResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'news': instance.news,
-      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 
@@ -239,12 +196,6 @@ _ShoppingResponse _$ShoppingResponseFromJson(Map<String, dynamic> json) =>
           (json['shopping'] as List<dynamic>)
               .map((e) => ShoppingResult.fromJson(e as Map<String, dynamic>))
               .toList(),
-      knowledgeGraph:
-          json['knowledgeGraph'] == null
-              ? null
-              : KnowledgeGraphResult.fromJson(
-                json['knowledgeGraph'] as Map<String, dynamic>,
-              ),
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -252,7 +203,6 @@ Map<String, dynamic> _$ShoppingResponseToJson(_ShoppingResponse instance) =>
     <String, dynamic>{
       'searchParameters': instance.searchParameters,
       'shopping': instance.shopping,
-      'knowledgeGraph': instance.knowledgeGraph,
       'credits': instance.credits,
     };
 

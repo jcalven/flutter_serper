@@ -57,7 +57,21 @@ void main() {
       final mockResponse = {
         'searchParameters': query.toJson(),
         'places': [
-          {'title': 'Best Pizza', 'address': '123 Pizza St', 'position': 1},
+          {
+            'title': 'Best Pizza',
+            'address': '123 Pizza St',
+            'latitude': 40.0,
+            'longitude': -75.0,
+            'phoneNumber': null,
+            'rating': null,
+            'reviewCount': null,
+            'website': null,
+            'category': null,
+            'priceLevel': null,
+            'openingHours': null,
+            'cid': null,
+            'position': 1,
+          },
         ],
         'credits': 3,
       };
@@ -269,7 +283,21 @@ void main() {
       final mockResponse = {
         'searchParameters': query.toJson(),
         'places': [
-          {'title': 'Best Pizza', 'address': '123 Pizza St', 'position': 1},
+          {
+            'title': 'Best Pizza',
+            'address': '123 Pizza St',
+            'latitude': 40.0,
+            'longitude': -75.0,
+            'phoneNumber': null,
+            'rating': null,
+            'reviewCount': null,
+            'website': null,
+            'category': null,
+            'priceLevel': null,
+            'openingHours': null,
+            'cid': null,
+            'position': 1,
+          },
         ],
         'credits': 3,
       };
@@ -493,16 +521,29 @@ void main() {
       final query = MapsQuery(query: 'Central Park');
       final mockResponse = {
         'searchParameters': query.toJson(),
-        'place': {
-          'title': 'Central Park',
-          'cid': '123',
-          'address': 'NYC',
-          'rating': 4.8,
-          'reviewCount': 1000,
-          'priceLevel': '2',
-          'type': 'Park',
-          'position': 1,
-        },
+        'places': [
+          {
+            'title': 'Central Park',
+            'cid': '123',
+            'address': 'NYC',
+            'rating': 4.8,
+            'ratingCount': 1000,
+            'priceLevel': '2',
+            'type': 'Park',
+            'types': ['Park'],
+            'phoneNumber': null,
+            'website': null,
+            'openingHours': null,
+            'description': null,
+            'thumbnailUrl': 'https://example.com/thumbnail.jpg',
+            'bookingLinks': null,
+            'fid': 'fid123',
+            'latitude': 40.785091,
+            'longitude': -73.968285,
+            'placeId': 'ChIJ4zGFAZpYwokRGUGph3Mf37k',
+            'position': 1,
+          },
+        ],
         'credits': 3,
       };
       when(
@@ -520,10 +561,26 @@ void main() {
       );
       final result = await serper.maps(query);
       expect(result, isA<MapsResponse>());
-      expect(result.place.title, 'Central Park');
-      expect(result.place.address, 'NYC');
-      expect(result.place.rating, 4.8);
-      expect(result.place.reviewCount, 1000);
+      final place = result.places.first;
+      expect(place.title, 'Central Park');
+      expect(place.cid, '123');
+      expect(place.address, 'NYC');
+      expect(place.rating, 4.8);
+      expect(place.ratingCount, 1000);
+      expect(place.priceLevel, '2');
+      expect(place.type, 'Park');
+      expect(place.types, ['Park']);
+      expect(place.phoneNumber, isNull);
+      expect(place.website, isNull);
+      expect(place.openingHours, isNull);
+      expect(place.description, isNull);
+      expect(place.thumbnailUrl, 'https://example.com/thumbnail.jpg');
+      expect(place.bookingLinks, isNull);
+      expect(place.fid, 'fid123');
+      expect(place.latitude, 40.785091);
+      expect(place.longitude, -73.968285);
+      expect(place.placeId, 'ChIJ4zGFAZpYwokRGUGph3Mf37k');
+      expect(place.position, 1);
       expect(result.credits, 3);
     });
 
@@ -655,16 +712,27 @@ void main() {
         'searchParameters': query.toJson(),
         'reviews': [
           {
-            'author': 'Alice',
-            'authorUrl': 'https://example.com/user/alice',
-            'text': 'Great food!',
             'rating': 5.0,
             'date': '2024-01-01',
-            'id': 'review1',
-            'isLocalGuide': true,
-            'position': 1,
+            'isoDate': '2024-01-01T00:00:00Z',
+            'snippet': 'Great food!',
+            'likes': 10,
+            'user': {
+              'name': 'Alice',
+              'thumbnail': 'https://example.com/user/alice.jpg',
+              'link': 'https://example.com/user/alice',
+              'reviews': 5,
+              'photos': 2
+            },
+            'response': {
+              'date': '2024-01-02',
+              'isoDate': '2024-01-02T00:00:00Z',
+              'snippet': 'Thank you!'
+            },
+            'id': 'review1'
           },
         ],
+        'topics': [],
         'credits': 2,
       };
       when(
@@ -682,11 +750,22 @@ void main() {
       );
       final result = await serper.reviews(query);
       expect(result, isA<ReviewsResponse>());
-      expect(result.reviews.first.author, 'Alice');
-      expect(result.reviews.first.authorUrl, 'https://example.com/user/alice');
-      expect(result.reviews.first.text, 'Great food!');
-      expect(result.reviews.first.rating, 5.0);
-      expect(result.reviews.first.isLocalGuide, isTrue);
+      final review = result.reviews.first;
+      expect(review.rating, 5.0);
+      expect(review.date, '2024-01-01');
+      expect(review.isoDate, '2024-01-01T00:00:00Z');
+      expect(review.snippet, 'Great food!');
+      expect(review.likes, 10);
+      expect(review.user.name, 'Alice');
+      expect(review.user.thumbnail, 'https://example.com/user/alice.jpg');
+      expect(review.user.link, 'https://example.com/user/alice');
+      expect(review.user.reviews, 5);
+      expect(review.user.photos, 2);
+      expect(review.response, isNotNull);
+      expect(review.response!.date, '2024-01-02');
+      expect(review.response!.isoDate, '2024-01-02T00:00:00Z');
+      expect(review.response!.snippet, 'Thank you!');
+      expect(review.id, 'review1');
       expect(result.credits, 2);
     });
 
