@@ -1,9 +1,20 @@
 part of 'responses.dart';
 
-/// Response for the Serper Lens API.
+/// {@template lensResponseDocComments}
+///
+/// An immutable response object for the Serper Lens API, describing the API response
+/// by holding the [searchParameters], [organic], and [credits] fields.
+///
+/// - [searchParameters]: The parameters used for the Lens search.
+/// - [organic]: List of results related to the image that was searched.
+/// - [credits]: The number of API credits consumed by this request.
+///
+/// This class is returned by Serper API methods that perform Lens search requests.
+/// {@endtemplate}
 @freezed
 abstract class LensResponse extends SerperResponse<LensQuery>
     with _$LensResponse, ResponseUtilityMixin<LensQuery> {
+  /// {@macro lensResponseDocComments}
   const LensResponse._();
 
   const factory LensResponse({

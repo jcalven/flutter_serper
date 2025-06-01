@@ -1,8 +1,20 @@
 part of 'queries.dart';
 
-/// Query object for the Serper Patents API.
+/// {@template patentsQueryDocComments}
+///
+/// An immutable query object for the Serper Patents API, describing a patents search
+/// by holding the [query], [num], and [page] fields.
+///
+/// - [query]: The search query string. This is a required parameter and can be empty.
+/// - [num]: Optional number of results to return. Defaults to 10.
+/// - [page]: Optional page number for pagination.
+///
+/// This class is used as the query model for Serper API methods that perform patents searches.
+/// Create an instance of this class and pass it to the relevant Serper API method to perform a patents search request.
+/// {@endtemplate}
 @freezed
 abstract class PatentsQuery with _$PatentsQuery {
+  /// {@macro patentsQueryDocComments}
   const factory PatentsQuery({
     /// {@macro flutter_serper.queries.queryString}
     @JsonKey(name: 'q') required String query,

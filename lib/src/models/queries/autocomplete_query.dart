@@ -1,8 +1,22 @@
 part of 'queries.dart';
 
-/// Query object for the Serper Autocomplete API.
+/// {@template autocompleteQueryDocComments}
+///
+/// An immutable query object for the Serper Autocomplete API, describing a search
+/// by holding the [query], [location], [countryCode], and [languageCode] fields.
+///
+/// - [query]: The search query string. This is a required parameter and can be empty.
+/// - [location]: Optional location to filter results. This can be a city, state, or country.
+/// - [countryCode]: The country for the search, as a [CountryCode] enum. Used to specify a location bias.
+/// - [languageCode]: The language for the search, as a [LanguageCode] enum. Used to specify the language of the results.
+///
+/// This class is used as the query model for Serper API methods that perform autocomplete
+/// searches. Create an instance of this class and pass it to the relevant Serper API method
+/// to perform an autocomplete request.
+/// {@endtemplate}
 @freezed
 abstract class AutocompleteQuery with _$AutocompleteQuery {
+  /// {@macro autocompleteQueryDocComments}
   const factory AutocompleteQuery({
     /// {@template flutter_serper.queries.queryString}
     /// The search query string.

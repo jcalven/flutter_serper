@@ -1,8 +1,25 @@
 part of 'queries.dart';
 
-/// Query object for the Serper Videos API.
+/// {@template videosQueryDocComments}
+///
+/// An immutable query object for the Serper Videos API, describing a video search
+/// by holding the [query], [location], [countryCode], [languageCode], [num], [autocorrect], [tbs], and [page] fields.
+///
+/// - [query]: The search query string. This is a required parameter and can be empty.
+/// - [location]: Optional location to filter results. This can be a city, state, or country.
+/// - [countryCode]: The country for the search, as a [CountryCode] enum. Used to specify a location bias.
+/// - [languageCode]: The language for the search, as a [LanguageCode] enum. Used to specify the language of the results.
+/// - [num]: Optional number of results to return.
+/// - [autocorrect]: Optional parameter to enable or disable autocorrection.
+/// - [tbs]: Optional time-based search parameter, as a [TbsValue] enum.
+/// - [page]: Optional page number for pagination.
+///
+/// This class is used as the query model for Serper API methods that perform video searches.
+/// Create an instance of this class and pass it to the relevant Serper API method to perform a video search request.
+/// {@endtemplate}
 @freezed
 abstract class VideosQuery with _$VideosQuery {
+  /// {@macro videosQueryDocComments}
   const factory VideosQuery({
     /// {@macro flutter_serper.queries.queryString}
     @JsonKey(name: 'q') required String query,

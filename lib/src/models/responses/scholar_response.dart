@@ -1,9 +1,20 @@
 part of 'responses.dart';
 
-/// Response for the Serper Scholar API.
+/// {@template scholarResponseDocComments}
+///
+/// An immutable response object for the Serper Scholar API, describing the API response
+/// by holding the [searchParameters], [organic], and [credits] fields.
+///
+/// - [searchParameters]: The parameters used for the scholar search.
+/// - [organic]: List of academic results returned by the API. These are the academic results that match the search query.
+/// - [credits]: The number of API credits consumed by this request.
+///
+/// This class is returned by Serper API methods that perform scholar search requests.
+/// {@endtemplate}
 @freezed
 abstract class ScholarResponse extends SerperResponse<ScholarQuery>
     with _$ScholarResponse, ResponseUtilityMixin<ScholarQuery> {
+  /// {@macro scholarResponseDocComments}
   const ScholarResponse._();
 
   const factory ScholarResponse({

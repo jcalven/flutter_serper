@@ -1,9 +1,20 @@
 part of 'responses.dart';
 
-/// Response for the Serper Patents API.
+/// {@template patentsResponseDocComments}
+///
+/// An immutable response object for the Serper Patents API, describing the API response
+/// by holding the [searchParameters], [organic], and [credits] fields.
+///
+/// - [searchParameters]: The parameters used for the patents search.
+/// - [organic]: List of patent results returned by the API. These are the patent results that match the search query.
+/// - [credits]: The number of API credits consumed by this request.
+///
+/// This class is returned by Serper API methods that perform patents search requests.
+/// {@endtemplate}
 @freezed
 abstract class PatentsResponse extends SerperResponse<PatentsQuery>
     with _$PatentsResponse, ResponseUtilityMixin<PatentsQuery> {
+  /// {@macro patentsResponseDocComments}
   const PatentsResponse._();
 
   const factory PatentsResponse({

@@ -1,8 +1,23 @@
 part of 'queries.dart';
 
-/// Query object for the Serper Maps API.
+/// {@template mapsQueryDocComments}
+///
+/// An immutable query object for the Serper Maps API, describing a map search
+/// by holding the [query], [languageCode], [latLng], [placeId], [cid], and [page] fields.
+///
+/// - [query]: The search query string. This is a required parameter and can be empty.
+/// - [languageCode]: The language for the search, as a [LanguageCode] enum. Used to specify the language of the results.
+/// - [latLng]: Optional latitude and longitude, as a [LatLng] object.
+/// - [placeId]: Optional Google Place ID.
+/// - [cid]: Optional Google CID (Customer ID).
+/// - [page]: Optional page number for pagination.
+///
+/// This class is used as the query model for Serper API methods that perform map searches.
+/// Create an instance of this class and pass it to the relevant Serper API method to perform a map search request.
+/// {@endtemplate}
 @freezed
 abstract class MapsQuery with _$MapsQuery {
+  /// {@macro mapsQueryDocComments}
   const factory MapsQuery({
     /// {@macro flutter_serper.queries.queryString}
     @JsonKey(name: 'q') required String query,
