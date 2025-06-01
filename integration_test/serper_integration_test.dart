@@ -1,6 +1,5 @@
 import 'package:flutter_serper/flutter_serper.dart';
 import 'package:dotenv/dotenv.dart';
-import 'package:flutter_serper/src/models/results/results.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -164,7 +163,7 @@ void main() {
         LensQuery(
           url:
               'https://upload.wikimedia.org/wikipedia/commons/6/6b/Tea_leaves_in_dish.jpg',
-        ), // TODO: Replace with a valid image URL
+        ),
       ];
       try {
         final results = await serper.lensBatch(queries);
@@ -258,7 +257,7 @@ void main() {
 
       // Act & Assert
       try {
-        final searchResults = await serper.search(searchQuery);
+        final _ = await serper.search(searchQuery);
       } catch (e) {
         print('Search API error: $e');
         rethrow;
