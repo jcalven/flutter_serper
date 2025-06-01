@@ -24,7 +24,7 @@ Future<void> main() async {
   try {
     final searchResults = await serper.search(searchQuery);
 
-    // Process with polymorphic function
+    // Process with generic response handler
     processResponse(searchResults);
 
     // Access strongly-typed response fields
@@ -154,48 +154,55 @@ Future<void> main() async {
       print('- ${suggestion.value}');
     }
 
-    // Example 7: Using polymorphic API handling
-    print('\nExample of polymorphic API handling:');
+    // Example 7: Using a generic API response handler
+    print('\nExample of generic API response handling:');
 
     // Create a function that works with any Serper API response
-    void processPolymorphicResponse(ResponseUtilityMixin response) {
+    void processAnySerperResponse(ResponseUtilityMixin response) {
       print('This function works with any Serper response type');
       print('Search parameters: ${response.searchParameters}');
       print('Credits used: ${response.credits}');
     }
 
     // Process different response types with the same function
-    print('\nHandling SearchResponse polymorphically:');
-    processPolymorphicResponse(searchResults);
+    print('\nHandling SearchResponse generically:');
+    processAnySerperResponse(searchResults);
 
-    print('\nHandling ImagesResponse polymorphically:');
-    processPolymorphicResponse(imageResults);
+    print('\nHandling ImagesResponse generically:');
+    processAnySerperResponse(imageResults);
 
-    print('\nHandling NewsResponse polymorphically:');
-    processPolymorphicResponse(newsResults);
+    print('\nHandling NewsResponse generically:');
+    processAnySerperResponse(newsResults);
 
-    // Example 8: Using the callApiWithMixin method
-    print('\nUsing callApiWithMixin with SearchResponse:');
-    final polymorphicQuery =
+    // Example 8: Using the callApi method with a generic response
+    print('\nUsing callApi with SearchResponse:');
+    final genericQuery =
         SearchQuery(query: 'specialty coffee', num: 3).toJson();
 
     try {
-      final polymorphicResults = await serper.callApi<SearchResponse>(
+      final genericResultsList = await serper.callApi<SearchResponse>(
         '/search',
-        [polymorphicQuery],
+        [genericQuery],
         SearchResponse.fromJson,
       );
 
-      // We can access common properties via the mixin
-      print('Credits used: ${polymorphicResults.credits}');
+      // callApi now returns a List<T>, so we take the first result for demonstration
+      final genericResults =
+          genericResultsList.isNotEmpty ? genericResultsList.first : null;
+      if (genericResults != null) {
+        // We can access common properties via the mixin
+        print('Credits used: ${genericResults.credits}');
 
-      // And also specific properties of the concrete type
-      print('Found ${polymorphicResults.organic.length} organic results');
+        // And also specific properties of the concrete type
+        print('Found ${genericResults.organic.length} organic results');
 
-      // We can pass this to any function accepting SerperResponseMixin
-      processPolymorphicResponse(polymorphicResults);
+        // We can pass this to any function accepting ResponseUtilityMixin
+        processAnySerperResponse(genericResults);
+      } else {
+        print('No results returned from callApi.');
+      }
     } catch (e) {
-      print('Error calling API with mixin: $e');
+      print('Error calling API with generic handler: $e');
     }
 
     // Example 9: Using SerperResponseProcessor utility class

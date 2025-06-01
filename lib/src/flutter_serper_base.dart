@@ -1,3 +1,12 @@
+library;
+
+/// {@template flutter_serper.receiveTimeout}
+/// - [receiveTimeout] - Optional timeout for receiving the response from the API. If not specified, the default receive timeout is used.
+/// {@endtemplate}
+///
+/// {@template flutter_serper.sendTimeout}
+/// - [sendTimeout] - Optional timeout for sending the request to the API. If not specified, the default send timeout is used.
+/// {@endtemplate}
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_serper/src/models/queries/queries.dart';
@@ -232,29 +241,27 @@ class Serper {
     return results;
   }
 
-  /// Generic method to call any Serper API.
+  /// Generic method to call any Serper API for batch or single queries.
   ///
-  /// Sends the provided [queryData] (expected to be a list of serialized queries)
-  /// to the specified [endpoint]. If the API returns a list of responses,
-  /// this method deserializes and returns the *first* response object.
-  /// If the API returns a single response object, it's deserialized and returned.
+  /// Sends the provided [queryData] (a list of serialized queries)
+  /// to the specified [endpoint]. Returns a list of deserialized response objects.
   ///
   /// Use this method for advanced scenarios or when dealing with new/experimental
   /// API endpoints not yet covered by specific methods. For batch operations
-  /// where all results are needed, use the dedicated "Batch" methods (e.g., `searchBatch`).
+  /// or single queries, use this method to get all results as a list.
   ///
   /// Example:
   /// ```dart
-  /// final response = await serper.callApi<SearchResponse>(
+  /// final responses = await serper.callApi<SearchResponse>(
   ///   '/search',
-  ///   [SearchQuery(q: 'coffee').toJson()], // queryData is a List
+  ///   [SearchQuery(query: 'coffee').toJson()],
   ///   SearchResponse.fromJson,
   /// );
-  /// // response is a single SearchResponse object
+  /// // responses is a List<SearchResponse>
   /// ```
-  Future<T> callApi<T extends SerperResponse<dynamic>>(
+  Future<List<T>> callApi<T extends SerperResponse<dynamic>>(
     String endpoint,
-    List<Map<String, dynamic>> queryData, // Still takes a list of query data
+    List<Map<String, dynamic>> queryData,
     T Function(Map<String, dynamic>) fromJson, {
     bool isScrape = false,
     Duration? receiveTimeout,
@@ -264,19 +271,22 @@ class Serper {
       queryData.isNotEmpty && queryData.length <= 100,
       'You must provide 1-100 queries for callApi.',
     );
-    final raw = await _postSingle(
+    final raw = await _postBatch(
       endpoint,
-      queryData.first,
+      queryData,
       isScrape: isScrape,
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
     );
-    return _deserializeSingleItemResponse(raw, fromJson, endpoint);
+    return _deserializeListResponse(raw, fromJson, endpoint, queryData.length);
   }
 
   /// Calls the Serper Search API for a single query.
   ///
   /// Accepts a single [SearchQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<SearchResponse> search(
     SearchQuery query, {
     Duration? receiveTimeout,
@@ -299,6 +309,9 @@ class Serper {
   /// Calls the Serper Search API for a batch of queries.
   ///
   /// Accepts a list of [SearchQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<SearchResponse>> searchBatch(
     List<SearchQuery> queries, {
     Duration? receiveTimeout,
@@ -327,6 +340,9 @@ class Serper {
   /// Calls the Serper Images API for a single query.
   ///
   /// Accepts a single [ImagesQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<ImagesResponse> images(
     ImagesQuery query, {
     Duration? receiveTimeout,
@@ -349,6 +365,9 @@ class Serper {
   /// Calls the Serper Images API for a batch of queries.
   ///
   /// Accepts a list of [ImagesQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<ImagesResponse>> imagesBatch(
     List<ImagesQuery> queries, {
     Duration? receiveTimeout,
@@ -377,6 +396,9 @@ class Serper {
   /// Calls the Serper Videos API for a single query.
   ///
   /// Accepts a single [VideosQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<VideosResponse> videos(
     VideosQuery query, {
     Duration? receiveTimeout,
@@ -399,6 +421,9 @@ class Serper {
   /// Calls the Serper Videos API for a batch of queries.
   ///
   /// Accepts a list of [VideosQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<VideosResponse>> videosBatch(
     List<VideosQuery> queries, {
     Duration? receiveTimeout,
@@ -427,6 +452,9 @@ class Serper {
   /// Calls the Serper Places API for a single query.
   ///
   /// Accepts a single [PlacesQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<PlacesResponse> places(
     PlacesQuery query, {
     Duration? receiveTimeout,
@@ -449,6 +477,9 @@ class Serper {
   /// Calls the Serper Places API for a batch of queries.
   ///
   /// Accepts a list of [PlacesQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<PlacesResponse>> placesBatch(
     List<PlacesQuery> queries, {
     Duration? receiveTimeout,
@@ -477,6 +508,9 @@ class Serper {
   /// Calls the Serper Maps API for a single query.
   ///
   /// Accepts a single [MapsQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<MapsResponse> maps(
     MapsQuery query, {
     Duration? receiveTimeout,
@@ -495,6 +529,9 @@ class Serper {
   /// Calls the Serper Maps API for a batch of queries.
   ///
   /// Accepts a list of [MapsQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<MapsResponse>> mapsBatch(
     List<MapsQuery> queries, {
     Duration? receiveTimeout,
@@ -523,6 +560,9 @@ class Serper {
   /// Calls the Serper Reviews API for a single query.
   ///
   /// Accepts a single [ReviewsQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<ReviewsResponse> reviews(
     ReviewsQuery query, {
     Duration? receiveTimeout,
@@ -545,6 +585,9 @@ class Serper {
   /// Calls the Serper Reviews API for a batch of queries.
   ///
   /// Accepts a list of [ReviewsQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<ReviewsResponse>> reviewsBatch(
     List<ReviewsQuery> queries, {
     Duration? receiveTimeout,
@@ -573,6 +616,9 @@ class Serper {
   /// Calls the Serper News API for a single query.
   ///
   /// Accepts a single [NewsQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<NewsResponse> news(
     NewsQuery query, {
     Duration? receiveTimeout,
@@ -591,6 +637,9 @@ class Serper {
   /// Calls the Serper News API for a batch of queries.
   ///
   /// Accepts a list of [NewsQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<NewsResponse>> newsBatch(
     List<NewsQuery> queries, {
     Duration? receiveTimeout,
@@ -619,6 +668,9 @@ class Serper {
   /// Calls the Serper Shopping API for a single query.
   ///
   /// Accepts a single [ShoppingQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<ShoppingResponse> shopping(
     ShoppingQuery query, {
     Duration? receiveTimeout,
@@ -641,6 +693,9 @@ class Serper {
   /// Calls the Serper Shopping API for a batch of queries.
   ///
   /// Accepts a list of [ShoppingQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<ShoppingResponse>> shoppingBatch(
     List<ShoppingQuery> queries, {
     Duration? receiveTimeout,
@@ -669,6 +724,9 @@ class Serper {
   /// Calls the Serper Lens (Image Search) API for a single query.
   ///
   /// Accepts a single [LensQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<LensResponse> lens(
     LensQuery query, {
     Duration? receiveTimeout,
@@ -687,6 +745,9 @@ class Serper {
   /// Calls the Serper Lens (Image Search) API for a batch of queries.
   ///
   /// Accepts a list of [LensQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<LensResponse>> lensBatch(
     List<LensQuery> queries, {
     Duration? receiveTimeout,
@@ -715,6 +776,9 @@ class Serper {
   /// Calls the Serper Scholar API for a single query.
   ///
   /// Accepts a single [ScholarQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<ScholarResponse> scholar(
     ScholarQuery query, {
     Duration? receiveTimeout,
@@ -737,6 +801,9 @@ class Serper {
   /// Calls the Serper Scholar API for a batch of queries.
   ///
   /// Accepts a list of [ScholarQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<ScholarResponse>> scholarBatch(
     List<ScholarQuery> queries, {
     Duration? receiveTimeout,
@@ -765,6 +832,9 @@ class Serper {
   /// Calls the Serper Patents API for a single query.
   ///
   /// Accepts a single [PatentsQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<PatentsResponse> patents(
     PatentsQuery query, {
     Duration? receiveTimeout,
@@ -787,6 +857,9 @@ class Serper {
   /// Calls the Serper Patents API for a batch of queries.
   ///
   /// Accepts a list of [PatentsQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<PatentsResponse>> patentsBatch(
     List<PatentsQuery> queries, {
     Duration? receiveTimeout,
@@ -815,6 +888,9 @@ class Serper {
   /// Calls the Serper Autocomplete API for a single query.
   ///
   /// Accepts a single [AutocompleteQuery] object.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<AutocompleteResponse> autocomplete(
     AutocompleteQuery query, {
     Duration? receiveTimeout,
@@ -837,6 +913,9 @@ class Serper {
   /// Calls the Serper Autocomplete API for a batch of queries.
   ///
   /// Accepts a list of [AutocompleteQuery] objects (up to 100).
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<List<AutocompleteResponse>> autocompleteBatch(
     List<AutocompleteQuery> queries, {
     Duration? receiveTimeout,
@@ -866,6 +945,9 @@ class Serper {
   ///
   /// Accepts a single [WebpageQuery] object.
   /// Note: The Webpage API is a scraping endpoint and has a different base URL.
+  ///
+  /// {@macro flutter_serper.receiveTimeout}
+  /// {@macro flutter_serper.sendTimeout}
   Future<WebpageResponse> webpage(
     WebpageQuery query, {
     Duration? receiveTimeout,
