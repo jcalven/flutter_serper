@@ -3,7 +3,7 @@
 [![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)
 [![flutter_serper](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml)
 
-A Dart package that provides a strongly-typed wrapper for the [Serper API](https://serper.dev/), allowing you to perform Google search operations and extract data from webpages.
+An unofficial Dart package that provides a strongly-typed wrapper for the [Serper API](https://serper.dev/), allowing you to perform Google search operations and extract data from webpages.
 
 ## Features
 
