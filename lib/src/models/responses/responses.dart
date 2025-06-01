@@ -1,5 +1,4 @@
 import 'package:flutter_serper/src/models/results/results.dart';
-import 'package:flutter_serper/src/models/shared_types.dart';
 import 'package:flutter_serper/src/models/utils/lat_lng.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_serper/src/models/queries/queries.dart';

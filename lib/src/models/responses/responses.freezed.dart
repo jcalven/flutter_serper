@@ -1022,7 +1022,7 @@ mixin _$ReviewsResponse {
 ///
 /// Contains reviews for the specified place.
  List<PlaceReview> get reviews;/// List of topics related to the reviews
- List<PlaceReviewTopic> get topics;/// Token for fetching the next page of reviews
+ List<PlaceReviewTopic>? get topics;/// Token for fetching the next page of reviews
 ///
 /// If more reviews are available, this token can be used to fetch the next batch.
  String? get nextPageToken;/// {@macro flutter_serper.responses.credits}
@@ -1059,7 +1059,7 @@ abstract mixin class $ReviewsResponseCopyWith<$Res>  {
   factory $ReviewsResponseCopyWith(ReviewsResponse value, $Res Function(ReviewsResponse) _then) = _$ReviewsResponseCopyWithImpl;
 @useResult
 $Res call({
- ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic> topics, String? nextPageToken, int credits
+ ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic>? topics, String? nextPageToken, int credits
 });
 
 
@@ -1076,12 +1076,12 @@ class _$ReviewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = null,Object? nextPageToken = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = freezed,Object? nextPageToken = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ReviewsQuery,reviews: null == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<PlaceReview>,topics: null == topics ? _self.topics : topics // ignore: cast_nullable_to_non_nullable
-as List<PlaceReviewTopic>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as List<PlaceReview>,topics: freezed == topics ? _self.topics : topics // ignore: cast_nullable_to_non_nullable
+as List<PlaceReviewTopic>?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
 as String?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -1103,7 +1103,7 @@ $ReviewsQueryCopyWith<$Res> get searchParameters {
 @JsonSerializable()
 
 class _ReviewsResponse extends ReviewsResponse {
-  const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, required final  List<PlaceReviewTopic> topics, this.nextPageToken, required this.credits}): _reviews = reviews,_topics = topics,super._();
+  const _ReviewsResponse({required this.searchParameters, required final  List<PlaceReview> reviews, final  List<PlaceReviewTopic>? topics, this.nextPageToken, required this.credits}): _reviews = reviews,_topics = topics,super._();
   factory _ReviewsResponse.fromJson(Map<String, dynamic> json) => _$ReviewsResponseFromJson(json);
 
 /// {@macro flutter_serper.responses.searchParameters}
@@ -1122,12 +1122,14 @@ class _ReviewsResponse extends ReviewsResponse {
 }
 
 /// List of topics related to the reviews
- final  List<PlaceReviewTopic> _topics;
+ final  List<PlaceReviewTopic>? _topics;
 /// List of topics related to the reviews
-@override List<PlaceReviewTopic> get topics {
+@override List<PlaceReviewTopic>? get topics {
+  final value = _topics;
+  if (value == null) return null;
   if (_topics is EqualUnmodifiableListView) return _topics;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_topics);
+  return EqualUnmodifiableListView(value);
 }
 
 /// Token for fetching the next page of reviews
@@ -1170,7 +1172,7 @@ abstract mixin class _$ReviewsResponseCopyWith<$Res> implements $ReviewsResponse
   factory _$ReviewsResponseCopyWith(_ReviewsResponse value, $Res Function(_ReviewsResponse) _then) = __$ReviewsResponseCopyWithImpl;
 @override @useResult
 $Res call({
- ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic> topics, String? nextPageToken, int credits
+ ReviewsQuery searchParameters, List<PlaceReview> reviews, List<PlaceReviewTopic>? topics, String? nextPageToken, int credits
 });
 
 
@@ -1187,12 +1189,12 @@ class __$ReviewsResponseCopyWithImpl<$Res>
 
 /// Create a copy of ReviewsResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = null,Object? nextPageToken = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? searchParameters = null,Object? reviews = null,Object? topics = freezed,Object? nextPageToken = freezed,Object? credits = null,}) {
   return _then(_ReviewsResponse(
 searchParameters: null == searchParameters ? _self.searchParameters : searchParameters // ignore: cast_nullable_to_non_nullable
 as ReviewsQuery,reviews: null == reviews ? _self._reviews : reviews // ignore: cast_nullable_to_non_nullable
-as List<PlaceReview>,topics: null == topics ? _self._topics : topics // ignore: cast_nullable_to_non_nullable
-as List<PlaceReviewTopic>,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
+as List<PlaceReview>,topics: freezed == topics ? _self._topics : topics // ignore: cast_nullable_to_non_nullable
+as List<PlaceReviewTopic>?,nextPageToken: freezed == nextPageToken ? _self.nextPageToken : nextPageToken // ignore: cast_nullable_to_non_nullable
 as String?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -2277,7 +2279,7 @@ mixin _$WebpageResponse {
 /// List of webpage content results returned by the API
 ///
 /// Contains webpages that match the search query.
- List<WebpageResult> get results;
+ WebpageResult get results;
 /// Create a copy of WebpageResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2290,12 +2292,12 @@ $WebpageResponseCopyWith<WebpageResponse> get copyWith => _$WebpageResponseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResponse&&const DeepCollectionEquality().equals(other.results, results));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResponse&&(identical(other.results, results) || other.results == results));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(results));
+int get hashCode => Object.hash(runtimeType,results);
 
 @override
 String toString() {
@@ -2310,11 +2312,11 @@ abstract mixin class $WebpageResponseCopyWith<$Res>  {
   factory $WebpageResponseCopyWith(WebpageResponse value, $Res Function(WebpageResponse) _then) = _$WebpageResponseCopyWithImpl;
 @useResult
 $Res call({
- List<WebpageResult> results
+ WebpageResult results
 });
 
 
-
+$WebpageResultCopyWith<$Res> get results;
 
 }
 /// @nodoc
@@ -2330,10 +2332,19 @@ class _$WebpageResponseCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? results = null,}) {
   return _then(_self.copyWith(
 results: null == results ? _self.results : results // ignore: cast_nullable_to_non_nullable
-as List<WebpageResult>,
+as WebpageResult,
   ));
 }
-
+/// Create a copy of WebpageResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WebpageResultCopyWith<$Res> get results {
+  
+  return $WebpageResultCopyWith<$Res>(_self.results, (value) {
+    return _then(_self.copyWith(results: value));
+  });
+}
 }
 
 
@@ -2341,22 +2352,13 @@ as List<WebpageResult>,
 @JsonSerializable()
 
 class _WebpageResponse extends WebpageResponse {
-  const _WebpageResponse({required final  List<WebpageResult> results}): _results = results,super._();
+  const _WebpageResponse({required this.results}): super._();
   factory _WebpageResponse.fromJson(Map<String, dynamic> json) => _$WebpageResponseFromJson(json);
 
 /// List of webpage content results returned by the API
 ///
 /// Contains webpages that match the search query.
- final  List<WebpageResult> _results;
-/// List of webpage content results returned by the API
-///
-/// Contains webpages that match the search query.
-@override List<WebpageResult> get results {
-  if (_results is EqualUnmodifiableListView) return _results;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_results);
-}
-
+@override final  WebpageResult results;
 
 /// Create a copy of WebpageResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -2371,12 +2373,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResponse&&const DeepCollectionEquality().equals(other._results, _results));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResponse&&(identical(other.results, results) || other.results == results));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_results));
+int get hashCode => Object.hash(runtimeType,results);
 
 @override
 String toString() {
@@ -2391,11 +2393,11 @@ abstract mixin class _$WebpageResponseCopyWith<$Res> implements $WebpageResponse
   factory _$WebpageResponseCopyWith(_WebpageResponse value, $Res Function(_WebpageResponse) _then) = __$WebpageResponseCopyWithImpl;
 @override @useResult
 $Res call({
- List<WebpageResult> results
+ WebpageResult results
 });
 
 
-
+@override $WebpageResultCopyWith<$Res> get results;
 
 }
 /// @nodoc
@@ -2410,12 +2412,21 @@ class __$WebpageResponseCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? results = null,}) {
   return _then(_WebpageResponse(
-results: null == results ? _self._results : results // ignore: cast_nullable_to_non_nullable
-as List<WebpageResult>,
+results: null == results ? _self.results : results // ignore: cast_nullable_to_non_nullable
+as WebpageResult,
   ));
 }
 
-
+/// Create a copy of WebpageResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WebpageResultCopyWith<$Res> get results {
+  
+  return $WebpageResultCopyWith<$Res>(_self.results, (value) {
+    return _then(_self.copyWith(results: value));
+  });
+}
 }
 
 // dart format on

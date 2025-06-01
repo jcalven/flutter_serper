@@ -59,7 +59,6 @@ void main() {
       final query = WebpageQuery(
         url: 'https://example.com',
         includeMarkdown: true,
-        query: 'test query',
       );
 
       // Act
@@ -69,7 +68,6 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['url'], equals('https://example.com'));
       expect(json['includeMarkdown'], isTrue);
-      expect(json['q'], equals('test query'));
     });
   });
 
@@ -126,11 +124,7 @@ void main() {
     test('ImagesResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {
-          'q': 'test image',
-          'gl': 'us',
-          'hl': 'en',
-        },
+        'searchParameters': {'q': 'test image', 'gl': 'us', 'hl': 'en'},
         'images': [
           {
             'title': 'Test Image',
@@ -142,7 +136,8 @@ void main() {
             'thumbnailHeight': 150,
             'source': 'Example Source',
             'link': 'https://example.com/image',
-            'googleUrl': 'https://google.com/imgres?imgurl=https://example.com/image.jpg',
+            'googleUrl':
+                'https://google.com/imgres?imgurl=https://example.com/image.jpg',
             'price': '\$10',
             'domain': 'example.com',
             'position': 1,
@@ -177,7 +172,12 @@ void main() {
       expect(img.thumbnailHeight, equals(150));
       expect(img.source, equals('Example Source'));
       expect(img.link, equals('https://example.com/image'));
-      expect(img.googleUrl, equals('https://google.com/imgres?imgurl=https://example.com/image.jpg'));
+      expect(
+        img.googleUrl,
+        equals(
+          'https://google.com/imgres?imgurl=https://example.com/image.jpg',
+        ),
+      );
       expect(img.price, equals('\$10'));
       expect(img.domain, equals('example.com'));
       expect(img.position, equals(1));
@@ -187,13 +187,9 @@ void main() {
     test('WebpageResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'results': [
-          {
-            'text': 'This is the webpage content',
-            'markdown': '# Webpage Content\n\nThis is the webpage content',
-            'credits': 5,
-          },
-        ],
+        'text': 'This is the webpage content',
+        'markdown': '# Webpage Content\n\nThis is the webpage content',
+        'credits': 5,
       };
 
       // Act
@@ -201,16 +197,12 @@ void main() {
 
       // Assert
       expect(response, isA<WebpageResponse>());
-      expect(response.results, hasLength(1));
+      expect(response.results.text, equals('This is the webpage content'));
       expect(
-        response.results.first.text,
-        equals('This is the webpage content'),
-      );
-      expect(
-        response.results.first.markdown,
+        response.results.markdown,
         equals('# Webpage Content\n\nThis is the webpage content'),
       );
-      expect(response.results.first.credits, equals(5));
+      expect(response.results.credits, equals(5));
     });
   });
 

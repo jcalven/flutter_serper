@@ -708,24 +708,14 @@ Map<String, dynamic> _$ScholarQueryToJson(_ScholarQuery instance) =>
 _PatentsQuery _$PatentsQueryFromJson(Map<String, dynamic> json) =>
     _PatentsQuery(
       query: json['q'] as String,
-      location: json['location'] as String?,
-      countryCode: $enumDecodeNullable(_$CountryCodeEnumMap, json['gl']),
-      languageCode: $enumDecodeNullable(_$LanguageCodeEnumMap, json['hl']),
-      num: (json['num'] as num?)?.toInt(),
-      autocorrect: json['autocorrect'] as bool?,
-      tbs: $enumDecodeNullable(_$TbsValueEnumMap, json['tbs']),
+      num: (json['num'] as num?)?.toInt() ?? 10,
       page: (json['page'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PatentsQueryToJson(_PatentsQuery instance) =>
     <String, dynamic>{
       'q': instance.query,
-      'location': instance.location,
-      'gl': _$CountryCodeEnumMap[instance.countryCode],
-      'hl': _$LanguageCodeEnumMap[instance.languageCode],
       'num': instance.num,
-      'autocorrect': instance.autocorrect,
-      'tbs': _$TbsValueEnumMap[instance.tbs],
       'page': instance.page,
     };
 
@@ -755,13 +745,11 @@ Map<String, dynamic> _$SearchQueryToJson(_SearchQuery instance) =>
 _WebpageQuery _$WebpageQueryFromJson(Map<String, dynamic> json) =>
     _WebpageQuery(
       url: json['url'] as String,
-      includeMarkdown: json['includeMarkdown'] as bool?,
-      query: json['q'] as String?,
+      includeMarkdown: json['includeMarkdown'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$WebpageQueryToJson(_WebpageQuery instance) =>
     <String, dynamic>{
       'url': instance.url,
       'includeMarkdown': instance.includeMarkdown,
-      'q': instance.query,
     };

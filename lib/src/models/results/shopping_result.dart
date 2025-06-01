@@ -37,7 +37,7 @@ abstract class ShoppingResult with _$ShoppingResult {
     int? ratingCount,
 
     /// List of offers for the product.
-    List<dynamic>? offers,
+    String? offers,
 
     /// Unique product identifier.
     String? productId,

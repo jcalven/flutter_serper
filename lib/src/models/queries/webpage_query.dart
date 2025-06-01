@@ -14,10 +14,7 @@ abstract class WebpageQuery with _$WebpageQuery {
     /// Whether to include markdown in the response
     ///
     /// When true, the API will return a markdown version of the webpage content.
-    bool? includeMarkdown,
-
-    /// {@macro flutter_serper.queries.queryString}
-    @JsonKey(name: 'q') String? query,
+    @Default(true) bool includeMarkdown,
   }) = _WebpageQuery;
 
   factory WebpageQuery.fromJson(Map<String, dynamic> json) =>

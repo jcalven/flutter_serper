@@ -1,7 +1,7 @@
 part of 'responses.dart';
 
 /// Response for the Serper Webpage API.
-@freezed
+@Freezed(fromJson: true, toJson: true)
 abstract class WebpageResponse extends SerperResponse<WebpageQuery>
     with _$WebpageResponse {
   const WebpageResponse._();
@@ -10,9 +10,11 @@ abstract class WebpageResponse extends SerperResponse<WebpageQuery>
     /// List of webpage content results returned by the API
     ///
     /// Contains webpages that match the search query.
-    required List<WebpageResult> results,
+    required WebpageResult results,
   }) = _WebpageResponse;
 
-  factory WebpageResponse.fromJson(Map<String, dynamic> json) =>
-      _$WebpageResponseFromJson(json);
+  factory WebpageResponse.fromJson(Map<String, dynamic> json) {
+    final newJson = {'results': json};
+    return _$WebpageResponseFromJson(newJson);
+  }
 }

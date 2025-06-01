@@ -152,8 +152,8 @@ _ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
               .map((e) => PlaceReview.fromJson(e as Map<String, dynamic>))
               .toList(),
       topics:
-          (json['topics'] as List<dynamic>)
-              .map((e) => PlaceReviewTopic.fromJson(e as Map<String, dynamic>))
+          (json['topics'] as List<dynamic>?)
+              ?.map((e) => PlaceReviewTopic.fromJson(e as Map<String, dynamic>))
               .toList(),
       nextPageToken: json['nextPageToken'] as String?,
       credits: (json['credits'] as num).toInt(),
@@ -288,10 +288,7 @@ Map<String, dynamic> _$AutocompleteResponseToJson(
 
 _WebpageResponse _$WebpageResponseFromJson(Map<String, dynamic> json) =>
     _WebpageResponse(
-      results:
-          (json['results'] as List<dynamic>)
-              .map((e) => WebpageResult.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      results: WebpageResult.fromJson(json['results'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WebpageResponseToJson(_WebpageResponse instance) =>

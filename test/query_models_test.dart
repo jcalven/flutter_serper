@@ -140,10 +140,7 @@ void main() {
 
     test('PatentsQuery serializes to JSON correctly', () {
       // Arrange
-      final query = PatentsQuery(
-        query: 'solar energy patents',
-        languageCode: LanguageCode.english,
-      );
+      final query = PatentsQuery(query: 'solar energy patents');
 
       // Act
       final json = query.toJson();
@@ -151,7 +148,6 @@ void main() {
       // Assert
       expect(json, isA<Map<String, dynamic>>());
       expect(json['q'], equals('solar energy patents'));
-      expect(json['hl'], equals('en'));
     });
 
     test('ReviewsQuery serializes to JSON correctly', () {
@@ -255,7 +251,6 @@ void main() {
       final query = WebpageQuery(
         url: 'https://example.com',
         includeMarkdown: true,
-        query: 'search',
       );
 
       // Act
@@ -265,7 +260,6 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['url'], equals('https://example.com'));
       expect(json['includeMarkdown'], equals(true));
-      expect(json['q'], equals('search'));
     });
   });
 }

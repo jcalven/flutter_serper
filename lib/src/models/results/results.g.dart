@@ -400,7 +400,7 @@ _ShoppingResult _$ShoppingResultFromJson(Map<String, dynamic> json) =>
       position: (json['position'] as num).toInt(),
       rating: (json['rating'] as num?)?.toDouble(),
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
-      offers: json['offers'] as List<dynamic>?,
+      offers: json['offers'] as String?,
       productId: json['productId'] as String?,
     );
 
@@ -520,6 +520,7 @@ _WebpageResult _$WebpageResultFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       markdown: json['markdown'] as String?,
       metadata: json['metadata'] as Map<String, dynamic>?,
+      jsonld: json['jsonld'] as Map<String, dynamic>?,
       credits: (json['credits'] as num).toInt(),
     );
 
@@ -528,5 +529,6 @@ Map<String, dynamic> _$WebpageResultToJson(_WebpageResult instance) =>
       'text': instance.text,
       'markdown': instance.markdown,
       'metadata': instance.metadata,
+      'jsonld': instance.jsonld,
       'credits': instance.credits,
     };

@@ -1970,13 +1970,16 @@ as int?,
 mixin _$PatentsQuery {
 
 /// {@macro flutter_serper.queries.queryString}
-@JsonKey(name: 'q') String get query;/// {@macro flutter_serper.queries.location}
- String? get location;/// {@macro flutter_serper.queries.countryCodeEnum}
-@JsonKey(name: 'gl') CountryCode? get countryCode;/// {@macro flutter_serper.queries.languageCodeEnum}
-@JsonKey(name: 'hl') LanguageCode? get languageCode;/// {@macro flutter_serper.queries.num}
- int? get num;/// {@macro flutter_serper.queries.autocorrect}
- bool? get autocorrect;/// {@macro flutter_serper.queries.tbsEnum}
- TbsValue? get tbs;/// {@macro flutter_serper.queries.page}
+@JsonKey(name: 'q') String get query;// /// {@macro flutter_serper.queries.countryCodeEnum}
+// @JsonKey(name: 'gl') CountryCode? countryCode,
+// /// {@macro flutter_serper.queries.languageCodeEnum}
+// @JsonKey(name: 'hl') LanguageCode? languageCode,
+/// {@macro flutter_serper.queries.num}
+ int get num;// /// {@macro flutter_serper.queries.autocorrect}
+// bool? autocorrect,
+// /// {@macro flutter_serper.queries.tbsEnum}
+// TbsValue? tbs,
+/// {@macro flutter_serper.queries.page}
  int? get page;
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -1990,16 +1993,16 @@ $PatentsQueryCopyWith<PatentsQuery> get copyWith => _$PatentsQueryCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.num, num) || other.num == num)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,num,page);
 
 @override
 String toString() {
-  return 'PatentsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PatentsQuery(query: $query, num: $num, page: $page)';
 }
 
 
@@ -2010,7 +2013,7 @@ abstract mixin class $PatentsQueryCopyWith<$Res>  {
   factory $PatentsQueryCopyWith(PatentsQuery value, $Res Function(PatentsQuery) _then) = _$PatentsQueryCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, int num, int? page
 });
 
 
@@ -2027,16 +2030,11 @@ class _$PatentsQueryCopyWithImpl<$Res>
 
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = null,Object? num = null,Object? page = freezed,}) {
   return _then(_self.copyWith(
 query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
-as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
-as LanguageCode?,num: freezed == num ? _self.num : num // ignore: cast_nullable_to_non_nullable
-as int?,autocorrect: freezed == autocorrect ? _self.autocorrect : autocorrect // ignore: cast_nullable_to_non_nullable
-as bool?,tbs: freezed == tbs ? _self.tbs : tbs // ignore: cast_nullable_to_non_nullable
-as TbsValue?,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as String,num: null == num ? _self.num : num // ignore: cast_nullable_to_non_nullable
+as int,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -2048,23 +2046,21 @@ as int?,
 @JsonSerializable()
 
 class _PatentsQuery implements PatentsQuery {
-  const _PatentsQuery({@JsonKey(name: 'q') required this.query, this.location, @JsonKey(name: 'gl') this.countryCode, @JsonKey(name: 'hl') this.languageCode, this.num, this.autocorrect, this.tbs, this.page});
+  const _PatentsQuery({@JsonKey(name: 'q') required this.query, this.num = 10, this.page});
   factory _PatentsQuery.fromJson(Map<String, dynamic> json) => _$PatentsQueryFromJson(json);
 
 /// {@macro flutter_serper.queries.queryString}
 @override@JsonKey(name: 'q') final  String query;
-/// {@macro flutter_serper.queries.location}
-@override final  String? location;
-/// {@macro flutter_serper.queries.countryCodeEnum}
-@override@JsonKey(name: 'gl') final  CountryCode? countryCode;
-/// {@macro flutter_serper.queries.languageCodeEnum}
-@override@JsonKey(name: 'hl') final  LanguageCode? languageCode;
+// /// {@macro flutter_serper.queries.countryCodeEnum}
+// @JsonKey(name: 'gl') CountryCode? countryCode,
+// /// {@macro flutter_serper.queries.languageCodeEnum}
+// @JsonKey(name: 'hl') LanguageCode? languageCode,
 /// {@macro flutter_serper.queries.num}
-@override final  int? num;
-/// {@macro flutter_serper.queries.autocorrect}
-@override final  bool? autocorrect;
-/// {@macro flutter_serper.queries.tbsEnum}
-@override final  TbsValue? tbs;
+@override@JsonKey() final  int num;
+// /// {@macro flutter_serper.queries.autocorrect}
+// bool? autocorrect,
+// /// {@macro flutter_serper.queries.tbsEnum}
+// TbsValue? tbs,
 /// {@macro flutter_serper.queries.page}
 @override final  int? page;
 
@@ -2081,16 +2077,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.location, location) || other.location == location)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.num, num) || other.num == num)&&(identical(other.autocorrect, autocorrect) || other.autocorrect == autocorrect)&&(identical(other.tbs, tbs) || other.tbs == tbs)&&(identical(other.page, page) || other.page == page));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PatentsQuery&&(identical(other.query, query) || other.query == query)&&(identical(other.num, num) || other.num == num)&&(identical(other.page, page) || other.page == page));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,query,location,countryCode,languageCode,num,autocorrect,tbs,page);
+int get hashCode => Object.hash(runtimeType,query,num,page);
 
 @override
 String toString() {
-  return 'PatentsQuery(query: $query, location: $location, countryCode: $countryCode, languageCode: $languageCode, num: $num, autocorrect: $autocorrect, tbs: $tbs, page: $page)';
+  return 'PatentsQuery(query: $query, num: $num, page: $page)';
 }
 
 
@@ -2101,7 +2097,7 @@ abstract mixin class _$PatentsQueryCopyWith<$Res> implements $PatentsQueryCopyWi
   factory _$PatentsQueryCopyWith(_PatentsQuery value, $Res Function(_PatentsQuery) _then) = __$PatentsQueryCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'q') String query, String? location,@JsonKey(name: 'gl') CountryCode? countryCode,@JsonKey(name: 'hl') LanguageCode? languageCode, int? num, bool? autocorrect, TbsValue? tbs, int? page
+@JsonKey(name: 'q') String query, int num, int? page
 });
 
 
@@ -2118,16 +2114,11 @@ class __$PatentsQueryCopyWithImpl<$Res>
 
 /// Create a copy of PatentsQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? location = freezed,Object? countryCode = freezed,Object? languageCode = freezed,Object? num = freezed,Object? autocorrect = freezed,Object? tbs = freezed,Object? page = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = null,Object? num = null,Object? page = freezed,}) {
   return _then(_PatentsQuery(
 query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as String?,countryCode: freezed == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
-as CountryCode?,languageCode: freezed == languageCode ? _self.languageCode : languageCode // ignore: cast_nullable_to_non_nullable
-as LanguageCode?,num: freezed == num ? _self.num : num // ignore: cast_nullable_to_non_nullable
-as int?,autocorrect: freezed == autocorrect ? _self.autocorrect : autocorrect // ignore: cast_nullable_to_non_nullable
-as bool?,tbs: freezed == tbs ? _self.tbs : tbs // ignore: cast_nullable_to_non_nullable
-as TbsValue?,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as String,num: null == num ? _self.num : num // ignore: cast_nullable_to_non_nullable
+as int,page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -2317,8 +2308,7 @@ mixin _$WebpageQuery {
  String get url;/// Whether to include markdown in the response
 ///
 /// When true, the API will return a markdown version of the webpage content.
- bool? get includeMarkdown;/// {@macro flutter_serper.queries.queryString}
-@JsonKey(name: 'q') String? get query;
+ bool get includeMarkdown;
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2331,16 +2321,16 @@ $WebpageQueryCopyWith<WebpageQuery> get copyWith => _$WebpageQueryCopyWithImpl<W
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.query, query) || other.query == query));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,includeMarkdown,query);
+int get hashCode => Object.hash(runtimeType,url,includeMarkdown);
 
 @override
 String toString() {
-  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, query: $query)';
+  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown)';
 }
 
 
@@ -2351,7 +2341,7 @@ abstract mixin class $WebpageQueryCopyWith<$Res>  {
   factory $WebpageQueryCopyWith(WebpageQuery value, $Res Function(WebpageQuery) _then) = _$WebpageQueryCopyWithImpl;
 @useResult
 $Res call({
- String url, bool? includeMarkdown,@JsonKey(name: 'q') String? query
+ String url, bool includeMarkdown
 });
 
 
@@ -2368,12 +2358,11 @@ class _$WebpageQueryCopyWithImpl<$Res>
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? query = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? includeMarkdown = null,}) {
   return _then(_self.copyWith(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
-as String,includeMarkdown: freezed == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
-as bool?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,includeMarkdown: null == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -2384,7 +2373,7 @@ as String?,
 @JsonSerializable()
 
 class _WebpageQuery implements WebpageQuery {
-  const _WebpageQuery({required this.url, this.includeMarkdown, @JsonKey(name: 'q') this.query});
+  const _WebpageQuery({required this.url, this.includeMarkdown = true});
   factory _WebpageQuery.fromJson(Map<String, dynamic> json) => _$WebpageQueryFromJson(json);
 
 /// {@template flutter_serper.queries.url}
@@ -2396,9 +2385,7 @@ class _WebpageQuery implements WebpageQuery {
 /// Whether to include markdown in the response
 ///
 /// When true, the API will return a markdown version of the webpage content.
-@override final  bool? includeMarkdown;
-/// {@macro flutter_serper.queries.queryString}
-@override@JsonKey(name: 'q') final  String? query;
+@override@JsonKey() final  bool includeMarkdown;
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
@@ -2413,16 +2400,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown)&&(identical(other.query, query) || other.query == query));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageQuery&&(identical(other.url, url) || other.url == url)&&(identical(other.includeMarkdown, includeMarkdown) || other.includeMarkdown == includeMarkdown));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,includeMarkdown,query);
+int get hashCode => Object.hash(runtimeType,url,includeMarkdown);
 
 @override
 String toString() {
-  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown, query: $query)';
+  return 'WebpageQuery(url: $url, includeMarkdown: $includeMarkdown)';
 }
 
 
@@ -2433,7 +2420,7 @@ abstract mixin class _$WebpageQueryCopyWith<$Res> implements $WebpageQueryCopyWi
   factory _$WebpageQueryCopyWith(_WebpageQuery value, $Res Function(_WebpageQuery) _then) = __$WebpageQueryCopyWithImpl;
 @override @useResult
 $Res call({
- String url, bool? includeMarkdown,@JsonKey(name: 'q') String? query
+ String url, bool includeMarkdown
 });
 
 
@@ -2450,12 +2437,11 @@ class __$WebpageQueryCopyWithImpl<$Res>
 
 /// Create a copy of WebpageQuery
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? includeMarkdown = freezed,Object? query = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? includeMarkdown = null,}) {
   return _then(_WebpageQuery(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
-as String,includeMarkdown: freezed == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
-as bool?,query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,includeMarkdown: null == includeMarkdown ? _self.includeMarkdown : includeMarkdown // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

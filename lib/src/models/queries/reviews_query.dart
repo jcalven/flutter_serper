@@ -1,8 +1,10 @@
 part of 'queries.dart';
 
 /// Query object for the Serper Reviews API.
-@freezed
+@Freezed(fromJson: true, toJson: true)
 sealed class ReviewsQuery with _$ReviewsQuery {
+  // const ReviewsQuery._();
+
   const factory ReviewsQuery.withCid({
     /// {@macro flutter_serper.queries.cid}
     required String cid,
@@ -186,6 +188,22 @@ sealed class ReviewsQuery with _$ReviewsQuery {
     );
   }
 
-  factory ReviewsQuery.fromJson(Map<String, dynamic> json) =>
-      _$ReviewsQueryFromJson(json);
+  // factory ReviewsQuery.fromJson(Map<String, dynamic> json) {
+  //   return _$ReviewsQueryFromJson(json);
+  // }
+
+  factory ReviewsQuery.fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('cid')) {
+      json['runtimeType'] = 'withCid';
+    } else if (json.containsKey('fid')) {
+      json['runtimeType'] = 'withFid';
+    } else if (json.containsKey('placeId')) {
+      json['runtimeType'] = 'withPlaceId';
+    } else {
+      throw Exception(
+        'Could not determine the constructor for mapping from JSON',
+      );
+    }
+    return _$ReviewsQueryFromJson(json);
+  }
 }

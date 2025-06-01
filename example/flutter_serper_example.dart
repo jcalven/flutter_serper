@@ -130,15 +130,13 @@ Future<void> main() async {
       includeMarkdown: true, // Whether to include markdown in the response
     );
 
-    final webpageResults = await serper.webpage(webpageQuery);
+    final webpageResponse = await serper.webpage(webpageQuery);
     print('\\nWebpage scraping results:');
 
-    if (webpageResults.results.isNotEmpty) {
-      final webpage = webpageResults.results.first;
-      print('Text length: ${webpage.text.length} characters');
-      print('Markdown available: ${webpage.markdown != null}');
-      print('Credits used: ${webpage.credits}');
-    }
+    final webpage = webpageResponse.results;
+    print('Text length: ${webpage.text.length} characters');
+    print('Markdown available: ${webpage.markdown != null}');
+    print('Credits used: ${webpage.credits}');
 
     // Example 6: Get autocomplete suggestions
     // The documentation is consistent across all query types

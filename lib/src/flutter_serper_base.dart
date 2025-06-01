@@ -110,7 +110,11 @@ class Serper {
     try {
       final response = await _dio.request(
         url,
-        options: Options(method: 'POST', headers: _headers),
+        options: Options(
+          method: 'POST',
+          headers: _headers,
+          receiveTimeout: Duration(seconds: 60),
+        ),
         data: json.encode(data),
       );
       return response.data;
@@ -640,20 +644,9 @@ class Serper {
   /// Calls the Serper Webpage API (scraping) for a batch of queries.
   ///
   /// Accepts a list of [WebpageQuery] objects (up to 100).
-  /// Note: The Webpage API is a scraping endpoint and has a different base URL.
-  Future<List<WebpageResponse>> webpageBatch(List<WebpageQuery> queries) async {
-    assert(
-      queries.isNotEmpty && queries.length <= 100,
-      'You must provide 1-100 queries for webpageBatch.',
-    );
-    final endpoint = '/webpage';
-    final data = queries.map((q) => q.toJson()).toList();
-    final raw = await _postBatch(endpoint, data, isScrape: true);
-    return _deserializeListResponse(
-      raw,
-      WebpageResponse.fromJson,
-      endpoint,
-      queries.length,
+  Future<List<WebpageResponse>> webpageBatch(List<WebpageQuery> queries) {
+    throw UnimplementedError(
+      'The Serper Webpage API does not support batch queries. Use webpage for single queries.',
     );
   }
 }

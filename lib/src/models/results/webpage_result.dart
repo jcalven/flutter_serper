@@ -29,6 +29,11 @@ abstract class WebpageResult with _$WebpageResult {
     /// standardized.
     Map<String, dynamic>? metadata,
 
+    /// Structured data markup (JSON-LD)
+    ///
+    /// See: https://json-ld.org
+    Map<String, dynamic>? jsonld,
+
     /// The number of credits used for extracting this webpage.
     ///
     /// Serper API uses a credit-based system for billing.

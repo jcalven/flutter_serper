@@ -123,7 +123,8 @@ void main() {
           {
             'title': 'Flutter - Build apps for any screen',
             'link': 'https://flutter.dev',
-            'snippet': 'Flutter is Google\'s UI toolkit for crafting beautiful...',
+            'snippet':
+                'Flutter is Google\'s UI toolkit for crafting beautiful...',
             'date': '2024-01-01',
             'rating': 4.8,
             'ratingCount': 200,
@@ -147,7 +148,10 @@ void main() {
       final organic = response.organic.first;
       expect(organic.title, equals('Flutter - Build apps for any screen'));
       expect(organic.link, equals('https://flutter.dev'));
-      expect(organic.snippet, equals('Flutter is Google\'s UI toolkit for crafting beautiful...'));
+      expect(
+        organic.snippet,
+        equals('Flutter is Google\'s UI toolkit for crafting beautiful...'),
+      );
       expect(organic.date, equals('2024-01-01'));
       expect(organic.rating, equals(4.8));
       expect(organic.ratingCount, equals(200));
@@ -226,10 +230,7 @@ void main() {
     test('VideosResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {
-          'q': 'cooking videos',
-          'location': 'New York',
-        },
+        'searchParameters': {'q': 'cooking videos', 'location': 'New York'},
         'videos': [
           {
             'title': 'Cooking Video',
@@ -254,11 +255,17 @@ void main() {
       expect(response.videos.length, equals(1));
       expect(response.videos.first.title, equals('Cooking Video'));
       expect(response.videos.first.link, equals('https://example.com/video'));
-      expect(response.videos.first.imageUrl, equals('https://example.com/thumbnail.jpg'));
+      expect(
+        response.videos.first.imageUrl,
+        equals('https://example.com/thumbnail.jpg'),
+      );
       expect(response.videos.first.duration, equals('10:30'));
       expect(response.videos.first.source, equals('Example Channel'));
       expect(response.videos.first.snippet, equals('A great cooking video'));
-      expect(response.videos.first.imageUrl, equals('https://example.com/thumbnail.jpg'));
+      expect(
+        response.videos.first.imageUrl,
+        equals('https://example.com/thumbnail.jpg'),
+      );
       expect(response.videos.first.duration, equals('10:30'));
       expect(response.videos.first.channel, equals('Chef John'));
       expect(response.videos.first.date, equals('2024-01-01'));
@@ -281,10 +288,7 @@ void main() {
             'imageUrl': 'https://example.com/product.jpg',
             'rating': 4.7,
             'ratingCount': 50,
-            'offers': [
-              {'title': 'Offer 1'},
-              {'title': 'Offer 2'},
-            ],
+            'offers': '10+',
             'productId': 'prod123',
           },
         ],
@@ -298,14 +302,20 @@ void main() {
       expect(response, isA<ShoppingResponse>());
       expect(response.shopping.length, equals(1));
       expect(response.shopping.first.title, equals('Smartphone'));
-      expect(response.shopping.first.link, equals('https://example.com/product'));
+      expect(
+        response.shopping.first.link,
+        equals('https://example.com/product'),
+      );
       expect(response.shopping.first.price, equals('\$999'));
       expect(response.shopping.first.source, equals('Example Store'));
       expect(response.shopping.first.delivery, equals('Ships in 2 days'));
-      expect(response.shopping.first.imageUrl, equals('https://example.com/product.jpg'));
+      expect(
+        response.shopping.first.imageUrl,
+        equals('https://example.com/product.jpg'),
+      );
       expect(response.shopping.first.rating, equals(4.7));
       expect(response.shopping.first.ratingCount, equals(50));
-      expect(response.shopping.first.offers?.length, equals(2));
+      expect(response.shopping.first.offers, equals('10+'));
       expect(response.shopping.first.productId, equals('prod123'));
       expect(response.credits, equals(5));
     });
@@ -335,8 +345,14 @@ void main() {
       expect(response.organic.length, equals(1));
       expect(response.organic.first.title, equals('Lens Result'));
       expect(response.organic.first.link, equals('https://example.com/result'));
-      expect(response.organic.first.imageUrl, equals('https://example.com/image.jpg'));
-      expect(response.organic.first.thumbnailUrl, equals('https://example.com/thumbnail.jpg'));
+      expect(
+        response.organic.first.imageUrl,
+        equals('https://example.com/image.jpg'),
+      );
+      expect(
+        response.organic.first.thumbnailUrl,
+        equals('https://example.com/thumbnail.jpg'),
+      );
       expect(response.organic.first.source, equals('Example Source'));
       expect(response.credits, equals(5));
     });
@@ -438,8 +454,14 @@ void main() {
       expect(patent.thumbnailUrl, equals('https://example.com/thumb.jpg'));
       expect(patent.pdfUrl, equals('https://example.com/patent.pdf'));
       expect(patent.figures?.length, equals(2));
-      expect(patent.figures?.first.imageUrl, equals('https://example.com/figure1.jpg'));
-      expect(patent.figures?.first.thumbnailUrl, equals('https://example.com/figure1_thumb.jpg'));
+      expect(
+        patent.figures?.first.imageUrl,
+        equals('https://example.com/figure1.jpg'),
+      );
+      expect(
+        patent.figures?.first.thumbnailUrl,
+        equals('https://example.com/figure1_thumb.jpg'),
+      );
       expect(patent.position, equals(1));
       expect(response.credits, equals(5));
     });
@@ -464,27 +486,19 @@ void main() {
               'thumbnail': 'https://example.com/user.jpg',
               'link': 'https://example.com/user/janedoe',
               'reviews': 5,
-              'photos': 2
+              'photos': 2,
             },
             'response': {
               'date': '2023-01-02',
               'isoDate': '2023-01-02T00:00:00Z',
-              'snippet': 'Thank you for your review!'
+              'snippet': 'Thank you for your review!',
             },
             'id': 'review1',
           },
         ],
         'topics': [
-          {
-            'name': 'Cleanliness',
-            'reviews': 12,
-            'id': 'topic1'
-          },
-          {
-            'name': 'Location',
-            'reviews': 8,
-            'id': 'topic2'
-          }
+          {'name': 'Cleanliness', 'reviews': 12, 'id': 'topic1'},
+          {'name': 'Location', 'reviews': 8, 'id': 'topic2'},
         ],
         'credits': 5,
       };
@@ -541,15 +555,10 @@ void main() {
     test('WebpageResponse deserializes from JSON correctly', () {
       // Arrange
       final json = {
-        'searchParameters': {'url': 'https://example.com'},
-        'results': [
-          {
-            'text': 'This is the webpage content',
-            'markdown': '# Webpage Content\n\nThis is the webpage content',
-            'metadata': {'title': 'Example Website'},
-            'credits': 5,
-          },
-        ],
+        'text': 'This is the webpage content',
+        'markdown': '# Webpage Content\n\nThis is the webpage content',
+        'metadata': {'title': 'Example Website'},
+        'credits': 5,
       };
 
       // Act
@@ -557,20 +566,16 @@ void main() {
 
       // Assert
       expect(response, isA<WebpageResponse>());
-      expect(response.results.length, equals(1));
+      expect(response.results.text, equals('This is the webpage content'));
       expect(
-        response.results.first.text,
-        equals('This is the webpage content'),
-      );
-      expect(
-        response.results.first.markdown,
+        response.results.markdown,
         equals('# Webpage Content\n\nThis is the webpage content'),
       );
       expect(
-        response.results.first.metadata,
+        response.results.metadata,
         containsPair('title', 'Example Website'),
       );
-      expect(response.results.first.credits, equals(5));
+      expect(response.results.credits, equals(5));
     });
   });
 }

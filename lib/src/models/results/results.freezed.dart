@@ -3147,7 +3147,7 @@ mixin _$ShoppingResult {
  int get position;/// Product rating (e.g., 4.5).
  double? get rating;/// Number of ratings or reviews.
  int? get ratingCount;/// List of offers for the product.
- List<dynamic>? get offers;/// Unique product identifier.
+ String? get offers;/// Unique product identifier.
  String? get productId;
 /// Create a copy of ShoppingResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3161,12 +3161,12 @@ $ShoppingResultCopyWith<ShoppingResult> get copyWith => _$ShoppingResultCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingResult&&(identical(other.title, title) || other.title == title)&&(identical(other.source, source) || other.source == source)&&(identical(other.link, link) || other.link == link)&&(identical(other.price, price) || other.price == price)&&(identical(other.delivery, delivery) || other.delivery == delivery)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&const DeepCollectionEquality().equals(other.offers, offers)&&(identical(other.productId, productId) || other.productId == productId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShoppingResult&&(identical(other.title, title) || other.title == title)&&(identical(other.source, source) || other.source == source)&&(identical(other.link, link) || other.link == link)&&(identical(other.price, price) || other.price == price)&&(identical(other.delivery, delivery) || other.delivery == delivery)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.offers, offers) || other.offers == offers)&&(identical(other.productId, productId) || other.productId == productId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,source,link,price,delivery,imageUrl,position,rating,ratingCount,const DeepCollectionEquality().hash(offers),productId);
+int get hashCode => Object.hash(runtimeType,title,source,link,price,delivery,imageUrl,position,rating,ratingCount,offers,productId);
 
 @override
 String toString() {
@@ -3181,7 +3181,7 @@ abstract mixin class $ShoppingResultCopyWith<$Res>  {
   factory $ShoppingResultCopyWith(ShoppingResult value, $Res Function(ShoppingResult) _then) = _$ShoppingResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, List<dynamic>? offers, String? productId
+ String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, String? offers, String? productId
 });
 
 
@@ -3210,7 +3210,7 @@ as String?,position: null == position ? _self.position : position // ignore: cas
 as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,offers: freezed == offers ? _self.offers : offers // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+as String?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -3222,7 +3222,7 @@ as String?,
 @JsonSerializable()
 
 class _ShoppingResult implements ShoppingResult {
-  const _ShoppingResult({required this.title, this.source, required this.link, this.price, this.delivery, this.imageUrl, required this.position, this.rating, this.ratingCount, final  List<dynamic>? offers, this.productId}): _offers = offers;
+  const _ShoppingResult({required this.title, this.source, required this.link, this.price, this.delivery, this.imageUrl, required this.position, this.rating, this.ratingCount, this.offers, this.productId});
   factory _ShoppingResult.fromJson(Map<String, dynamic> json) => _$ShoppingResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -3248,16 +3248,7 @@ class _ShoppingResult implements ShoppingResult {
 /// Number of ratings or reviews.
 @override final  int? ratingCount;
 /// List of offers for the product.
- final  List<dynamic>? _offers;
-/// List of offers for the product.
-@override List<dynamic>? get offers {
-  final value = _offers;
-  if (value == null) return null;
-  if (_offers is EqualUnmodifiableListView) return _offers;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
+@override final  String? offers;
 /// Unique product identifier.
 @override final  String? productId;
 
@@ -3274,12 +3265,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingResult&&(identical(other.title, title) || other.title == title)&&(identical(other.source, source) || other.source == source)&&(identical(other.link, link) || other.link == link)&&(identical(other.price, price) || other.price == price)&&(identical(other.delivery, delivery) || other.delivery == delivery)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&const DeepCollectionEquality().equals(other._offers, _offers)&&(identical(other.productId, productId) || other.productId == productId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShoppingResult&&(identical(other.title, title) || other.title == title)&&(identical(other.source, source) || other.source == source)&&(identical(other.link, link) || other.link == link)&&(identical(other.price, price) || other.price == price)&&(identical(other.delivery, delivery) || other.delivery == delivery)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.position, position) || other.position == position)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.ratingCount, ratingCount) || other.ratingCount == ratingCount)&&(identical(other.offers, offers) || other.offers == offers)&&(identical(other.productId, productId) || other.productId == productId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,source,link,price,delivery,imageUrl,position,rating,ratingCount,const DeepCollectionEquality().hash(_offers),productId);
+int get hashCode => Object.hash(runtimeType,title,source,link,price,delivery,imageUrl,position,rating,ratingCount,offers,productId);
 
 @override
 String toString() {
@@ -3294,7 +3285,7 @@ abstract mixin class _$ShoppingResultCopyWith<$Res> implements $ShoppingResultCo
   factory _$ShoppingResultCopyWith(_ShoppingResult value, $Res Function(_ShoppingResult) _then) = __$ShoppingResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, List<dynamic>? offers, String? productId
+ String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, String? offers, String? productId
 });
 
 
@@ -3322,8 +3313,8 @@ as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: 
 as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
-as int?,offers: freezed == offers ? _self._offers : offers // ignore: cast_nullable_to_non_nullable
-as List<dynamic>?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+as int?,offers: freezed == offers ? _self.offers : offers // ignore: cast_nullable_to_non_nullable
+as String?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -4052,7 +4043,10 @@ mixin _$WebpageResult {
 /// Note: This field is not strongly typed since the metadata structure
 /// can vary widely between different webpages and the meta tags are not
 /// standardized.
- Map<String, dynamic>? get metadata;/// The number of credits used for extracting this webpage.
+ Map<String, dynamic>? get metadata;/// Structured data markup (JSON-LD)
+///
+/// See: https://json-ld.org
+ Map<String, dynamic>? get jsonld;/// The number of credits used for extracting this webpage.
 ///
 /// Serper API uses a credit-based system for billing.
  int get credits;
@@ -4068,16 +4062,16 @@ $WebpageResultCopyWith<WebpageResult> get copyWith => _$WebpageResultCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&const DeepCollectionEquality().equals(other.jsonld, jsonld)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(metadata),credits);
+int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(metadata),const DeepCollectionEquality().hash(jsonld),credits);
 
 @override
 String toString() {
-  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, credits: $credits)';
+  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, jsonld: $jsonld, credits: $credits)';
 }
 
 
@@ -4088,7 +4082,7 @@ abstract mixin class $WebpageResultCopyWith<$Res>  {
   factory $WebpageResultCopyWith(WebpageResult value, $Res Function(WebpageResult) _then) = _$WebpageResultCopyWithImpl;
 @useResult
 $Res call({
- String text, String? markdown, Map<String, dynamic>? metadata, int credits
+ String text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int credits
 });
 
 
@@ -4105,11 +4099,12 @@ class _$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = null,}) {
   return _then(_self.copyWith(
 text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,jsonld: freezed == jsonld ? _self.jsonld : jsonld // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -4122,7 +4117,7 @@ as int,
 @JsonSerializable()
 
 class _WebpageResult implements WebpageResult {
-  const _WebpageResult({required this.text, this.markdown, final  Map<String, dynamic>? metadata, required this.credits}): _metadata = metadata;
+  const _WebpageResult({required this.text, this.markdown, final  Map<String, dynamic>? metadata, final  Map<String, dynamic>? jsonld, required this.credits}): _metadata = metadata,_jsonld = jsonld;
   factory _WebpageResult.fromJson(Map<String, dynamic> json) => _$WebpageResultFromJson(json);
 
 /// The extracted text content from the webpage.
@@ -4158,6 +4153,21 @@ class _WebpageResult implements WebpageResult {
   return EqualUnmodifiableMapView(value);
 }
 
+/// Structured data markup (JSON-LD)
+///
+/// See: https://json-ld.org
+ final  Map<String, dynamic>? _jsonld;
+/// Structured data markup (JSON-LD)
+///
+/// See: https://json-ld.org
+@override Map<String, dynamic>? get jsonld {
+  final value = _jsonld;
+  if (value == null) return null;
+  if (_jsonld is EqualUnmodifiableMapView) return _jsonld;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(value);
+}
+
 /// The number of credits used for extracting this webpage.
 ///
 /// Serper API uses a credit-based system for billing.
@@ -4176,16 +4186,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other._metadata, _metadata)&&(identical(other.credits, credits) || other.credits == credits));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebpageResult&&(identical(other.text, text) || other.text == text)&&(identical(other.markdown, markdown) || other.markdown == markdown)&&const DeepCollectionEquality().equals(other._metadata, _metadata)&&const DeepCollectionEquality().equals(other._jsonld, _jsonld)&&(identical(other.credits, credits) || other.credits == credits));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(_metadata),credits);
+int get hashCode => Object.hash(runtimeType,text,markdown,const DeepCollectionEquality().hash(_metadata),const DeepCollectionEquality().hash(_jsonld),credits);
 
 @override
 String toString() {
-  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, credits: $credits)';
+  return 'WebpageResult(text: $text, markdown: $markdown, metadata: $metadata, jsonld: $jsonld, credits: $credits)';
 }
 
 
@@ -4196,7 +4206,7 @@ abstract mixin class _$WebpageResultCopyWith<$Res> implements $WebpageResultCopy
   factory _$WebpageResultCopyWith(_WebpageResult value, $Res Function(_WebpageResult) _then) = __$WebpageResultCopyWithImpl;
 @override @useResult
 $Res call({
- String text, String? markdown, Map<String, dynamic>? metadata, int credits
+ String text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int credits
 });
 
 
@@ -4213,11 +4223,12 @@ class __$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = null,}) {
   return _then(_WebpageResult(
 text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as String?,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,jsonld: freezed == jsonld ? _self._jsonld : jsonld // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
 as int,
   ));

@@ -676,15 +676,10 @@ void main() {
     test('webpage returns WebpageResponse', () async {
       final query = WebpageQuery(url: 'https://example.com');
       final mockResponse = {
-        'searchParameters': query.toJson(),
-        'results': [
-          {
-            'text': 'This is the webpage content',
-            'markdown': '# Webpage Content\n\nThis is the webpage content',
-            'metadata': {'title': 'Example Website'},
-            'credits': 5,
-          },
-        ],
+        'text': 'This is the webpage content',
+        'markdown': '# Webpage Content\n\nThis is the webpage content',
+        'metadata': {'title': 'Example Website'},
+        'credits': 5,
       };
       when(
         mockDio.request(
@@ -701,8 +696,8 @@ void main() {
       );
       final result = await serper.webpage(query);
       expect(result, isA<WebpageResponse>());
-      expect(result.results.first.text, 'This is the webpage content');
-      expect(result.results.first.metadata?['title'], 'Example Website');
+      expect(result.results.text, 'This is the webpage content');
+      expect(result.results.metadata?['title'], 'Example Website');
     });
 
     test('reviews returns ReviewsResponse', () async {
@@ -722,14 +717,14 @@ void main() {
               'thumbnail': 'https://example.com/user/alice.jpg',
               'link': 'https://example.com/user/alice',
               'reviews': 5,
-              'photos': 2
+              'photos': 2,
             },
             'response': {
               'date': '2024-01-02',
               'isoDate': '2024-01-02T00:00:00Z',
-              'snippet': 'Thank you!'
+              'snippet': 'Thank you!',
             },
-            'id': 'review1'
+            'id': 'review1',
           },
         ],
         'topics': [],
