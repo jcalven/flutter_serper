@@ -1,8 +1,18 @@
 part of 'results.dart';
 
-/// The business's response to a place review.
+/// {@template placeReviewResponseDocComments}
+///
+/// An immutable result object representing the business's response to a place review.
+///
+/// - [date]: The relative date string (e.g., "a month ago").
+/// - [isoDate]: The ISO 8601 date string.
+/// - [snippet]: The main snippet/content of the response.
+///
+/// This class is used in [PlaceReview] to represent the business's response to a review.
+/// {@endtemplate}
 @freezed
 abstract class PlaceReviewResponse with _$PlaceReviewResponse {
+  /// {@macro placeReviewResponseDocComments}
   /// Creates a [PlaceReviewResponse].
   const factory PlaceReviewResponse({
     /// The relative date string (e.g., "a month ago").

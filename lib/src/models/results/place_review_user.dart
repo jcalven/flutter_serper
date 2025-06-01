@@ -1,8 +1,20 @@
 part of 'results.dart';
 
-/// The user who wrote a place review.
+/// {@template placeReviewUserDocComments}
+///
+/// An immutable result object representing the user who wrote a place review.
+///
+/// - [name]: The user's display name.
+/// - [thumbnail]: The URL to the user's profile thumbnail image.
+/// - [link]: The link to the user's profile.
+/// - [reviews]: The number of reviews written by the user.
+/// - [photos]: The number of photos contributed by the user.
+///
+/// This class is used in [PlaceReview] to represent the author of a review.
+/// {@endtemplate}
 @freezed
 abstract class PlaceReviewUser with _$PlaceReviewUser {
+  /// {@macro placeReviewUserDocComments}
   /// Creates a [PlaceReviewUser].
   const factory PlaceReviewUser({
     /// The user's display name.

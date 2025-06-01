@@ -1,10 +1,20 @@
 part of 'results.dart';
 
-/// Represents a single result in a Serper Webpage API response.
+/// {@template webpageResultDocComments}
 ///
-/// This contains the extracted content from a webpage.
+/// An immutable result object representing a single result in a Serper Webpage API response.
+///
+/// - [text]: The extracted text content from the webpage.
+/// - [markdown]: The content formatted as markdown, if available.
+/// - [metadata]: Additional metadata about the webpage.
+/// - [jsonld]: Structured data markup (JSON-LD).
+/// - [credits]: The number of credits used for extracting this webpage.
+///
+/// This class is used in the [WebpageResponse] to represent the extracted content from a webpage.
+/// {@endtemplate}
 @freezed
 abstract class WebpageResult with _$WebpageResult {
+  /// {@macro webpageResultDocComments}
   /// Creates a [WebpageResult].
   const factory WebpageResult({
     /// The extracted text content from the webpage.

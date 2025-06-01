@@ -1,8 +1,16 @@
 part of 'results.dart';
 
-/// Autocomplete suggestion returned by the Serper Autocomplete API.
+/// {@template autocompleteSuggestionDocComments}
+///
+/// An immutable result object representing an autocomplete suggestion returned by the Serper Autocomplete API.
+///
+/// - [value]: The suggested search query completion. This is a possible completion of the user's partial query.
+///
+/// This class is used in the [AutocompleteResponse] to represent each suggestion returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class AutocompleteSuggestion with _$AutocompleteSuggestion {
+  /// {@macro autocompleteSuggestionDocComments}
   /// Creates an [AutocompleteSuggestion].
   const factory AutocompleteSuggestion({
     /// The suggested search query completion.

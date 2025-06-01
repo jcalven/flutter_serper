@@ -4,6 +4,8 @@ import 'package:json_annotation/json_annotation.dart';
 class LatLng {
   final double latitude;
   final double longitude;
+
+  /// The zoom level for the map view, default is 10.0.
   final double zoom;
 
   const LatLng(this.latitude, this.longitude, {this.zoom = 10.0});

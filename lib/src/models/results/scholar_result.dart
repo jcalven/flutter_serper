@@ -1,8 +1,24 @@
 part of 'results.dart';
 
-/// Scholar result from the Serper Scholar API.
+/// {@template scholarResultDocComments}
+///
+/// An immutable result object representing a scholar result from the Serper Scholar API.
+///
+/// - [title]: The title of the academic paper.
+/// - [link]: The direct link to the academic paper.
+/// - [publicationInfo]: Information about the publication (journal, conference, etc.).
+/// - [snippet]: A brief excerpt or description of the paper.
+/// - [year]: The year the academic paper was published.
+/// - [citedBy]: The number of times this paper has been cited by other papers.
+/// - [pdfUrl]: URL to the PDF version of the academic paper.
+/// - [htmlUrl]: URL to the HTML version of the academic paper.
+/// - [id]: The unique identifier for this academic paper.
+///
+/// This class is used in the [ScholarResponse] to represent each scholar result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class ScholarResult with _$ScholarResult {
+  /// {@macro scholarResultDocComments}
   /// Creates a [ScholarResult].
   const factory ScholarResult({
     /// {@macro flutter_serper.results.title}

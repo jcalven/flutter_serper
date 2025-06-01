@@ -1,8 +1,28 @@
 part of 'results.dart';
 
-/// Maps result from the Serper Maps API.
+/// {@template mapResultDocComments}
+///
+/// An immutable result object representing a map result from the Serper Maps API.
+///
+/// - [title]: The title of the place.
+/// - [cid]: The unique Customer ID (CID) of the place in Google Maps.
+/// - [address]: The full address of the place.
+/// - [rating]: The rating of the place.
+/// - [ratingCount]: The number of ratings for this place.
+/// - [priceLevel]: The price level of the place.
+/// - [type]: The type or category of the place.
+/// - [types]: The types/categories of the place (multiple).
+/// - [phoneNumber]: The phone number of the place.
+/// - [website]: The URL of the place's website.
+/// - [openingHours]: The business hours of operation.
+/// - [description]: A description of the place.
+/// - [position]: The position of this result in the results list.
+///
+/// This class is used in the [MapsResponse] to represent each map result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class MapResult with _$MapResult {
+  /// {@macro mapResultDocComments}
   /// Creates a [MapResult].
   const MapResult._();
 

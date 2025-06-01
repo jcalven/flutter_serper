@@ -1,8 +1,28 @@
 part of 'results.dart';
 
-/// Image result returned by the Serper Images API.
+/// {@template imageResultDocComments}
+///
+/// An immutable result object representing an image result returned by the Serper Images API.
+///
+/// - [title]: The title of the image result.
+/// - [imageUrl]: The URL to the full-size image.
+/// - [imageWidth]: The width of the full-size image in pixels.
+/// - [imageHeight]: The height of the full-size image in pixels.
+/// - [thumbnailUrl]: The URL to a thumbnail version of the image.
+/// - [thumbnailWidth]: The width of the thumbnail image in pixels.
+/// - [thumbnailHeight]: The height of the thumbnail image in pixels.
+/// - [source]: The source or provider of the result.
+/// - [link]: The direct link to the image result.
+/// - [googleUrl]: The Google Images result URL for this image.
+/// - [price]: The price associated with the result.
+/// - [domain]: The domain of the website hosting the image.
+/// - [position]: The position of this result in the results list.
+///
+/// This class is used in the [ImagesResponse] to represent each image result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class ImageResult with _$ImageResult {
+  /// {@macro imageResultDocComments}
   /// Creates an [ImageResult].
   const factory ImageResult({
     /// {@macro flutter_serper.results.title}

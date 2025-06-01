@@ -1,8 +1,20 @@
 part of 'results.dart';
 
-/// Lens (Image Search) result from the Serper Lens API.
+/// {@template lensResultDocComments}
+///
+/// An immutable result object representing a Lens (Image Search) result from the Serper Lens API.
+///
+/// - [title]: The title of the result.
+/// - [source]: The source or provider of the result.
+/// - [link]: The direct link to the result.
+/// - [imageUrl]: The URL to the full-size image.
+/// - [thumbnailUrl]: The URL to a thumbnail version of the image.
+///
+/// This class is used in the [LensResponse] to represent each result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class LensResult with _$LensResult {
+  /// {@macro lensResultDocComments}
   /// Creates a [LensResult].
   const factory LensResult({
     /// {@macro flutter_serper.results.title}

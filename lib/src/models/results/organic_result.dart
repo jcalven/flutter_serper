@@ -1,11 +1,22 @@
 part of 'results.dart';
 
-/// Organic search result from the Serper Search API.
+/// {@template organicResultDocComments}
 ///
-/// These are the main search results that match the query criteria,
-/// similar to the standard results you would see in a search engine.
+/// An immutable result object representing an organic search result from the Serper Search API.
+///
+/// - [title]: The title of the result.
+/// - [link]: The URL link to the result.
+/// - [snippet]: A brief excerpt or description of the result.
+/// - [date]: The date associated with the result.
+/// - [rating]: The rating associated with the result.
+/// - [ratingCount]: The count of ratings for this result.
+/// - [sitelinks]: List of sitelinks associated with the result.
+///
+/// This class is used in the [SearchResponse] to represent each organic result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class OrganicResult with _$OrganicResult {
+  /// {@macro organicResultDocComments}
   /// Creates an [OrganicResult].
   const factory OrganicResult({
     /// {@template flutter_serper.results.title}

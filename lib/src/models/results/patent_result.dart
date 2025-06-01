@@ -1,8 +1,30 @@
 part of 'results.dart';
 
-/// Patent result from the Serper Patents API.
+/// {@template patentResultDocComments}
+///
+/// An immutable result object representing a patent result from the Serper Patents API.
+///
+/// - [title]: The title of the patent.
+/// - [snippet]: A brief excerpt or description of the patent.
+/// - [link]: The direct link to the patent result.
+/// - [priorityDate]: The priority date of the patent.
+/// - [filingDate]: The date when the patent application was filed.
+/// - [grantDate]: The date when the patent was granted, if applicable.
+/// - [publicationDate]: The date when the patent was published.
+/// - [inventor]: The name(s) of the inventor(s) of the patent.
+/// - [assignee]: The name of the entity to whom the patent is assigned.
+/// - [publicationNumber]: The official publication number of the patent.
+/// - [language]: The language in which the patent is written.
+/// - [thumbnailUrl]: The URL to a thumbnail version of the patent.
+/// - [pdfUrl]: URL to the PDF version of the patent document.
+/// - [figures]: List of figures included in the patent.
+/// - [position]: The position of this result in the results list.
+///
+/// This class is used in the [PatentsResponse] to represent each patent result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class PatentResult with _$PatentResult {
+  /// {@macro patentResultDocComments}
   /// Creates a [PatentResult].
   const factory PatentResult({
     /// {@macro flutter_serper.results.title}

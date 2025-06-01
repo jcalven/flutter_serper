@@ -1,8 +1,17 @@
 part of 'results.dart';
 
-/// Patent figure image from the Serper Patents API.
+/// {@template patentFigureDocComments}
+///
+/// An immutable result object representing a patent figure image from the Serper Patents API.
+///
+/// - [imageUrl]: The URL to the full-size patent figure image.
+/// - [thumbnailUrl]: The URL to a thumbnail version of the patent figure image.
+///
+/// This class is used in [PatentResult] to represent each figure included in a patent.
+/// {@endtemplate}
 @freezed
 abstract class PatentFigure with _$PatentFigure {
+  /// {@macro patentFigureDocComments}
   /// Creates a [PatentFigure].
   const factory PatentFigure({
     /// {@macro flutter_serper.results.imageUrl}

@@ -1,8 +1,25 @@
 part of 'results.dart';
 
-/// Video result from the Serper Videos API.
+/// {@template videoResultDocComments}
+///
+/// An immutable result object representing a video result from the Serper Videos API.
+///
+/// - [title]: The title of the video.
+/// - [link]: The direct link to the video.
+/// - [snippet]: A brief excerpt or description of the video.
+/// - [imageUrl]: The URL to the image associated with the video.
+/// - [videoUrl]: The direct video URL (may be a preview or thumbnail).
+/// - [duration]: The duration of the video.
+/// - [source]: The video platform or publisher.
+/// - [channel]: The channel or publisher name.
+/// - [date]: The date of the video.
+/// - [position]: The position of this result in the results list.
+///
+/// This class is used in the [VideosResponse] to represent each video result returned by the API.
+/// {@endtemplate}
 @freezed
 abstract class VideoResult with _$VideoResult {
+  /// {@macro videoResultDocComments}
   /// Creates a [VideoResult].
   const factory VideoResult({
     /// {@macro flutter_serper.results.title}
