@@ -274,8 +274,6 @@ void main() {
       // Act & Assert
       try {
         final imageResults = await serper.images(imagesQuery);
-        print('Raw Images API response:');
-        print(imageResults);
         expect(imageResults.images, isNotEmpty);
         expect(imageResults.credits, greaterThan(0));
       } catch (e) {
@@ -293,8 +291,6 @@ void main() {
         final autocompleteResults = await serper.autocomplete(
           autocompleteQuery,
         );
-        print('Raw Autocomplete API response:');
-        print(autocompleteResults);
         expect(autocompleteResults.suggestions, isNotEmpty);
         expect(autocompleteResults.credits, greaterThan(0));
       } catch (e) {
@@ -313,8 +309,6 @@ void main() {
       // Act & Assert
       try {
         final mapsResults = await serper.maps(mapsQuery);
-        print('Raw Maps API response:');
-        print(mapsResults);
         expect(mapsResults.places, isNotEmpty);
         expect(mapsResults.credits, greaterThan(0));
       } catch (e) {
