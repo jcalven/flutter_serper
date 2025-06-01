@@ -7,7 +7,7 @@ A Dart package that provides a strongly-typed wrapper for the [Serper API](https
 
 ## Features
 
-- Strongly-typed query and response models using Freezed
+- Strongly-typed query and response models
 - Type-safe responses for all API endpoints that match the Serper API schema
 - Support for all Serper API endpoints:
   - Google Search
@@ -50,7 +50,7 @@ final serper = Serper(apiKey: 'YOUR_API_KEY');
 
 ```dart
 final query = SearchQuery(
-  q: 'coffee shops',
+  query: 'coffee shops',
   location: 'New York',
   countryCode: CountryCode.unitedStates, // Optional, use enum
   languageCode: LanguageCode.english,    // Optional, use enum
@@ -62,10 +62,10 @@ print('Found ${result.organic.length} organic results');
 print('First result: ${result.organic.first.title}');
 print('Link: ${result.organic.first.link}');
 
-if (result.peopleAlsoAsk != null) {
+if (result.peopleAlsoAsk != null && result.peopleAlsoAsk!.isNotEmpty) {
   print('People also ask: ${result.peopleAlsoAsk!.first.question}');
 }
-if (result.relatedSearches != null) {
+if (result.relatedSearches != null && result.relatedSearches!.isNotEmpty) {
   print('Related search: ${result.relatedSearches!.first.query}');
 }
 ```
@@ -75,8 +75,8 @@ if (result.relatedSearches != null) {
 
 ```dart
 final queries = [
-  SearchQuery(q: 'best cafes', location: 'Seattle'),
-  SearchQuery(q: 'best coffee', location: 'Portland'),
+  SearchQuery(query: 'best cafes', location: 'Seattle'),
+  SearchQuery(query: 'best coffee', location: 'Portland'),
 ];
 
 final results = await serper.searchBatch(queries);
@@ -91,7 +91,7 @@ for (final res in results) {
 
 ```dart
 final query = ImagesQuery(
-  q: 'coffee beans',
+  query: 'coffee beans',
   location: 'New York',
   num: 5,
 );
@@ -113,8 +113,8 @@ final query = WebpageQuery(
 );
 
 final result = await serper.webpage(query);
-print('Extracted text length: ${result.results.first.text.length} characters');
-if (result.results.first.markdown != null) {
+print('Extracted text length: ${result.results.text.length} characters');
+if (result.results.markdown != null) {
   print('Markdown available');
 }
 ```
@@ -126,14 +126,14 @@ Each query class supports all the parameters available in the Serper API. Exampl
 
 ```dart
 SearchQuery(
-  q: 'search term',           // Required - search query
-  location: 'New York',       // Optional - location to search from
+  query: 'search term',           // Required - search query
+  location: 'New York',           // Optional - location to search from
   countryCode: CountryCode.unitedStates, // Optional - use enum
   languageCode: LanguageCode.english,    // Optional - use enum
-  num: 10,                    // Optional - number of results
-  autocorrect: true,          // Optional - enable autocorrection
-  tbs: TbsValue.pastDay,      // Optional - time-based search (enum)
-  page: 1,                    // Optional - page number
+  num: 10,                        // Optional - number of results
+  autocorrect: true,              // Optional - enable autocorrection
+  tbs: TbsValue.pastDay,          // Optional - time-based search (enum)
+  page: 1,                        // Optional - page number
 );
 ```
 
@@ -152,7 +152,7 @@ for (final result in searchResult.organic) {
   print('Title: ${result.title}');
   print('Link: ${result.link}');
   print('Snippet: ${result.snippet}');
-  print('Position: ${result.position}');
+  // OrganicResult does not have a position field in the model, so this line is removed
 }
 if (searchResult.relatedSearches != null) {
   for (final related in searchResult.relatedSearches!) {
@@ -176,7 +176,6 @@ for (final image in imageResult.images) {
   print('Image URL: ${image.imageUrl}');
   print('Thumbnail: ${image.thumbnailUrl}');
   print('Source: ${image.source}');
-  print('Source URL: ${image.sourceUrl}');
 }
 ```
 
@@ -200,8 +199,8 @@ All API methods throw a `SerperApiException` when there's an error with the API 
 
 ```dart
 try {
-  final results = await serper.search([query]);
-  // Process results...
+  final result = await serper.search(query);
+  // Process result...
 } on SerperApiException catch (e) {
   print('API error: ${e.message}');
   print('Status code: ${e.statusCode}');
@@ -212,47 +211,6 @@ try {
 } catch (e) {
   print('Other error: $e');
 }
-```
-
-## Development
-
-### Workflow
-
-This package follows the [Very Good Ventures](https://verygood.ventures/) workflow for Dart packages:
-
-1. All changes should be made in feature branches from `main`
-2. Pull requests should follow the [Conventional Commits](https://www.conventionalcommits.org/) specification
-3. CI automatically verifies formatting, static analysis, and tests
-4. Releases are automated using version tags
-
-### Release Process
-
-To create a new release:
-
-```bash
-# For a patch release (0.0.X)
-./tool/release.sh patch
-
-# For a minor release (0.X.0)
-./tool/release.sh minor
-
-# For a major release (X.0.0)
-./tool/release.sh major
-
-# For a pre-release (beta version)
-./tool/release.sh pre-release
-
-# To convert a pre-release to a stable release
-./tool/release.sh release
-```
-
-The release script will:
-1. Ensure you're on the main branch
-2. Run tests to verify everything works
-3. Bump the version in pubspec.yaml and update CHANGELOG.md
-4. Commit and tag the changes
-5. Push to GitHub, which triggers the publish workflow
-print('Found ${results.organic.length} organic results');
 ```
 
 ## License
