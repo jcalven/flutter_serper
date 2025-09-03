@@ -26,5 +26,4 @@ dev_dependencies:
   freezed: ^3.0.6
   json_serializable: ^6.7.1
   mockito: ^5.4.2
-  custom_lint: ^0.7.5
   freezed_lint: ^0.0.9
