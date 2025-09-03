@@ -21,3 +21,7 @@ instruct.md
 
 # Ignore any file or directory that starts with `ignore`
 ignore*
+
+# Firebase debug logs
+firebase-debug.log
+firebase-debug.*.log

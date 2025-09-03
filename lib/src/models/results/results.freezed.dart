@@ -2038,8 +2038,11 @@ mixin _$MapResult {
  String? get priceLevel;/// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
- String get type;/// The types/categories of the place (multiple).
- List<String> get types;/// {@template flutter_serper.results.phoneNumber}
+/// May be null if the API doesn't provide type information.
+ String? get type;/// The types/categories of the place (multiple).
+///
+/// May be null if the API doesn't provide multiple type categories.
+ List<String>? get types;/// {@template flutter_serper.results.phoneNumber}
 /// The phone number of the place.
 /// {@endtemplate}
  String? get phoneNumber;/// The URL of the place's website.
@@ -2089,7 +2092,7 @@ abstract mixin class $MapResultCopyWith<$Res>  {
   factory $MapResultCopyWith(MapResult value, $Res Function(MapResult) _then) = _$MapResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String type, List<String> types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
+ String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
 });
 
 
@@ -2106,7 +2109,7 @@ class _$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = null,Object? types = null,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
@@ -2114,9 +2117,9 @@ as String,address: null == address ? _self.address : address // ignore: cast_nul
 as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,types: null == types ? _self.types : types // ignore: cast_nullable_to_non_nullable
-as List<String>,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,types: freezed == types ? _self.types : types // ignore: cast_nullable_to_non_nullable
+as List<String>?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
@@ -2138,7 +2141,7 @@ as int,
 @JsonSerializable()
 
 class _MapResult extends MapResult {
-  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, required this.type, required final  List<String> types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks,super._();
+  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, this.type, final  List<String>? types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks,super._();
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
@@ -2162,14 +2165,21 @@ class _MapResult extends MapResult {
 /// The type or category of the place.
 ///
 /// Examples include "Restaurant", "Hotel", "Attraction", etc.
-@override final  String type;
+/// May be null if the API doesn't provide type information.
+@override final  String? type;
 /// The types/categories of the place (multiple).
- final  List<String> _types;
+///
+/// May be null if the API doesn't provide multiple type categories.
+ final  List<String>? _types;
 /// The types/categories of the place (multiple).
-@override List<String> get types {
+///
+/// May be null if the API doesn't provide multiple type categories.
+@override List<String>? get types {
+  final value = _types;
+  if (value == null) return null;
   if (_types is EqualUnmodifiableListView) return _types;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_types);
+  return EqualUnmodifiableListView(value);
 }
 
 /// {@template flutter_serper.results.phoneNumber}
@@ -2254,7 +2264,7 @@ abstract mixin class _$MapResultCopyWith<$Res> implements $MapResultCopyWith<$Re
   factory _$MapResultCopyWith(_MapResult value, $Res Function(_MapResult) _then) = __$MapResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String type, List<String> types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
+ String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
 });
 
 
@@ -2271,7 +2281,7 @@ class __$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = null,Object? types = null,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
   return _then(_MapResult(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
@@ -2279,9 +2289,9 @@ as String,address: null == address ? _self.address : address // ignore: cast_nul
 as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
-as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,types: null == types ? _self._types : types // ignore: cast_nullable_to_non_nullable
-as List<String>,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,types: freezed == types ? _self._types : types // ignore: cast_nullable_to_non_nullable
+as List<String>?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable

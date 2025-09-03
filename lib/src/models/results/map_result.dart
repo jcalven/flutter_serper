@@ -10,8 +10,8 @@ part of 'results.dart';
 /// - [rating]: The rating of the place.
 /// - [ratingCount]: The number of ratings for this place.
 /// - [priceLevel]: The price level of the place.
-/// - [type]: The type or category of the place.
-/// - [types]: The types/categories of the place (multiple).
+/// - [type]: The type or category of the place (nullable).
+/// - [types]: The types/categories of the place (multiple, nullable).
 /// - [phoneNumber]: The phone number of the place.
 /// - [website]: The URL of the place's website.
 /// - [openingHours]: The business hours of operation.
@@ -54,10 +54,13 @@ abstract class MapResult with _$MapResult {
     /// The type or category of the place.
     ///
     /// Examples include "Restaurant", "Hotel", "Attraction", etc.
-    required String type,
+    /// May be null if the API doesn't provide type information.
+    String? type,
 
     /// The types/categories of the place (multiple).
-    required List<String> types,
+    ///
+    /// May be null if the API doesn't provide multiple type categories.
+    List<String>? types,
 
     /// {@template flutter_serper.results.phoneNumber}
     /// The phone number of the place.

@@ -250,8 +250,8 @@ _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
   rating: (json['rating'] as num?)?.toDouble(),
   ratingCount: (json['ratingCount'] as num?)?.toInt(),
   priceLevel: json['priceLevel'] as String?,
-  type: json['type'] as String,
-  types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
+  type: json['type'] as String?,
+  types: (json['types'] as List<dynamic>?)?.map((e) => e as String).toList(),
   phoneNumber: json['phoneNumber'] as String?,
   website: json['website'] as String?,
   openingHours: (json['openingHours'] as Map<String, dynamic>?)?.map(

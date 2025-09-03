@@ -568,8 +568,8 @@ void main() {
       expect(place.rating, 4.8);
       expect(place.ratingCount, 1000);
       expect(place.priceLevel, '2');
-      expect(place.type, 'Park');
-      expect(place.types, ['Park']);
+      expect(place.type, equals('Park'));
+      expect(place.types, equals(['Park']));
       expect(place.phoneNumber, isNull);
       expect(place.website, isNull);
       expect(place.openingHours, isNull);
