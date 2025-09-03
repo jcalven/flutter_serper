@@ -28,18 +28,18 @@ abstract class PlaceResult with _$PlaceResult {
 
   const factory PlaceResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// The full address of the place.
     ///
     /// Typically includes street, city, state/province, and postal code.
-    required String address,
+    String? address,
 
     /// The latitude of the place.
-    required double latitude,
+    double? latitude,
 
     /// The longitude of the place.
-    required double longitude,
+    double? longitude,
 
     // {@macro flutter_serper.results.phoneNumber}
     String? phoneNumber,
@@ -74,7 +74,7 @@ abstract class PlaceResult with _$PlaceResult {
     String? cid,
 
     /// {@macro ResultDocTemplates.positionDoc}
-    required int position,
+    int? position,
   }) = _PlaceResult;
 
   /// Creates a [PlaceResult] from a JSON map.
@@ -82,5 +82,8 @@ abstract class PlaceResult with _$PlaceResult {
       _$PlaceResultFromJson(json);
 
   /// {@macro flutter_serper.results.latLng}
-  LatLng? get latLng => LatLng(latitude, longitude);
+  LatLng? get latLng =>
+      (latitude != null && longitude != null)
+          ? LatLng(latitude!, longitude!)
+          : null;
 }

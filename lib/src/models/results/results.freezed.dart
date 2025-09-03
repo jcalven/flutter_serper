@@ -160,17 +160,17 @@ mixin _$OrganicResult {
 ///
 /// This is typically the main heading or name associated with the search result.
 /// {@endtemplate}
- String get title;/// {@template flutter_serper.results.link}
+ String? get title;/// {@template flutter_serper.results.link}
 /// The URL link to the result.
 ///
 /// This URL can be used to navigate to the full content of the search result.
 /// {@endtemplate}
- String get link;/// {@template flutter_serper.results.snippet}
+ String? get link;/// {@template flutter_serper.results.snippet}
 /// A brief excerpt or description of the result.
 ///
 /// This provides a summary of the content to help users understand what the result contains.
 /// {@endtemplate}
- String get snippet;/// {@template flutter_serper.results.date}
+ String? get snippet;/// {@template flutter_serper.results.date}
 /// The date associated with the result.
 ///
 /// This could be a publication date, review date, or other relevant date information.
@@ -193,7 +193,7 @@ mixin _$OrganicResult {
 ///
 /// Position is zero-based, with 0 being the first result.
 /// {@endtemplate}
- int get position;/// Additional links to specific sections within the result website.
+ int? get position;/// Additional links to specific sections within the result website.
 ///
 /// These are subcategory links that provide direct access to different
 /// sections of the website.
@@ -230,7 +230,7 @@ abstract mixin class $OrganicResultCopyWith<$Res>  {
   factory $OrganicResultCopyWith(OrganicResult value, $Res Function(OrganicResult) _then) = _$OrganicResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String snippet, String? date, double? rating, int? ratingCount, String? imageUrl, int position, List<OrganicSitelink>? sitelinks
+ String? title, String? link, String? snippet, String? date, double? rating, int? ratingCount, String? imageUrl, int? position, List<OrganicSitelink>? sitelinks
 });
 
 
@@ -247,17 +247,17 @@ class _$OrganicResultCopyWithImpl<$Res>
 
 /// Create a copy of OrganicResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? imageUrl = freezed,Object? position = null,Object? sitelinks = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? date = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? imageUrl = freezed,Object? position = freezed,Object? sitelinks = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,sitelinks: freezed == sitelinks ? _self.sitelinks : sitelinks // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,sitelinks: freezed == sitelinks ? _self.sitelinks : sitelinks // ignore: cast_nullable_to_non_nullable
 as List<OrganicSitelink>?,
   ));
 }
@@ -269,7 +269,7 @@ as List<OrganicSitelink>?,
 @JsonSerializable()
 
 class _OrganicResult implements OrganicResult {
-  const _OrganicResult({required this.title, required this.link, required this.snippet, this.date, this.rating, this.ratingCount, this.imageUrl, required this.position, final  List<OrganicSitelink>? sitelinks}): _sitelinks = sitelinks;
+  const _OrganicResult({this.title, this.link, this.snippet, this.date, this.rating, this.ratingCount, this.imageUrl, this.position, final  List<OrganicSitelink>? sitelinks}): _sitelinks = sitelinks;
   factory _OrganicResult.fromJson(Map<String, dynamic> json) => _$OrganicResultFromJson(json);
 
 /// {@template flutter_serper.results.title}
@@ -277,19 +277,19 @@ class _OrganicResult implements OrganicResult {
 ///
 /// This is typically the main heading or name associated with the search result.
 /// {@endtemplate}
-@override final  String title;
+@override final  String? title;
 /// {@template flutter_serper.results.link}
 /// The URL link to the result.
 ///
 /// This URL can be used to navigate to the full content of the search result.
 /// {@endtemplate}
-@override final  String link;
+@override final  String? link;
 /// {@template flutter_serper.results.snippet}
 /// A brief excerpt or description of the result.
 ///
 /// This provides a summary of the content to help users understand what the result contains.
 /// {@endtemplate}
-@override final  String snippet;
+@override final  String? snippet;
 /// {@template flutter_serper.results.date}
 /// The date associated with the result.
 ///
@@ -317,7 +317,7 @@ class _OrganicResult implements OrganicResult {
 ///
 /// Position is zero-based, with 0 being the first result.
 /// {@endtemplate}
-@override final  int position;
+@override final  int? position;
 /// Additional links to specific sections within the result website.
 ///
 /// These are subcategory links that provide direct access to different
@@ -369,7 +369,7 @@ abstract mixin class _$OrganicResultCopyWith<$Res> implements $OrganicResultCopy
   factory _$OrganicResultCopyWith(_OrganicResult value, $Res Function(_OrganicResult) _then) = __$OrganicResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String snippet, String? date, double? rating, int? ratingCount, String? imageUrl, int position, List<OrganicSitelink>? sitelinks
+ String? title, String? link, String? snippet, String? date, double? rating, int? ratingCount, String? imageUrl, int? position, List<OrganicSitelink>? sitelinks
 });
 
 
@@ -386,17 +386,17 @@ class __$OrganicResultCopyWithImpl<$Res>
 
 /// Create a copy of OrganicResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? imageUrl = freezed,Object? position = null,Object? sitelinks = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? date = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? imageUrl = freezed,Object? position = freezed,Object? sitelinks = freezed,}) {
   return _then(_OrganicResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,sitelinks: freezed == sitelinks ? _self._sitelinks : sitelinks // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,sitelinks: freezed == sitelinks ? _self._sitelinks : sitelinks // ignore: cast_nullable_to_non_nullable
 as List<OrganicSitelink>?,
   ));
 }
@@ -409,8 +409,8 @@ as List<OrganicSitelink>?,
 mixin _$OrganicSitelink {
 
 /// The title of the sitelink.
- String get title;/// The URL link to the sitelink.
- String get link;
+ String? get title;/// The URL link to the sitelink.
+ String? get link;
 /// Create a copy of OrganicSitelink
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -443,7 +443,7 @@ abstract mixin class $OrganicSitelinkCopyWith<$Res>  {
   factory $OrganicSitelinkCopyWith(OrganicSitelink value, $Res Function(OrganicSitelink) _then) = _$OrganicSitelinkCopyWithImpl;
 @useResult
 $Res call({
- String title, String link
+ String? title, String? link
 });
 
 
@@ -460,11 +460,11 @@ class _$OrganicSitelinkCopyWithImpl<$Res>
 
 /// Create a copy of OrganicSitelink
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -475,13 +475,13 @@ as String,
 @JsonSerializable()
 
 class _OrganicSitelink implements OrganicSitelink {
-  const _OrganicSitelink({required this.title, required this.link});
+  const _OrganicSitelink({this.title, this.link});
   factory _OrganicSitelink.fromJson(Map<String, dynamic> json) => _$OrganicSitelinkFromJson(json);
 
 /// The title of the sitelink.
-@override final  String title;
+@override final  String? title;
 /// The URL link to the sitelink.
-@override final  String link;
+@override final  String? link;
 
 /// Create a copy of OrganicSitelink
 /// with the given fields replaced by the non-null parameter values.
@@ -516,7 +516,7 @@ abstract mixin class _$OrganicSitelinkCopyWith<$Res> implements $OrganicSitelink
   factory _$OrganicSitelinkCopyWith(_OrganicSitelink value, $Res Function(_OrganicSitelink) _then) = __$OrganicSitelinkCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link
+ String? title, String? link
 });
 
 
@@ -533,11 +533,11 @@ class __$OrganicSitelinkCopyWithImpl<$Res>
 
 /// Create a copy of OrganicSitelink
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,}) {
   return _then(_OrganicSitelink(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -551,7 +551,7 @@ mixin _$RelatedSearchResult {
 /// The related search query text.
 ///
 /// This is an alternative search term that users might be interested in.
- String get query;
+ String? get query;
 /// Create a copy of RelatedSearchResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -584,7 +584,7 @@ abstract mixin class $RelatedSearchResultCopyWith<$Res>  {
   factory $RelatedSearchResultCopyWith(RelatedSearchResult value, $Res Function(RelatedSearchResult) _then) = _$RelatedSearchResultCopyWithImpl;
 @useResult
 $Res call({
- String query
+ String? query
 });
 
 
@@ -601,10 +601,10 @@ class _$RelatedSearchResultCopyWithImpl<$Res>
 
 /// Create a copy of RelatedSearchResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? query = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? query = freezed,}) {
   return _then(_self.copyWith(
-query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,
+query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -615,13 +615,13 @@ as String,
 @JsonSerializable()
 
 class _RelatedSearchResult implements RelatedSearchResult {
-  const _RelatedSearchResult({required this.query});
+  const _RelatedSearchResult({this.query});
   factory _RelatedSearchResult.fromJson(Map<String, dynamic> json) => _$RelatedSearchResultFromJson(json);
 
 /// The related search query text.
 ///
 /// This is an alternative search term that users might be interested in.
-@override final  String query;
+@override final  String? query;
 
 /// Create a copy of RelatedSearchResult
 /// with the given fields replaced by the non-null parameter values.
@@ -656,7 +656,7 @@ abstract mixin class _$RelatedSearchResultCopyWith<$Res> implements $RelatedSear
   factory _$RelatedSearchResultCopyWith(_RelatedSearchResult value, $Res Function(_RelatedSearchResult) _then) = __$RelatedSearchResultCopyWithImpl;
 @override @useResult
 $Res call({
- String query
+ String? query
 });
 
 
@@ -673,10 +673,10 @@ class __$RelatedSearchResultCopyWithImpl<$Res>
 
 /// Create a copy of RelatedSearchResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? query = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? query = freezed,}) {
   return _then(_RelatedSearchResult(
-query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,
+query: freezed == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -688,7 +688,7 @@ as String,
 mixin _$PeopleAlsoAskResult {
 
 /// The question that people also ask about the search topic.
- String get question;/// {@macro flutter_serper.results.snippet}
+ String? get question;/// {@macro flutter_serper.results.snippet}
 ///
 /// This is a brief answer to the question.
  String? get snippet;/// {@macro flutter_serper.results.title}
@@ -730,7 +730,7 @@ abstract mixin class $PeopleAlsoAskResultCopyWith<$Res>  {
   factory $PeopleAlsoAskResultCopyWith(PeopleAlsoAskResult value, $Res Function(PeopleAlsoAskResult) _then) = _$PeopleAlsoAskResultCopyWithImpl;
 @useResult
 $Res call({
- String question, String? snippet, String? title, String? link
+ String? question, String? snippet, String? title, String? link
 });
 
 
@@ -747,10 +747,10 @@ class _$PeopleAlsoAskResultCopyWithImpl<$Res>
 
 /// Create a copy of PeopleAlsoAskResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? question = null,Object? snippet = freezed,Object? title = freezed,Object? link = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? question = freezed,Object? snippet = freezed,Object? title = freezed,Object? link = freezed,}) {
   return _then(_self.copyWith(
-question: null == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
-as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+question: freezed == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -764,11 +764,11 @@ as String?,
 @JsonSerializable()
 
 class _PeopleAlsoAskResult implements PeopleAlsoAskResult {
-  const _PeopleAlsoAskResult({required this.question, this.snippet, this.title, this.link});
+  const _PeopleAlsoAskResult({this.question, this.snippet, this.title, this.link});
   factory _PeopleAlsoAskResult.fromJson(Map<String, dynamic> json) => _$PeopleAlsoAskResultFromJson(json);
 
 /// The question that people also ask about the search topic.
-@override final  String question;
+@override final  String? question;
 /// {@macro flutter_serper.results.snippet}
 ///
 /// This is a brief answer to the question.
@@ -815,7 +815,7 @@ abstract mixin class _$PeopleAlsoAskResultCopyWith<$Res> implements $PeopleAlsoA
   factory _$PeopleAlsoAskResultCopyWith(_PeopleAlsoAskResult value, $Res Function(_PeopleAlsoAskResult) _then) = __$PeopleAlsoAskResultCopyWithImpl;
 @override @useResult
 $Res call({
- String question, String? snippet, String? title, String? link
+ String? question, String? snippet, String? title, String? link
 });
 
 
@@ -832,10 +832,10 @@ class __$PeopleAlsoAskResultCopyWithImpl<$Res>
 
 /// Create a copy of PeopleAlsoAskResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? question = null,Object? snippet = freezed,Object? title = freezed,Object? link = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? question = freezed,Object? snippet = freezed,Object? title = freezed,Object? link = freezed,}) {
   return _then(_PeopleAlsoAskResult(
-question: null == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
-as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+question: freezed == question ? _self.question : question // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -850,8 +850,8 @@ as String?,
 mixin _$TopStoriesResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.date}
+ String? get title;/// {@macro flutter_serper.results.link}
+ String? get link;/// {@macro flutter_serper.results.date}
  String? get date;/// {@macro flutter_serper.results.source}
 ///
 /// For top stories, this is the name of the news outlet.
@@ -890,7 +890,7 @@ abstract mixin class $TopStoriesResultCopyWith<$Res>  {
   factory $TopStoriesResultCopyWith(TopStoriesResult value, $Res Function(TopStoriesResult) _then) = _$TopStoriesResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String? date, String? source, String? snippet, String? imageUrl
+ String? title, String? link, String? date, String? source, String? snippet, String? imageUrl
 });
 
 
@@ -907,11 +907,11 @@ class _$TopStoriesResultCopyWithImpl<$Res>
 
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -926,13 +926,13 @@ as String?,
 @JsonSerializable()
 
 class _TopStoriesResult implements TopStoriesResult {
-  const _TopStoriesResult({required this.title, required this.link, this.date, this.source, this.snippet, this.imageUrl});
+  const _TopStoriesResult({this.title, this.link, this.date, this.source, this.snippet, this.imageUrl});
   factory _TopStoriesResult.fromJson(Map<String, dynamic> json) => _$TopStoriesResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// {@macro flutter_serper.results.date}
 @override final  String? date;
 /// {@macro flutter_serper.results.source}
@@ -977,7 +977,7 @@ abstract mixin class _$TopStoriesResultCopyWith<$Res> implements $TopStoriesResu
   factory _$TopStoriesResultCopyWith(_TopStoriesResult value, $Res Function(_TopStoriesResult) _then) = __$TopStoriesResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String? date, String? source, String? snippet, String? imageUrl
+ String? title, String? link, String? date, String? source, String? snippet, String? imageUrl
 });
 
 
@@ -994,11 +994,11 @@ class __$TopStoriesResultCopyWithImpl<$Res>
 
 /// Create a copy of TopStoriesResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,Object? date = freezed,Object? source = freezed,Object? snippet = freezed,Object? imageUrl = freezed,}) {
   return _then(_TopStoriesResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1014,7 +1014,7 @@ as String?,
 mixin _$KnowledgeGraphResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// The type of entity represented in the Knowledge Graph.
+ String? get title;/// The type of entity represented in the Knowledge Graph.
 ///
 /// Examples include "Person", "Organization", "Place", etc.
  String? get type;/// {@macro flutter_serper.results.imageUrl}
@@ -1063,7 +1063,7 @@ abstract mixin class $KnowledgeGraphResultCopyWith<$Res>  {
   factory $KnowledgeGraphResultCopyWith(KnowledgeGraphResult value, $Res Function(KnowledgeGraphResult) _then) = _$KnowledgeGraphResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String? type, String? imageUrl, KnowledgeGraphAttributes? attributes, String? description, String? descriptionLink, String? descriptionSource
+ String? title, String? type, String? imageUrl, KnowledgeGraphAttributes? attributes, String? description, String? descriptionLink, String? descriptionSource
 });
 
 
@@ -1080,10 +1080,10 @@ class _$KnowledgeGraphResultCopyWithImpl<$Res>
 
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,attributes: freezed == attributes ? _self.attributes : attributes // ignore: cast_nullable_to_non_nullable
 as KnowledgeGraphAttributes?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
@@ -1112,11 +1112,11 @@ $KnowledgeGraphAttributesCopyWith<$Res>? get attributes {
 @JsonSerializable()
 
 class _KnowledgeGraphResult implements KnowledgeGraphResult {
-  const _KnowledgeGraphResult({required this.title, this.type, this.imageUrl, this.attributes, this.description, this.descriptionLink, this.descriptionSource});
+  const _KnowledgeGraphResult({this.title, this.type, this.imageUrl, this.attributes, this.description, this.descriptionLink, this.descriptionSource});
   factory _KnowledgeGraphResult.fromJson(Map<String, dynamic> json) => _$KnowledgeGraphResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// The type of entity represented in the Knowledge Graph.
 ///
 /// Examples include "Person", "Organization", "Place", etc.
@@ -1173,7 +1173,7 @@ abstract mixin class _$KnowledgeGraphResultCopyWith<$Res> implements $KnowledgeG
   factory _$KnowledgeGraphResultCopyWith(_KnowledgeGraphResult value, $Res Function(_KnowledgeGraphResult) _then) = __$KnowledgeGraphResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String? type, String? imageUrl, KnowledgeGraphAttributes? attributes, String? description, String? descriptionLink, String? descriptionSource
+ String? title, String? type, String? imageUrl, KnowledgeGraphAttributes? attributes, String? description, String? descriptionLink, String? descriptionSource
 });
 
 
@@ -1190,10 +1190,10 @@ class __$KnowledgeGraphResultCopyWithImpl<$Res>
 
 /// Create a copy of KnowledgeGraphResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? type = freezed,Object? imageUrl = freezed,Object? attributes = freezed,Object? description = freezed,Object? descriptionLink = freezed,Object? descriptionSource = freezed,}) {
   return _then(_KnowledgeGraphResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,attributes: freezed == attributes ? _self.attributes : attributes // ignore: cast_nullable_to_non_nullable
 as KnowledgeGraphAttributes?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
@@ -1614,12 +1614,12 @@ as int,
 mixin _$PlaceResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// The full address of the place.
+ String? get title;/// The full address of the place.
 ///
 /// Typically includes street, city, state/province, and postal code.
- String get address;/// The latitude of the place.
- double get latitude;/// The longitude of the place.
- double get longitude;// {@macro flutter_serper.results.phoneNumber}
+ String? get address;/// The latitude of the place.
+ double? get latitude;/// The longitude of the place.
+ double? get longitude;// {@macro flutter_serper.results.phoneNumber}
  String? get phoneNumber;/// {@macro flutter_serper.results.rating}
  double? get rating;/// {@macro flutter_serper.results.reviewCount}
  int? get reviewCount;/// The URL of the place's website.
@@ -1636,7 +1636,7 @@ mixin _$PlaceResult {
 ///
 /// This identifier can be used to look up the place in Google Maps.
  String? get cid;/// {@macro ResultDocTemplates.positionDoc}
- int get position;
+ int? get position;
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1669,7 +1669,7 @@ abstract mixin class $PlaceResultCopyWith<$Res>  {
   factory $PlaceResultCopyWith(PlaceResult value, $Res Function(PlaceResult) _then) = _$PlaceResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String address, double latitude, double longitude, String? phoneNumber, double? rating, int? reviewCount, String? website,@JsonKey(name: 'category') String? type, String? priceLevel, List<String>? openingHours, String? cid, int position
+ String? title, String? address, double? latitude, double? longitude, String? phoneNumber, double? rating, int? reviewCount, String? website,@JsonKey(name: 'category') String? type, String? priceLevel, List<String>? openingHours, String? cid, int? position
 });
 
 
@@ -1686,13 +1686,13 @@ class _$PlaceResultCopyWithImpl<$Res>
 
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? address = null,Object? latitude = null,Object? longitude = null,Object? phoneNumber = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? phoneNumber = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
@@ -1700,8 +1700,8 @@ as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as List<String>?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -1712,19 +1712,19 @@ as int,
 @JsonSerializable()
 
 class _PlaceResult extends PlaceResult {
-  const _PlaceResult({required this.title, required this.address, required this.latitude, required this.longitude, this.phoneNumber, this.rating, this.reviewCount, this.website, @JsonKey(name: 'category') this.type, this.priceLevel, final  List<String>? openingHours, this.cid, required this.position}): _openingHours = openingHours,super._();
+  const _PlaceResult({this.title, this.address, this.latitude, this.longitude, this.phoneNumber, this.rating, this.reviewCount, this.website, @JsonKey(name: 'category') this.type, this.priceLevel, final  List<String>? openingHours, this.cid, this.position}): _openingHours = openingHours,super._();
   factory _PlaceResult.fromJson(Map<String, dynamic> json) => _$PlaceResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// The full address of the place.
 ///
 /// Typically includes street, city, state/province, and postal code.
-@override final  String address;
+@override final  String? address;
 /// The latitude of the place.
-@override final  double latitude;
+@override final  double? latitude;
 /// The longitude of the place.
-@override final  double longitude;
+@override final  double? longitude;
 // {@macro flutter_serper.results.phoneNumber}
 @override final  String? phoneNumber;
 /// {@macro flutter_serper.results.rating}
@@ -1761,7 +1761,7 @@ class _PlaceResult extends PlaceResult {
 /// This identifier can be used to look up the place in Google Maps.
 @override final  String? cid;
 /// {@macro ResultDocTemplates.positionDoc}
-@override final  int position;
+@override final  int? position;
 
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1796,7 +1796,7 @@ abstract mixin class _$PlaceResultCopyWith<$Res> implements $PlaceResultCopyWith
   factory _$PlaceResultCopyWith(_PlaceResult value, $Res Function(_PlaceResult) _then) = __$PlaceResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String address, double latitude, double longitude, String? phoneNumber, double? rating, int? reviewCount, String? website,@JsonKey(name: 'category') String? type, String? priceLevel, List<String>? openingHours, String? cid, int position
+ String? title, String? address, double? latitude, double? longitude, String? phoneNumber, double? rating, int? reviewCount, String? website,@JsonKey(name: 'category') String? type, String? priceLevel, List<String>? openingHours, String? cid, int? position
 });
 
 
@@ -1813,13 +1813,13 @@ class __$PlaceResultCopyWithImpl<$Res>
 
 /// Create a copy of PlaceResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? address = null,Object? latitude = null,Object? longitude = null,Object? phoneNumber = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? address = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? phoneNumber = freezed,Object? rating = freezed,Object? reviewCount = freezed,Object? website = freezed,Object? type = freezed,Object? priceLevel = freezed,Object? openingHours = freezed,Object? cid = freezed,Object? position = freezed,}) {
   return _then(_PlaceResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,reviewCount: freezed == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
 as int?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
@@ -1827,8 +1827,8 @@ as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to
 as String?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as List<String>?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -1840,8 +1840,8 @@ as int,
 mixin _$VideoResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.snippet}
+ String? get title;/// {@macro flutter_serper.results.link}
+ String? get link;/// {@macro flutter_serper.results.snippet}
  String? get snippet;/// {@macro flutter_serper.results.imageUrl}
  String? get imageUrl;/// The direct video URL (may be a preview or thumbnail).
  String? get videoUrl;/// {@macro flutter_serper.results.duration}
@@ -1851,7 +1851,7 @@ mixin _$VideoResult {
  String? get source;/// The channel or publisher name.
  String? get channel;/// {@macro flutter_serper.results.date}
  String? get date;/// {@macro flutter_serper.results.position}
- int get position;
+ int? get position;
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1884,7 +1884,7 @@ abstract mixin class $VideoResultCopyWith<$Res>  {
   factory $VideoResultCopyWith(VideoResult value, $Res Function(VideoResult) _then) = _$VideoResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String? snippet, String? imageUrl, String? videoUrl, String? duration, String? source, String? channel, String? date, int position
+ String? title, String? link, String? snippet, String? imageUrl, String? videoUrl, String? duration, String? source, String? channel, String? date, int? position
 });
 
 
@@ -1901,19 +1901,19 @@ class _$VideoResultCopyWithImpl<$Res>
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? duration = freezed,Object? source = freezed,Object? channel = freezed,Object? date = freezed,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? duration = freezed,Object? source = freezed,Object? channel = freezed,Object? date = freezed,Object? position = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,videoUrl: freezed == videoUrl ? _self.videoUrl : videoUrl // ignore: cast_nullable_to_non_nullable
 as String?,duration: freezed == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,channel: freezed == channel ? _self.channel : channel // ignore: cast_nullable_to_non_nullable
 as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -1924,13 +1924,13 @@ as int,
 @JsonSerializable()
 
 class _VideoResult implements VideoResult {
-  const _VideoResult({required this.title, required this.link, this.snippet, this.imageUrl, this.videoUrl, this.duration, this.source, this.channel, this.date, required this.position});
+  const _VideoResult({this.title, this.link, this.snippet, this.imageUrl, this.videoUrl, this.duration, this.source, this.channel, this.date, this.position});
   factory _VideoResult.fromJson(Map<String, dynamic> json) => _$VideoResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// {@macro flutter_serper.results.snippet}
 @override final  String? snippet;
 /// {@macro flutter_serper.results.imageUrl}
@@ -1948,7 +1948,7 @@ class _VideoResult implements VideoResult {
 /// {@macro flutter_serper.results.date}
 @override final  String? date;
 /// {@macro flutter_serper.results.position}
-@override final  int position;
+@override final  int? position;
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
@@ -1983,7 +1983,7 @@ abstract mixin class _$VideoResultCopyWith<$Res> implements $VideoResultCopyWith
   factory _$VideoResultCopyWith(_VideoResult value, $Res Function(_VideoResult) _then) = __$VideoResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String? snippet, String? imageUrl, String? videoUrl, String? duration, String? source, String? channel, String? date, int position
+ String? title, String? link, String? snippet, String? imageUrl, String? videoUrl, String? duration, String? source, String? channel, String? date, int? position
 });
 
 
@@ -2000,19 +2000,19 @@ class __$VideoResultCopyWithImpl<$Res>
 
 /// Create a copy of VideoResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? duration = freezed,Object? source = freezed,Object? channel = freezed,Object? date = freezed,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? imageUrl = freezed,Object? videoUrl = freezed,Object? duration = freezed,Object? source = freezed,Object? channel = freezed,Object? date = freezed,Object? position = freezed,}) {
   return _then(_VideoResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,videoUrl: freezed == videoUrl ? _self.videoUrl : videoUrl // ignore: cast_nullable_to_non_nullable
 as String?,duration: freezed == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as String?,channel: freezed == channel ? _self.channel : channel // ignore: cast_nullable_to_non_nullable
 as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -2024,13 +2024,13 @@ as int,
 mixin _$MapResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// The unique Customer ID (CID) of the place in Google Maps.
+ String? get title;/// The unique Customer ID (CID) of the place in Google Maps.
 ///
 /// This identifier can be used to look up the place in Google Maps.
- String get cid;/// The full address of the place.
+ String? get cid;/// The full address of the place.
 ///
 /// Typically includes street, city, state/province, and postal code.
- String get address;/// {@macro flutter_serper.results.rating}
+ String? get address;/// {@macro flutter_serper.results.rating}
  double? get rating;/// The number of ratings for this place.
  int? get ratingCount;/// The price level of the place.
 ///
@@ -2053,12 +2053,12 @@ mixin _$MapResult {
 ///
 /// Provides additional context or explanation about the place.
  String? get description;/// The thumbnail image URL for the place.
- String get thumbnailUrl;/// The booking links for the place.
+ String? get thumbnailUrl;/// The booking links for the place.
  List<String>? get bookingLinks;/// The FID (feature id) for the place.
- String get fid;/// The latitude of the place.
- double get latitude;/// The longitude of the place.
- double get longitude;/// The Google Place ID for this place.
- String get placeId;/// The position of the place in the results.
+ String? get fid;/// The latitude of the place.
+ double? get latitude;/// The longitude of the place.
+ double? get longitude;/// The Google Place ID for this place.
+ String? get placeId;/// The position of the place in the results.
  int get position;
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
@@ -2092,7 +2092,7 @@ abstract mixin class $MapResultCopyWith<$Res>  {
   factory $MapResultCopyWith(MapResult value, $Res Function(MapResult) _then) = _$MapResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
+ String? title, String? cid, String? address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String? thumbnailUrl, List<String>? bookingLinks, String? fid, double? latitude, double? longitude, String? placeId, int position
 });
 
 
@@ -2109,12 +2109,12 @@ class _$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? cid = freezed,Object? address = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = freezed,Object? bookingLinks = freezed,Object? fid = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? placeId = freezed,Object? position = null,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -2123,13 +2123,13 @@ as List<String>?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phone
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self.openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,bookingLinks: freezed == bookingLinks ? _self.bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
-as List<String>?,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
-as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,bookingLinks: freezed == bookingLinks ? _self.bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
+as List<String>?,fid: freezed == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,placeId: freezed == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
+as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -2141,19 +2141,19 @@ as int,
 @JsonSerializable()
 
 class _MapResult extends MapResult {
-  const _MapResult({required this.title, required this.cid, required this.address, this.rating, this.ratingCount, this.priceLevel, this.type, final  List<String>? types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, required this.thumbnailUrl, final  List<String>? bookingLinks, required this.fid, required this.latitude, required this.longitude, required this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks,super._();
+  const _MapResult({this.title, this.cid, this.address, this.rating, this.ratingCount, this.priceLevel, this.type, final  List<String>? types, this.phoneNumber, this.website, final  Map<String, String>? openingHours, this.description, this.thumbnailUrl, final  List<String>? bookingLinks, this.fid, this.latitude, this.longitude, this.placeId, required this.position}): _types = types,_openingHours = openingHours,_bookingLinks = bookingLinks,super._();
   factory _MapResult.fromJson(Map<String, dynamic> json) => _$MapResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// The unique Customer ID (CID) of the place in Google Maps.
 ///
 /// This identifier can be used to look up the place in Google Maps.
-@override final  String cid;
+@override final  String? cid;
 /// The full address of the place.
 ///
 /// Typically includes street, city, state/province, and postal code.
-@override final  String address;
+@override final  String? address;
 /// {@macro flutter_serper.results.rating}
 @override final  double? rating;
 /// The number of ratings for this place.
@@ -2208,7 +2208,7 @@ class _MapResult extends MapResult {
 /// Provides additional context or explanation about the place.
 @override final  String? description;
 /// The thumbnail image URL for the place.
-@override final  String thumbnailUrl;
+@override final  String? thumbnailUrl;
 /// The booking links for the place.
  final  List<String>? _bookingLinks;
 /// The booking links for the place.
@@ -2221,13 +2221,13 @@ class _MapResult extends MapResult {
 }
 
 /// The FID (feature id) for the place.
-@override final  String fid;
+@override final  String? fid;
 /// The latitude of the place.
-@override final  double latitude;
+@override final  double? latitude;
 /// The longitude of the place.
-@override final  double longitude;
+@override final  double? longitude;
 /// The Google Place ID for this place.
-@override final  String placeId;
+@override final  String? placeId;
 /// The position of the place in the results.
 @override final  int position;
 
@@ -2264,7 +2264,7 @@ abstract mixin class _$MapResultCopyWith<$Res> implements $MapResultCopyWith<$Re
   factory _$MapResultCopyWith(_MapResult value, $Res Function(_MapResult) _then) = __$MapResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String cid, String address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String thumbnailUrl, List<String>? bookingLinks, String fid, double latitude, double longitude, String placeId, int position
+ String? title, String? cid, String? address, double? rating, int? ratingCount, String? priceLevel, String? type, List<String>? types, String? phoneNumber, String? website, Map<String, String>? openingHours, String? description, String? thumbnailUrl, List<String>? bookingLinks, String? fid, double? latitude, double? longitude, String? placeId, int position
 });
 
 
@@ -2281,12 +2281,12 @@ class __$MapResultCopyWithImpl<$Res>
 
 /// Create a copy of MapResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? cid = null,Object? address = null,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = null,Object? bookingLinks = freezed,Object? fid = null,Object? latitude = null,Object? longitude = null,Object? placeId = null,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? cid = freezed,Object? address = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? priceLevel = freezed,Object? type = freezed,Object? types = freezed,Object? phoneNumber = freezed,Object? website = freezed,Object? openingHours = freezed,Object? description = freezed,Object? thumbnailUrl = freezed,Object? bookingLinks = freezed,Object? fid = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? placeId = freezed,Object? position = null,}) {
   return _then(_MapResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,cid: null == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
-as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,cid: freezed == cid ? _self.cid : cid // ignore: cast_nullable_to_non_nullable
+as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,priceLevel: freezed == priceLevel ? _self.priceLevel : priceLevel // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -2295,13 +2295,13 @@ as List<String>?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phone
 as String?,website: freezed == website ? _self.website : website // ignore: cast_nullable_to_non_nullable
 as String?,openingHours: freezed == openingHours ? _self._openingHours : openingHours // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,bookingLinks: freezed == bookingLinks ? _self._bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
-as List<String>?,fid: null == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
-as String,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double,placeId: null == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
-as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,bookingLinks: freezed == bookingLinks ? _self._bookingLinks : bookingLinks // ignore: cast_nullable_to_non_nullable
+as List<String>?,fid: freezed == fid ? _self.fid : fid // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,placeId: freezed == placeId ? _self.placeId : placeId // ignore: cast_nullable_to_non_nullable
+as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -2314,12 +2314,12 @@ as int,
 mixin _$PlaceReview {
 
 /// The rating given in the review.
- double get rating;/// The relative date string (e.g., "a month ago").
- String get date;/// The ISO 8601 date string.
+ double? get rating;/// The relative date string (e.g., "a month ago").
+ String? get date;/// The ISO 8601 date string.
  String? get isoDate;/// The main snippet/content of the review.
  String? get snippet;/// The number of likes/upvotes for the review.
  int? get likes;/// The user who wrote the review.
- PlaceReviewUser get user;/// The business's response to the review, if any.
+ PlaceReviewUser? get user;/// The business's response to the review, if any.
  PlaceReviewResponse? get response;/// The unique identifier for this review.
  String? get id;
 /// Create a copy of PlaceReview
@@ -2354,11 +2354,11 @@ abstract mixin class $PlaceReviewCopyWith<$Res>  {
   factory $PlaceReviewCopyWith(PlaceReview value, $Res Function(PlaceReview) _then) = _$PlaceReviewCopyWithImpl;
 @useResult
 $Res call({
- double rating, String date, String? isoDate, String? snippet, int? likes, PlaceReviewUser user, PlaceReviewResponse? response, String? id
+ double? rating, String? date, String? isoDate, String? snippet, int? likes, PlaceReviewUser? user, PlaceReviewResponse? response, String? id
 });
 
 
-$PlaceReviewUserCopyWith<$Res> get user;$PlaceReviewResponseCopyWith<$Res>? get response;
+$PlaceReviewUserCopyWith<$Res>? get user;$PlaceReviewResponseCopyWith<$Res>? get response;
 
 }
 /// @nodoc
@@ -2371,15 +2371,15 @@ class _$PlaceReviewCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReview
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? rating = null,Object? date = null,Object? isoDate = freezed,Object? snippet = freezed,Object? likes = freezed,Object? user = null,Object? response = freezed,Object? id = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? rating = freezed,Object? date = freezed,Object? isoDate = freezed,Object? snippet = freezed,Object? likes = freezed,Object? user = freezed,Object? response = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
+rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,likes: freezed == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
-as int?,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as PlaceReviewUser,response: freezed == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
+as int?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as PlaceReviewUser?,response: freezed == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
 as PlaceReviewResponse?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2388,9 +2388,12 @@ as String?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PlaceReviewUserCopyWith<$Res> get user {
-  
-  return $PlaceReviewUserCopyWith<$Res>(_self.user, (value) {
+$PlaceReviewUserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
+  }
+
+  return $PlaceReviewUserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }/// Create a copy of PlaceReview
@@ -2413,13 +2416,13 @@ $PlaceReviewResponseCopyWith<$Res>? get response {
 @JsonSerializable()
 
 class _PlaceReview implements PlaceReview {
-  const _PlaceReview({required this.rating, required this.date, this.isoDate, this.snippet, this.likes, required this.user, this.response, this.id});
+  const _PlaceReview({this.rating, this.date, this.isoDate, this.snippet, this.likes, this.user, this.response, this.id});
   factory _PlaceReview.fromJson(Map<String, dynamic> json) => _$PlaceReviewFromJson(json);
 
 /// The rating given in the review.
-@override final  double rating;
+@override final  double? rating;
 /// The relative date string (e.g., "a month ago").
-@override final  String date;
+@override final  String? date;
 /// The ISO 8601 date string.
 @override final  String? isoDate;
 /// The main snippet/content of the review.
@@ -2427,7 +2430,7 @@ class _PlaceReview implements PlaceReview {
 /// The number of likes/upvotes for the review.
 @override final  int? likes;
 /// The user who wrote the review.
-@override final  PlaceReviewUser user;
+@override final  PlaceReviewUser? user;
 /// The business's response to the review, if any.
 @override final  PlaceReviewResponse? response;
 /// The unique identifier for this review.
@@ -2466,11 +2469,11 @@ abstract mixin class _$PlaceReviewCopyWith<$Res> implements $PlaceReviewCopyWith
   factory _$PlaceReviewCopyWith(_PlaceReview value, $Res Function(_PlaceReview) _then) = __$PlaceReviewCopyWithImpl;
 @override @useResult
 $Res call({
- double rating, String date, String? isoDate, String? snippet, int? likes, PlaceReviewUser user, PlaceReviewResponse? response, String? id
+ double? rating, String? date, String? isoDate, String? snippet, int? likes, PlaceReviewUser? user, PlaceReviewResponse? response, String? id
 });
 
 
-@override $PlaceReviewUserCopyWith<$Res> get user;@override $PlaceReviewResponseCopyWith<$Res>? get response;
+@override $PlaceReviewUserCopyWith<$Res>? get user;@override $PlaceReviewResponseCopyWith<$Res>? get response;
 
 }
 /// @nodoc
@@ -2483,15 +2486,15 @@ class __$PlaceReviewCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReview
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? rating = null,Object? date = null,Object? isoDate = freezed,Object? snippet = freezed,Object? likes = freezed,Object? user = null,Object? response = freezed,Object? id = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? rating = freezed,Object? date = freezed,Object? isoDate = freezed,Object? snippet = freezed,Object? likes = freezed,Object? user = freezed,Object? response = freezed,Object? id = freezed,}) {
   return _then(_PlaceReview(
-rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
-as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
+rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,likes: freezed == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
-as int?,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as PlaceReviewUser,response: freezed == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
+as int?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as PlaceReviewUser?,response: freezed == response ? _self.response : response // ignore: cast_nullable_to_non_nullable
 as PlaceReviewResponse?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2501,9 +2504,12 @@ as String?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PlaceReviewUserCopyWith<$Res> get user {
-  
-  return $PlaceReviewUserCopyWith<$Res>(_self.user, (value) {
+$PlaceReviewUserCopyWith<$Res>? get user {
+    if (_self.user == null) {
+    return null;
+  }
+
+  return $PlaceReviewUserCopyWith<$Res>(_self.user!, (value) {
     return _then(_self.copyWith(user: value));
   });
 }/// Create a copy of PlaceReview
@@ -2526,7 +2532,7 @@ $PlaceReviewResponseCopyWith<$Res>? get response {
 mixin _$PlaceReviewUser {
 
 /// The user's display name.
- String get name;/// The URL to the user's profile thumbnail image.
+ String? get name;/// The URL to the user's profile thumbnail image.
  String? get thumbnail;/// The link to the user's profile.
  String? get link;/// The number of reviews written by the user.
  int? get reviews;/// The number of photos contributed by the user.
@@ -2563,7 +2569,7 @@ abstract mixin class $PlaceReviewUserCopyWith<$Res>  {
   factory $PlaceReviewUserCopyWith(PlaceReviewUser value, $Res Function(PlaceReviewUser) _then) = _$PlaceReviewUserCopyWithImpl;
 @useResult
 $Res call({
- String name, String? thumbnail, String? link, int? reviews, int? photos
+ String? name, String? thumbnail, String? link, int? reviews, int? photos
 });
 
 
@@ -2580,10 +2586,10 @@ class _$PlaceReviewUserCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? thumbnail = freezed,Object? link = freezed,Object? reviews = freezed,Object? photos = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? thumbnail = freezed,Object? link = freezed,Object? reviews = freezed,Object? photos = freezed,}) {
   return _then(_self.copyWith(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,thumbnail: freezed == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,thumbnail: freezed == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
 as int?,photos: freezed == photos ? _self.photos : photos // ignore: cast_nullable_to_non_nullable
@@ -2598,11 +2604,11 @@ as int?,
 @JsonSerializable()
 
 class _PlaceReviewUser implements PlaceReviewUser {
-  const _PlaceReviewUser({required this.name, this.thumbnail, this.link, this.reviews, this.photos});
+  const _PlaceReviewUser({this.name, this.thumbnail, this.link, this.reviews, this.photos});
   factory _PlaceReviewUser.fromJson(Map<String, dynamic> json) => _$PlaceReviewUserFromJson(json);
 
 /// The user's display name.
-@override final  String name;
+@override final  String? name;
 /// The URL to the user's profile thumbnail image.
 @override final  String? thumbnail;
 /// The link to the user's profile.
@@ -2645,7 +2651,7 @@ abstract mixin class _$PlaceReviewUserCopyWith<$Res> implements $PlaceReviewUser
   factory _$PlaceReviewUserCopyWith(_PlaceReviewUser value, $Res Function(_PlaceReviewUser) _then) = __$PlaceReviewUserCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? thumbnail, String? link, int? reviews, int? photos
+ String? name, String? thumbnail, String? link, int? reviews, int? photos
 });
 
 
@@ -2662,10 +2668,10 @@ class __$PlaceReviewUserCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewUser
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? thumbnail = freezed,Object? link = freezed,Object? reviews = freezed,Object? photos = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? thumbnail = freezed,Object? link = freezed,Object? reviews = freezed,Object? photos = freezed,}) {
   return _then(_PlaceReviewUser(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,thumbnail: freezed == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,thumbnail: freezed == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
 as String?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
 as int?,photos: freezed == photos ? _self.photos : photos // ignore: cast_nullable_to_non_nullable
@@ -2681,7 +2687,7 @@ as int?,
 mixin _$PlaceReviewResponse {
 
 /// The relative date string (e.g., "a month ago").
- String get date;/// The ISO 8601 date string.
+ String? get date;/// The ISO 8601 date string.
  String? get isoDate;/// The main snippet/content of the response.
  String? get snippet;
 /// Create a copy of PlaceReviewResponse
@@ -2716,7 +2722,7 @@ abstract mixin class $PlaceReviewResponseCopyWith<$Res>  {
   factory $PlaceReviewResponseCopyWith(PlaceReviewResponse value, $Res Function(PlaceReviewResponse) _then) = _$PlaceReviewResponseCopyWithImpl;
 @useResult
 $Res call({
- String date, String? isoDate, String? snippet
+ String? date, String? isoDate, String? snippet
 });
 
 
@@ -2733,10 +2739,10 @@ class _$PlaceReviewResponseCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? isoDate = freezed,Object? snippet = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? date = freezed,Object? isoDate = freezed,Object? snippet = freezed,}) {
   return _then(_self.copyWith(
-date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
+date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2749,11 +2755,11 @@ as String?,
 @JsonSerializable()
 
 class _PlaceReviewResponse implements PlaceReviewResponse {
-  const _PlaceReviewResponse({required this.date, this.isoDate, this.snippet});
+  const _PlaceReviewResponse({this.date, this.isoDate, this.snippet});
   factory _PlaceReviewResponse.fromJson(Map<String, dynamic> json) => _$PlaceReviewResponseFromJson(json);
 
 /// The relative date string (e.g., "a month ago").
-@override final  String date;
+@override final  String? date;
 /// The ISO 8601 date string.
 @override final  String? isoDate;
 /// The main snippet/content of the response.
@@ -2792,7 +2798,7 @@ abstract mixin class _$PlaceReviewResponseCopyWith<$Res> implements $PlaceReview
   factory _$PlaceReviewResponseCopyWith(_PlaceReviewResponse value, $Res Function(_PlaceReviewResponse) _then) = __$PlaceReviewResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String date, String? isoDate, String? snippet
+ String? date, String? isoDate, String? snippet
 });
 
 
@@ -2809,10 +2815,10 @@ class __$PlaceReviewResponseCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? isoDate = freezed,Object? snippet = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? date = freezed,Object? isoDate = freezed,Object? snippet = freezed,}) {
   return _then(_PlaceReviewResponse(
-date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
+date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,isoDate: freezed == isoDate ? _self.isoDate : isoDate // ignore: cast_nullable_to_non_nullable
 as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2826,9 +2832,9 @@ as String?,
 mixin _$PlaceReviewTopic {
 
 /// The name of the topic (e.g., "pick up").
- String get name;/// The number of reviews associated with this topic.
- int get reviews;/// The unique identifier for the topic.
- String get id;
+ String? get name;/// The number of reviews associated with this topic.
+ int? get reviews;/// The unique identifier for the topic.
+ String? get id;
 /// Create a copy of PlaceReviewTopic
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2861,7 +2867,7 @@ abstract mixin class $PlaceReviewTopicCopyWith<$Res>  {
   factory $PlaceReviewTopicCopyWith(PlaceReviewTopic value, $Res Function(PlaceReviewTopic) _then) = _$PlaceReviewTopicCopyWithImpl;
 @useResult
 $Res call({
- String name, int reviews, String id
+ String? name, int? reviews, String? id
 });
 
 
@@ -2878,12 +2884,12 @@ class _$PlaceReviewTopicCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewTopic
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? reviews = null,Object? id = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? reviews = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,reviews: null == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
-as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
+as int?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -2894,15 +2900,15 @@ as String,
 @JsonSerializable()
 
 class _PlaceReviewTopic implements PlaceReviewTopic {
-  const _PlaceReviewTopic({required this.name, required this.reviews, required this.id});
+  const _PlaceReviewTopic({this.name, this.reviews, this.id});
   factory _PlaceReviewTopic.fromJson(Map<String, dynamic> json) => _$PlaceReviewTopicFromJson(json);
 
 /// The name of the topic (e.g., "pick up").
-@override final  String name;
+@override final  String? name;
 /// The number of reviews associated with this topic.
-@override final  int reviews;
+@override final  int? reviews;
 /// The unique identifier for the topic.
-@override final  String id;
+@override final  String? id;
 
 /// Create a copy of PlaceReviewTopic
 /// with the given fields replaced by the non-null parameter values.
@@ -2937,7 +2943,7 @@ abstract mixin class _$PlaceReviewTopicCopyWith<$Res> implements $PlaceReviewTop
   factory _$PlaceReviewTopicCopyWith(_PlaceReviewTopic value, $Res Function(_PlaceReviewTopic) _then) = __$PlaceReviewTopicCopyWithImpl;
 @override @useResult
 $Res call({
- String name, int reviews, String id
+ String? name, int? reviews, String? id
 });
 
 
@@ -2954,12 +2960,12 @@ class __$PlaceReviewTopicCopyWithImpl<$Res>
 
 /// Create a copy of PlaceReviewTopic
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? reviews = null,Object? id = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? reviews = freezed,Object? id = freezed,}) {
   return _then(_PlaceReviewTopic(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,reviews: null == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
-as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,reviews: freezed == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
+as int?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -2971,17 +2977,17 @@ as String,
 mixin _$NewsResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.snippet}
- String get snippet;/// {@macro flutter_serper.results.date}
+ String? get title;/// {@macro flutter_serper.results.link}
+ String? get link;/// {@macro flutter_serper.results.snippet}
+ String? get snippet;/// {@macro flutter_serper.results.date}
 ///
 /// For news results, this is typically the publication date.
- String get date;/// {@macro flutter_serper.results.source}
+ String? get date;/// {@macro flutter_serper.results.source}
 ///
 /// For news results, this is the name of the news outlet.
- String get source;/// {@macro flutter_serper.results.imageUrl}
+ String? get source;/// {@macro flutter_serper.results.imageUrl}
  String? get imageUrl;/// {@macro flutter_serper.results.position}
- int get position;
+ int? get position;
 /// Create a copy of NewsResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3014,7 +3020,7 @@ abstract mixin class $NewsResultCopyWith<$Res>  {
   factory $NewsResultCopyWith(NewsResult value, $Res Function(NewsResult) _then) = _$NewsResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String snippet, String date, String source, String? imageUrl, int position
+ String? title, String? link, String? snippet, String? date, String? source, String? imageUrl, int? position
 });
 
 
@@ -3031,16 +3037,16 @@ class _$NewsResultCopyWithImpl<$Res>
 
 /// Create a copy of NewsResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,Object? source = null,Object? imageUrl = freezed,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? date = freezed,Object? source = freezed,Object? imageUrl = freezed,Object? position = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -3051,27 +3057,27 @@ as int,
 @JsonSerializable()
 
 class _NewsResult implements NewsResult {
-  const _NewsResult({required this.title, required this.link, required this.snippet, required this.date, required this.source, this.imageUrl, required this.position});
+  const _NewsResult({this.title, this.link, this.snippet, this.date, this.source, this.imageUrl, this.position});
   factory _NewsResult.fromJson(Map<String, dynamic> json) => _$NewsResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// {@macro flutter_serper.results.snippet}
-@override final  String snippet;
+@override final  String? snippet;
 /// {@macro flutter_serper.results.date}
 ///
 /// For news results, this is typically the publication date.
-@override final  String date;
+@override final  String? date;
 /// {@macro flutter_serper.results.source}
 ///
 /// For news results, this is the name of the news outlet.
-@override final  String source;
+@override final  String? source;
 /// {@macro flutter_serper.results.imageUrl}
 @override final  String? imageUrl;
 /// {@macro flutter_serper.results.position}
-@override final  int position;
+@override final  int? position;
 
 /// Create a copy of NewsResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3106,7 +3112,7 @@ abstract mixin class _$NewsResultCopyWith<$Res> implements $NewsResultCopyWith<$
   factory _$NewsResultCopyWith(_NewsResult value, $Res Function(_NewsResult) _then) = __$NewsResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String snippet, String date, String source, String? imageUrl, int position
+ String? title, String? link, String? snippet, String? date, String? source, String? imageUrl, int? position
 });
 
 
@@ -3123,16 +3129,16 @@ class __$NewsResultCopyWithImpl<$Res>
 
 /// Create a copy of NewsResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? snippet = null,Object? date = null,Object? source = null,Object? imageUrl = freezed,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,Object? snippet = freezed,Object? date = freezed,Object? source = freezed,Object? imageUrl = freezed,Object? position = freezed,}) {
   return _then(_NewsResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -3144,17 +3150,17 @@ as int,
 mixin _$ShoppingResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.source}
+ String? get title;/// {@macro flutter_serper.results.source}
 ///
 /// For shopping results, this is typically the retailer or merchant name.
  String? get source;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.price}
+ String? get link;/// {@macro flutter_serper.results.price}
  String? get price;/// Shipping or delivery information for the product.
 ///
 /// May include cost, timeframe, or other delivery details.
  String? get delivery;/// {@macro flutter_serper.results.imageUrl}
  String? get imageUrl;/// {@macro flutter_serper.results.position}
- int get position;/// Product rating (e.g., 4.5).
+ int? get position;/// Product rating (e.g., 4.5).
  double? get rating;/// Number of ratings or reviews.
  int? get ratingCount;/// List of offers for the product.
  String? get offers;/// Unique product identifier.
@@ -3191,7 +3197,7 @@ abstract mixin class $ShoppingResultCopyWith<$Res>  {
   factory $ShoppingResultCopyWith(ShoppingResult value, $Res Function(ShoppingResult) _then) = _$ShoppingResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, String? offers, String? productId
+ String? title, String? source, String? link, String? price, String? delivery, String? imageUrl, int? position, double? rating, int? ratingCount, String? offers, String? productId
 });
 
 
@@ -3208,16 +3214,16 @@ class _$ShoppingResultCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? source = freezed,Object? link = null,Object? price = freezed,Object? delivery = freezed,Object? imageUrl = freezed,Object? position = null,Object? rating = freezed,Object? ratingCount = freezed,Object? offers = freezed,Object? productId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? source = freezed,Object? link = freezed,Object? price = freezed,Object? delivery = freezed,Object? imageUrl = freezed,Object? position = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? offers = freezed,Object? productId = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as String?,delivery: freezed == delivery ? _self.delivery : delivery // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,offers: freezed == offers ? _self.offers : offers // ignore: cast_nullable_to_non_nullable
 as String?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
@@ -3232,17 +3238,17 @@ as String?,
 @JsonSerializable()
 
 class _ShoppingResult implements ShoppingResult {
-  const _ShoppingResult({required this.title, this.source, required this.link, this.price, this.delivery, this.imageUrl, required this.position, this.rating, this.ratingCount, this.offers, this.productId});
+  const _ShoppingResult({this.title, this.source, this.link, this.price, this.delivery, this.imageUrl, this.position, this.rating, this.ratingCount, this.offers, this.productId});
   factory _ShoppingResult.fromJson(Map<String, dynamic> json) => _$ShoppingResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.source}
 ///
 /// For shopping results, this is typically the retailer or merchant name.
 @override final  String? source;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// {@macro flutter_serper.results.price}
 @override final  String? price;
 /// Shipping or delivery information for the product.
@@ -3252,7 +3258,7 @@ class _ShoppingResult implements ShoppingResult {
 /// {@macro flutter_serper.results.imageUrl}
 @override final  String? imageUrl;
 /// {@macro flutter_serper.results.position}
-@override final  int position;
+@override final  int? position;
 /// Product rating (e.g., 4.5).
 @override final  double? rating;
 /// Number of ratings or reviews.
@@ -3295,7 +3301,7 @@ abstract mixin class _$ShoppingResultCopyWith<$Res> implements $ShoppingResultCo
   factory _$ShoppingResultCopyWith(_ShoppingResult value, $Res Function(_ShoppingResult) _then) = __$ShoppingResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String? source, String link, String? price, String? delivery, String? imageUrl, int position, double? rating, int? ratingCount, String? offers, String? productId
+ String? title, String? source, String? link, String? price, String? delivery, String? imageUrl, int? position, double? rating, int? ratingCount, String? offers, String? productId
 });
 
 
@@ -3312,16 +3318,16 @@ class __$ShoppingResultCopyWithImpl<$Res>
 
 /// Create a copy of ShoppingResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? source = freezed,Object? link = null,Object? price = freezed,Object? delivery = freezed,Object? imageUrl = freezed,Object? position = null,Object? rating = freezed,Object? ratingCount = freezed,Object? offers = freezed,Object? productId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? source = freezed,Object? link = freezed,Object? price = freezed,Object? delivery = freezed,Object? imageUrl = freezed,Object? position = freezed,Object? rating = freezed,Object? ratingCount = freezed,Object? offers = freezed,Object? productId = freezed,}) {
   return _then(_ShoppingResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String?,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as String?,delivery: freezed == delivery ? _self.delivery : delivery // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as String?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as double?,ratingCount: freezed == ratingCount ? _self.ratingCount : ratingCount // ignore: cast_nullable_to_non_nullable
 as int?,offers: freezed == offers ? _self.offers : offers // ignore: cast_nullable_to_non_nullable
 as String?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
@@ -3337,11 +3343,11 @@ as String?,
 mixin _$LensResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.source}
- String get source;/// {@macro flutter_serper.results.link}
- String get link;/// {@macro flutter_serper.results.imageUrl}
- String get imageUrl;/// {@macro flutter_serper.results.thumbnailUrl}
- String get thumbnailUrl;
+ String? get title;/// {@macro flutter_serper.results.source}
+ String? get source;/// {@macro flutter_serper.results.link}
+ String? get link;/// {@macro flutter_serper.results.imageUrl}
+ String? get imageUrl;/// {@macro flutter_serper.results.thumbnailUrl}
+ String? get thumbnailUrl;
 /// Create a copy of LensResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3374,7 +3380,7 @@ abstract mixin class $LensResultCopyWith<$Res>  {
   factory $LensResultCopyWith(LensResult value, $Res Function(LensResult) _then) = _$LensResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String source, String link, String imageUrl, String thumbnailUrl
+ String? title, String? source, String? link, String? imageUrl, String? thumbnailUrl
 });
 
 
@@ -3391,14 +3397,14 @@ class _$LensResultCopyWithImpl<$Res>
 
 /// Create a copy of LensResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? source = null,Object? link = null,Object? imageUrl = null,Object? thumbnailUrl = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? source = freezed,Object? link = freezed,Object? imageUrl = freezed,Object? thumbnailUrl = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3409,19 +3415,19 @@ as String,
 @JsonSerializable()
 
 class _LensResult implements LensResult {
-  const _LensResult({required this.title, required this.source, required this.link, required this.imageUrl, required this.thumbnailUrl});
+  const _LensResult({this.title, this.source, this.link, this.imageUrl, this.thumbnailUrl});
   factory _LensResult.fromJson(Map<String, dynamic> json) => _$LensResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.source}
-@override final  String source;
+@override final  String? source;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// {@macro flutter_serper.results.imageUrl}
-@override final  String imageUrl;
+@override final  String? imageUrl;
 /// {@macro flutter_serper.results.thumbnailUrl}
-@override final  String thumbnailUrl;
+@override final  String? thumbnailUrl;
 
 /// Create a copy of LensResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3456,7 +3462,7 @@ abstract mixin class _$LensResultCopyWith<$Res> implements $LensResultCopyWith<$
   factory _$LensResultCopyWith(_LensResult value, $Res Function(_LensResult) _then) = __$LensResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String source, String link, String imageUrl, String thumbnailUrl
+ String? title, String? source, String? link, String? imageUrl, String? thumbnailUrl
 });
 
 
@@ -3473,14 +3479,14 @@ class __$LensResultCopyWithImpl<$Res>
 
 /// Create a copy of LensResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? source = null,Object? link = null,Object? imageUrl = null,Object? thumbnailUrl = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? source = freezed,Object? link = freezed,Object? imageUrl = freezed,Object? thumbnailUrl = freezed,}) {
   return _then(_LensResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3492,19 +3498,19 @@ as String,
 mixin _$ScholarResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.link}
- String get link;/// Information about the publication.
+ String? get title;/// {@macro flutter_serper.results.link}
+ String? get link;/// Information about the publication.
 ///
 /// Typically includes the journal name, conference, or publisher details.
- String get publicationInfo;/// {@macro flutter_serper.results.snippet}
- String get snippet;/// The year the academic paper was published.
- int get year;/// The number of times this paper has been cited by other papers.
+ String? get publicationInfo;/// {@macro flutter_serper.results.snippet}
+ String? get snippet;/// The year the academic paper was published.
+ int? get year;/// The number of times this paper has been cited by other papers.
 ///
 /// This is an indicator of the paper's influence in its field.
- int get citedBy;/// URL to the PDF version of the academic paper.
+ int? get citedBy;/// URL to the PDF version of the academic paper.
  String? get pdfUrl;/// URL to the HTML version of the academic paper.
  String? get htmlUrl;/// The unique identifier for this academic paper.
- String get id;
+ String? get id;
 /// Create a copy of ScholarResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3537,7 +3543,7 @@ abstract mixin class $ScholarResultCopyWith<$Res>  {
   factory $ScholarResultCopyWith(ScholarResult value, $Res Function(ScholarResult) _then) = _$ScholarResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String link, String publicationInfo, String snippet, int year, int citedBy, String? pdfUrl, String? htmlUrl, String id
+ String? title, String? link, String? publicationInfo, String? snippet, int? year, int? citedBy, String? pdfUrl, String? htmlUrl, String? id
 });
 
 
@@ -3554,18 +3560,18 @@ class _$ScholarResultCopyWithImpl<$Res>
 
 /// Create a copy of ScholarResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? link = null,Object? publicationInfo = null,Object? snippet = null,Object? year = null,Object? citedBy = null,Object? pdfUrl = freezed,Object? htmlUrl = freezed,Object? id = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? link = freezed,Object? publicationInfo = freezed,Object? snippet = freezed,Object? year = freezed,Object? citedBy = freezed,Object? pdfUrl = freezed,Object? htmlUrl = freezed,Object? id = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,publicationInfo: null == publicationInfo ? _self.publicationInfo : publicationInfo // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
-as int,citedBy: null == citedBy ? _self.citedBy : citedBy // ignore: cast_nullable_to_non_nullable
-as int,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,publicationInfo: freezed == publicationInfo ? _self.publicationInfo : publicationInfo // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,year: freezed == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
+as int?,citedBy: freezed == citedBy ? _self.citedBy : citedBy // ignore: cast_nullable_to_non_nullable
+as int?,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
 as String?,htmlUrl: freezed == htmlUrl ? _self.htmlUrl : htmlUrl // ignore: cast_nullable_to_non_nullable
-as String?,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3576,31 +3582,31 @@ as String,
 @JsonSerializable()
 
 class _ScholarResult implements ScholarResult {
-  const _ScholarResult({required this.title, required this.link, required this.publicationInfo, required this.snippet, required this.year, required this.citedBy, this.pdfUrl, this.htmlUrl, required this.id});
+  const _ScholarResult({this.title, this.link, this.publicationInfo, this.snippet, this.year, this.citedBy, this.pdfUrl, this.htmlUrl, this.id});
   factory _ScholarResult.fromJson(Map<String, dynamic> json) => _$ScholarResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// Information about the publication.
 ///
 /// Typically includes the journal name, conference, or publisher details.
-@override final  String publicationInfo;
+@override final  String? publicationInfo;
 /// {@macro flutter_serper.results.snippet}
-@override final  String snippet;
+@override final  String? snippet;
 /// The year the academic paper was published.
-@override final  int year;
+@override final  int? year;
 /// The number of times this paper has been cited by other papers.
 ///
 /// This is an indicator of the paper's influence in its field.
-@override final  int citedBy;
+@override final  int? citedBy;
 /// URL to the PDF version of the academic paper.
 @override final  String? pdfUrl;
 /// URL to the HTML version of the academic paper.
 @override final  String? htmlUrl;
 /// The unique identifier for this academic paper.
-@override final  String id;
+@override final  String? id;
 
 /// Create a copy of ScholarResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3635,7 +3641,7 @@ abstract mixin class _$ScholarResultCopyWith<$Res> implements $ScholarResultCopy
   factory _$ScholarResultCopyWith(_ScholarResult value, $Res Function(_ScholarResult) _then) = __$ScholarResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String link, String publicationInfo, String snippet, int year, int citedBy, String? pdfUrl, String? htmlUrl, String id
+ String? title, String? link, String? publicationInfo, String? snippet, int? year, int? citedBy, String? pdfUrl, String? htmlUrl, String? id
 });
 
 
@@ -3652,18 +3658,18 @@ class __$ScholarResultCopyWithImpl<$Res>
 
 /// Create a copy of ScholarResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? link = null,Object? publicationInfo = null,Object? snippet = null,Object? year = null,Object? citedBy = null,Object? pdfUrl = freezed,Object? htmlUrl = freezed,Object? id = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? link = freezed,Object? publicationInfo = freezed,Object? snippet = freezed,Object? year = freezed,Object? citedBy = freezed,Object? pdfUrl = freezed,Object? htmlUrl = freezed,Object? id = freezed,}) {
   return _then(_ScholarResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,publicationInfo: null == publicationInfo ? _self.publicationInfo : publicationInfo // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
-as int,citedBy: null == citedBy ? _self.citedBy : citedBy // ignore: cast_nullable_to_non_nullable
-as int,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,publicationInfo: freezed == publicationInfo ? _self.publicationInfo : publicationInfo // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,year: freezed == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
+as int?,citedBy: freezed == citedBy ? _self.citedBy : citedBy // ignore: cast_nullable_to_non_nullable
+as int?,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
 as String?,htmlUrl: freezed == htmlUrl ? _self.htmlUrl : htmlUrl // ignore: cast_nullable_to_non_nullable
-as String?,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3675,25 +3681,25 @@ as String,
 mixin _$PatentResult {
 
 /// {@macro flutter_serper.results.title}
- String get title;/// {@macro flutter_serper.results.snippet}
- String get snippet;/// {@macro flutter_serper.results.link}
- String get link;/// The priority date of the patent.
+ String? get title;/// {@macro flutter_serper.results.snippet}
+ String? get snippet;/// {@macro flutter_serper.results.link}
+ String? get link;/// The priority date of the patent.
 ///
 /// This is the earliest filing date in a family of patents.
- String get priorityDate;/// The date when the patent application was filed.
- String get filingDate;/// The date when the patent was granted, if applicable.
+ String? get priorityDate;/// The date when the patent application was filed.
+ String? get filingDate;/// The date when the patent was granted, if applicable.
  String? get grantDate;/// The date when the patent was published.
- String get publicationDate;/// The name(s) of the inventor(s) of the patent.
- String get inventor;/// The name of the entity to whom the patent is assigned.
- String get assignee;/// The official publication number of the patent.
- String get publicationNumber;/// The language in which the patent is written.
- String get language;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
- String get thumbnailUrl;/// URL to the PDF version of the patent document.
+ String? get publicationDate;/// The name(s) of the inventor(s) of the patent.
+ String? get inventor;/// The name of the entity to whom the patent is assigned.
+ String? get assignee;/// The official publication number of the patent.
+ String? get publicationNumber;/// The language in which the patent is written.
+ String? get language;/// {@macro ResultDocTemplates.thumbnailUrlDoc}
+ String? get thumbnailUrl;/// URL to the PDF version of the patent document.
  String? get pdfUrl;/// List of figures included in the patent.
 ///
 /// These are technical drawings or illustrations that are part of the patent.
  List<PatentFigure>? get figures;/// {@macro ResultDocTemplates.positionDoc}
- int get position;
+ int? get position;
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3726,7 +3732,7 @@ abstract mixin class $PatentResultCopyWith<$Res>  {
   factory $PatentResultCopyWith(PatentResult value, $Res Function(PatentResult) _then) = _$PatentResultCopyWithImpl;
 @useResult
 $Res call({
- String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, String publicationNumber, String language, String thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int position
+ String? title, String? snippet, String? link, String? priorityDate, String? filingDate, String? grantDate, String? publicationDate, String? inventor, String? assignee, String? publicationNumber, String? language, String? thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int? position
 });
 
 
@@ -3743,24 +3749,24 @@ class _$PatentResultCopyWithImpl<$Res>
 
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? publicationNumber = null,Object? language = null,Object? thumbnailUrl = null,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? snippet = freezed,Object? link = freezed,Object? priorityDate = freezed,Object? filingDate = freezed,Object? grantDate = freezed,Object? publicationDate = freezed,Object? inventor = freezed,Object? assignee = freezed,Object? publicationNumber = freezed,Object? language = freezed,Object? thumbnailUrl = freezed,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = freezed,}) {
   return _then(_self.copyWith(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,priorityDate: null == priorityDate ? _self.priorityDate : priorityDate // ignore: cast_nullable_to_non_nullable
-as String,filingDate: null == filingDate ? _self.filingDate : filingDate // ignore: cast_nullable_to_non_nullable
-as String,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignore: cast_nullable_to_non_nullable
-as String?,publicationDate: null == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
-as String,inventor: null == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
-as String,assignee: null == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
-as String,publicationNumber: null == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,priorityDate: freezed == priorityDate ? _self.priorityDate : priorityDate // ignore: cast_nullable_to_non_nullable
+as String?,filingDate: freezed == filingDate ? _self.filingDate : filingDate // ignore: cast_nullable_to_non_nullable
+as String?,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignore: cast_nullable_to_non_nullable
+as String?,publicationDate: freezed == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
+as String?,inventor: freezed == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
+as String?,assignee: freezed == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
+as String?,publicationNumber: freezed == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
+as String?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
 as String?,figures: freezed == figures ? _self.figures : figures // ignore: cast_nullable_to_non_nullable
-as List<PatentFigure>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as List<PatentFigure>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -3771,35 +3777,35 @@ as int,
 @JsonSerializable()
 
 class _PatentResult implements PatentResult {
-  const _PatentResult({required this.title, required this.snippet, required this.link, required this.priorityDate, required this.filingDate, this.grantDate, required this.publicationDate, required this.inventor, required this.assignee, required this.publicationNumber, required this.language, required this.thumbnailUrl, this.pdfUrl, final  List<PatentFigure>? figures, required this.position}): _figures = figures;
+  const _PatentResult({this.title, this.snippet, this.link, this.priorityDate, this.filingDate, this.grantDate, this.publicationDate, this.inventor, this.assignee, this.publicationNumber, this.language, this.thumbnailUrl, this.pdfUrl, final  List<PatentFigure>? figures, this.position}): _figures = figures;
   factory _PatentResult.fromJson(Map<String, dynamic> json) => _$PatentResultFromJson(json);
 
 /// {@macro flutter_serper.results.title}
-@override final  String title;
+@override final  String? title;
 /// {@macro flutter_serper.results.snippet}
-@override final  String snippet;
+@override final  String? snippet;
 /// {@macro flutter_serper.results.link}
-@override final  String link;
+@override final  String? link;
 /// The priority date of the patent.
 ///
 /// This is the earliest filing date in a family of patents.
-@override final  String priorityDate;
+@override final  String? priorityDate;
 /// The date when the patent application was filed.
-@override final  String filingDate;
+@override final  String? filingDate;
 /// The date when the patent was granted, if applicable.
 @override final  String? grantDate;
 /// The date when the patent was published.
-@override final  String publicationDate;
+@override final  String? publicationDate;
 /// The name(s) of the inventor(s) of the patent.
-@override final  String inventor;
+@override final  String? inventor;
 /// The name of the entity to whom the patent is assigned.
-@override final  String assignee;
+@override final  String? assignee;
 /// The official publication number of the patent.
-@override final  String publicationNumber;
+@override final  String? publicationNumber;
 /// The language in which the patent is written.
-@override final  String language;
+@override final  String? language;
 /// {@macro ResultDocTemplates.thumbnailUrlDoc}
-@override final  String thumbnailUrl;
+@override final  String? thumbnailUrl;
 /// URL to the PDF version of the patent document.
 @override final  String? pdfUrl;
 /// List of figures included in the patent.
@@ -3818,7 +3824,7 @@ class _PatentResult implements PatentResult {
 }
 
 /// {@macro ResultDocTemplates.positionDoc}
-@override final  int position;
+@override final  int? position;
 
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
@@ -3853,7 +3859,7 @@ abstract mixin class _$PatentResultCopyWith<$Res> implements $PatentResultCopyWi
   factory _$PatentResultCopyWith(_PatentResult value, $Res Function(_PatentResult) _then) = __$PatentResultCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String snippet, String link, String priorityDate, String filingDate, String? grantDate, String publicationDate, String inventor, String assignee, String publicationNumber, String language, String thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int position
+ String? title, String? snippet, String? link, String? priorityDate, String? filingDate, String? grantDate, String? publicationDate, String? inventor, String? assignee, String? publicationNumber, String? language, String? thumbnailUrl, String? pdfUrl, List<PatentFigure>? figures, int? position
 });
 
 
@@ -3870,24 +3876,24 @@ class __$PatentResultCopyWithImpl<$Res>
 
 /// Create a copy of PatentResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? snippet = null,Object? link = null,Object? priorityDate = null,Object? filingDate = null,Object? grantDate = freezed,Object? publicationDate = null,Object? inventor = null,Object? assignee = null,Object? publicationNumber = null,Object? language = null,Object? thumbnailUrl = null,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? snippet = freezed,Object? link = freezed,Object? priorityDate = freezed,Object? filingDate = freezed,Object? grantDate = freezed,Object? publicationDate = freezed,Object? inventor = freezed,Object? assignee = freezed,Object? publicationNumber = freezed,Object? language = freezed,Object? thumbnailUrl = freezed,Object? pdfUrl = freezed,Object? figures = freezed,Object? position = freezed,}) {
   return _then(_PatentResult(
-title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,snippet: null == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
-as String,link: null == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
-as String,priorityDate: null == priorityDate ? _self.priorityDate : priorityDate // ignore: cast_nullable_to_non_nullable
-as String,filingDate: null == filingDate ? _self.filingDate : filingDate // ignore: cast_nullable_to_non_nullable
-as String,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignore: cast_nullable_to_non_nullable
-as String?,publicationDate: null == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
-as String,inventor: null == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
-as String,assignee: null == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
-as String,publicationNumber: null == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,snippet: freezed == snippet ? _self.snippet : snippet // ignore: cast_nullable_to_non_nullable
+as String?,link: freezed == link ? _self.link : link // ignore: cast_nullable_to_non_nullable
+as String?,priorityDate: freezed == priorityDate ? _self.priorityDate : priorityDate // ignore: cast_nullable_to_non_nullable
+as String?,filingDate: freezed == filingDate ? _self.filingDate : filingDate // ignore: cast_nullable_to_non_nullable
+as String?,grantDate: freezed == grantDate ? _self.grantDate : grantDate // ignore: cast_nullable_to_non_nullable
+as String?,publicationDate: freezed == publicationDate ? _self.publicationDate : publicationDate // ignore: cast_nullable_to_non_nullable
+as String?,inventor: freezed == inventor ? _self.inventor : inventor // ignore: cast_nullable_to_non_nullable
+as String?,assignee: freezed == assignee ? _self.assignee : assignee // ignore: cast_nullable_to_non_nullable
+as String?,publicationNumber: freezed == publicationNumber ? _self.publicationNumber : publicationNumber // ignore: cast_nullable_to_non_nullable
+as String?,language: freezed == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,pdfUrl: freezed == pdfUrl ? _self.pdfUrl : pdfUrl // ignore: cast_nullable_to_non_nullable
 as String?,figures: freezed == figures ? _self._figures : figures // ignore: cast_nullable_to_non_nullable
-as List<PatentFigure>?,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as int,
+as List<PatentFigure>?,position: freezed == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -3899,8 +3905,8 @@ as int,
 mixin _$PatentFigure {
 
 /// {@macro flutter_serper.results.imageUrl}
- String get imageUrl;/// {@macro flutter_serper.results.thumbnailUrl}
- String get thumbnailUrl;
+ String? get imageUrl;/// {@macro flutter_serper.results.thumbnailUrl}
+ String? get thumbnailUrl;
 /// Create a copy of PatentFigure
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3933,7 +3939,7 @@ abstract mixin class $PatentFigureCopyWith<$Res>  {
   factory $PatentFigureCopyWith(PatentFigure value, $Res Function(PatentFigure) _then) = _$PatentFigureCopyWithImpl;
 @useResult
 $Res call({
- String imageUrl, String thumbnailUrl
+ String? imageUrl, String? thumbnailUrl
 });
 
 
@@ -3950,11 +3956,11 @@ class _$PatentFigureCopyWithImpl<$Res>
 
 /// Create a copy of PatentFigure
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = null,Object? thumbnailUrl = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,Object? thumbnailUrl = freezed,}) {
   return _then(_self.copyWith(
-imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,
+imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3965,13 +3971,13 @@ as String,
 @JsonSerializable()
 
 class _PatentFigure implements PatentFigure {
-  const _PatentFigure({required this.imageUrl, required this.thumbnailUrl});
+  const _PatentFigure({this.imageUrl, this.thumbnailUrl});
   factory _PatentFigure.fromJson(Map<String, dynamic> json) => _$PatentFigureFromJson(json);
 
 /// {@macro flutter_serper.results.imageUrl}
-@override final  String imageUrl;
+@override final  String? imageUrl;
 /// {@macro flutter_serper.results.thumbnailUrl}
-@override final  String thumbnailUrl;
+@override final  String? thumbnailUrl;
 
 /// Create a copy of PatentFigure
 /// with the given fields replaced by the non-null parameter values.
@@ -4006,7 +4012,7 @@ abstract mixin class _$PatentFigureCopyWith<$Res> implements $PatentFigureCopyWi
   factory _$PatentFigureCopyWith(_PatentFigure value, $Res Function(_PatentFigure) _then) = __$PatentFigureCopyWithImpl;
 @override @useResult
 $Res call({
- String imageUrl, String thumbnailUrl
+ String? imageUrl, String? thumbnailUrl
 });
 
 
@@ -4023,11 +4029,11 @@ class __$PatentFigureCopyWithImpl<$Res>
 
 /// Create a copy of PatentFigure
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = null,Object? thumbnailUrl = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,Object? thumbnailUrl = freezed,}) {
   return _then(_PatentFigure(
-imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,thumbnailUrl: null == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-as String,
+imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,thumbnailUrl: freezed == thumbnailUrl ? _self.thumbnailUrl : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -4041,7 +4047,7 @@ mixin _$WebpageResult {
 /// The extracted text content from the webpage.
 ///
 /// This is the main content that has been parsed from the webpage.
- String get text;// /// {@macro flutter_serper.results.title}
+ String? get text;// /// {@macro flutter_serper.results.title}
 // required String title,
 /// The content formatted as markdown, if available.
 ///
@@ -4059,7 +4065,7 @@ mixin _$WebpageResult {
  Map<String, dynamic>? get jsonld;/// The number of credits used for extracting this webpage.
 ///
 /// Serper API uses a credit-based system for billing.
- int get credits;
+ int? get credits;
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4092,7 +4098,7 @@ abstract mixin class $WebpageResultCopyWith<$Res>  {
   factory $WebpageResultCopyWith(WebpageResult value, $Res Function(WebpageResult) _then) = _$WebpageResultCopyWithImpl;
 @useResult
 $Res call({
- String text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int credits
+ String? text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int? credits
 });
 
 
@@ -4109,14 +4115,14 @@ class _$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? text = freezed,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = freezed,}) {
   return _then(_self.copyWith(
-text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
+text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,jsonld: freezed == jsonld ? _self.jsonld : jsonld // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
-as int,
+as Map<String, dynamic>?,credits: freezed == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -4127,13 +4133,13 @@ as int,
 @JsonSerializable()
 
 class _WebpageResult implements WebpageResult {
-  const _WebpageResult({required this.text, this.markdown, final  Map<String, dynamic>? metadata, final  Map<String, dynamic>? jsonld, required this.credits}): _metadata = metadata,_jsonld = jsonld;
+  const _WebpageResult({this.text, this.markdown, final  Map<String, dynamic>? metadata, final  Map<String, dynamic>? jsonld, this.credits}): _metadata = metadata,_jsonld = jsonld;
   factory _WebpageResult.fromJson(Map<String, dynamic> json) => _$WebpageResultFromJson(json);
 
 /// The extracted text content from the webpage.
 ///
 /// This is the main content that has been parsed from the webpage.
-@override final  String text;
+@override final  String? text;
 // /// {@macro flutter_serper.results.title}
 // required String title,
 /// The content formatted as markdown, if available.
@@ -4181,7 +4187,7 @@ class _WebpageResult implements WebpageResult {
 /// The number of credits used for extracting this webpage.
 ///
 /// Serper API uses a credit-based system for billing.
-@override final  int credits;
+@override final  int? credits;
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
@@ -4216,7 +4222,7 @@ abstract mixin class _$WebpageResultCopyWith<$Res> implements $WebpageResultCopy
   factory _$WebpageResultCopyWith(_WebpageResult value, $Res Function(_WebpageResult) _then) = __$WebpageResultCopyWithImpl;
 @override @useResult
 $Res call({
- String text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int credits
+ String? text, String? markdown, Map<String, dynamic>? metadata, Map<String, dynamic>? jsonld, int? credits
 });
 
 
@@ -4233,14 +4239,14 @@ class __$WebpageResultCopyWithImpl<$Res>
 
 /// Create a copy of WebpageResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? text = freezed,Object? markdown = freezed,Object? metadata = freezed,Object? jsonld = freezed,Object? credits = freezed,}) {
   return _then(_WebpageResult(
-text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
+text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String?,markdown: freezed == markdown ? _self.markdown : markdown // ignore: cast_nullable_to_non_nullable
 as String?,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,jsonld: freezed == jsonld ? _self._jsonld : jsonld // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,credits: null == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
-as int,
+as Map<String, dynamic>?,credits: freezed == credits ? _self.credits : credits // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

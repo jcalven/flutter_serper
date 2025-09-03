@@ -24,21 +24,21 @@ abstract class OrganicResult with _$OrganicResult {
     ///
     /// This is typically the main heading or name associated with the search result.
     /// {@endtemplate}
-    required String title,
+    String? title,
 
     /// {@template flutter_serper.results.link}
     /// The URL link to the result.
     ///
     /// This URL can be used to navigate to the full content of the search result.
     /// {@endtemplate}
-    required String link,
+    String? link,
 
     /// {@template flutter_serper.results.snippet}
     /// A brief excerpt or description of the result.
     ///
     /// This provides a summary of the content to help users understand what the result contains.
     /// {@endtemplate}
-    required String snippet,
+    String? snippet,
 
     /// {@template flutter_serper.results.date}
     /// The date associated with the result.
@@ -71,7 +71,7 @@ abstract class OrganicResult with _$OrganicResult {
     ///
     /// Position is zero-based, with 0 being the first result.
     /// {@endtemplate}
-    required int position,
+    int? position,
 
     /// Additional links to specific sections within the result website.
     ///

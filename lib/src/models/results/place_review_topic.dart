@@ -16,13 +16,13 @@ abstract class PlaceReviewTopic with _$PlaceReviewTopic {
   /// Creates a [PlaceReviewTopic].
   const factory PlaceReviewTopic({
     /// The name of the topic (e.g., "pick up").
-    required String name,
+    String? name,
 
     /// The number of reviews associated with this topic.
-    required int reviews,
+    int? reviews,
 
     /// The unique identifier for the topic.
-    required String id,
+    String? id,
   }) = _PlaceReviewTopic;
 
   /// Creates a [PlaceReviewTopic] from a JSON map.

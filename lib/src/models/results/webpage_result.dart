@@ -20,7 +20,7 @@ abstract class WebpageResult with _$WebpageResult {
     /// The extracted text content from the webpage.
     ///
     /// This is the main content that has been parsed from the webpage.
-    required String text,
+    String? text,
 
     // /// {@macro flutter_serper.results.title}
     // required String title,
@@ -47,7 +47,7 @@ abstract class WebpageResult with _$WebpageResult {
     /// The number of credits used for extracting this webpage.
     ///
     /// Serper API uses a credit-based system for billing.
-    required int credits,
+    int? credits,
   }) = _WebpageResult;
 
   /// Creates a [WebpageResult] from a JSON map.

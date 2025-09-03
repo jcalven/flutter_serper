@@ -16,7 +16,7 @@ abstract class RelatedSearchResult with _$RelatedSearchResult {
     /// The related search query text.
     ///
     /// This is an alternative search term that users might be interested in.
-    required String query,
+    String? query,
   }) = _RelatedSearchResult;
 
   /// Creates a [RelatedSearchResult] from a JSON map.

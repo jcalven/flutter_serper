@@ -17,7 +17,7 @@ abstract class PeopleAlsoAskResult with _$PeopleAlsoAskResult {
   /// Creates a [PeopleAlsoAskResult].
   const factory PeopleAlsoAskResult({
     /// The question that people also ask about the search topic.
-    required String question,
+    String? question,
 
     /// {@macro flutter_serper.results.snippet}
     ///

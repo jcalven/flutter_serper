@@ -18,7 +18,7 @@ abstract class PlaceReviewUser with _$PlaceReviewUser {
   /// Creates a [PlaceReviewUser].
   const factory PlaceReviewUser({
     /// The user's display name.
-    required String name,
+    String? name,
 
     /// The URL to the user's profile thumbnail image.
     String? thumbnail,

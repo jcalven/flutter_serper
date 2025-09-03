@@ -15,10 +15,10 @@ abstract class PatentFigure with _$PatentFigure {
   /// Creates a [PatentFigure].
   const factory PatentFigure({
     /// {@macro flutter_serper.results.imageUrl}
-    required String imageUrl,
+    String? imageUrl,
 
     /// {@macro flutter_serper.results.thumbnailUrl}
-    required String thumbnailUrl,
+    String? thumbnailUrl,
   }) = _PatentFigure;
 
   /// Creates a [PatentFigure] from a JSON map.

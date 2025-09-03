@@ -22,26 +22,26 @@ abstract class ScholarResult with _$ScholarResult {
   /// Creates a [ScholarResult].
   const factory ScholarResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// {@macro flutter_serper.results.link}
-    required String link,
+    String? link,
 
     /// Information about the publication.
     ///
     /// Typically includes the journal name, conference, or publisher details.
-    required String publicationInfo,
+    String? publicationInfo,
 
     /// {@macro flutter_serper.results.snippet}
-    required String snippet,
+    String? snippet,
 
     /// The year the academic paper was published.
-    required int year,
+    int? year,
 
     /// The number of times this paper has been cited by other papers.
     ///
     /// This is an indicator of the paper's influence in its field.
-    required int citedBy,
+    int? citedBy,
 
     /// URL to the PDF version of the academic paper.
     String? pdfUrl,
@@ -50,7 +50,7 @@ abstract class ScholarResult with _$ScholarResult {
     String? htmlUrl,
 
     /// The unique identifier for this academic paper.
-    required String id,
+    String? id,
   }) = _ScholarResult;
 
   /// Creates a [ScholarResult] from a JSON map.

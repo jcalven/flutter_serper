@@ -16,7 +16,7 @@ abstract class PlaceReviewResponse with _$PlaceReviewResponse {
   /// Creates a [PlaceReviewResponse].
   const factory PlaceReviewResponse({
     /// The relative date string (e.g., "a month ago").
-    required String date,
+    String? date,
 
     /// The ISO 8601 date string.
     String? isoDate,

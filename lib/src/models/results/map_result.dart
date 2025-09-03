@@ -28,17 +28,17 @@ abstract class MapResult with _$MapResult {
 
   const factory MapResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// The unique Customer ID (CID) of the place in Google Maps.
     ///
     /// This identifier can be used to look up the place in Google Maps.
-    required String cid,
+    String? cid,
 
     /// The full address of the place.
     ///
     /// Typically includes street, city, state/province, and postal code.
-    required String address,
+    String? address,
 
     /// {@macro flutter_serper.results.rating}
     double? rating,
@@ -81,22 +81,22 @@ abstract class MapResult with _$MapResult {
     String? description,
 
     /// The thumbnail image URL for the place.
-    required String thumbnailUrl,
+    String? thumbnailUrl,
 
     /// The booking links for the place.
     List<String>? bookingLinks,
 
     /// The FID (feature id) for the place.
-    required String fid,
+    String? fid,
 
     /// The latitude of the place.
-    required double latitude,
+    double? latitude,
 
     /// The longitude of the place.
-    required double longitude,
+    double? longitude,
 
     /// The Google Place ID for this place.
-    required String placeId,
+    String? placeId,
 
     /// The position of the place in the results.
     required int position,
@@ -110,5 +110,8 @@ abstract class MapResult with _$MapResult {
   /// The [latLng] property is derived from the [latitude] and [longitude] with
   /// a default zoom level.
   /// {@endtemplate}
-  LatLng? get latLng => LatLng(latitude, longitude);
+  LatLng? get latLng =>
+      (latitude != null && longitude != null)
+          ? LatLng(latitude!, longitude!)
+          : null;
 }

@@ -16,14 +16,14 @@ Map<String, dynamic> _$AutocompleteSuggestionToJson(
 
 _OrganicResult _$OrganicResultFromJson(Map<String, dynamic> json) =>
     _OrganicResult(
-      title: json['title'] as String,
-      link: json['link'] as String,
-      snippet: json['snippet'] as String,
+      title: json['title'] as String?,
+      link: json['link'] as String?,
+      snippet: json['snippet'] as String?,
       date: json['date'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
       imageUrl: json['imageUrl'] as String?,
-      position: (json['position'] as num).toInt(),
+      position: (json['position'] as num?)?.toInt(),
       sitelinks:
           (json['sitelinks'] as List<dynamic>?)
               ?.map((e) => OrganicSitelink.fromJson(e as Map<String, dynamic>))
@@ -45,15 +45,15 @@ Map<String, dynamic> _$OrganicResultToJson(_OrganicResult instance) =>
 
 _OrganicSitelink _$OrganicSitelinkFromJson(Map<String, dynamic> json) =>
     _OrganicSitelink(
-      title: json['title'] as String,
-      link: json['link'] as String,
+      title: json['title'] as String?,
+      link: json['link'] as String?,
     );
 
 Map<String, dynamic> _$OrganicSitelinkToJson(_OrganicSitelink instance) =>
     <String, dynamic>{'title': instance.title, 'link': instance.link};
 
 _RelatedSearchResult _$RelatedSearchResultFromJson(Map<String, dynamic> json) =>
-    _RelatedSearchResult(query: json['query'] as String);
+    _RelatedSearchResult(query: json['query'] as String?);
 
 Map<String, dynamic> _$RelatedSearchResultToJson(
   _RelatedSearchResult instance,
@@ -61,7 +61,7 @@ Map<String, dynamic> _$RelatedSearchResultToJson(
 
 _PeopleAlsoAskResult _$PeopleAlsoAskResultFromJson(Map<String, dynamic> json) =>
     _PeopleAlsoAskResult(
-      question: json['question'] as String,
+      question: json['question'] as String?,
       snippet: json['snippet'] as String?,
       title: json['title'] as String?,
       link: json['link'] as String?,
@@ -78,8 +78,8 @@ Map<String, dynamic> _$PeopleAlsoAskResultToJson(
 
 _TopStoriesResult _$TopStoriesResultFromJson(Map<String, dynamic> json) =>
     _TopStoriesResult(
-      title: json['title'] as String,
-      link: json['link'] as String,
+      title: json['title'] as String?,
+      link: json['link'] as String?,
       date: json['date'] as String?,
       source: json['source'] as String?,
       snippet: json['snippet'] as String?,
@@ -99,7 +99,7 @@ Map<String, dynamic> _$TopStoriesResultToJson(_TopStoriesResult instance) =>
 _KnowledgeGraphResult _$KnowledgeGraphResultFromJson(
   Map<String, dynamic> json,
 ) => _KnowledgeGraphResult(
-  title: json['title'] as String,
+  title: json['title'] as String?,
   type: json['type'] as String?,
   imageUrl: json['imageUrl'] as String?,
   attributes:
@@ -181,10 +181,10 @@ Map<String, dynamic> _$ImageResultToJson(_ImageResult instance) =>
     };
 
 _PlaceResult _$PlaceResultFromJson(Map<String, dynamic> json) => _PlaceResult(
-  title: json['title'] as String,
-  address: json['address'] as String,
-  latitude: (json['latitude'] as num).toDouble(),
-  longitude: (json['longitude'] as num).toDouble(),
+  title: json['title'] as String?,
+  address: json['address'] as String?,
+  latitude: (json['latitude'] as num?)?.toDouble(),
+  longitude: (json['longitude'] as num?)?.toDouble(),
   phoneNumber: json['phoneNumber'] as String?,
   rating: (json['rating'] as num?)?.toDouble(),
   reviewCount: (json['reviewCount'] as num?)?.toInt(),
@@ -196,7 +196,7 @@ _PlaceResult _$PlaceResultFromJson(Map<String, dynamic> json) => _PlaceResult(
           ?.map((e) => e as String)
           .toList(),
   cid: json['cid'] as String?,
-  position: (json['position'] as num).toInt(),
+  position: (json['position'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$PlaceResultToJson(_PlaceResult instance) =>
@@ -217,8 +217,8 @@ Map<String, dynamic> _$PlaceResultToJson(_PlaceResult instance) =>
     };
 
 _VideoResult _$VideoResultFromJson(Map<String, dynamic> json) => _VideoResult(
-  title: json['title'] as String,
-  link: json['link'] as String,
+  title: json['title'] as String?,
+  link: json['link'] as String?,
   snippet: json['snippet'] as String?,
   imageUrl: json['imageUrl'] as String?,
   videoUrl: json['videoUrl'] as String?,
@@ -226,7 +226,7 @@ _VideoResult _$VideoResultFromJson(Map<String, dynamic> json) => _VideoResult(
   source: json['source'] as String?,
   channel: json['channel'] as String?,
   date: json['date'] as String?,
-  position: (json['position'] as num).toInt(),
+  position: (json['position'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$VideoResultToJson(_VideoResult instance) =>
@@ -244,9 +244,9 @@ Map<String, dynamic> _$VideoResultToJson(_VideoResult instance) =>
     };
 
 _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
-  title: json['title'] as String,
-  cid: json['cid'] as String,
-  address: json['address'] as String,
+  title: json['title'] as String?,
+  cid: json['cid'] as String?,
+  address: json['address'] as String?,
   rating: (json['rating'] as num?)?.toDouble(),
   ratingCount: (json['ratingCount'] as num?)?.toInt(),
   priceLevel: json['priceLevel'] as String?,
@@ -258,15 +258,15 @@ _MapResult _$MapResultFromJson(Map<String, dynamic> json) => _MapResult(
     (k, e) => MapEntry(k, e as String),
   ),
   description: json['description'] as String?,
-  thumbnailUrl: json['thumbnailUrl'] as String,
+  thumbnailUrl: json['thumbnailUrl'] as String?,
   bookingLinks:
       (json['bookingLinks'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-  fid: json['fid'] as String,
-  latitude: (json['latitude'] as num).toDouble(),
-  longitude: (json['longitude'] as num).toDouble(),
-  placeId: json['placeId'] as String,
+  fid: json['fid'] as String?,
+  latitude: (json['latitude'] as num?)?.toDouble(),
+  longitude: (json['longitude'] as num?)?.toDouble(),
+  placeId: json['placeId'] as String?,
   position: (json['position'] as num).toInt(),
 );
 
@@ -294,12 +294,15 @@ Map<String, dynamic> _$MapResultToJson(_MapResult instance) =>
     };
 
 _PlaceReview _$PlaceReviewFromJson(Map<String, dynamic> json) => _PlaceReview(
-  rating: (json['rating'] as num).toDouble(),
-  date: json['date'] as String,
+  rating: (json['rating'] as num?)?.toDouble(),
+  date: json['date'] as String?,
   isoDate: json['isoDate'] as String?,
   snippet: json['snippet'] as String?,
   likes: (json['likes'] as num?)?.toInt(),
-  user: PlaceReviewUser.fromJson(json['user'] as Map<String, dynamic>),
+  user:
+      json['user'] == null
+          ? null
+          : PlaceReviewUser.fromJson(json['user'] as Map<String, dynamic>),
   response:
       json['response'] == null
           ? null
@@ -323,7 +326,7 @@ Map<String, dynamic> _$PlaceReviewToJson(_PlaceReview instance) =>
 
 _PlaceReviewUser _$PlaceReviewUserFromJson(Map<String, dynamic> json) =>
     _PlaceReviewUser(
-      name: json['name'] as String,
+      name: json['name'] as String?,
       thumbnail: json['thumbnail'] as String?,
       link: json['link'] as String?,
       reviews: (json['reviews'] as num?)?.toInt(),
@@ -341,7 +344,7 @@ Map<String, dynamic> _$PlaceReviewUserToJson(_PlaceReviewUser instance) =>
 
 _PlaceReviewResponse _$PlaceReviewResponseFromJson(Map<String, dynamic> json) =>
     _PlaceReviewResponse(
-      date: json['date'] as String,
+      date: json['date'] as String?,
       isoDate: json['isoDate'] as String?,
       snippet: json['snippet'] as String?,
     );
@@ -356,9 +359,9 @@ Map<String, dynamic> _$PlaceReviewResponseToJson(
 
 _PlaceReviewTopic _$PlaceReviewTopicFromJson(Map<String, dynamic> json) =>
     _PlaceReviewTopic(
-      name: json['name'] as String,
-      reviews: (json['reviews'] as num).toInt(),
-      id: json['id'] as String,
+      name: json['name'] as String?,
+      reviews: (json['reviews'] as num?)?.toInt(),
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$PlaceReviewTopicToJson(_PlaceReviewTopic instance) =>
@@ -369,13 +372,13 @@ Map<String, dynamic> _$PlaceReviewTopicToJson(_PlaceReviewTopic instance) =>
     };
 
 _NewsResult _$NewsResultFromJson(Map<String, dynamic> json) => _NewsResult(
-  title: json['title'] as String,
-  link: json['link'] as String,
-  snippet: json['snippet'] as String,
-  date: json['date'] as String,
-  source: json['source'] as String,
+  title: json['title'] as String?,
+  link: json['link'] as String?,
+  snippet: json['snippet'] as String?,
+  date: json['date'] as String?,
+  source: json['source'] as String?,
   imageUrl: json['imageUrl'] as String?,
-  position: (json['position'] as num).toInt(),
+  position: (json['position'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$NewsResultToJson(_NewsResult instance) =>
@@ -391,13 +394,13 @@ Map<String, dynamic> _$NewsResultToJson(_NewsResult instance) =>
 
 _ShoppingResult _$ShoppingResultFromJson(Map<String, dynamic> json) =>
     _ShoppingResult(
-      title: json['title'] as String,
+      title: json['title'] as String?,
       source: json['source'] as String?,
-      link: json['link'] as String,
+      link: json['link'] as String?,
       price: json['price'] as String?,
       delivery: json['delivery'] as String?,
       imageUrl: json['imageUrl'] as String?,
-      position: (json['position'] as num).toInt(),
+      position: (json['position'] as num?)?.toInt(),
       rating: (json['rating'] as num?)?.toDouble(),
       ratingCount: (json['ratingCount'] as num?)?.toInt(),
       offers: json['offers'] as String?,
@@ -420,11 +423,11 @@ Map<String, dynamic> _$ShoppingResultToJson(_ShoppingResult instance) =>
     };
 
 _LensResult _$LensResultFromJson(Map<String, dynamic> json) => _LensResult(
-  title: json['title'] as String,
-  source: json['source'] as String,
-  link: json['link'] as String,
-  imageUrl: json['imageUrl'] as String,
-  thumbnailUrl: json['thumbnailUrl'] as String,
+  title: json['title'] as String?,
+  source: json['source'] as String?,
+  link: json['link'] as String?,
+  imageUrl: json['imageUrl'] as String?,
+  thumbnailUrl: json['thumbnailUrl'] as String?,
 );
 
 Map<String, dynamic> _$LensResultToJson(_LensResult instance) =>
@@ -438,15 +441,15 @@ Map<String, dynamic> _$LensResultToJson(_LensResult instance) =>
 
 _ScholarResult _$ScholarResultFromJson(Map<String, dynamic> json) =>
     _ScholarResult(
-      title: json['title'] as String,
-      link: json['link'] as String,
-      publicationInfo: json['publicationInfo'] as String,
-      snippet: json['snippet'] as String,
-      year: (json['year'] as num).toInt(),
-      citedBy: (json['citedBy'] as num).toInt(),
+      title: json['title'] as String?,
+      link: json['link'] as String?,
+      publicationInfo: json['publicationInfo'] as String?,
+      snippet: json['snippet'] as String?,
+      year: (json['year'] as num?)?.toInt(),
+      citedBy: (json['citedBy'] as num?)?.toInt(),
       pdfUrl: json['pdfUrl'] as String?,
       htmlUrl: json['htmlUrl'] as String?,
-      id: json['id'] as String,
+      id: json['id'] as String?,
     );
 
 Map<String, dynamic> _$ScholarResultToJson(_ScholarResult instance) =>
@@ -464,24 +467,24 @@ Map<String, dynamic> _$ScholarResultToJson(_ScholarResult instance) =>
 
 _PatentResult _$PatentResultFromJson(Map<String, dynamic> json) =>
     _PatentResult(
-      title: json['title'] as String,
-      snippet: json['snippet'] as String,
-      link: json['link'] as String,
-      priorityDate: json['priorityDate'] as String,
-      filingDate: json['filingDate'] as String,
+      title: json['title'] as String?,
+      snippet: json['snippet'] as String?,
+      link: json['link'] as String?,
+      priorityDate: json['priorityDate'] as String?,
+      filingDate: json['filingDate'] as String?,
       grantDate: json['grantDate'] as String?,
-      publicationDate: json['publicationDate'] as String,
-      inventor: json['inventor'] as String,
-      assignee: json['assignee'] as String,
-      publicationNumber: json['publicationNumber'] as String,
-      language: json['language'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
+      publicationDate: json['publicationDate'] as String?,
+      inventor: json['inventor'] as String?,
+      assignee: json['assignee'] as String?,
+      publicationNumber: json['publicationNumber'] as String?,
+      language: json['language'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
       pdfUrl: json['pdfUrl'] as String?,
       figures:
           (json['figures'] as List<dynamic>?)
               ?.map((e) => PatentFigure.fromJson(e as Map<String, dynamic>))
               .toList(),
-      position: (json['position'] as num).toInt(),
+      position: (json['position'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PatentResultToJson(_PatentResult instance) =>
@@ -505,8 +508,8 @@ Map<String, dynamic> _$PatentResultToJson(_PatentResult instance) =>
 
 _PatentFigure _$PatentFigureFromJson(Map<String, dynamic> json) =>
     _PatentFigure(
-      imageUrl: json['imageUrl'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
+      imageUrl: json['imageUrl'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
     );
 
 Map<String, dynamic> _$PatentFigureToJson(_PatentFigure instance) =>
@@ -517,11 +520,11 @@ Map<String, dynamic> _$PatentFigureToJson(_PatentFigure instance) =>
 
 _WebpageResult _$WebpageResultFromJson(Map<String, dynamic> json) =>
     _WebpageResult(
-      text: json['text'] as String,
+      text: json['text'] as String?,
       markdown: json['markdown'] as String?,
       metadata: json['metadata'] as Map<String, dynamic>?,
       jsonld: json['jsonld'] as Map<String, dynamic>?,
-      credits: (json['credits'] as num).toInt(),
+      credits: (json['credits'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$WebpageResultToJson(_WebpageResult instance) =>

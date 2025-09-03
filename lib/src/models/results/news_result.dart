@@ -20,29 +20,29 @@ abstract class NewsResult with _$NewsResult {
   /// Creates a [NewsResult].
   const factory NewsResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// {@macro flutter_serper.results.link}
-    required String link,
+    String? link,
 
     /// {@macro flutter_serper.results.snippet}
-    required String snippet,
+    String? snippet,
 
     /// {@macro flutter_serper.results.date}
     ///
     /// For news results, this is typically the publication date.
-    required String date,
+    String? date,
 
     /// {@macro flutter_serper.results.source}
     ///
     /// For news results, this is the name of the news outlet.
-    required String source,
+    String? source,
 
     /// {@macro flutter_serper.results.imageUrl}
     String? imageUrl,
 
     /// {@macro flutter_serper.results.position}
-    required int position,
+    int? position,
   }) = _NewsResult;
 
   /// Creates a [NewsResult] from a JSON map.

@@ -751,11 +751,11 @@ void main() {
       expect(review.isoDate, '2024-01-01T00:00:00Z');
       expect(review.snippet, 'Great food!');
       expect(review.likes, 10);
-      expect(review.user.name, 'Alice');
-      expect(review.user.thumbnail, 'https://example.com/user/alice.jpg');
-      expect(review.user.link, 'https://example.com/user/alice');
-      expect(review.user.reviews, 5);
-      expect(review.user.photos, 2);
+      expect(review.user!.name, 'Alice');
+      expect(review.user!.thumbnail, 'https://example.com/user/alice.jpg');
+      expect(review.user!.link, 'https://example.com/user/alice');
+      expect(review.user!.reviews, 5);
+      expect(review.user!.photos, 2);
       expect(review.response, isNotNull);
       expect(review.response!.date, '2024-01-02');
       expect(review.response!.isoDate, '2024-01-02T00:00:00Z');

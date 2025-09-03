@@ -134,7 +134,7 @@ Future<void> main() async {
     print('\\nWebpage scraping results:');
 
     final webpage = webpageResponse.results;
-    print('Text length: ${webpage.text.length} characters');
+    print('Text length: ${webpage.text?.length ?? 0} characters');
     print('Markdown available: ${webpage.markdown != null}');
     print('Credits used: ${webpage.credits}');
 

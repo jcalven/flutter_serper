@@ -24,7 +24,7 @@ abstract class ShoppingResult with _$ShoppingResult {
   /// Creates a [ShoppingResult].
   const factory ShoppingResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// {@macro flutter_serper.results.source}
     ///
@@ -32,7 +32,7 @@ abstract class ShoppingResult with _$ShoppingResult {
     String? source,
 
     /// {@macro flutter_serper.results.link}
-    required String link,
+    String? link,
 
     /// {@macro flutter_serper.results.price}
     String? price,
@@ -46,7 +46,7 @@ abstract class ShoppingResult with _$ShoppingResult {
     String? imageUrl,
 
     /// {@macro flutter_serper.results.position}
-    required int position,
+    int? position,
 
     /// Product rating (e.g., 4.5).
     double? rating,

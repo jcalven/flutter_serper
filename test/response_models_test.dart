@@ -515,11 +515,11 @@ void main() {
       expect(review.isoDate, equals('2023-01-01T00:00:00Z'));
       expect(review.snippet, equals('This is a hotel review'));
       expect(review.likes, equals(10));
-      expect(review.user.name, equals('Jane Doe'));
-      expect(review.user.thumbnail, equals('https://example.com/user.jpg'));
-      expect(review.user.link, equals('https://example.com/user/janedoe'));
-      expect(review.user.reviews, equals(5));
-      expect(review.user.photos, equals(2));
+      expect(review.user!.name, equals('Jane Doe'));
+      expect(review.user!.thumbnail, equals('https://example.com/user.jpg'));
+      expect(review.user!.link, equals('https://example.com/user/janedoe'));
+      expect(review.user!.reviews, equals(5));
+      expect(review.user!.photos, equals(2));
       expect(review.response?.date, equals('2023-01-02'));
       expect(review.response?.isoDate, equals('2023-01-02T00:00:00Z'));
       expect(review.response?.snippet, equals('Thank you for your review!'));

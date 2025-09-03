@@ -21,10 +21,10 @@ abstract class PlaceReview with _$PlaceReview {
   /// Creates a [PlaceReview].
   const factory PlaceReview({
     /// The rating given in the review.
-    required double rating,
+    double? rating,
 
     /// The relative date string (e.g., "a month ago").
-    required String date,
+    String? date,
 
     /// The ISO 8601 date string.
     String? isoDate,
@@ -36,7 +36,7 @@ abstract class PlaceReview with _$PlaceReview {
     int? likes,
 
     /// The user who wrote the review.
-    required PlaceReviewUser user,
+    PlaceReviewUser? user,
 
     /// The business's response to the review, if any.
     PlaceReviewResponse? response,

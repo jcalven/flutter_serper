@@ -20,7 +20,7 @@ abstract class KnowledgeGraphResult with _$KnowledgeGraphResult {
   /// Creates a [KnowledgeGraphResult].
   const factory KnowledgeGraphResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// The type of entity represented in the Knowledge Graph.
     ///

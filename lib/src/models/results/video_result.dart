@@ -23,10 +23,10 @@ abstract class VideoResult with _$VideoResult {
   /// Creates a [VideoResult].
   const factory VideoResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// {@macro flutter_serper.results.link}
-    required String link,
+    String? link,
 
     /// {@macro flutter_serper.results.snippet}
     String? snippet,
@@ -52,7 +52,7 @@ abstract class VideoResult with _$VideoResult {
     String? date,
 
     /// {@macro flutter_serper.results.position}
-    required int position,
+    int? position,
   }) = _VideoResult;
 
   /// Creates a [VideoResult] from a JSON map.

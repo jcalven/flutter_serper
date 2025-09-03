@@ -19,10 +19,10 @@ abstract class TopStoriesResult with _$TopStoriesResult {
   /// Creates a [TopStoriesResult].
   const factory TopStoriesResult({
     /// {@macro flutter_serper.results.title}
-    required String title,
+    String? title,
 
     /// {@macro flutter_serper.results.link}
-    required String link,
+    String? link,
 
     /// {@macro flutter_serper.results.date}
     String? date,
