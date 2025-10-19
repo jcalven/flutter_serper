@@ -1,0 +1,23 @@
+dartdoc:
+  categoryOrder:
+    - "API Client"
+    - "Query Models"
+    - "Response Models"
+    - "Result Models"
+    - "Exceptions"
+    - "Utilities"
+  
+  linkTo:
+    url: "https://pub.dev/documentation/flutter_serper/latest"
+  
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/mocks.dart"
+    - "**/mocks.mocks.dart"
+  
+  nodoc:
+    - Diagnosticable
+    - DiagnosticableMixin
+  
+  showUndocumentedCategories: true

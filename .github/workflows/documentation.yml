@@ -1,0 +1,73 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'lib/**'
+      - 'dartdoc_options.yaml'
+      - 'pubspec.yaml'
+      - '.github/workflows/documentation.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'lib/**'
+      - 'dartdoc_options.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Dart SDK
+      uses: dart-lang/setup-dart@v1
+      with:
+        sdk: stable
+    
+    - name: Install dependencies
+      run: dart pub get
+    
+    - name: Install dartdoc
+      run: dart pub global activate dartdoc
+    
+    - name: Generate documentation
+      run: |
+        dart pub global run dartdoc \
+          --output doc/api \
+          --exclude 'dart:async,dart:collection,dart:convert,dart:core,dart:developer,dart:io,dart:isolate,dart:math,dart:typed_data'
+    
+    - name: Check documentation
+      run: |
+        if [ ! -f "doc/api/index.html" ]; then
+          echo "Error: Documentation generation failed"
+          exit 1
+        fi
+        echo "Documentation generated successfully"
+        echo "Total HTML files: $(find doc/api -name "*.html" | wc -l)"
+    
+    - name: Upload documentation artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: documentation
+        path: doc/api/
+        retention-days: 30
+    
+    # Deploy to GitHub Pages on main branch pushes only
+    - name: Deploy to GitHub Pages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./doc/api
+        publish_branch: gh-pages
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'docs: update API documentation'
