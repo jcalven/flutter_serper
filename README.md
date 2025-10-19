@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_serper.svg)](https://pub.dev/packages/flutter_serper)
 [![flutter_serper](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml)
-[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://jcalven.github.io/flutter_serper/)
+[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://jcalven.github.io/flutter_serper)
 
 An unofficial Dart package that provides a strongly-typed wrapper for the [Serper API](https://serper.dev/), allowing you to perform Google search operations and extract data from webpages.
 
@@ -27,11 +27,11 @@ An unofficial Dart package that provides a strongly-typed wrapper for the [Serpe
 - Support for batch requests (up to 100 queries per call)
 - Full control over all available query parameters
 - Comprehensive documentation
-- Auto-generated API documentation available at [jcalven.github.io/flutter_serper](https://jcalven.github.io/flutter_serper/)
+- Auto-generated API documentation available at [jcalven.github.io/flutter_serper](https://jcalven.github.io/flutter_serper)
 
 ## Documentation
 
-- **[API Documentation](https://jcalven.github.io/flutter_serper/)** - Full API reference with detailed documentation
+- **[API Documentation](https://jcalven.github.io/flutter_serper)** - Full API reference with detailed documentation
 - **[pub.dev](https://pub.dev/documentation/flutter_serper/latest/)** - Package documentation on pub.dev
 
 ## Installation
