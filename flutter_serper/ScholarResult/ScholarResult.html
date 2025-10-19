@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the ScholarResult.new constructor from Class ScholarResult from the flutter_serper library, for the Dart programming language.">
+  <title>ScholarResult.new constructor - ScholarResult - flutter_serper library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper.dart</a></li>
+    <li><a href="../../flutter_serper/ScholarResult-class.html">ScholarResult</a></li>
+    <li class="self-crumb">ScholarResult.new const constructor</li>
+  </ol>
+  <div class="self-name">ScholarResult.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="flutter_serper&#47;ScholarResult-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">ScholarResult</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">ScholarResult</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-title"><span class="type-annotation">String?</span> <span class="parameter-name">title</span>, </span></li>
+<li><span class="parameter" id="-param-link"><span class="type-annotation">String?</span> <span class="parameter-name">link</span>, </span></li>
+<li><span class="parameter" id="-param-publicationInfo"><span class="type-annotation">String?</span> <span class="parameter-name">publicationInfo</span>, </span></li>
+<li><span class="parameter" id="-param-snippet"><span class="type-annotation">String?</span> <span class="parameter-name">snippet</span>, </span></li>
+<li><span class="parameter" id="-param-year"><span class="type-annotation">int?</span> <span class="parameter-name">year</span>, </span></li>
+<li><span class="parameter" id="-param-citedBy"><span class="type-annotation">int?</span> <span class="parameter-name">citedBy</span>, </span></li>
+<li><span class="parameter" id="-param-pdfUrl"><span class="type-annotation">String?</span> <span class="parameter-name">pdfUrl</span>, </span></li>
+<li><span class="parameter" id="-param-htmlUrl"><span class="type-annotation">String?</span> <span class="parameter-name">htmlUrl</span>, </span></li>
+<li><span class="parameter" id="-param-id"><span class="type-annotation">String?</span> <span class="parameter-name">id</span>, </span></li>
+</ol>})
+    </section>
+    
+<section class="desc markdown">
+  <p>An immutable result object representing a scholar result from the Serper Scholar API.</p>
+<ul>
+<li><code>title</code>: The title of the academic paper.</li>
+<li><code>link</code>: The direct link to the academic paper.</li>
+<li><code>publicationInfo</code>: Information about the publication (journal, conference, etc.).</li>
+<li><code>snippet</code>: A brief excerpt or description of the paper.</li>
+<li><code>year</code>: The year the academic paper was published.</li>
+<li><code>citedBy</code>: The number of times this paper has been cited by other papers.</li>
+<li><code>pdfUrl</code>: URL to the PDF version of the academic paper.</li>
+<li><code>htmlUrl</code>: URL to the HTML version of the academic paper.</li>
+<li><code>id</code>: The unique identifier for this academic paper.</li>
+</ul>
+<p>This class is used in the <a href="../../flutter_serper/ScholarResponse-class.html">ScholarResponse</a> to represent each scholar result returned by the API.
+Creates a <a href="../../flutter_serper/ScholarResult-class.html">ScholarResult</a>.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const factory ScholarResult({
+  &#47;&#47;&#47; {@macro flutter_serper.results.title}
+  String? title,
+
+  &#47;&#47;&#47; {@macro flutter_serper.results.link}
+  String? link,
+
+  &#47;&#47;&#47; Information about the publication.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; Typically includes the journal name, conference, or publisher details.
+  String? publicationInfo,
+
+  &#47;&#47;&#47; {@macro flutter_serper.results.snippet}
+  String? snippet,
+
+  &#47;&#47;&#47; The year the academic paper was published.
+  int? year,
+
+  &#47;&#47;&#47; The number of times this paper has been cited by other papers.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This is an indicator of the paper&#39;s influence in its field.
+  int? citedBy,
+
+  &#47;&#47;&#47; URL to the PDF version of the academic paper.
+  String? pdfUrl,
+
+  &#47;&#47;&#47; URL to the HTML version of the academic paper.
+  String? htmlUrl,
+
+  &#47;&#47;&#47; The unique identifier for this academic paper.
+  String? id,
+}) = _ScholarResult;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/ScholarResult-class.html">ScholarResult</a></li>
+    <li class="self-crumb">ScholarResult.new const constructor</li>
+</ol>
+
+    <h5>ScholarResult class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    flutter_serper
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

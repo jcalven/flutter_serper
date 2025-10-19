@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the KnowledgeGraphResult.new constructor from Class KnowledgeGraphResult from the flutter_serper library, for the Dart programming language.">
+  <title>KnowledgeGraphResult.new constructor - KnowledgeGraphResult - flutter_serper library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper.dart</a></li>
+    <li><a href="../../flutter_serper/KnowledgeGraphResult-class.html">KnowledgeGraphResult</a></li>
+    <li class="self-crumb">KnowledgeGraphResult.new const constructor</li>
+  </ol>
+  <div class="self-name">KnowledgeGraphResult.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="flutter_serper&#47;KnowledgeGraphResult-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">KnowledgeGraphResult</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">KnowledgeGraphResult</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-title"><span class="type-annotation">String?</span> <span class="parameter-name">title</span>, </span></li>
+<li><span class="parameter" id="-param-type"><span class="type-annotation">String?</span> <span class="parameter-name">type</span>, </span></li>
+<li><span class="parameter" id="-param-imageUrl"><span class="type-annotation">String?</span> <span class="parameter-name">imageUrl</span>, </span></li>
+<li><span class="parameter" id="-param-attributes"><span class="type-annotation"><a href="../../flutter_serper/KnowledgeGraphAttributes-class.html">KnowledgeGraphAttributes</a>?</span> <span class="parameter-name">attributes</span>, </span></li>
+<li><span class="parameter" id="-param-description"><span class="type-annotation">String?</span> <span class="parameter-name">description</span>, </span></li>
+<li><span class="parameter" id="-param-descriptionLink"><span class="type-annotation">String?</span> <span class="parameter-name">descriptionLink</span>, </span></li>
+<li><span class="parameter" id="-param-descriptionSource"><span class="type-annotation">String?</span> <span class="parameter-name">descriptionSource</span>, </span></li>
+</ol>})
+    </section>
+    
+<section class="desc markdown">
+  <p>An immutable result object representing a Knowledge Graph result from the Serper API.</p>
+<ul>
+<li><code>title</code>: The title of the entity.</li>
+<li><code>type</code>: The type of entity represented in the Knowledge Graph (e.g., "Person", "Organization").</li>
+<li><code>imageUrl</code>: The URL to the entity's image.</li>
+<li><code>attributes</code>: Additional attributes associated with this entity.</li>
+<li><code>description</code>: A description of the entity.</li>
+<li><code>descriptionLink</code>: A link to the source of the description.</li>
+<li><code>descriptionSource</code>: The source of the description.</li>
+</ul>
+<p>This class is used in <a href="../../flutter_serper/SearchResponse-class.html">SearchResponse</a> and other responses to represent structured entity information.
+Creates a <a href="../../flutter_serper/KnowledgeGraphResult-class.html">KnowledgeGraphResult</a>.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const factory KnowledgeGraphResult({
+  &#47;&#47;&#47; {@macro flutter_serper.results.title}
+  String? title,
+
+  &#47;&#47;&#47; The type of entity represented in the Knowledge Graph.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; Examples include &quot;Person&quot;, &quot;Organization&quot;, &quot;Place&quot;, etc.
+  String? type,
+
+  &#47;&#47;&#47; {@macro flutter_serper.results.imageUrl}
+  String? imageUrl,
+
+  &#47;&#47;&#47; Additional attributes associated with this entity.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This is a map of key-value pairs containing various facts about the entity.
+  KnowledgeGraphAttributes? attributes,
+
+  &#47;&#47;&#47; A description of the entity.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This provides additional context or explanation about the entity.
+  String? description,
+
+  &#47;&#47;&#47; A link to the source of the description.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This URL can be used to find more information about the entity.
+  String? descriptionLink,
+
+  &#47;&#47;&#47; The source of the description.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; Indicates where the description text originated from.
+  String? descriptionSource,
+}) = _KnowledgeGraphResult;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/KnowledgeGraphResult-class.html">KnowledgeGraphResult</a></li>
+    <li class="self-crumb">KnowledgeGraphResult.new const constructor</li>
+</ol>
+
+    <h5>KnowledgeGraphResult class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    flutter_serper
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

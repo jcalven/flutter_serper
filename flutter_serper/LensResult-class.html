@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the LensResult class from the flutter_serper library, for the Dart programming language.">
+  <title>LensResult class - flutter_serper library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">flutter_serper</a></li>
+    <li><a href="../flutter_serper/">flutter_serper.dart</a></li>
+    <li class="self-crumb">LensResult class</li>
+  </ol>
+  <div class="self-name">LensResult</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="flutter_serper&#47;flutter_serper-library-sidebar.html"
+    data-below-sidebar="flutter_serper&#47;LensResult-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">LensResult</span> class 
+    <a href="https://dart.dev/language/class-modifiers#abstract" class="feature feature-abstract" title="This type can not be directly constructed.">abstract</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>An immutable result object representing a Lens (Image Search) result from the Serper Lens API.</p>
+<ul>
+<li><code>title</code>: The title of the result.</li>
+<li><code>source</code>: The source or provider of the result.</li>
+<li><code>link</code>: The direct link to the result.</li>
+<li><code>imageUrl</code>: The URL to the full-size image.</li>
+<li><code>thumbnailUrl</code>: The URL to a thumbnail version of the image.</li>
+</ul>
+<p>This class is used in the <a href="../flutter_serper/LensResponse-class.html">LensResponse</a> to represent each result returned by the API.</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+        
+
+
+        
+        
+  <dt>Annotations</dt>
+  <dd>
+    <ul class="annotation-list clazz-relationships">
+        <li>@<a href="https://pub.dev/documentation/freezed_annotation/3.1.0/freezed_annotation/freezed-constant.html">freezed</a></li>
+    </ul>
+  </dd>
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="LensResult.new" class="callable">
+          <span class="name"><a href="../flutter_serper/LensResult/LensResult.html">LensResult</a></span><span class="signature">({<span class="parameter" id="-param-title"><span class="type-annotation">String?</span> <span class="parameter-name">title</span>, </span><span class="parameter" id="-param-source"><span class="type-annotation">String?</span> <span class="parameter-name">source</span>, </span><span class="parameter" id="-param-link"><span class="type-annotation">String?</span> <span class="parameter-name">link</span>, </span><span class="parameter" id="-param-imageUrl"><span class="type-annotation">String?</span> <span class="parameter-name">imageUrl</span>, </span><span class="parameter" id="-param-thumbnailUrl"><span class="type-annotation">String?</span> <span class="parameter-name">thumbnailUrl</span></span>})</span>
+        </dt>
+        <dd>
+          An immutable result object representing a Lens (Image Search) result from the Serper Lens API.
+            <div class="constructor-modifier features">const</div>
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="LensResult.fromJson" class="callable">
+          <span class="name"><a href="../flutter_serper/LensResult/LensResult.fromJson.html">LensResult.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-json"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">json</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a <a href="../flutter_serper/LensResult-class.html">LensResult</a> from a JSON map.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="copyWith" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/copyWith.html">copyWith</a></span>
+  <span class="signature">&#8594; $LensResultCopyWith<span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_serper/LensResult-class.html">LensResult</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  Create a copy of LensResult
+with the given fields replaced by the non-null parameter values.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; int</span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="imageUrl" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/imageUrl.html">imageUrl</a></span>
+  <span class="signature">&#8594; String?</span>
+  
+
+</dt>
+<dd class="inherited">
+  The URL to the full-size image.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="link" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/link.html">link</a></span>
+  <span class="signature">&#8594; String?</span>
+  
+
+</dt>
+<dd class="inherited">
+  The URL link to the result.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; Type</span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="source" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/source.html">source</a></span>
+  <span class="signature">&#8594; String?</span>
+  
+
+</dt>
+<dd class="inherited">
+  The source or provider of the result.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="thumbnailUrl" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/thumbnailUrl.html">thumbnailUrl</a></span>
+  <span class="signature">&#8594; String?</span>
+  
+
+</dt>
+<dd class="inherited">
+  The URL to a thumbnail version of the image.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="title" class="property inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/title.html">title</a></span>
+  <span class="signature">&#8594; String?</span>
+  
+
+</dt>
+<dd class="inherited">
+  The title of the result.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toJson" class="callable inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Serializes this LensResult to a JSON map.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; String</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="../flutter_serper/LensResult/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">Object</span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; bool</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">flutter_serper</a></li>
+    <li><a href="../flutter_serper/">flutter_serper</a></li>
+    <li class="self-crumb">LensResult class</li>
+</ol>
+
+    <h5>flutter_serper library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    flutter_serper
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

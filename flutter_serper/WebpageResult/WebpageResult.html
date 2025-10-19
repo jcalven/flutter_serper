@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the WebpageResult.new constructor from Class WebpageResult from the flutter_serper library, for the Dart programming language.">
+  <title>WebpageResult.new constructor - WebpageResult - flutter_serper library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper.dart</a></li>
+    <li><a href="../../flutter_serper/WebpageResult-class.html">WebpageResult</a></li>
+    <li class="self-crumb">WebpageResult.new const constructor</li>
+  </ol>
+  <div class="self-name">WebpageResult.new</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="flutter_serper&#47;WebpageResult-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">WebpageResult</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">WebpageResult</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-text"><span class="type-annotation">String?</span> <span class="parameter-name">text</span>, </span></li>
+<li><span class="parameter" id="-param-markdown"><span class="type-annotation">String?</span> <span class="parameter-name">markdown</span>, </span></li>
+<li><span class="parameter" id="-param-metadata"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">metadata</span>, </span></li>
+<li><span class="parameter" id="-param-jsonld"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">jsonld</span>, </span></li>
+<li><span class="parameter" id="-param-credits"><span class="type-annotation">int?</span> <span class="parameter-name">credits</span>, </span></li>
+</ol>})
+    </section>
+    
+<section class="desc markdown">
+  <p>An immutable result object representing a single result in a Serper Webpage API response.</p>
+<ul>
+<li><code>text</code>: The extracted text content from the webpage.</li>
+<li><code>markdown</code>: The content formatted as markdown, if available.</li>
+<li><code>metadata</code>: Additional metadata about the webpage.</li>
+<li><code>jsonld</code>: Structured data markup (JSON-LD).</li>
+<li><code>credits</code>: The number of credits used for extracting this webpage.</li>
+</ul>
+<p>This class is used in the <a href="../../flutter_serper/WebpageResponse-class.html">WebpageResponse</a> to represent the extracted content from a webpage.
+Creates a <a href="../../flutter_serper/WebpageResult-class.html">WebpageResult</a>.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">const factory WebpageResult({
+  &#47;&#47;&#47; The extracted text content from the webpage.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This is the main content that has been parsed from the webpage.
+  String? text,
+
+  &#47;&#47; &#47;&#47;&#47; {@macro flutter_serper.results.title}
+  &#47;&#47; required String title,
+
+  &#47;&#47;&#47; The content formatted as markdown, if available.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; This provides a structured representation of the content with formatting.
+  String? markdown,
+
+  &#47;&#47;&#47; Additional metadata about the webpage.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; May include information like title, description, author, etc.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; Note: This field is not strongly typed since the metadata structure
+  &#47;&#47;&#47; can vary widely between different webpages and the meta tags are not
+  &#47;&#47;&#47; standardized.
+  Map&lt;String, dynamic&gt;? metadata,
+
+  &#47;&#47;&#47; Structured data markup (JSON-LD)
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; See: https:&#47;&#47;json-ld.org
+  Map&lt;String, dynamic&gt;? jsonld,
+
+  &#47;&#47;&#47; The number of credits used for extracting this webpage.
+  &#47;&#47;&#47;
+  &#47;&#47;&#47; Serper API uses a credit-based system for billing.
+  int? credits,
+}) = _WebpageResult;</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/">flutter_serper</a></li>
+    <li><a href="../../flutter_serper/WebpageResult-class.html">WebpageResult</a></li>
+    <li class="self-crumb">WebpageResult.new const constructor</li>
+</ol>
+
+    <h5>WebpageResult class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    flutter_serper
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
