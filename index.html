@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="flutter_serper API docs, for the Dart programming language.">
+  <title>flutter_serper - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">flutter_serper package</li>
+  </ol>
+  <div class="self-name">flutter_serper</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="flutter_serper">flutter_serper</h1>
+<p><a href="https://pub.dev/packages/flutter_serper"><img src="https://img.shields.io/pub/v/flutter_serper.svg" alt="pub package"></a>
+<a href="https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml"><img src="https://github.com/jcalven/flutter_serper/actions/workflows/main.yaml/badge.svg?branch=main" alt="flutter_serper"></a>
+<a href="https://jcalven.github.io/flutter_serper/"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Documentation"></a></p>
+<p>An unofficial Dart package that provides a strongly-typed wrapper for the <a href="https://serper.dev/">Serper API</a>, allowing you to perform Google search operations and extract data from webpages.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Strongly-typed query and response models</li>
+<li>Type-safe responses for all API endpoints that match the Serper API schema</li>
+<li>Support for all Serper API endpoints:
+<ul>
+<li>Google Search</li>
+<li>Images</li>
+<li>Videos</li>
+<li>Places</li>
+<li>Maps</li>
+<li>Reviews</li>
+<li>News</li>
+<li>Shopping</li>
+<li>Lens (Image Search)</li>
+<li>Scholar</li>
+<li>Patents</li>
+<li>Autocomplete</li>
+<li>Webpage Scraping</li>
+</ul>
+</li>
+<li>Support for batch requests (up to 100 queries per call)</li>
+<li>Full control over all available query parameters</li>
+<li>Comprehensive documentation</li>
+<li>Auto-generated API documentation available at <a href="https://jcalven.github.io/flutter_serper/">jcalven.github.io/flutter_serper</a></li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><strong><a href="https://jcalven.github.io/flutter_serper/">API Documentation</a></strong> - Full API reference with detailed documentation</li>
+<li><strong><a href="https://pub.dev/documentation/flutter_serper/latest/">pub.dev</a></strong> - Package documentation on pub.dev</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  flutter_serper: ^1.0.0
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="initialize-the-client">Initialize the client</h3>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter_serper/flutter_serper.dart';
+
+// Initialize with your API key
+final serper = Serper(apiKey: 'YOUR_API_KEY');
+</code></pre>
+<h3 id="basic-google-search">Basic Google Search</h3>
+<pre class="language-dart"><code class="language-dart">final query = SearchQuery(
+  query: 'coffee shops',
+  location: 'New York',
+  countryCode: CountryCode.unitedStates, // Optional, use enum
+  languageCode: LanguageCode.english,    // Optional, use enum
+  num: 10,
+);
+
+final result = await serper.search(query);
+print('Found ${result.organic.length} organic results');
+print('First result: ${result.organic.first.title}');
+print('Link: ${result.organic.first.link}');
+
+if (result.peopleAlsoAsk != null &amp;&amp; result.peopleAlsoAsk!.isNotEmpty) {
+  print('People also ask: ${result.peopleAlsoAsk!.first.question}');
+}
+if (result.relatedSearches != null &amp;&amp; result.relatedSearches!.isNotEmpty) {
+  print('Related search: ${result.relatedSearches!.first.query}');
+}
+</code></pre>
+<h3 id="batch-search">Batch Search</h3>
+<pre class="language-dart"><code class="language-dart">final queries = [
+  SearchQuery(query: 'best cafes', location: 'Seattle'),
+  SearchQuery(query: 'best coffee', location: 'Portland'),
+];
+
+final results = await serper.searchBatch(queries);
+print('Batch search returned ${results.length} responses');
+for (final res in results) {
+  print('First organic result: ${res.organic.first.title}');
+}
+</code></pre>
+<h3 id="image-search">Image Search</h3>
+<pre class="language-dart"><code class="language-dart">final query = ImagesQuery(
+  query: 'coffee beans',
+  location: 'New York',
+  num: 5,
+);
+
+final result = await serper.images(query);
+print('Found ${result.images.length} image results');
+print('First image: ${result.images.first.title}');
+print('Image URL: ${result.images.first.imageUrl}');
+print('Thumbnail: ${result.images.first.thumbnailUrl}');
+</code></pre>
+<h3 id="webpage-scraping">Webpage Scraping</h3>
+<pre class="language-dart"><code class="language-dart">final query = WebpageQuery(
+  url: 'https://example.com',
+  includeMarkdown: true,
+);
+
+final result = await serper.webpage(query);
+print('Extracted text length: ${result.results.text.length} characters');
+if (result.results.markdown != null) {
+  print('Markdown available');
+}
+</code></pre>
+<h2 id="available-query-parameters">Available Query Parameters</h2>
+<p>Each query class supports all the parameters available in the Serper API. Example for <code>SearchQuery</code>:</p>
+<pre class="language-dart"><code class="language-dart">SearchQuery(
+  query: 'search term',           // Required - search query
+  location: 'New York',           // Optional - location to search from
+  countryCode: CountryCode.unitedStates, // Optional - use enum
+  languageCode: LanguageCode.english,    // Optional - use enum
+  num: 10,                        // Optional - number of results
+  autocorrect: true,              // Optional - enable autocorrection
+  tbs: TbsValue.pastDay,          // Optional - time-based search (enum)
+  page: 1,                        // Optional - page number
+);
+</code></pre>
+<h2 id="response-models">Response Models</h2>
+<p>The package includes strongly-typed response models for all Serper API endpoints. Each model matches the JSON structure returned by the API and provides type-safe access to all fields.</p>
+<h3 id="search-response">Search Response</h3>
+<pre class="language-dart"><code class="language-dart">final searchResult = await serper.search(query);
+print('Search parameters: ${searchResult.searchParameters}');
+print('Credits used: ${searchResult.credits}');
+for (final result in searchResult.organic) {
+  print('Title: ${result.title}');
+  print('Link: ${result.link}');
+  print('Snippet: ${result.snippet}');
+  // OrganicResult does not have a position field in the model, so this line is removed
+}
+if (searchResult.relatedSearches != null) {
+  for (final related in searchResult.relatedSearches!) {
+    print('Related search: ${related.query}');
+  }
+}
+if (searchResult.peopleAlsoAsk != null) {
+  for (final question in searchResult.peopleAlsoAsk!) {
+    print('Question: ${question.question}');
+  }
+}
+</code></pre>
+<h3 id="images-response">Images Response</h3>
+<pre class="language-dart"><code class="language-dart">final imageResult = await serper.images(query);
+for (final image in imageResult.images) {
+  print('Title: ${image.title}');
+  print('Image URL: ${image.imageUrl}');
+  print('Thumbnail: ${image.thumbnailUrl}');
+  print('Source: ${image.source}');
+}
+</code></pre>
+<h3 id="places-response">Places Response</h3>
+<pre class="language-dart"><code class="language-dart">final placesResult = await serper.places(query);
+for (final place in placesResult.places) {
+  print('Title: ${place.title}');
+  print('Address: ${place.address}');
+  print('Rating: ${place.rating}');
+  print('Review count: ${place.reviewCount}');
+  print('Website: ${place.website}');
+}
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>All API methods throw a <code>SerperApiException</code> when there's an error with the API request. The exception includes helpful information about what went wrong:</p>
+<pre class="language-dart"><code class="language-dart">try {
+  final result = await serper.search(query);
+  // Process result...
+} on SerperApiException catch (e) {
+  print('API error: ${e.message}');
+  print('Status code: ${e.statusCode}');
+  print('Endpoint: ${e.endpoint}');
+  if (e.responseData != null) {
+    print('Error details: ${e.responseData}');
+  }
+} catch (e) {
+  print('Other error: $e');
+}
+</code></pre>
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="flutter_serper">
+  <span class="name"><a href="flutter_serper/">flutter_serper</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">flutter_serper package</li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">flutter_serper</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="flutter_serper/">flutter_serper</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    flutter_serper
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
