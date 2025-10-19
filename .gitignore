@@ -10,6 +10,7 @@ pubspec.lock
 doc/api/
 assets/
 coverage/
+docs/gitignore/
 .test_coverage.dart
 build/
 instruct.md
