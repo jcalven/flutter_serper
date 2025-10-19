@@ -1,3 +1,9 @@
+/// Result models for Serper API responses.
+///
+/// This library contains all result model classes returned by the Serper API,
+/// including [MapResult], [OrganicResult], [NewsResult], [ImageResult], and more.
+library results;
+
 import 'package:flutter_serper/src/models/utils/lat_lng.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
